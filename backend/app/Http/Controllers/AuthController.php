@@ -43,7 +43,7 @@ class AuthController extends Controller
         // Generate a token for the new user
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
-        event(new Registered($user)); //for email validation 
+        event(new Registered($user)); //for email validation
 
         // Return the token and user data
         return response()->json([
