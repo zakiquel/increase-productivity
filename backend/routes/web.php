@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SubscriptionController;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -34,5 +35,9 @@ Route::get('/companies/{company}/edit', [CompanyController::class, 'index'])->na
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::delete('/companies/{company}', [CompanyController::class, 'show'])->name('companies.destroy');
 Route::resource('employees', EmployeeController::class);
+
+Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
+
 
 require __DIR__ . '/api.php';
