@@ -1,0 +1,63 @@
+services:
+  app:
+    build:
+      context: .
+      target: backend
+    env_file:
+      - ./.env.deploy
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - default
+
+  db:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./backend/docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - productivity
+
+  docs:
+    image: registry.hub.docker.com/swaggerapi/swagger-ui:v4.17.0
+    restart: always
+    environment:
+      SWAGGER_JSON_URL: /docs/openapi.yaml
+      BASE_URL: /docs
+      VIRTUAL_PORT: 8080
+      VIRTUAL_HOST: increase-productivity.abdrashitov-academy.ru
+      VIRTUAL_PATH: /docs
+      LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
+    volumes:
+      - ./backend/openapi.yaml:/usr/share/nginx/html/openapi.yaml:ro
+    networks:
+      - default
+      - academy
+
+  nginx:
+    build:
+      context: .
+      target: nginx
+    image: nginx:1.17-alpine
+    environment:
+      VIRTUAL_PORT: 80
+      VIRTUAL_HOST: increase-productivity.abdrashitov-academy.ru
+      VIRTUAL_PATH: /
+      LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
+    restart: always
+    networks:
+      - default
+      - academy
+
+networks:
+  academy:
+    name: academy
+  default:
