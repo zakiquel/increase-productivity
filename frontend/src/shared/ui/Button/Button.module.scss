@@ -1,0 +1,84 @@
+.Button {
+  cursor: pointer;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  border: none;
+  transition: all 0.1s ease-in;
+  justify-content: center;
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+}
+
+.addonLeft svg,
+.addonRight svg {
+  color: var(--accent-primary-color);
+}
+
+.withAddon {
+  padding: 0 16px;
+}
+
+.accent {
+  color: var(--primary-color);
+  background: var(--accent-purple);
+
+  &:hover {
+    color: var(--accent-purple);
+    background: var(--primary-color);
+  }
+
+  &:disabled {
+    background: none;
+    padding: 0;
+    border: none;
+    outline-color: transparent;
+  }
+}
+
+.white {
+  color: var(--bg-color);
+  background: var(--primary-color);
+  &:hover {
+    color: var(--accent-purple);
+    }
+}
+
+.clear {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  outline-color: transparent;
+
+  &:hover {
+    color: var(--accent-purple);
+    background: none;
+  }
+}
+
+.s {
+  font: var(--font-button-s);
+  padding: 16px 16px;
+}
+
+.m {
+  font: var(--font-button-m);
+  padding: 16px 24px;
+}
+
+.l {
+  font: var(--font-button-l);
+  padding: 16px 32px;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.fullWidth {
+  width: 100%;
+}

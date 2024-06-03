@@ -1,0 +1,83 @@
+:root {
+  --font-family: "Inter", sans-serif;
+
+  // Font-weights
+  --medium: 600;
+
+
+  // Small size font
+  --font-size-16: 16px;
+  --font-line-16: 24px;
+  --font-16: var(--font-size-16) / var(--font-line-16) var(--font-family);
+
+  --font-size-20: 20px;
+  --font-line-20: 28px;
+  --font-20: var(--font-size-20) / var(--font-line-20) var(--font-family);
+
+
+  // Medium size font
+  --font-size-26: 26px;
+  --font-line-26: 34px;
+  --font-26: var(--font-size-26) / var(--font-line-26) var(--font-family);
+
+  --font-size-32: 32px;
+  --font-line-32: 40px;
+  --font-32: var(--font-size-32) / var(--font-line-32) var(--font-family);
+
+
+  // Large size font
+  --font-size-l: 44px;
+  --font-line-l: 52px;
+  --font-l: var(--medium) var(--font-size-l) / var(--font-line-l) var(--font-family);
+
+
+  // XLarge size font
+  --font-size-xl: 56px;
+  --font-line-xl: 64px;
+  --font-xl: var(--medium) var(--font-size-xl) / var(--font-line-xl) var(--font-family);
+
+
+  // Title card font
+  --font-size-title-card: 32px;
+  --font-line-title-card: 40px;
+  --font-title-card: var(--medium) var(--font-size-title-card) / var(--font-line-title-card) var(--font-family);
+
+
+  // Button fonts
+  --font-button-s: var(--font-size-20) / var(--font-line-20) var(--font-family);
+
+  --font-button-m: var(--medium) var(--font-size-20) / var(--font-line-20) var(--font-family);
+
+  --font-size-button-l: 32px;
+  --font-line-button-l: 40px;
+  --font-button-l: var(--medium) var(--font-size-button-l) / var(--font-line-button-l) var(--font-family);
+
+
+  // z - Индексы
+  --modal-z-index: 1000;
+  --overlay-z-index: 100;
+
+
+  // Цвета
+  --overlay-color: rgba(0 0 0 / 20%);
+  --primary-color: #FFFFFF;
+  --secondary-color: #6C6F74;
+  --bg-color: #1F2024;
+  --footer-bg: #191919;
+  --accent-purple: #D300F5;
+  --blue: #00A7E1;
+  --grey-l-color: #EFEFEF;
+  --grey-color: #75777E;
+  --black-l-color: #2E2F33;
+  --success-color: #32E875;
+  --error-color: #FF0022;
+
+  --accent-primary-color: #0C7CFF;
+  --accent-secondary-color: #4C9EFF;
+
+
+  // Размеры
+  --navbar-height: 90px;
+  --footer-height: 370px;
+}
+

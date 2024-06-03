@@ -1,0 +1,43 @@
+.default {
+  background: var(--bg-color);
+}
+
+.light {
+  background: var(--grey-l-color);
+}
+
+.outlined {
+  border: 1px solid var(--footer-bg);
+}
+
+.normal {
+  border-radius: 12px;
+}
+
+.partial {
+  border-radius: 30px;
+}
+
+.round {
+  border-radius: 40px;
+}
+
+.gap_0 {
+  padding: 0;
+}
+
+.gap_10 {
+  padding: 10px;
+}
+
+.gap_16 {
+  padding: 16px;
+}
+
+.gap_24 {
+  padding: 24px;
+}
+
+.max {
+  width: 100%;
+}

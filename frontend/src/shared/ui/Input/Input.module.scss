@@ -1,0 +1,66 @@
+.InputWrapper {
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 100%;
+}
+
+.s {
+  height: 32px;
+}
+
+.m {
+  height: 70px;
+}
+
+.l {
+  height: 44px;
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+}
+
+.withAddonLeft {
+  padding-left: 8px;
+}
+
+.withAddonRight {
+  padding-right: 8px;
+}
+
+.focused {
+  .addonLeft svg,
+  .addonRight svg {
+    color: var(--accent-secondary-color);
+  }
+}
+
+.input {
+  border: none;
+  outline-color: transparent;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 15px;
+  color: var(--primary-color);
+  background: var(--black-l-color);
+
+  &:focus {
+    border: 2px solid var(--accent-secondary-color);
+  }
+
+  &::placeholder {
+    color: var(--secondary-color);
+  }
+}
+
+.readonly {
+  opacity: 0.8;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
