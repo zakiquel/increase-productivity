@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM registry.hub.docker.com/library/php:8.2-fpm as backend
 
 # Arguments defined in docker-compose.yml
 ARG user
