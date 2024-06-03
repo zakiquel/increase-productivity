@@ -24,7 +24,7 @@ services:
     volumes:
       - ./backend/docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
-      - productivity
+      - default
 
   docs:
     image: registry.hub.docker.com/swaggerapi/swagger-ui:v4.17.0
