@@ -29,7 +29,7 @@ COPY ./backend/app/php.ini /usr/local/etc/php/conf.d/php.ini
 
 COPY --from=registry.hub.docker.com/library/composer:2 /usr/bin/composer /usr/bin/composer
 
-RUN composer update
+# RUN composer update
 
 RUN composer install --no-dev --optimize-autoloader
 
