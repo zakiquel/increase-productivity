@@ -23,8 +23,8 @@ deploy:
   tags:
     - academy
   script:
-    - docker compose --env-file .env.deploy up -d --force-recreate --remove-orphans
-    - docker compose --env-file .env.deploy exec app php artisan migrate --force
+    - docker compose --env-file .env.deploy -f docker-compose.deploy.yml up -d --force-recreate --remove-orphans
+    - docker compose --env-file .env.deploy -f docker-compose.deploy.yml exec app php artisan migrate --force
 
 clear:
   stage: clear
