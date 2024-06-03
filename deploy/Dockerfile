@@ -1,8 +1,5 @@
 FROM registry.hub.docker.com/library/php:8.3-fpm as backend
 
-ARG user
-ARG uid
-
 RUN apt-get update && apt-get install -y \
     apt-utils \
     libpq-dev \

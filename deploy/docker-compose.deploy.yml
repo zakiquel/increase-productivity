@@ -1,9 +1,6 @@
 services:
   app:
     build:
-      args:
-        user: user
-        uid: 1000
       context: .
       target: backend
     env_file:
