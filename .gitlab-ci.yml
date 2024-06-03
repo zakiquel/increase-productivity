@@ -3,7 +3,7 @@ stages:
   - deploy
   - clear
 
-build:
+  :
   stage: build
   tags:
     - academy
