@@ -43,6 +43,6 @@ RUN composer install --no-dev --optimize-autoloader
 FROM registry.hub.docker.com/library/nginx:latest as nginx
 
 COPY --from=backend /var/www/backend /var/www
-COPY ./docker/nginx/nginx.conf /etc/nginx/default.conf
+COPY ../docker/nginx/nginx.conf /etc/nginx/default.conf
 
 # COPY --from=frontend /var/www/frontend/public /usr/share/nginx/html/
