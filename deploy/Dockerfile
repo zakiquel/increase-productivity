@@ -41,7 +41,7 @@ RUN composer install --no-dev --optimize-autoloader
 FROM registry.hub.docker.com/library/node:18.17 as frontend
 WORKDIR /app
 COPY ./frontend .
-RUN npm install && npm build:prod
+RUN npm install && npm build
 CMD ["npm", "run", "start"]
 
 
