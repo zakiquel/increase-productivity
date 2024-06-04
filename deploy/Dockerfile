@@ -38,15 +38,15 @@ COPY --from=registry.hub.docker.com/library/composer:2 /usr/bin/composer /usr/bi
 RUN composer install --no-dev --optimize-autoloader
 
 
-FROM registry.hub.docker.com/library/node:18.17 as frontend
-WORKDIR /app
-COPY ./frontend .
-RUN npm install && npm build:prod
-CMD ["npm", "run", "start"]
+# FROM registry.hub.docker.com/library/node:18.17 as frontend
+# WORKDIR /app
+# COPY ./frontend .
+# RUN npm install && npm build:prod
+# CMD ["npm", "run", "start"]
 
 FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
 COPY --from=backend /var/www/backend /var/www
-COPY ./docker/nginx/nginx.conf /etc/nginx/default.conf
+COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=frontend /var/www/frontend/build /usr/share/nginx/html/
+# COPY --from=frontend /var/www/frontend/build /usr/share/nginx/html/
