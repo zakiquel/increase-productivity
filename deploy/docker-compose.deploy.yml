@@ -47,7 +47,10 @@ services:
       - academy
 
   nginx:
-    image: registry.hub.docker.com/library/nginx:1.17
+    build:
+      context: .
+      target: nginx
+    # image: registry.hub.docker.com/library/nginx:1.17
     environment:
       VIRTUAL_PORT: 80
       VIRTUAL_HOST: increase-productivity.abdrashitov-academy.ru
