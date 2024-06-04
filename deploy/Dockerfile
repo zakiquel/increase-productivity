@@ -44,7 +44,7 @@ COPY ./frontend .
 RUN npm install && npm build:prod
 CMD ["npm", "run", "start"]
 
-FROM registry.hub.docker.com/library/nginx:latest as nginx
+FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
 COPY --from=backend /var/www/backend /var/www
 COPY ./docker/nginx/nginx.conf /etc/nginx/default.conf
