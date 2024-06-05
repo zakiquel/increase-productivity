@@ -11,7 +11,7 @@ export type TextSize = 's' | 'm' | 'l';
 interface TextProps {
   className?: string;
   title?: string;
-  text?: string;
+  text?: string | JSX.Element;
   variant?: TextVariant;
   align?: TextAlign;
   size?: TextSize;
