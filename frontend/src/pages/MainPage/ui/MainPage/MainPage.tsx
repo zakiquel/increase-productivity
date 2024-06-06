@@ -1,27 +1,25 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 
-import { Button } from "@/shared/ui/Button";
-import { Card } from "@/shared/ui/Card";
-import { Input } from "@/shared/ui/Input";
+import { RegistrationModal } from '@/features/Registration';
+import { Button } from '@/shared/ui/Button';
 
-import cls from './MainPage.module.scss'
+import cls from './MainPage.module.scss';
 
-const MainPage = () => (
-    <main
-      className={cls.MainPage}
-    >
+const MainPage = () => {
+  const [isRegistration, setIsRegistration] = useState(false);
+
+  return (
+    <main className={cls.MainPage}>
       Лучший сервис для HR-специалиста!
-      <Button size='s'>Accent s</Button>
-      <Button>Accent m</Button>
-      <Button size='l'>Accent l</Button>
-      <Button variant="clear">Clear</Button>
-      <Button variant="white">White</Button>
-      <Button fullWidth>Full Width</Button>
-      <Card>Card normal</Card>
-      <Card variant="outlined">Card outlined</Card>
-      <Card variant="light">Card white</Card>
-      <Input placeholder="Input" />
+      <Button variant='white' onClick={() => setIsRegistration(true)}>
+        Зарегистрироваться
+      </Button>
+      <RegistrationModal
+        isOpen={isRegistration}
+        onClose={() => setIsRegistration(false)}
+      />
     </main>
   );
+};
 
 export default memo(MainPage);

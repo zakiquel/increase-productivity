@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './Icon.module.scss';
 
-type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
+type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick' | 'tabIndex'>;
 
 interface IconBaseProps extends SvgProps {
   className?: string;
@@ -18,6 +18,7 @@ interface NonClickableIconProps extends IconBaseProps {
 interface ClickableBaseProps extends IconBaseProps {
   clickable: true;
   onClick: () => void;
+  tabIndex?: number;
 }
 
 type IconProps = NonClickableIconProps | ClickableBaseProps;
@@ -45,10 +46,11 @@ export const Icon = memo((props: IconProps) => {
   if (clickable) {
     return (
       <button
-        type="button"
+        type='button'
         className={cls.button}
         onClick={props.onClick}
         style={{ height, width }}
+        tabIndex={props.tabIndex}
       >
         {icon}
       </button>
