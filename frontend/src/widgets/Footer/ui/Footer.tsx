@@ -1,12 +1,19 @@
 import { memo } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './Footer.module.scss';
+
+import tophr from '@/shared/assets/icons/top-hr.svg'
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Icon } from '@/shared/ui/Icon';
+import { AppLink } from '@/shared/ui/AppLink';
 
 interface FooterProps {
   className?: string;
 }
+
+const topLinks = [{ title: 'Возможности', link: '/' }, { title: 'Тарифы', link: '/' }, { title: 'Меню или ссылка', link: '/' }]
+const bottomLinks = [{ title: 'Политика обработки персональных данных', link: '/' }, { title: 'Пользовательское соглашение', link: '/' }, { title: 'Разработка Академии Абдрашитова', link: '/' }]
 
 export const Footer = memo((props: FooterProps) => {
   const {
@@ -15,7 +22,19 @@ export const Footer = memo((props: FooterProps) => {
 
   return (
     <div className={classNames(cls.Footer, {}, [className])}>
-      Footer
+      <div className={cls.top}>
+        <Icon Svg={tophr} width={126} height={34} />
+        <ul className={cls.top__links}>
+          {topLinks.map((item, index) => (
+            <li key={index}><AppLink to={item.link}>{item.title}</AppLink></li>
+          ))}
+        </ul>
+      </div>
+      <ul className={cls.bottom__links}>
+        {bottomLinks.map((item, index) => (
+          <li key={index}><AppLink to={item.link}>{item.title}</AppLink></li>
+        ))}
+      </ul>
     </div>
   );
 });
