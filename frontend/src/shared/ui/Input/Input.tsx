@@ -1,3 +1,4 @@
+import { MaskitoOptions, maskitoTransform } from '@maskito/core';
 import React, {
   InputHTMLAttributes,
   forwardRef,
@@ -25,9 +26,10 @@ interface InputProps extends HTMLInputProps {
   value?: string | number;
   label?: string;
   size?: InputSize;
+  options?: MaskitoOptions;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   autofocus?: boolean;
   readonly?: boolean;
   addonLeft?: ReactNode;
@@ -41,11 +43,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     value,
     onChange,
     onBlur,
-		onFocus,
+    onFocus,
     type = 'text',
     placeholder,
     label,
     autofocus,
+    options,
     size = 'm',
     readonly,
     addonLeft,
@@ -66,15 +69,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   const [localValue, setLocalValue] = useState<string | number>('');
 
-	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		setIsFocused(false);
-		onBlur?.(event);
-	};
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur?.(event);
+  };
 
-	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		setIsFocused(true);
-		onFocus?.(event);
-	};
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus?.(event);
+  };
 
   const mods: Mods = {
     [cls.readonly]: readonly,
@@ -88,6 +91,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (value === undefined) {
       setLocalValue(event.target.value);
+    }
+    if (options) {
+      const transformedValue = maskitoTransform(
+        event.currentTarget.value,
+        options
+      );
+      event.currentTarget.value = transformedValue;
     }
     onChange?.(event);
   };
@@ -109,8 +119,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       />
       <div className={cls.addonRight}>{addonRight}</div>
       {errorMessage && !isFocused && (
-				<div className={cls.errorField}>{errorMessage}</div>
-			)}
+        <div className={cls.errorField}>{errorMessage}</div>
+      )}
     </div>
   );
 

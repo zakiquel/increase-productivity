@@ -8,28 +8,28 @@
 
 .s {
   .input {
-		height: 32px;
-	}
+    height: 32px;
+  }
 }
 
 .m {
   .input {
-		height: 44px;
-	}
+    height: 44px;
+  }
 }
 
 .l {
   .input {
-		height: 71px;
-	}
+    height: 71px;
+  }
 }
 
 .addonLeft,
 .addonRight {
   display: flex;
   align-items: center;
-	position: absolute;
-	right: 17px;
+  position: absolute;
+  right: 17px;
 }
 
 .withAddonLeft {
@@ -48,7 +48,7 @@
   outline-color: transparent;
   width: 100%;
   padding-left: 16px;
-	padding-right: 50px;
+  padding-right: 50px;
   border-radius: 15px;
   color: var(--primary-color);
   font: var(--font-20);
@@ -69,24 +69,26 @@
 }
 
 .errorField {
-	position: absolute;
-	width: calc(100% - 50px);
-	height: 100%;
-	color: var(--error-color);
-	font: var(--font-20);
-	background: var(--black-l-color);
-	border-radius: 15px;
-	padding-left: 16px;
-	padding-right: 50px;
-	display: flex;
-	align-items: center;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: clip;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--error-color);
+  font: var(--font-20);
+  background: var(--black-l-color);
+  border-radius: 15px;
+  padding-left: 16px;
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  cursor: text;
 }
 
 .wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 16px;
 }
