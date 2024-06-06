@@ -41,7 +41,6 @@ RUN chmod -R 777 /var/www/backend/storage/
 
 
 FROM registry.hub.docker.com/library/node:18.17 as frontend
-FROM registry.hub.docker.com/library/node:18.17
 WORKDIR /app
 COPY ./frontend .
 RUN npm install && npm build:prod
