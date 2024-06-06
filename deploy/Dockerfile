@@ -40,11 +40,12 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chmod -R 777 /var/www/backend/storage/
 
 
-# FROM registry.hub.docker.com/library/node:18.17 as frontend
-# WORKDIR /app
-# COPY ./frontend .
-# RUN npm install && npm run build:prod
-# CMD ["npm", "run", "start"]
+FROM registry.hub.docker.com/library/node:18.17 as frontend
+FROM registry.hub.docker.com/library/node:18.17
+WORKDIR /app
+COPY ./frontend .
+RUN npm install && npm build:prod
+CMD ["npm", "run", "start"]
 
 
 FROM registry.hub.docker.com/library/nginx:1.17 as nginx
@@ -52,4 +53,4 @@ FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 COPY --from=backend /var/www/backend /var/www/backend
 COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-# COPY --from=frontend ./app/build /app/frontend
+COPY --from=frontend ./app/build /var/www/frontend
