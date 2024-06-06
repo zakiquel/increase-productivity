@@ -1,4 +1,30 @@
 .RegistrationForm {
-  display: flex;
-  flex-direction: column;
+  width: 736px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form_header {
+    display: flex;
+    margin-bottom: 64px;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 3.33px;
+  }
+
+  .form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .form_checkbox {
+    margin-top: 16px;
+  }
+
+  .form_button {
+    margin-top: 32px;
+  }
 }

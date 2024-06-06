@@ -22,7 +22,7 @@ export const RegistrationModal = (props: RegistrationModalProps) => {
       lazy
     >
       <Suspense fallback={<Loader />}>
-        <RegistrationFormAsync onSuccess={onClose} />
+        <RegistrationFormAsync onSuccess={onClose} onReset={onClose} />
       </Suspense>
     </Modal>
   );

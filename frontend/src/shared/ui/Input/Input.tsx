@@ -1,6 +1,7 @@
+import { MaskitoOptions, maskitoTransform } from '@maskito/core';
 import React, {
   InputHTMLAttributes,
-  memo,
+  forwardRef,
   ReactNode,
   useEffect,
   useRef,
@@ -25,47 +26,57 @@ interface InputProps extends HTMLInputProps {
   value?: string | number;
   label?: string;
   size?: InputSize;
-  onChange?: (value: string) => void;
+  options?: MaskitoOptions;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   autofocus?: boolean;
   readonly?: boolean;
   addonLeft?: ReactNode;
   addonRight?: ReactNode;
+  errorMessage?: string;
 }
 
-export const Input = memo((props: InputProps) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
     value,
     onChange,
+    onBlur,
+    onFocus,
     type = 'text',
     placeholder,
     label,
     autofocus,
+    options,
     size = 'm',
     readonly,
     addonLeft,
     addonRight,
+    errorMessage,
     ...otherProps
   } = props;
 
-  const ref = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (autofocus) {
       setIsFocused(true);
-      ref.current?.focus();
+      inputRef.current?.focus();
     }
   }, [autofocus]);
 
   const [localValue, setLocalValue] = useState<string | number>('');
 
-  const onBlur = () => {
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
+    onBlur?.(event);
   };
 
-  const onFocus = () => {
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(true);
+    onFocus?.(event);
   };
 
   const mods: Mods = {
@@ -75,45 +86,50 @@ export const Input = memo((props: InputProps) => {
     [cls.withAddonRight]: Boolean(addonRight),
   };
 
-  const setValue = () => {
-    if (value) {
-      return value;
-    }
-    return localValue;
-  };
+  const setValue = () => value || localValue;
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!value) {
-      setLocalValue(e.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (value === undefined) {
+      setLocalValue(event.target.value);
     }
-    onChange?.(e.target.value);
+    if (options) {
+      const transformedValue = maskitoTransform(
+        event.currentTarget.value,
+        options
+      );
+      event.currentTarget.value = transformedValue;
+    }
+    onChange?.(event);
   };
 
   const input = (
     <div className={classNames(cls.InputWrapper, mods, [className, cls[size]])}>
       <div className={cls.addonLeft}>{addonLeft}</div>
       <input
-        ref={ref}
+        ref={inputRef}
         type={type}
         value={setValue()}
-        onChange={onChangeHandler}
+        onChange={handleChange}
         className={cls.input}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         placeholder={placeholder}
         readOnly={readonly}
         {...otherProps}
       />
       <div className={cls.addonRight}>{addonRight}</div>
+      {errorMessage && !isFocused && (
+        <div className={cls.errorField}>{errorMessage}</div>
+      )}
     </div>
   );
 
   if (label) {
     return (
-      <div className={cls.wrapper}>
+      <label className={cls.wrapper}>
         <Text text={label} />
         {input}
-      </div>
+      </label>
     );
   }
 

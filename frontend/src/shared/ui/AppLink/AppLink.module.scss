@@ -6,6 +6,14 @@
   }
 }
 
+.purple {
+  color: var(--accent-purple);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
 .red {
   color: var(--error-color);
 
