@@ -56,7 +56,7 @@ services:
       LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
     restart: always
     depends_on:
-      app:
+      - app
     networks:
       - default
       - academy
