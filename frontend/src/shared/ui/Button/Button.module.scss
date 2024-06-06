@@ -42,8 +42,10 @@
 .white {
   color: var(--bg-color);
   background: var(--primary-color);
+
   &:hover {
-    color: var(--accent-purple);
+    color: var(--primary-color);
+    background-color: var(--accent-purple);
   }
 }
 
