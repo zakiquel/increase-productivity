@@ -15,7 +15,7 @@ services:
   db:
     image: registry.hub.docker.com/library/mysql:5.7
     volumes:
-      - mysql:/var/lib/mysql/data/
+      - mysqlfolder:/var/lib/mysql/data/
     restart: unless-stopped
     healthcheck:
       # Проверка доступности базы данных
