@@ -13,9 +13,9 @@ services:
       - default
 
   db:
-    image: registry.hub.docker.com/library/mysql:8.0
+    image: registry.hub.docker.com/library/mysql:5.7
     volumes:
-      - mysqlfolder:/var/lib/mysql/data/
+      - mysqlfolder:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
