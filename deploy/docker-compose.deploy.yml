@@ -62,7 +62,7 @@ services:
       - academy
 
 volumes:
-  mysql:
+  mysqlfolder:
 
 
 networks:
