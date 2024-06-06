@@ -47,7 +47,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
-COPY --from=backend /var/www/backend /var/www/backend
-COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY --from=backend /var/www/backend /app/backend
+COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # COPY --from=frontend ./app/build /app/frontend
