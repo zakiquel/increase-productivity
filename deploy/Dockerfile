@@ -49,5 +49,6 @@ FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
 COPY --from=backend /var/www/backend /var/www/backend
 COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+RUN chmod -R 777 /var/www/backend/storage/
 
 # COPY --from=frontend ./app/build /app/frontend

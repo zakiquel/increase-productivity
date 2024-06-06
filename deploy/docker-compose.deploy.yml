@@ -55,6 +55,8 @@ services:
       VIRTUAL_PATH: /
       LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
     restart: always
+    depends_on:
+      app:
     networks:
       - default
       - academy
