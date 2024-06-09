@@ -8,7 +8,7 @@ services:
       context: docker/backend/
       dockerfile: Dockerfile
     image: productivity
-    container_name: productivity-app
+    # container_name: productivity-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
@@ -21,7 +21,7 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: productivity-db
+    # container_name: productivity-db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -37,7 +37,7 @@ services:
       
   nginx:
     image: nginx:1.17-alpine
-    container_name: productivity-nginx
+    # container_name: productivity-nginx
     restart: unless-stopped
     ports:
       - 8000:80

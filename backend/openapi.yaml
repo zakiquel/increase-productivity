@@ -1,0 +1,64 @@
+
+# OpenAPI
+
+openapi: 3.0.3
+
+info:
+  title: OpenAPI specification
+  version: '1.2'
+
+externalDocs:
+  description: More info about API
+  url: https://increase-productivity.abdrashitov-academy.ru/api
+
+paths:
+  /employees:
+    summary: Operations about employees
+    get:
+      tags:
+       - Employees GET
+      summary: Get all the employees
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+    post:
+      tags:
+        - Employees POST
+      summary: Add any employee
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  /employees/{id}:
+    summary: Operations about employee
+    get:
+      tags:
+      - Employees GET
+      summary: Get the employee
+    post:
+      tags:
+      - Employees POST
+      summary: Add an employee
+    put:
+      tags:
+      - Employees PUT
+      summary: Update an employee
+    delete:
+      tags:
+      - Employees DELETE
+      summary: Delete an employee
+
+  /employees/{id}/edit:
+    get:
+      tags:
+      - Employees GET
+      summary: Get the employee edit page
+
