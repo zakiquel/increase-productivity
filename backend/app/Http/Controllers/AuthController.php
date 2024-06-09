@@ -36,6 +36,7 @@ class AuthController extends Controller
             'first_name' => $validatedData['first_name'],
             'middle_name' => $validatedData['middle_name'],
             'last_name' => $validatedData['last_name'],
+            'phone_number' => $validatedData['phone_number'],
             'email' => $validatedData['email'],
             'password' => \Illuminate\Support\Facades\Hash::make($validatedData['password']),
         ]);
@@ -43,7 +44,7 @@ class AuthController extends Controller
         // Generate a token for the new user
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
-        event(new Registered($user)); //for email validation 
+        // event(new Registered($user)); //for email validation 
 
         // Return the token and user data
         return response()->json([
