@@ -1,11 +1,11 @@
 import { memo } from 'react';
 
-import cls from './Navbar.module.scss';
-
 import tophr from '@/shared/assets/icons/top-hr.svg';
-import { Icon } from '@/shared/ui/Icon';
-import { Button } from '@/shared/ui/Button';
 import { AppLink } from '@/shared/ui/AppLink';
+import { Button } from '@/shared/ui/Button';
+import { Icon } from '@/shared/ui/Icon';
+
+import cls from './Navbar.module.scss';
 
 const links = [{ title: 'Возможности', link: '/' }, { title: 'Тарифы', link: '/' }];
 
@@ -16,7 +16,11 @@ export const Navbar = memo(() => (
       <nav>
         <ul className={cls.links}>
           {links.map((item, index) => (
-            <li key={index}><AppLink to={item.link}>{item.title}</AppLink></li>
+            <li key={index}>
+              <AppLink to={item.link}>
+                {item.title}
+              </AppLink>
+            </li>
           ))}
         </ul>
       </nav>

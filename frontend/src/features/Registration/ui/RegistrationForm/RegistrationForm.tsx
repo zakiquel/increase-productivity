@@ -38,7 +38,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
     reset,
     control,
     trigger,
-    formState: { errors, touchedFields, isValid },
+    formState: { errors, touchedFields, isValid }
   } = useForm<RegistrationFormSchema>({
     defaultValues: {
       name: '',

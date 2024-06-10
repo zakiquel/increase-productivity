@@ -2,10 +2,13 @@ version: "3.7"
 services:
   app:
     build:
-      context: ./docker/backend
-      target: backend
+      args:
+        user: user
+        uid: 1000
+      context: docker/backend/
+      dockerfile: Dockerfile
     image: productivity
-    container_name: productivity-app
+    # container_name: productivity-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
@@ -18,7 +21,7 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: productivity-db
+    # container_name: productivity-db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}

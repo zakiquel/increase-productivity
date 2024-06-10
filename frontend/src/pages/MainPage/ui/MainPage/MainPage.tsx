@@ -10,7 +10,6 @@ const MainPage = () => {
 
   return (
     <main className={cls.MainPage}>
-      Лучший сервис для HR-специалиста!
       <Button variant='white' onClick={() => setIsRegistration(true)}>
         Зарегистрироваться
       </Button>
