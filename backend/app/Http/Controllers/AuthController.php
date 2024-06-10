@@ -31,28 +31,9 @@ class AuthController extends Controller
         // Validate the request
         $validatedData = $request->validated();
 
+        $this->service->store($validatedData);
         // Create a new user using the validated data
-        $user = User::create([
-            'first_name' => $validatedData['first_name'],
-            'middle_name' => $validatedData['middle_name'],
-            'last_name' => $validatedData['last_name'],
-            'email' => $validatedData['email'],
-            'password' => \Illuminate\Support\Facades\Hash::make($validatedData['password']),
-        ]);
 
-        // Generate a token for the new user
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
-
-        event(new Registered($user)); //for email validation
-
-        // Return the token and user data
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ], 201);
     }
     /**
      * Get a JWT via given credentials.
