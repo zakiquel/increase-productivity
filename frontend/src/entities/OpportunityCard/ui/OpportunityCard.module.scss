@@ -1,0 +1,19 @@
+.OpportunityCard {
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    height: 250px;
+
+    span {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        color: var(--secondary-color);
+        font-size: 20px;
+    }
+
+    P {
+        color: var(--bg-color);
+        font-size: 26px;
+    }
+}

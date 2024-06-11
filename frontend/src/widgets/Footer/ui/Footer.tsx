@@ -11,12 +11,7 @@ interface FooterProps {
   className?: string;
 }
 
-const topLinks = [
-  { title: 'Возможности', link: '/' },
-  { title: 'Тарифы', link: '/' },
-  { title: 'Меню или ссылка', link: '/' }
-]
-
+const topLinks = [{ title: 'Возможности', link: '/' }, { title: 'Тарифы', link: '/' }, { title: 'Меню или ссылка', link: '/' }]
 const bottomLinks = [
   { title: 'Политика обработки персональных данных', link: '/' },
   { title: 'Пользовательское соглашение', link: '/' },
