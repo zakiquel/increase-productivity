@@ -5,11 +5,13 @@
   min-height: 100vh;
   font: var(--font-32);
   color: var(--primary-color);
-  background: var(--bg-color);
+  background: var(--footer-bg);
 }
 
 .content-page {
   display: flex;
 }
 
-::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar {
+  display: none;
+}

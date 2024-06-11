@@ -1,7 +1,10 @@
 import React, { memo, useState } from 'react';
 
+
 import { RegistrationModal } from '@/features/Registration';
 import { Button } from '@/shared/ui/Button';
+import { OpportunityList } from '@/widgets/OpportunityList';
+import { TariffList } from '@/widgets/TariffList';
 
 import cls from './MainPage.module.scss';
 
@@ -17,6 +20,8 @@ const MainPage = () => {
         isOpen={isRegistration}
         onClose={() => setIsRegistration(false)}
       />
+      <OpportunityList />
+      <TariffList />
     </main>
   );
 };

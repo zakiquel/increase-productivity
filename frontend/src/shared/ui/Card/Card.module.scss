@@ -10,6 +10,10 @@
   border: 1px solid var(--footer-bg);
 }
 
+.none {
+  border-radius: 0px;
+}
+
 .normal {
   border-radius: 12px;
 }
@@ -17,6 +21,7 @@
 .partial {
   border-radius: 30px;
 }
+
 
 .round {
   border-radius: 40px;

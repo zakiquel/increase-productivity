@@ -1,0 +1,30 @@
+.TariffCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 471px;
+
+
+    h3 {
+        font-size: 32px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 32px;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    span {
+        font-size: 32px;
+        font-weight: 500;
+        color: var(--secondary-color);
+    }
+}
