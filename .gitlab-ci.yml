@@ -31,8 +31,6 @@ deploy:
   rules:
     - <<: *branch_rule
   stage: deploy
-  only:
-    - dev
   tags:
     - academy
   script:
