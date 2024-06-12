@@ -3,8 +3,17 @@ stages:
   - deploy
   - clear
 
+.branch_rule: &branch_rule
+  if: '$CI_COMMIT_BRANCH == "dev"'
+
+.merge_request_event: &merge_request_event
+  if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
 build:
   stage: build
+  rules:
+    - <<: *branch_rule                   # Применение правила для ветки
+    - <<: *merge_request_event
   tags:
     - academy
   script:
@@ -19,7 +28,11 @@ build:
       - Dockerfile
 
 deploy:
+  rules:
+    - <<: *branch_rule
   stage: deploy
+  only:
+    - dev
   tags:
     - academy
   script:
@@ -27,6 +40,9 @@ deploy:
     - docker compose --env-file .env.deploy -f docker-compose.deploy.yml exec app php artisan migrate --force
 
 clear:
+  rules:
+    - <<: *branch_rule                   # Применение правила для ветки
+    - <<: *merge_request_event
   stage: clear
   tags:
     - academy
