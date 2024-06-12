@@ -19,6 +19,8 @@ interface ClickableBaseProps extends IconBaseProps {
   clickable: true;
   onClick: () => void;
   tabIndex?: number;
+  buttonWidth?: number;
+  buttonHeight?: number;
 }
 
 type IconProps = NonClickableIconProps | ClickableBaseProps;
@@ -49,7 +51,10 @@ export const Icon = memo((props: IconProps) => {
         type='button'
         className={cls.button}
         onClick={props.onClick}
-        style={{ height, width }}
+        style={{
+          width: `${props.buttonWidth || width}px`,
+          height: `${props.buttonHeight || height}px`,
+        }}
         tabIndex={props.tabIndex}
       >
         {icon}

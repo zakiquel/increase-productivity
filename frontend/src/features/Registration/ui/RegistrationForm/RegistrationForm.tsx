@@ -38,7 +38,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
     reset,
     control,
     trigger,
-    formState: { errors, touchedFields, isValid }
+    formState: { errors, touchedFields, isValid },
   } = useForm<RegistrationFormSchema>({
     defaultValues: {
       name: '',
@@ -83,11 +83,14 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
   return (
     <div className={classNames(cls.RegistrationForm, {}, [className])}>
       <div className={cls.form_header}>
-        <Text title='Регистрация' className={cls.form_title} />
+        <Text title='Регистрация' size='s' className={cls.form_title} />
         <Icon
+          className={cls.close_button}
           Svg={Cancel}
-          width={34}
-          height={35}
+          buttonHeight={56}
+          buttonWidth={56}
+          width={20}
+          height={20}
           clickable
           onClick={onResetClick}
         />
@@ -102,8 +105,13 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                 {...field}
                 label='Имя'
                 placeholder='Иван'
-                size='l'
+                size='s'
+                autoComplete='given-name'
                 errorMessage={errors.name?.message}
+                onChange={event => {
+                  field.onChange(event.target.value);
+                  if (errors.name) trigger('name');
+                }}
               />
             )}
           />
@@ -119,10 +127,15 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                     field.onChange('+7 ');
                   }
                 }}
+                onChange={event => {
+                  field.onChange(event.target.value);
+                  if (errors.phone) trigger('phone');
+                }}
                 type='tel'
                 label='Телефон'
                 placeholder='+7 ХХХ ХХХ ХХ-ХХ'
-                size='l'
+                size='s'
+                autoComplete='tel'
                 errorMessage={errors.phone?.message}
               />
             )}
@@ -135,8 +148,13 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                 {...field}
                 label='E-mail'
                 placeholder='@e-mail.ru'
-                size='l'
+                size='s'
+                autoComplete='email'
                 errorMessage={errors.email?.message}
+                onChange={event => {
+                  field.onChange(event.target.value);
+                  if (errors.email) trigger('email');
+                }}
               />
             )}
           />
@@ -147,17 +165,17 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
               <Input
                 {...field}
                 label='Пароль'
-                size='l'
+                size='s'
+                autoComplete='new-password'
                 type={showPassword ? 'text' : 'password'}
                 errorMessage={errors.password?.message}
                 onChange={event => {
                   field.onChange(event.target.value);
                   if (touchedFields.confirmPassword) trigger('confirmPassword');
+                  if (errors.password) trigger('password');
                 }}
                 addonRight={
                   <Icon
-                    width={22}
-                    height={showPassword ? 16 : 20}
                     Svg={showPassword ? Visible : Invisible}
                     clickable
                     onMouseDown={event => event.preventDefault()}
@@ -175,14 +193,16 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
               <Input
                 {...field}
                 label='Пароль еще раз'
-                size='l'
+                size='s'
                 errorMessage={errors.confirmPassword?.message}
+                onChange={event => {
+                  field.onChange(event.target.value);
+                  if (errors.confirmPassword) trigger('confirmPassword');
+                }}
                 type={showConfirmPassword ? 'text' : 'password'}
                 addonRight={
                   <Icon
-                    width={22}
-                    height={showConfirmPassword ? 16 : 20}
-                    Svg={showConfirmPassword ? Visible : Invisible}
+                    Svg={showConfirmPassword ? Invisible : Visible}
                     clickable
                     onMouseDown={event => event.preventDefault()}
                     onClick={() => handleVisibility(field.name)}

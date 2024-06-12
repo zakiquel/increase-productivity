@@ -4,7 +4,7 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 
 import cls from './Button.module.scss';
 
-export type ButtonVariant = 'clear' | 'accent' | 'white';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 export type ButtonColor = 'normal' | 'success' | 'error';
 
 export type ButtonSize = 's' | 'm' | 'l';
@@ -26,7 +26,7 @@ export const Button = memo((props: ButtonProps) => {
   const {
     className,
     children,
-    variant = 'accent',
+    variant = 'primary',
     size = 'm',
     disabled,
     fullWidth,
@@ -37,14 +37,12 @@ export const Button = memo((props: ButtonProps) => {
   } = props;
 
   const mods: Mods = {
-    [cls.disabled]: disabled,
     [cls.fullWidth]: fullWidth,
-    [cls.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
   };
 
   return (
     <button
-      type="button"
+      type='button'
       disabled={disabled}
       className={classNames(cls.Button, mods, [
         className,
@@ -54,9 +52,9 @@ export const Button = memo((props: ButtonProps) => {
       ])}
       {...otherProps}
     >
-      <div className={cls.addonLeft}>{addonLeft}</div>
+      {addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
       {children}
-      <div className={cls.addonRight}>{addonRight}</div>
+      {addonRight && <div className={cls.addonRight}>{addonRight}</div>}
     </button>
   );
 });

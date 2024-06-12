@@ -1,5 +1,6 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
+import { RegistrationModal } from '@/features/Registration';
 import tophr from '@/shared/assets/icons/top-hr.svg';
 import { AppLink } from '@/shared/ui/AppLink';
 import { Button } from '@/shared/ui/Button';
@@ -7,27 +8,37 @@ import { Icon } from '@/shared/ui/Icon';
 
 import cls from './Navbar.module.scss';
 
-const links = [{ title: 'Возможности', link: '/' }, { title: 'Тарифы', link: '/' }];
+const links = [
+  { title: 'Возможности', link: '/' },
+  { title: 'Тарифы', link: '/' },
+];
 
-export const Navbar = memo(() => (
-  <header className={cls.Navbar}>
-    <div className={cls.wrapper}>
-      <Icon Svg={tophr} width={126} height={34} />
-      <nav>
-        <ul className={cls.links}>
-          {links.map((item, index) => (
-            <li key={index}>
-              <AppLink to={item.link}>
-                {item.title}
-              </AppLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className={cls.buttons}>
-        <Button variant='clear'>Войти</Button>
-        <Button variant='white'>Регистрация</Button>
+export const Navbar = memo(() => {
+  const [isRegistration, setIsRegistration] = useState(false);
+  return (
+    <header className={cls.Navbar}>
+      <div className={cls.wrapper}>
+        <Icon Svg={tophr} width={126} height={34} />
+        <nav>
+          <ul className={cls.links}>
+            {links.map((item, index) => (
+              <li key={index}>
+                <AppLink to={item.link}>{item.title}</AppLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className={cls.buttons}>
+          <Button variant='ghost'>Войти</Button>
+          <Button variant='secondary' onClick={() => setIsRegistration(true)}>
+            Регистрация
+          </Button>
+        </div>
       </div>
-    </div>
-  </header>
-));
+      <RegistrationModal
+        isOpen={isRegistration}
+        onClose={() => setIsRegistration(false)}
+      />
+    </header>
+  );
+});

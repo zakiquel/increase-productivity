@@ -2,7 +2,7 @@ import { InputHTMLAttributes, forwardRef, useState } from 'react';
 
 import { Text } from '../Text';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 
 import cls from './Checkbox.module.scss';
 
@@ -11,9 +11,13 @@ type HTMLInputProps = Omit<
   'value' | 'onChange'
 >;
 
+type Variant = 'checkbox' | 'toggle';
+
 interface CheckboxProps extends HTMLInputProps {
   className?: string;
+  variant?: Variant;
   label?: JSX.Element | string;
+  disabled?: boolean;
   required?: boolean;
   value?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,8 +25,16 @@ interface CheckboxProps extends HTMLInputProps {
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
-    const { className, label, required, value, onChange, ...otherProps } =
-      props;
+    const {
+      className,
+      variant = 'checkbox',
+      label,
+      disabled,
+      required,
+      value,
+      onChange,
+      ...otherProps
+    } = props;
 
     const [localValue, setLocalValue] = useState(false);
 
@@ -40,14 +52,24 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onChange?.(event);
     };
 
+    const mods: Mods = {
+      [cls.disabled]: disabled,
+    };
+
     return (
-      <div className={classNames(cls.checkbox_wrapper, {}, [className])}>
+      <div
+        className={classNames(cls.checkbox_wrapper, mods, [
+          className,
+          cls[variant],
+        ])}
+      >
         <label>
           <input
             ref={ref}
             type='checkbox'
             checked={setValue()}
             required={required}
+            disabled={disabled}
             onChange={onChangeHandler}
             {...otherProps}
           />

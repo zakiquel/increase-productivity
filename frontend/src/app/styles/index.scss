@@ -1,11 +1,11 @@
-@import "reset";
-@import "./variables/global";
+@import 'reset';
+@import './variables/global';
 
 .app {
   min-height: 100vh;
   font: var(--font-32);
-  color: var(--primary-color);
-  background: var(--footer-bg);
+  color: var(--base-0-color);
+  background: var(--base-1-1-color);
 }
 
 .content-page {
