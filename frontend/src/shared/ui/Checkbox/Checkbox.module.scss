@@ -2,46 +2,165 @@
   label {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 14px;
 
     cursor: pointer;
 
     input[type='checkbox'] {
+      transition: color 0.2s ease-in, background-color 0.2s ease-in;
       -webkit-appearance: none;
       appearance: none;
       outline: none;
 
       cursor: pointer;
       position: relative;
+    }
+  }
 
-      width: 24px;
-      height: 24px;
+  &.disabled {
+    p {
+      opacity: 50%;
+    }
+  }
+}
 
-      // пока так, договорились с дизайнером, что переделает
+.checkbox {
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+
+    &:not(:checked) {
+      background-color: var(--base-1-1-color);
+      border-color: var(--base-1-color);
+      &:hover {
+        background-color: var(--base-1-color);
+      }
+
+      &:active {
+        background-color: var(--grey-primary-color);
+      }
+
+      &:focus-visible {
+        background-color: var(--grey-primary-color);
+        outline: 1px dashed var(--base-1-color);
+        outline-offset: 0px;
+        border: none;
+      }
+
+      &:disabled {
+        background-color: var(--grey-primary-color);
+        border: none;
+      }
+    }
+
+    &:checked {
+      background-color: var(--primary-color);
+
+      &:hover {
+        background-color: var(--primary-hover-color);
+      }
+
+      &:active {
+        background-color: var(--primary-active-color);
+      }
+
+      &:focus-visible {
+        background-color: var(--primary-color);
+        border-color: var(--base-1-color);
+      }
+
+      &:disabled {
+        opacity: 50%;
+        background-color: var(--primary-color);
+      }
+
       &::before {
-        content: url('data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M2%2018C1.45%2018%200.979167%2017.8042%200.5875%2017.4125C0.195833%2017.0208%200%2016.55%200%2016V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H16C16.55%200%2017.0208%200.195833%2017.4125%200.5875C17.8042%200.979167%2018%201.45%2018%202V16C18%2016.55%2017.8042%2017.0208%2017.4125%2017.4125C17.0208%2017.8042%2016.55%2018%2016%2018H2ZM2%2016H16V2H2V16Z%22%20fill%3D%22%2375777E%22/%3E%3C/svg%3E');
-
-        width: 18px;
-        height: 18px;
+        content: '';
+        width: 10px;
+        height: 8px;
+        display: block;
         position: absolute;
+        background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%228%22%20viewBox%3D%220%200%2010%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M3.75%208L10%201.51351L8.54167%200L3.75%204.97297L1.45833%202.59459L0%204.10811L3.75%208Z%22%20fill%3D%22white%22/%3E%3C/svg%3E');
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+    }
+  }
+}
 
-      &:checked {
-        position: relative;
+.toggle {
+  input {
+    width: 22px;
+    height: 12px;
+    border-radius: 64px;
+    border: 1px solid transparent;
+    background-color: var(--grey-color);
 
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: var(--base-1-color);
+      top: 50%;
+      left: 2px;
+      transform: translate(0, -50%);
+    }
+
+    &:not(:checked) {
+      &:hover {
+        background-color: var(--base-1-1-color);
+      }
+
+      &:active {
+        background-color: var(--grey-primary-color);
+        border-color: var(--base-1-color);
+      }
+
+      &:focus-visible {
+        border-color: var(--base-1-color);
+        background-color: var(--base-1-1-color);
+      }
+
+      &:disabled {
+        border: 2px solid var(--grey-primary-color);
+        background-color: transparent;
         &::before {
-          content: url('data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M7.6%2013.2L14.65%206.15L13.25%204.75L7.6%2010.4L4.75%207.55L3.35%208.95L7.6%2013.2ZM2%2018C1.45%2018%200.979167%2017.8042%200.5875%2017.4125C0.195833%2017.0208%200%2016.55%200%2016V2C0%201.45%200.195833%200.979167%200.5875%200.5875C0.979167%200.195833%201.45%200%202%200H16C16.55%200%2017.0208%200.195833%2017.4125%200.5875C17.8042%200.979167%2018%201.45%2018%202V16C18%2016.55%2017.8042%2017.0208%2017.4125%2017.4125C17.0208%2017.8042%2016.55%2018%2016%2018H2ZM2%2016H16V2H2V16Z%22%20fill%3D%22%2375777E%22/%3E%3C/svg%3E');
-
-          width: 18px;
-          height: 18px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          background-color: var(--grey-primary-color);
+          left: 1px;
         }
+      }
+    }
+
+    &:checked {
+      background-color: var(--primary-color);
+
+      &:hover {
+        background-color: var(--primary-hover-color);
+      }
+
+      &:active {
+        background-color: var(--primary-active-color);
+      }
+
+      &:focus-visible {
+        background-color: var(--primary-color);
+        border-color: var(--base-1-color);
+      }
+
+      &:disabled {
+        opacity: 50%;
+        background-color: var(--primary-color);
+      }
+
+      &::before {
+        content: '';
+        left: 12px;
+        transform: translate(0, -50%);
       }
     }
   }

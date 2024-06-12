@@ -16,7 +16,7 @@ import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange' | 'readOnly' | 'size'
+  'value' | 'onChange' | 'readOnly' | 'size' | 'disabled'
 >;
 
 type InputSize = 's' | 'm' | 'l';
@@ -32,6 +32,7 @@ interface InputProps extends HTMLInputProps {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   autofocus?: boolean;
   readonly?: boolean;
+  disabled?: boolean;
   addonLeft?: ReactNode;
   addonRight?: ReactNode;
   errorMessage?: string;
@@ -51,6 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     options,
     size = 'm',
     readonly,
+    disabled,
     addonLeft,
     addonRight,
     errorMessage,
@@ -79,11 +81,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     onFocus?.(event);
   };
 
-  const mods: Mods = {
+  const inputMods: Mods = {
     [cls.readonly]: readonly,
+    [cls.disabled]: disabled,
     [cls.focused]: isFocused,
+    [cls.isDirty]: Boolean(value),
     [cls.withAddonLeft]: Boolean(addonLeft),
     [cls.withAddonRight]: Boolean(addonRight),
+    [cls.error]: Boolean(errorMessage),
+  };
+
+  const labelMods: Mods = {
+    [cls.disabled]: disabled,
   };
 
   const setValue = () => value || localValue;
@@ -103,31 +112,42 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   };
 
   const input = (
-    <div className={classNames(cls.InputWrapper, mods, [className, cls[size]])}>
-      <div className={cls.addonLeft}>{addonLeft}</div>
-      <input
-        ref={inputRef}
-        type={type}
-        value={setValue()}
-        onChange={handleChange}
-        className={cls.input}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        placeholder={placeholder}
-        readOnly={readonly}
-        {...otherProps}
-      />
-      <div className={cls.addonRight}>{addonRight}</div>
-      {errorMessage && !isFocused && (
-        <div className={cls.errorField}>{errorMessage}</div>
+    <div className={cls.input_with_error}>
+      <div
+        className={classNames(cls.InputWrapper, inputMods, [
+          className,
+          cls[size],
+        ])}
+      >
+        <div className={cls.addonLeft}>{addonLeft}</div>
+        <input
+          ref={inputRef}
+          type={type}
+          value={setValue()}
+          onChange={handleChange}
+          className={cls.input}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          readOnly={readonly}
+          disabled={disabled}
+          aria-describedby='error-message'
+          {...otherProps}
+        />
+        <div className={cls.addonRight}>{addonRight}</div>
+      </div>
+      {errorMessage && (
+        <div id='error-message' className={cls.errorField} aria-invalid='true'>
+          {errorMessage}
+        </div>
       )}
     </div>
   );
 
   if (label) {
     return (
-      <label className={cls.wrapper}>
-        <Text text={label} />
+      <label className={classNames(cls.wrapper, labelMods, [])}>
+        <Text text={label} size={size} />
         {input}
       </label>
     );

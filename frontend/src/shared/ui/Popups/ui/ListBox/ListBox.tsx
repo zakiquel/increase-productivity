@@ -44,8 +44,8 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
   const optionsClasses = [mapDirectionClass[direction], popupCls.menu];
 
   const selectedItem = useMemo(
-    () => items?.find((item) => item.value === value),
-    [items, value],
+    () => items?.find(item => item.value === value),
+    [items, value]
   );
 
   return (
@@ -53,14 +53,14 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
       {label && <span>{label}</span>}
       <HListBox
         disabled={readonly}
-        as="div"
+        as='div'
         className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
         value={value}
         onChange={onChange}
       >
         <HListBox.Button
           as={Button}
-          variant="clear"
+          variant='ghost'
           disabled={readonly}
           addonRight={<Icon Svg={ArrowIcon} />}
         >
@@ -69,7 +69,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         <HListBox.Options
           className={classNames(cls.options, {}, optionsClasses)}
         >
-          {items?.map((item) => (
+          {items?.map(item => (
             <HListBox.Option
               key={item.value}
               value={item.value}

@@ -1,9 +1,9 @@
 .title {
-  color: var(--primary-color);
+  color: var(--base-0-color);
 }
 
 .text {
-  color: var(--primary-color);
+  color: var(--base-0-color);
 }
 
 .error {
@@ -18,11 +18,11 @@
 
 .accent {
   .title {
-    color: var(--accent-purple);
+    color: var(--primary-color);
   }
 
   .text {
-    color: var(--accent-purple);
+    color: var(--primary-color);
   }
 }
 
@@ -40,7 +40,7 @@
 
 .size_s {
   .title {
-    font: var(--font-m);
+    font: var(--font-32);
   }
 
   .text {
@@ -69,7 +69,8 @@
 }
 
 .bold {
-  .title, .text {
+  .title,
+  .text {
     font-weight: 600;
   }
 }
