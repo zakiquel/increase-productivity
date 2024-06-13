@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Http\Resources\EmployeeCollectionResource;
-use App\Http\Resources\Employee\EmployeeResource;
 use App\Http\Requests\Employee\StoreRequest;
 use App\Http\Requests\Employee\UpdateRequest;
+use App\Http\Resources\Employee\EmployeeCollectionResource;
+use App\Http\Resources\Employee\EmployeeResource;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
