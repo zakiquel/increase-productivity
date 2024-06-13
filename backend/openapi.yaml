@@ -7,6 +7,8 @@ info:
 servers:
   - url: https://increase-productivity.abdrashitov-academy.ru/
     description: Production server
+  - url: http://127.0.0.1:8000/
+    description: local server
 
 paths:
   /api/auth/register:
