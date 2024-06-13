@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSubscriptionRequest;
+use App\Http\Requests\Subscription\StoreSubscriptionRequest;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 

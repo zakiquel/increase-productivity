@@ -137,6 +137,124 @@ paths:
                 properties:
                   message:
                     type: string
+  /api/values:
+    get:
+      summary: List all values
+      responses:
+        "200":
+          description: A list of values
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Value'
+    post:
+      summary: Create a new value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreValueRequest'
+      responses:
+        "201":
+          description: Value created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        "403":
+          description: Maximum number of Value instances reached
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /api/values/{id}:
+    get:
+      summary: Get a single value
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A single value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        "404":
+          description: Value not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    put:
+      summary: Update an existing value
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateValueRequest'
+      responses:
+        "200":
+          description: Value updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        "404":
+          description: Value not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    delete:
+      summary: Delete a value
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Value deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: Value not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 
 components:
   securitySchemes:
@@ -144,3 +262,23 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    Value:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    StoreValueRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          required: true
+    UpdateValueRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          required: true
