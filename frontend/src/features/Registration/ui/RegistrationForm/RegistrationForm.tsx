@@ -146,9 +146,10 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             render={({ field }) => (
               <Input
                 {...field}
-                label='E-mail'
+                label='Почта'
                 placeholder='@e-mail.ru'
                 size='s'
+                type='email'
                 autoComplete='email'
                 errorMessage={errors.email?.message}
                 onChange={event => {
@@ -169,6 +170,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                 autoComplete='new-password'
                 type={showPassword ? 'text' : 'password'}
                 errorMessage={errors.password?.message}
+                placeholder='**********'
                 onChange={event => {
                   field.onChange(event.target.value);
                   if (touchedFields.confirmPassword) trigger('confirmPassword');
@@ -176,7 +178,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                 }}
                 addonRight={
                   <Icon
-                    Svg={showPassword ? Visible : Invisible}
+                    Svg={showPassword ? Invisible : Visible}
                     clickable
                     onMouseDown={event => event.preventDefault()}
                     onClick={() => handleVisibility(field.name)}
@@ -200,6 +202,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                   if (errors.confirmPassword) trigger('confirmPassword');
                 }}
                 type={showConfirmPassword ? 'text' : 'password'}
+                placeholder='**********'
                 addonRight={
                   <Icon
                     Svg={showConfirmPassword ? Invisible : Visible}
