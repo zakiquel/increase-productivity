@@ -1,0 +1,40 @@
+.AuthorizationForm {
+  width: 752px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form_header {
+    display: flex;
+    margin-bottom: 8px;
+    height: 56px;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8px;
+    margin-right: 3.33px;
+
+    .close_button {
+      fill: var(--base-0-color);
+    }
+  }
+
+  .form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .forgot_password {
+    margin-top: 8px;
+    padding: 8px;
+    width: fit-content;
+  }
+
+  .form_button {
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
