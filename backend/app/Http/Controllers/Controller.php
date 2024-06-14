@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Post\Service;
+use App\Services\Service;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;

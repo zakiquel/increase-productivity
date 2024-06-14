@@ -2,15 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePostRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Auth\Events\Registered;
-
-use function PHPUnit\Framework\isNull;
+use App\Http\Requests\User\StoreUserRequest;
 
 class AuthController extends Controller
 {
@@ -25,13 +17,13 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
-    public function register(StorePostRequest $request)
+    public function register(StoreUserRequest $request)
     {
 
         // Validate the request
         $validatedData = $request->validated();
 
-        $this->service->store($validatedData);
+        $this->service->store_user($validatedData);
         // Create a new user using the validated data
 
     }
