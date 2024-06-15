@@ -2,18 +2,21 @@ import React, { Suspense } from 'react';
 
 import { AppRouter } from './providers/router'
 
+import { MainLayout } from "@/shared/layouts/MainLayout";
 import { Footer } from "@/widgets/Footer";
 import { Navbar } from "@/widgets/Navbar";
+import { Sidebar } from '@/widgets/Sidebar';
 
 function App() {
   return (
     <div className='app'>
       <Suspense fallback="Loading...">
-        <Navbar />
-        <div className="content-page">
-          <AppRouter />
-        </div>
-        <Footer />
+        <MainLayout
+          header={<Navbar />}
+          sidebar={<Sidebar />}
+          content={<AppRouter />}
+          footer={<Footer />}
+        />
       </Suspense>
     </div>
   );

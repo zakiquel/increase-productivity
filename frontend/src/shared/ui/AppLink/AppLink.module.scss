@@ -2,23 +2,23 @@
   color: var(--primary-color);
 
   &:hover {
-    color: var(--accent-secondary-color);
+    color: var(--primary-hover-color);
   }
 }
 
-.purple {
-  color: var(--accent-purple);
+.black {
+  color: var(--base-0-color);
 
   &:hover {
     color: var(--primary-color);
   }
 }
 
-.red {
-  color: var(--error-color);
+.white {
+  color: var(--white);
 
   &:hover {
-    opacity: 0.8;
+    color: var(--primary-hover-color);
   }
 }
 

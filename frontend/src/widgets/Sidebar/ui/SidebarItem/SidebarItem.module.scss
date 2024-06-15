@@ -1,0 +1,14 @@
+.active {
+  span {
+    color: var(--primary-color);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    right: 0;
+    background: var(--primary-color);
+    height: 40px;
+  }
+}

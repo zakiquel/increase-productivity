@@ -1,15 +1,18 @@
 .Footer {
-  background: var(--bg-color);
+  background: var(--base-0-color);
   height: var(--footer-height);
   width: 100%;
-  padding: 64px 160px 48px;
+  display: flex;
+  padding: 50px 30px;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .top {
   display: grid;
   grid-template-columns: 1fr 3fr;
   padding-bottom: 64px;
-  color: var(--primary-color);
+  color: var(--white);
   border-bottom: 1px solid var(--grey-color);
 
   &__links {
@@ -25,8 +28,14 @@
     margin-top: 32px;
 
     a {
-      color: var(--secondary-color);
+      color: var(--white);
     }
   }
+}
 
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-self: center;
 }

@@ -1,0 +1,38 @@
+.MainLayout {
+  min-height: 100%;
+  display: grid;
+  grid-template-areas:
+          'header header'
+          'sidebar content'
+          'footer footer';
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 70px auto 120px;
+}
+
+.header {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  margin: 102px 0;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+}
+
+.content {
+  grid-area: content;
+  justify-self: center;
+  padding: 32px 32px 0 32px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer {
+  grid-area: footer;
+  position: sticky;
+  bottom: 0;
+}
