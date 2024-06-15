@@ -2,6 +2,9 @@
 
 Этот проект представляет собой бекенд для Productivity App, который можно запустить с помощью Docker. В этом руководстве описывается, как настроить и запустить проект.
 
+## Testing
+visit https://increase-productivity.abdrashitov-academy.ru/docs to test api
+
 ## Требования
 
 - Docker
