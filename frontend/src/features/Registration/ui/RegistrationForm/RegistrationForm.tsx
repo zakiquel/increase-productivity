@@ -68,7 +68,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
   const checkboxLabel = (
     <>
       Даю согласие на обработку{' '}
-      <AppLink to='*' target='_blank' variant='purple'>
+      <AppLink to='*' target='_blank'>
         персональных данных
       </AppLink>
     </>

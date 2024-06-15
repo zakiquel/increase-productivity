@@ -1,8 +1,7 @@
 import { memo } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
-
-import cls from './ProfilePage.module.scss';
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { Page } from '@/widgets/Page';
 
 interface ProfilePageProps {
   className?: string;
@@ -13,9 +12,9 @@ const ProfilePage = (props: ProfilePageProps) => {
     className,
   } = props;
   return (
-    <div className={classNames(cls.ProfilePage, {}, [className])}>
+    <Page className={classNames('', {}, [className])}>
       ProfilePage
-    </div>
+    </Page>
   );
 };
 
