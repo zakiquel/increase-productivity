@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Resources\CompanyCollectionResource;
+use App\Http\Resources\Company\CompanyResource;
+use App\Http\Requests\Company\StoreRequest;
+use App\Http\Requests\Company\UpdateRequest;
+use App\Http\Requests\Company\UpdateRequestRequest;
 
 class CompanyController extends Controller
 {
@@ -13,10 +18,9 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        return response()->json([
-            'message' => 'Success',
-            'companies' => $companies
-        ], 200);
+
+        return new CompanyCollectionResource($companies);
+
     }
 
     /**
@@ -30,36 +34,24 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|string|max:15',
-            'email' => 'nullable|string|email|max:255',
-            'description' => 'required|string',
-        ]);
+        // Validate the request data
+        $data = $request->validated();
 
-        Company::create($request->all());
-        $company = Company::create($validatedData);
+        // Create a new employee
+        $company = Company::create($data);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Company created successfully.',
-            'data' => $company
-        ], 201);
+        return CompanyResource::make($company);
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Company $company)
     {
-        $company = Company::findOrFail($id);
-        return response()->json([
-            'message' => 'Success',
-            'company' => $company
-        ], 200);
+        return CompanyResource::make($company);
     }
 
     /**
@@ -73,22 +65,17 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(UpdateRequest $request, Company $company)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|string|max:15',
-            'email' => 'nullable|string|email|max:255',
-            'description' => 'required|string',
-        ]);
-        $company->update($validatedData);
+        // Validate the request data
+        $data = $request->validate();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Company updated successfully.',
-            'data' => $company
-        ], 200);
+        // Update the employee with the validated data
+        $company->update($data);
+
+        // Return a JSON response with the updated employee
+        return CompanyResource::make($company);
+
     }
 
     /**
@@ -96,11 +83,14 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        // Delete the employee
         $company->delete();
 
+        // Return a JSON response indicating successful deletion
         return response()->json([
             'success' => true,
             'message' => 'Company deleted successfully.',
         ], 200);
+
     }
 }

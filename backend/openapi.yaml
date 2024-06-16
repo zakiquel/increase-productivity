@@ -258,12 +258,228 @@ paths:
                   error:
                     type: string
 
+
+  #Employees API
+  /api/employees:
+    summary: Operations about employees
+    get:
+      tags:
+       - Employees GET
+      summary: Get all the employees
+      responses:
+        "200":
+          description: 200 response
+        "400":
+          description: Bad request
+
+    post:
+      tags:
+        - Employees POST
+      summary: Add any employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/employee"
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/employee"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/employees/{id}:
+    summary: Operations about employee
+    get:
+      tags:
+      - Employees GET
+      summary: Get the employee
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+
+    put:
+      tags:
+      - Employees PUT
+      summary: Update an employee
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/employee"
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/employee"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    delete:
+      tags:
+      - Employees DELETE
+      summary: Delete an employee
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+# Companies API
+  /api/companies:
+    summary: Operations about companies
+    get:
+      tags:
+        - Companies GET
+      summary: Get all the companies
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+    post:
+      tags:
+        - Companies POST
+      summary: Add any companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/company"
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/company"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/companies/{id}:
+    summary: Operations about Companies
+    get:
+      tags:
+        - Companies GET
+      summary: Get the companies
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+    put:
+      tags:
+        - Companies PUT
+      summary: Update an company
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/company"
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/company"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      tags:
+        - Companies DELETE
+      summary: Delete an company
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
     Value:
       type: object
@@ -273,14 +489,57 @@ components:
         name:
           type: string
     StoreValueRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          required: true
+        type: object
+        properties:
+          name:
+            type: string
+            required: true
     UpdateValueRequest:
+        type: object
+        properties:
+          name:
+            type: string
+            required: true
+
+    employee:
       type: object
       properties:
-        name:
+        first_name:
           type: string
-          required: true
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        position:
+          type: integer
+        work_experience:
+          type: integer
+        salary:
+          type: number
+          format: float
+        email:
+          type: string
+          format: email
+        phone_number:
+          type: string
+
+    company:
+      type: object
+      properties:
+          name:
+            type: string
+          address:
+            type: string
+          phone_number:
+            type: string
+          email:
+            type: string
+            format: email
+          description:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
