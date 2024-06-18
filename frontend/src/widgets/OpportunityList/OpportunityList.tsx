@@ -15,8 +15,8 @@ export const OpportunityList = memo(() => (
     <section className={cls.OpportunityList}>
         <ul>
             {cards.map((item, index) => (
-                <li>
-                    <OpportunityCard key={index} id={item.id} title={item.title} />
+                <li key={index}>
+                    <OpportunityCard id={item.id} title={item.title} />
                 </li>
             ))}
         </ul>

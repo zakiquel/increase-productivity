@@ -3,7 +3,7 @@
 }
 
 .light {
-  background: var(--grey-l-color);
+  background: var(--white);
 }
 
 .outlined {
@@ -15,7 +15,7 @@
 }
 
 .normal {
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 .partial {
@@ -41,6 +41,10 @@
 
 .gap_24 {
   padding: 24px;
+}
+
+.gap_32 {
+  padding: 32px;
 }
 
 .max {

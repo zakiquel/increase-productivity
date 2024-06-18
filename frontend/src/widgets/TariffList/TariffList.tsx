@@ -32,8 +32,8 @@ export const TariffList = memo(() => (
             <h2>Выберите тариф, подходящий именно вам</h2>
             <ul>
                 {tariffs.map((item, index) => (
-                    <li>
-                        <TariffCard key={index} title={item.title} employees={item.employees} reports={item.reports}
+                    <li key={index}>
+                        <TariffCard title={item.title} employees={item.employees} reports={item.reports}
                             price={item.price} description={item.description} />
                     </li>
                 ))}
