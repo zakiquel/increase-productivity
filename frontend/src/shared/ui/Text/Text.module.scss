@@ -38,6 +38,12 @@
   text-align: center;
 }
 
+.size_xs {
+  .text {
+    font: var(--font-16);
+  }
+}
+
 .size_s {
   .title {
     font: var(--font-32);

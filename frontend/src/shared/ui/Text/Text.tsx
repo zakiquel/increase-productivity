@@ -6,7 +6,7 @@ import cls from './Text.module.scss';
 
 export type TextVariant = 'primary' | 'error' | 'accent';
 export type TextAlign = 'left' | 'right' | 'center';
-export type TextSize = 's' | 'm' | 'l';
+export type TextSize = 'xs' | 's' | 'm' | 'l';
 
 interface TextProps {
   className?: string;
@@ -21,12 +21,14 @@ interface TextProps {
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
 const mapSizeToClass: Record<TextSize, string> = {
+  xs: cls.size_xs,
   s: cls.size_s,
   m: cls.size_m,
   l: cls.size_l,
 };
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
+  xs: 'h3',
   s: 'h3',
   m: 'h2',
   l: 'h1',
@@ -50,16 +52,8 @@ export const Text = memo((props: TextProps) => {
 
   return (
     <div className={classNames(cls.Text, { [cls.bold]: bold }, additional)}>
-      {title && (
-        <HeaderTag className={cls.title}>
-          {title}
-        </HeaderTag>
-      )}
-      {text && (
-        <p className={cls.text}>
-          {text}
-        </p>
-      )}
+      {title && <HeaderTag className={cls.title}>{title}</HeaderTag>}
+      {text && <p className={cls.text}>{text}</p>}
     </div>
   );
 });

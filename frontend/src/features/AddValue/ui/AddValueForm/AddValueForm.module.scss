@@ -1,5 +1,7 @@
-.AuthorizationForm {
+.AddValueForm {
   width: 752px;
+  margin-right: 8px;
+  margin-left: 8px;
 
   form {
     display: flex;
@@ -12,21 +14,14 @@
     margin-right: 8px;
   }
 
-  .form_inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .forgot_password {
-    margin-top: 8px;
-    padding: 8px;
-    width: fit-content;
-  }
-
   .form_button {
-    margin-top: 8px;
+    margin-top: 16px;
     margin-left: 8px;
     margin-right: 8px;
   }
+}
+
+.success_message {
+  margin-right: 8px;
+  margin-left: 8px;
 }

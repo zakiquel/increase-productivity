@@ -95,6 +95,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     [cls.disabled]: disabled,
   };
 
+  const wrapperMods: Mods = {
+    [cls.noLabel]: Boolean(!label),
+  };
+
   const setValue = () => value || localValue;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +116,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   };
 
   const input = (
-    <div className={cls.input_with_error}>
+    <div className={classNames(cls.input_with_error, wrapperMods, [className])}>
       <div
         className={classNames(cls.InputWrapper, inputMods, [
           className,
