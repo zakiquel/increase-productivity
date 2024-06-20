@@ -1,0 +1,10 @@
+.formHeader {
+  display: flex;
+  height: 56px;
+  justify-content: space-between;
+  align-items: center;
+
+  .close_button {
+    fill: var(--grey-primary-color);
+  }
+}

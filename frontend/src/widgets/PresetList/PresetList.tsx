@@ -1,62 +1,78 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
 
-import { PresetCard } from '@/entities/PresetCard';
+import { ValueList } from '@/entities/Value';
 
-import cls from './PresetList.module.scss'
+import cls from './PresetList.module.scss';
 
-const presets = [{
-    title: 'Самоотдача',
+const presets = [
+  {
+    id: 1,
+    name: 'Самоотдача',
     qualities: [
-        'Обучаемость',
-        'Серьезность',
-        'Умение заниматься рутинной работой',
-        'Чувство юмора',
-        'Лидерство',
-    ]
-}, {
-    title: 'Страсть',
+      { id: 2, name: 'Обучаемость' },
+      { id: 9, name: 'Серьезность' },
+      { id: 16, name: 'Умение заниматься рутинной работой' },
+      { id: 21, name: 'Чувство юмора' },
+      { id: 26, name: 'Лидерство' },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Страсть',
     qualities: [
-        'Командный дух',
-        'Серьезность',
-        'Амбициозность',
-        'Чувство юмора',
-        'Лидерство',
-    ]
-}, {
-    title: 'Честность',
+      { id: 1, name: 'Командный дух (команда-семья)' },
+      { id: 9, name: 'Серьезность' },
+      { id: 15, name: 'Амбициозность' },
+      { id: 21, name: 'Чувство юмора' },
+      { id: 26, name: 'Лидерство' },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Честность',
     qualities: [
-        'Честность',
-        'Серьезность',
-        'Ответсвенность',
-        'Умение говорить',
-        'Умение слушать',
-    ]
-}, {
-    title: 'Открытость',
+      { id: 3, name: 'Честность' },
+      { id: 9, name: 'Серьезность' },
+      { id: 17, name: 'Ответсвенность' },
+      { id: 4, name: 'Умение говорить' },
+      { id: 27, name: 'Умение слушать' },
+    ],
+  },
+  {
+    id: 4,
+    name: 'Открытость',
     qualities: [
-        'Умение говорить',
-        'Коммуникабельность',
-        'Этичность',
-        'Умение слушать',
-    ]
-}, {
-    title: 'Динамика ценностей',
+      { id: 4, name: 'Умение говорить' },
+      { id: 10, name: 'Коммуникабельность' },
+      { id: 8, name: 'Этичность' },
+      { id: 27, name: 'Умение слушать' },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Практичный подход',
     qualities: [
-        'Обучаемость',
-        'Серьезность',
-        'Умение заниматься рутинной работой',
-        'Чувство юмора',
-    ]
-}]
+      { id: 5, name: 'Системность мышления' },
+      { id: 11, name: 'Тайм-менеджмент и пунктуальность' },
+      { id: 18, name: 'Профессионализм и компетентность ' },
+      { id: 24, name: 'Безопасность' },
+    ],
+  },
+  {
+    id: 6,
+    name: 'Самоотдача',
+    qualities: [
+      { id: 2, name: 'Обучаемость' },
+      { id: 9, name: 'Серьезность' },
+      { id: 16, name: 'Умение заниматься рутинной работой' },
+      { id: 21, name: 'Чувство юмора' },
+      { id: 26, name: 'Лидерство' },
+    ],
+  },
+];
 
 export const PresetList = memo(() => (
-    <div className={cls.PresetList}>
-        <ul className={cls.preset_cards}>
-            {presets.map((item, index) => (
-                <li key={index}>
-                    <PresetCard title={item.title} qualities={item.qualities} />
-                </li>
-            ))}
-        </ul>
-    </div>
+  <div className={cls.PresetList}>
+    <ValueList values={presets} isPreset />
+  </div>
 ));

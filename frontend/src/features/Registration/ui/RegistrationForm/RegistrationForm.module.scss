@@ -7,17 +7,9 @@
   }
 
   .form_header {
-    display: flex;
     margin-bottom: 8px;
-    height: 56px;
-    justify-content: space-between;
-    align-items: center;
     margin-left: 8px;
-    margin-right: 3.33px;
-
-    .close_button {
-      fill: var(--base-0-color);
-    }
+    margin-right: 8px;
   }
 
   .form_inputs {

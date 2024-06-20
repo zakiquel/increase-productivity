@@ -36,7 +36,7 @@
 }
 
 .primary {
-  color: var(--base-1-color);
+  color: var(--white);
   background-color: var(--primary-color);
 
   &:hover {
@@ -57,12 +57,12 @@
   background-color: var(--base-0-color);
 
   &:hover {
-    background-color: var(--base-1-color);
+    background-color: var(--white);
     color: var(--base-0-color);
   }
 
   &:active {
-    color: var(--base-1-color);
+    color: var(--white);
     background-color: var(--base-0-color);
   }
 
@@ -78,14 +78,14 @@
   background-color: transparent;
 
   &:hover {
-    color: var(--base-1-color);
+    color: var(--white);
     background-color: var(--primary-hover-color);
     border-color: transparent;
   }
 
   &:active {
     background-color: var(--primary-active-color);
-    color: var(--base-1-color);
+    color: var(--white);
     border-color: transparent;
   }
 

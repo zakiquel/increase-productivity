@@ -7,15 +7,14 @@ import {
   authorizationFormSchema,
 } from '../../lib/authorizationFormSchema';
 
-import Cancel from '@/shared/assets/icons/cancel.svg';
 import Visible from '@/shared/assets/icons/visibility.svg';
 import Invisible from '@/shared/assets/icons/visibility_off.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppLink } from '@/shared/ui/AppLink';
 import { Button } from '@/shared/ui/Button';
+import { FormHeader } from '@/shared/ui/Form/FormHeader';
 import { Icon } from '@/shared/ui/Icon';
 import { Input } from '@/shared/ui/Input';
-import { Text } from '@/shared/ui/Text';
 
 import cls from './AuthorizationForm.module.scss';
 
@@ -63,19 +62,11 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
 
   return (
     <div className={classNames(cls.AuthorizationForm, {}, [className])}>
-      <div className={cls.form_header}>
-        <Text title='Авторизация' size='s' className={cls.form_title} />
-        <Icon
-          className={cls.close_button}
-          Svg={Cancel}
-          buttonHeight={56}
-          buttonWidth={56}
-          width={20}
-          height={20}
-          clickable
-          onClick={onResetClick}
-        />
-      </div>
+      <FormHeader
+        title='Авторизация'
+        onClose={onResetClick}
+        className={cls.form_header}
+      />
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={cls.form_inputs}>
           <Controller
