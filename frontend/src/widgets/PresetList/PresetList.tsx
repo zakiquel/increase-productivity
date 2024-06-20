@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { ValueList } from '@/entities/Value';
+import { Value, ValueList } from '@/entities/Value';
 
 import cls from './PresetList.module.scss';
 
@@ -71,8 +71,11 @@ const presets = [
   },
 ];
 
-export const PresetList = memo(() => (
-  <div className={cls.PresetList}>
-    <ValueList values={presets} isPreset />
-  </div>
-));
+export const PresetList = memo(() => {
+  const handleAddPreset = (value: Value) => {};
+  return (
+    <div className={cls.PresetList}>
+      <ValueList values={presets} isPreset cardAction={handleAddPreset} />
+    </div>
+  );
+});

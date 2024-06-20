@@ -1,2 +1,2 @@
 export { ValueList } from './ui/ValueList/ValueList';
-export type { Value } from './model/types/value';
+export type { Value, Quality } from './model/types/value';

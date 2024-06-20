@@ -20,6 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   addonRight?: ReactNode;
   addonLeft?: ReactNode;
   fullWidth?: boolean;
+  selected?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -30,6 +31,7 @@ export const Button = memo((props: ButtonProps) => {
     size = 'm',
     disabled,
     fullWidth,
+    selected,
     color = 'normal',
     addonRight,
     addonLeft,
@@ -38,6 +40,7 @@ export const Button = memo((props: ButtonProps) => {
 
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
+    [cls.selected]: selected,
   };
 
   return (
