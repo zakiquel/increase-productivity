@@ -1,7 +1,8 @@
 import React, { memo, useState } from 'react';
 
-import { ValueList } from '@/entities/Value';
+import { Value, ValueList } from '@/entities/Value';
 import { AddValueModal } from '@/features/AddValue';
+import { EditQualitiesModal } from '@/features/EditQualities';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 
@@ -62,6 +63,13 @@ const testValues = [
 
 export const ValuesAndQualities = memo(() => {
   const [isAddValueModal, setIsValueModal] = useState(false);
+  const [isEditQualitiesModal, setIsEditQualitiesModal] = useState(false);
+  const [editingValue, setEditingValue] = useState<Value | null>(null);
+
+  const handleEditQualities = (value: Value) => {
+    setEditingValue(value);
+    setIsEditQualitiesModal(true);
+  };
 
   return (
     <div className={cls.ValuesAndQualities}>
@@ -69,7 +77,11 @@ export const ValuesAndQualities = memo(() => {
         <h2>Ценности и качества</h2>
         <p>Добавьте до 8 ценностей, к каждой ценности до 5 качеств.</p>
       </Card>
-      <ValueList values={testValues} className={cls.company_values} />
+      <ValueList
+        values={testValues}
+        className={cls.company_values}
+        cardAction={handleEditQualities}
+      />
       <Button
         size='l'
         fullWidth
@@ -82,6 +94,13 @@ export const ValuesAndQualities = memo(() => {
         <AddValueModal
           isOpen={isAddValueModal}
           onClose={() => setIsValueModal(false)}
+        />
+      )}
+      {isEditQualitiesModal && editingValue && (
+        <EditQualitiesModal
+          value={editingValue}
+          isOpen={isEditQualitiesModal}
+          onClose={() => setIsEditQualitiesModal(false)}
         />
       )}
     </div>

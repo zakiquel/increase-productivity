@@ -43,7 +43,8 @@
     background-color: var(--primary-hover-color);
   }
 
-  &:active {
+  &:active,
+  &.selected {
     background-color: var(--primary-active-color);
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Quality } from '../../model/types/value';
+import { Value } from '../../model/types/value';
 
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
@@ -9,33 +9,48 @@ import { Card } from '@/shared/ui/Card';
 import cls from './ValueCard.module.scss';
 
 interface ValueCardProps {
-  title: string;
-  qualities: Quality[];
+  value: Value;
   isPreset?: boolean;
+  onButtonClick: (value: Value) => void;
 }
 
 export const ValueCard = (props: ValueCardProps) => {
-  const { title, qualities, isPreset } = props;
+  const { value, isPreset, onButtonClick } = props;
 
   const cardMods: Mods = {
-    [cls.isEmpty]: Boolean(qualities.length === 0),
+    [cls.isEmpty]: Boolean(value.qualities.length === 0),
   };
 
   const cardButton = () => {
     if (isPreset)
       return (
-        <Button variant='secondary' size='s' className={cls.value_button}>
+        <Button
+          variant='secondary'
+          size='s'
+          className={cls.value_button}
+          onClick={() => onButtonClick(value)}
+        >
           Добавить готовый пресет
         </Button>
       );
-    if (qualities.length !== 0)
+    if (value.qualities.length !== 0)
       return (
-        <Button variant='secondary' size='s' className={cls.value_button}>
+        <Button
+          variant='secondary'
+          size='s'
+          className={cls.value_button}
+          onClick={() => onButtonClick(value)}
+        >
           Редактировать
         </Button>
       );
     return (
-      <Button variant='outline' size='m' className={cls.value_button}>
+      <Button
+        variant='outline'
+        size='m'
+        className={cls.value_button}
+        onClick={() => onButtonClick(value)}
+      >
         Добавить качества
       </Button>
     );
@@ -49,9 +64,9 @@ export const ValueCard = (props: ValueCardProps) => {
       className={classNames(cls.ValueCard, cardMods, [])}
     >
       <div className={cls.value}>
-        <h3>{title}</h3>
+        <h3>{value.name}</h3>
         <ul className={cls.values_list}>
-          {qualities.map((item, index) => (
+          {value.qualities.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))}
         </ul>
