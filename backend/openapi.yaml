@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Authentication API
   version: 1.0.0
-  description: API documentation for user authentication endpoints.
+  description: API documentation increase-productivity site endpoints.
 
 servers:
   - url: https://increase-productivity.abdrashitov-academy.ru/
@@ -258,116 +258,6 @@ paths:
                   error:
                     type: string
 
-
-  #Employees API
-  /api/employees:
-    summary: Operations about employees
-    get:
-      tags:
-       - Employees GET
-      summary: Get all the employees
-      responses:
-        "200":
-          description: 200 response
-        "400":
-          description: Bad request
-
-    post:
-      tags:
-        - Employees POST
-      summary: Add any employee
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/employee"
-      responses:
-        "200":
-          description: 200 response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/employee"
-        "400":
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-
-  /api/employees/{id}:
-    summary: Operations about employee
-    get:
-      tags:
-      - Employees GET
-      summary: Get the employee
-      parameters:
-        - name: employee_id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        200:
-          description: Success
-        400:
-          description: Incorrect input
-
-    put:
-      tags:
-      - Employees PUT
-      summary: Update an employee
-      parameters:
-        - name: employee_id
-          required: true
-          in: path
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/employee"
-      responses:
-        "200":
-          description: 200 response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/employee"
-        "400":
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-
-    delete:
-      tags:
-      - Employees DELETE
-      summary: Delete an employee
-      parameters:
-        - name: employee_id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        200:
-          description: Success
-        400:
-          description: Incorrect input
-        default:
-          description: Success
-
 # Companies API
   /api/companies:
     summary: Operations about companies
@@ -478,6 +368,116 @@ paths:
           description: Incorrect input
         default:
           description: Success
+  # employees API
+  /api/employees:
+      summary: Operations about employees
+      get:
+        tags:
+          - employees GET
+        summary: Get all the employees
+        responses:
+          200:
+            description: Success
+          400:
+            description: Incorrect input
+          default:
+            description: Success
+      post:
+        tags:
+          - employees POST
+        summary: Add an employee
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreEmployeeRequest'
+        responses:
+          "200":
+            description: 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/employee"
+          "400":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+
+  /api/employees/{id}:
+      summary: Operations about employees
+      get:
+        tags:
+          - employees GET
+        summary: Get an employees
+        parameters:
+          - name: employee_id
+            required: true
+            in: path
+            schema:
+              type: integer
+        responses:
+          200:
+            description: Success
+          400:
+            description: Incorrect input
+          default:
+            description: Success
+
+      put:
+        tags:
+          - employees PUT
+        summary: Update an employees
+        parameters:
+          - name: employee_id
+            required: true
+            in: path
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateEmployeeRequest'
+        responses:
+          "200":
+            description: 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/employee"
+          "400":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+      delete:
+        tags:
+          - employees DELETE
+        summary: Delete an employee
+        parameters:
+          - name: employee_id
+            required: true
+            in: path
+            schema:
+              type: integer
+        responses:
+          200:
+            description: Success
+          400:
+            description: Incorrect input
+          default:
+            description: Success
 
 components:
   schemas:
@@ -523,6 +523,20 @@ components:
           format: email
         phone_number:
           type: string
+
+    StoreEmployeeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          required: true
+
+    UpdateEmployeeRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          required: true
 
     company:
       type: object

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'work_experience' => 'required|numeric|between:0,9999.99',
             'salary' => 'required|numeric',
             'email' => 'required|email|unique:employees,email',
-            'phone_number' => 'required|string|max:20|unique:employees,phone_number',
+            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/'
         ];
     }
 }
