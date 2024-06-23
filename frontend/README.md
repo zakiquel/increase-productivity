@@ -4,18 +4,15 @@
 
 ```
 npm install - устанавливаем зависимости
-npm run start - запуск проекта в dev режиме
+npm run start - запуск проекта
 ```
 ----
 
 
 ## Скрипты
 
-- `npm run start` - Запуск frontend проекта на webpack dev server
-- `npm run start:dev` - Запуск frontend проекта на webpack dev server + backend
-- `npm run start:dev:server` - Запуск backend сервера
+- `npm run start` - Запуск frontend проекта на Vite
 - `npm run build:prod` - Сборка в prod режиме
-- `npm run build:dev` - Сборка в dev режиме (не минимизирован)
 - `npm run lint:ts` - Проверка ts файлов линтером
 - `npm run lint:ts:fix` - Исправление ts файлов линтером
 ----
@@ -52,14 +49,8 @@ npm run start - запуск проекта в dev режиме
 
 ## Конфигурация проекта
 
-Для разработки проект содержит Webpack конфиг:
-1. Webpack - ./config/build
-
+В проекте используется сборщик [Vite](/frontend/vite.config.ts)
 Сборщик адаптирован под основные фичи приложения.
-
-Вся конфигурация хранится в /config
-- /config/babel - babel
-- /config/build - конфигурация webpack
 
 В папке `scripts` находятся различные скрипты для рефакторинга\упрощения написания кода\генерации отчетов и тд.
 
@@ -72,7 +63,6 @@ npm run start - запуск проекта в dev режиме
 По возможности переиспользуемые сущности необходимо нормализовать с помощью EntityAdapter
 
 Запросы на сервер отправляются с помощью [RTK query](/frontend/src/shared/api/rtkApi.ts)
-
 
 ----
 
