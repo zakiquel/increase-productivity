@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('salary');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
+            $table->decimal('balance')->default(0);
 
             $table->timestamps();
         });

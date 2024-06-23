@@ -30,7 +30,9 @@ class StoreEmployeeRequest extends FormRequest
             'work_experience' => 'required|numeric|between:0,9999.99',
             'salary' => 'required|numeric',
             'email' => 'required|email|unique:employees,email',
-            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/'
+            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/',
+            'balance' => 'required|numeric',
+
         ];
     }
 }

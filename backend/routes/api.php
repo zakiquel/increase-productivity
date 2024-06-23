@@ -35,6 +35,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
+    'prefix' => 'auth'
 ], function ($router) {
     Route::get('employees', [EmployeeController::class, 'index']);
     Route::get('employees/{id}', [EmployeeController::class, 'show']);
@@ -45,6 +46,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
+    'prefix' => 'auth'
 ], function ($router) {
     Route::get('companies', [CompanyController::class, 'index']);
     Route::get('companies/{id}', [CompanyController::class, 'show']);
@@ -53,6 +55,9 @@ Route::group([
     Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
 });
 
-
-Route::resource('values', ValueController::class);
-
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::resource('values', ValueController::class);
+});

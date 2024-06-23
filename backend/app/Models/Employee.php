@@ -23,5 +23,6 @@ class Employee extends Model
         'salary',
         'email',
         'phone_number',
+        'balance',
     ];
 }
