@@ -36,23 +36,17 @@ Route::group([
 Route::group([
     'middleware' => 'api',
 ], function ($router) {
-    Route::get('employees', [EmployeeController::class, 'index']);
-    Route::get('employees/{id}', [EmployeeController::class, 'show']);
-    Route::post('employees', [EmployeeController::class, 'store']);
-    Route::put('employees/{id}', [EmployeeController::class, 'update']);
-    Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
+    Route::resource('employees', EmployeeController::class);
 });
 
-Route::group([
-    'middleware' => 'api',
-], function ($router) {
     Route::get('companies', [CompanyController::class, 'index']);
     Route::get('companies/{id}', [CompanyController::class, 'show']);
     Route::post('companies', [CompanyController::class, 'store']);
     Route::put('companies/{id}', [CompanyController::class, 'update']);
     Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::resource('values', ValueController::class);
 });
-
-
-Route::resource('values', ValueController::class);
-

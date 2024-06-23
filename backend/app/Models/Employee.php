@@ -24,4 +24,8 @@ class Employee extends Model
         'email',
         'phone_number',
     ];
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

@@ -20,4 +20,8 @@ class Company extends Model
         'email',
         'description',
     ];
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }
