@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreUserRequest;
+use App\Services\Service;
+;use Illuminate\Routing\Controller as BaseController;
 
-class AuthController extends Controller
+
+class AuthController extends BaseController
 {
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
-    public function __construct()
+    public Service $service;
+    public function __construct(Service $service)
     {
-        # By default we are using here auth:api middleware
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->service = $service;
+
     }
 
     public function register(StoreUserRequest $request)
@@ -22,10 +27,10 @@ class AuthController extends Controller
 
         // Validate the request
         $validatedData = $request->validated();
+        $data = $this->service->store_user($validatedData);
 
-        $this->service->store_user($validatedData);
-        // Create a new user using the validated data
-
+        // Return the response
+        return response()->json($data, 201);
     }
     /**
      * Get a JWT via given credentials.
