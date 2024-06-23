@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Company;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Company\CompanyResource;
 
 class CompanyCollectionResource extends JsonResource
 {
