@@ -3,9 +3,9 @@
 namespace App\Http\Resources\Company;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CompanyCollectionResource extends ResourceCollection
+class CompanyCollectionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

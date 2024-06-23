@@ -21,9 +21,7 @@ return new class extends Migration
             $table->double('work_experience', 4, 2);
             $table->decimal('salary');
             $table->string('email')->unique();
-            $table->string('phone_number')->unique();
-            $table->decimal('balance')->default(0);
-
+            $table->string('phone_number')->unique();;
             $table->timestamps();
         });
     }
