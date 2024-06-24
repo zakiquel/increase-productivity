@@ -1,1 +1,0 @@
-export { OpportunityList } from './OpportunityList';

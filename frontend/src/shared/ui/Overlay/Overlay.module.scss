@@ -1,14 +1,11 @@
 .Overlay {
   background: var(--overlay-color);
-  opacity: 50%;
+  opacity: 0.5;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  inset: 0;
   z-index: var(--overlay-z-index);
   overflow: hidden;
 }
