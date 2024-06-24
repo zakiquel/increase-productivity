@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
-import { OpportunityCard } from '@/entities/OpportunityCard';
+
+import { OpportunityCard } from '../OpportunityCard/OpportunityCard';
 
 import cls from './OpportunityList.module.scss';
 
@@ -13,12 +14,12 @@ const cards = [
 
 export const OpportunityList = memo(() => (
     <section className={cls.OpportunityList}>
-        <ul>
-            {cards.map((item, index) => (
-                <li key={index}>
-                    <OpportunityCard id={item.id} title={item.title} />
-                </li>
-            ))}
-        </ul>
+      <ul>
+        {cards.map((item, index) => (
+          <li key={index}>
+            <OpportunityCard id={item.id} title={item.title}/>
+          </li>
+        ))}
+      </ul>
     </section>
 ));

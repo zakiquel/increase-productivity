@@ -3,15 +3,12 @@
     display: flex;
     align-items: center;
     gap: 14px;
-
     cursor: pointer;
 
     input[type='checkbox'] {
       transition: color 0.2s ease-in, background-color 0.2s ease-in;
-      -webkit-appearance: none;
       appearance: none;
       outline: none;
-
       cursor: pointer;
       position: relative;
     }
@@ -19,7 +16,7 @@
 
   &.disabled {
     p {
-      opacity: 50%;
+      opacity: 0.5;
     }
   }
 }
@@ -34,6 +31,7 @@
     &:not(:checked) {
       background-color: var(--base-1-1-color);
       border-color: var(--base-1-color);
+
       &:hover {
         background-color: var(--base-1-color);
       }
@@ -45,7 +43,7 @@
       &:focus-visible {
         background-color: var(--grey-primary-color);
         outline: 1px dashed var(--base-1-color);
-        outline-offset: 0px;
+        outline-offset: 0;
         border: none;
       }
 
@@ -72,7 +70,7 @@
       }
 
       &:disabled {
-        opacity: 50%;
+        opacity: 0.5;
         background-color: var(--primary-color);
       }
 
@@ -129,6 +127,7 @@
       &:disabled {
         border: 2px solid var(--grey-primary-color);
         background-color: transparent;
+
         &::before {
           background-color: var(--grey-primary-color);
           left: 1px;
@@ -153,7 +152,7 @@
       }
 
       &:disabled {
-        opacity: 50%;
+        opacity: 0.5;
         background-color: var(--primary-color);
       }
 

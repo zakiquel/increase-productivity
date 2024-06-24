@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { TariffCard } from '@/entities/TariffCard';
+import { TariffCard } from '../TariffCard/TariffCard';
 
 import cls from './TariffList.module.scss'
 
