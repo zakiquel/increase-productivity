@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ValueController;
@@ -53,6 +54,16 @@ Route::group([
     Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
 });
 
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::resource('values', ValueController::class);
+});
 
-Route::resource('values', ValueController::class);
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
+});
 

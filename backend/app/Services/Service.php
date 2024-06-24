@@ -21,16 +21,14 @@ class Service
         // Generate a token for the new user
         $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 
-        // event(new Registered($user)); //for email validation
-
         // Return the token and user data
-        return response()->json([
+        return [
             'message' => 'User successfully registered',
             'user' => $user,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ], 201);
+        ];
     }
     public function store_value(array $validatedData)
     {
