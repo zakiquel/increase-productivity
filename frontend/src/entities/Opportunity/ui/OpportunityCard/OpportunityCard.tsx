@@ -6,20 +6,20 @@ import { Card } from '@/shared/ui/Card';
 import cls from './OpportunityCard.module.scss';
 
 interface OpportunityCardProps {
-    id: string;
-    title: string;
+  id: string;
+  title: string;
 }
 
 export const OpportunityCard = memo((props: OpportunityCardProps) => {
-    const {
-        id,
-        title,
-    } = props;
+  const {
+    id,
+    title,
+  } = props;
 
-    return (
-        <Card variant='light' padding='24' className={classNames(cls.OpportunityCard, {}, [])}>
-            <span>({id})</span>
-            <p>{title}</p>
-        </Card>
-    );
+  return (
+    <Card variant='light' padding='24' className={classNames(cls.OpportunityCard, {}, [])}>
+      <span>({id})</span>
+      <p>{title}</p>
+    </Card>
+  );
 });

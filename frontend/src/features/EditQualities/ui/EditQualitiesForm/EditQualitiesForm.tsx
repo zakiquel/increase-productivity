@@ -81,14 +81,14 @@ const EditQualitiesForm = (props: EditQualitiesFormProps) => {
 
   const sortedQualities = useMemo(
     () =>
-      allQualities.toSorted((a, b) => {
+      allQualities.sort((a, b) => {
         const aSelected = qualities.some(item => item.id === a.id);
         const bSelected = qualities.some(item => item.id === b.id);
         if (aSelected && !bSelected) return -1;
         if (!aSelected && bSelected) return 1;
         return 0;
       }),
-    []
+    [qualities]
   );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

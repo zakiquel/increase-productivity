@@ -1,1 +1,0 @@
-export { TariffList } from './TariffList'

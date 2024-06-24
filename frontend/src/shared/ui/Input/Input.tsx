@@ -1,12 +1,5 @@
 import { MaskitoOptions, maskitoTransform } from '@maskito/core';
-import React, {
-  InputHTMLAttributes,
-  forwardRef,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useRef, useState, } from 'react';
 
 import { Text } from '../Text/Text';
 
@@ -38,7 +31,7 @@ interface InputProps extends HTMLInputProps {
   errorMessage?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
   const {
     className,
     value,
@@ -106,11 +99,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       setLocalValue(event.target.value);
     }
     if (options) {
-      const transformedValue = maskitoTransform(
+      event.currentTarget.value = maskitoTransform(
         event.currentTarget.value,
         options
       );
-      event.currentTarget.value = transformedValue;
     }
     onChange?.(event);
   };
