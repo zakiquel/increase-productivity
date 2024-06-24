@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -31,9 +28,6 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-Route::post('/subscriptions', [SubscriptionController::class, 'store']);
-Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
 
 
 require __DIR__ . '/api.php';
