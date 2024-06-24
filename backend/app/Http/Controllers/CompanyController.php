@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use Illuminate\Http\Request;
-use App\Http\Resources\CompanyCollectionResource;
-use App\Http\Resources\Company\CompanyResource;
 use App\Http\Requests\Company\StoreRequest;
 use App\Http\Requests\Company\UpdateRequest;
-use App\Http\Requests\Company\UpdateRequestRequest;
+use App\Http\Resources\Company\CompanyCollectionResource;
+use App\Http\Resources\Company\CompanyResource;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
