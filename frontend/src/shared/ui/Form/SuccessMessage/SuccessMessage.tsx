@@ -20,18 +20,17 @@ export const SuccessMessage = ({
   countdown,
   className,
 }: SuccessMessageProps) => {
-  const getCountdownText = (countdown: number) => {
-    switch (countdown) {
-      case 4:
-      case 3:
-      case 2:
-        return 'секунды';
-      case 1:
-        return 'секунду';
-      default:
-        return 'секунд';
-    }
-  };
+
+  const declensionOfWords = (
+    number: number, 
+    txt: string[], 
+    cases = [2, 0, 1, 1, 1, 2]
+  ) =>
+    txt[
+      number % 100 > 4 && number % 100 < 20
+        ? 2
+        : cases[number % 10 < 5 ? number % 10 : 5]
+    ];
 
   return (
     <div className={classNames(cls.successMessage, {}, [className])}>
@@ -47,8 +46,9 @@ export const SuccessMessage = ({
       </Button>
       {countdown && (
         <Text
-          text={`Окно автоматически закроется через ${countdown} ${getCountdownText(
-            countdown
+          text={`Окно автоматически закроется через ${countdown} ${declensionOfWords(
+            countdown,
+            ['секундy', 'секунды', 'секунд']
           )}`}
           size='xs'
           className={cls.message_countdown}
