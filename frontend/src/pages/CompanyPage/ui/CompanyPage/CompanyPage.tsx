@@ -2,12 +2,11 @@ import React, { memo } from 'react';
 
 import { ValuesAndQualities } from '../ValuesAndQualities';
 
-import { ValueList } from "@/entities/Value";
+import { ValueList } from '@/entities/Value';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 
 import cls from './CompanyPage.module.scss';
-
 
 interface CompanyPageProps {
   className?: string;
@@ -82,11 +81,14 @@ const presets = [
 
 const CompanyPage = (props: CompanyPageProps) => {
   const { className } = props;
+  const addPreset = () => {
+    // здесь функция для добавления готового пресета
+  };
 
   return (
     <Page className={classNames(cls.CompanyPage, {}, [className])}>
       <ValuesAndQualities />
-      <ValueList values={presets} isPreset />
+      <ValueList values={presets} isPreset cardAction={addPreset} />
     </Page>
   );
 };

@@ -1,7 +1,6 @@
 .ValueCard {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   h3 {
     font: var(--font-26);
@@ -32,4 +31,5 @@
 
 .value_button {
   width: fit-content;
+  margin-top: auto;
 }

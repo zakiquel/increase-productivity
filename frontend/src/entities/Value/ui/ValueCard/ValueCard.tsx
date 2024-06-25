@@ -26,40 +26,43 @@ export const ValueCard = (props: ValueCardProps) => {
   };
 
   const cardButton = () => {
-    if (isPreset)
+    if (onButtonClick) {
+      if (isPreset)
+        return (
+          <Button
+            variant='secondary'
+            size='s'
+            className={cls.value_button}
+            onClick={() => onButtonClick(value)}
+          >
+            Добавить готовый пресет
+          </Button>
+        );
+
+      if (value.qualities.length !== 0)
+        return (
+          <Button
+            variant='secondary'
+            size='s'
+            className={cls.value_button}
+            onClick={() => onButtonClick(value)}
+          >
+            Редактировать
+          </Button>
+        );
+
       return (
         <Button
-          variant='secondary'
-          size='s'
+          variant='outline'
+          size='m'
           className={cls.value_button}
-          onClick={() => onButtonClick}
+          onClick={() => onButtonClick(value)}
         >
-          Добавить готовый пресет
+          Добавить качества
         </Button>
       );
-
-    if (value.qualities.length !== 0)
-      return (
-        <Button
-          variant='secondary'
-          size='s'
-          className={cls.value_button}
-          onClick={() => onButtonClick}
-        >
-          Редактировать
-        </Button>
-      );
-
-    return (
-      <Button
-        variant='outline'
-        size='m'
-        className={cls.value_button}
-        onClick={() => onButtonClick}
-      >
-        Добавить качества
-      </Button>
-    );
+    }
+    return null;
   };
 
   return (
