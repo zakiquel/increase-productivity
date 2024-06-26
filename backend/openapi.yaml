@@ -286,6 +286,8 @@ paths:
       tags:
         - Companies POST
       summary: Add a companies
+      security:
+        - bearerAuth: [ ]
       requestBody:
         required: true
         content:
@@ -384,6 +386,7 @@ paths:
           description: Incorrect input
         default:
           description: Success
+
   # employees API
   /api/employees:
       summary: Operations about employees
@@ -563,8 +566,6 @@ components:
     company:
       type: object
       properties:
-        id:
-          type: integer
         name:
           type: string
         logoSrc:
@@ -573,9 +574,3 @@ components:
           type: string
         description:
           type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
