@@ -44,7 +44,7 @@ Route::group([
     Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
 });
 
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => ['api', 'auth:api']], function () {
     Route::get('companies', [CompanyController::class, 'index']);
     Route::get('companies/{company}', [CompanyController::class, 'show']); // Use 'company' instead of 'id'
     Route::post('companies', [CompanyController::class, 'store']);

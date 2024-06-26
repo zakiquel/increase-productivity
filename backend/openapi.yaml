@@ -273,6 +273,8 @@ paths:
       tags:
         - Companies GET
       summary: Get all the companies
+      security:
+        - bearerAuth: [ ]
       responses:
         200:
           description: Success
@@ -283,7 +285,7 @@ paths:
     post:
       tags:
         - Companies POST
-      summary: Add any companies
+      summary: Add a companies
       requestBody:
         required: true
         content:
@@ -307,14 +309,16 @@ paths:
                   message:
                     type: string
 
-  /api/companies/{id}:
+  /api/companies/{company}:
     summary: Operations about Companies
     get:
       tags:
         - Companies GET
-      summary: Get the companies
+      summary: Get a company
+      security:
+        - bearerAuth: [ ]
       parameters:
-        - name: employee_id
+        - name: company
           required: true
           in: path
           schema:
@@ -330,9 +334,11 @@ paths:
     put:
       tags:
         - Companies PUT
-      summary: Update an company
+      summary: Update a company
+      security:
+        - bearerAuth: [ ]
       parameters:
-        - name: employee_id
+        - name: company
           required: true
           in: path
           schema:
@@ -362,9 +368,11 @@ paths:
     delete:
       tags:
         - Companies DELETE
-      summary: Delete an company
+      summary: Delete a company
+      security:
+        - bearerAuth: [ ]
       parameters:
-        - name: employee_id
+        - name: company
           required: true
           in: path
           schema:
@@ -488,6 +496,12 @@ paths:
             description: Success
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     Value:
       type: object
@@ -549,19 +563,19 @@ components:
     company:
       type: object
       properties:
-          name:
-            type: string
-          address:
-            type: string
-          phone_number:
-            type: string
-          email:
-            type: string
-            format: email
-          description:
-            type: string
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+        id:
+          type: integer
+        name:
+          type: string
+        logoSrc:
+          type: string
+        currency_name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
