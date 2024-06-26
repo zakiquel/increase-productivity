@@ -1,7 +1,8 @@
-import { type RouteProps } from 'react-router-dom'
+import { type RouteProps } from 'react-router-dom';
 
-import { AnalyticsPage } from '@/pages/AnalyticsPage';
+import { AnalyticsPage } from "@/pages/AnalyticsPage";
 import { CompanyPage } from "@/pages/CompanyPage";
+import { EmployeePage } from "@/pages/EmployeePage";
 import { EmployeesPage } from "@/pages/EmployeesPage";
 import { EventsPage } from "@/pages/EventsPage";
 import { InstructionsPage } from "@/pages/InstructionsPage";
@@ -9,7 +10,13 @@ import { MainPage } from "@/pages/MainPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import {
-  AppRoutes, getRouteAnalytics, getRouteCompany, getRouteEmployees, getRouteEvents, getRouteInstructions,
+  AppRoutes,
+  getRouteAnalytics,
+  getRouteCompany,
+  getRouteEmployees,
+  getRouteEmployee,
+  getRouteEvents,
+  getRouteInstructions,
   getRouteMain,
   getRouteProfile
 } from '@/shared/const/router'
@@ -30,6 +37,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.EMPLOYEES]: {
     path: getRouteEmployees(),
     element: <EmployeesPage />
+  },
+  [AppRoutes.EMPLOYEE]: {
+    path: getRouteEmployee(':id'),
+    element: <EmployeePage />
   },
   [AppRoutes.EVENTS]: {
     path: getRouteEvents(),

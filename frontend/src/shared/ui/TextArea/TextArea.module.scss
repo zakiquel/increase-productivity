@@ -1,0 +1,26 @@
+.TextArea {
+  height: 188px;
+  border: none;
+  border-radius: 16px;
+  background-color: var(--bg-color);
+  padding: 16px;
+  font: var(--font-20);
+  position: relative;
+  resize: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--grey-primary-color);
+  }
+}

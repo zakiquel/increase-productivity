@@ -3,6 +3,7 @@ export enum AppRoutes {
   PROFILE = 'profile',
   COMPANY = 'company',
   EMPLOYEES = 'employees',
+  EMPLOYEE = 'employee',
   EVENTS = 'events',
   ANALYTICS = 'analytics',
   INSTRUCTIONS = 'instructions',
@@ -12,6 +13,7 @@ export enum AppRoutes {
 export const getRouteMain = () => '/'
 export const getRouteCompany = (id: string) => `/company/${id}`
 export const getRouteEmployees = () => '/employees'
+export const getRouteEmployee = (id: string) => `/employees/${id}`
 export const getRouteEvents = () => '/events'
 export const getRouteAnalytics = () => '/analytics'
 export const getRouteInstructions = () => '/instructions'

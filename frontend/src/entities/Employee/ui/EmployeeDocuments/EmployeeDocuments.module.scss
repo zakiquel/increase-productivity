@@ -1,0 +1,9 @@
+.EmployeeDocuments {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .title h3 {
+    line-height: 23px;
+  }
+}

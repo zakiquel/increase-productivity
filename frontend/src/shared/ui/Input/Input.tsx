@@ -1,5 +1,12 @@
 import { MaskitoOptions, maskitoTransform } from '@maskito/core';
-import React, { forwardRef, InputHTMLAttributes, ReactNode, useEffect, useRef, useState, } from 'react';
+import React, {
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Text } from '../Text/Text';
 
@@ -31,7 +38,7 @@ interface InputProps extends HTMLInputProps {
   errorMessage?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
   const {
     className,
     value,
@@ -108,20 +115,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
   };
 
   const input = (
-    <div className={classNames(cls.input_with_error, wrapperMods, [className])}>
-      <div
-        className={classNames(cls.InputWrapper, inputMods, [
-          className,
-          cls[size],
-        ])}
-      >
+    <div
+      className={classNames(
+        cls.input_with_error,
+        wrapperMods,
+        label ? [className] : []
+      )}
+    >
+      <div className={classNames(cls.InputWrapper, inputMods, [])}>
         <div className={cls.addonLeft}>{addonLeft}</div>
         <input
           ref={inputRef}
           type={type}
           value={setValue()}
           onChange={handleChange}
-          className={cls.input}
+          className={classNames(cls.input, {}, [cls[size]])}
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={placeholder}
@@ -142,7 +150,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
 
   if (label) {
     return (
-      <label className={classNames(cls.wrapper, labelMods, [])}>
+      <label className={classNames(cls.wrapper, labelMods, [className])}>
         <Text text={label} size={size} />
         {input}
       </label>

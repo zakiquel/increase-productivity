@@ -1,0 +1,20 @@
+.EmployeeNotes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  button {
+    width: fit-content;
+  }
+
+  .title h3 {
+    line-height: 23px;
+    font-weight: 500;
+  }
+
+  .notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 12px;
+  }
+}
