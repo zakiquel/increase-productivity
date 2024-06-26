@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->foreignId('user_id')
-                ->after('id')
-                ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->string('logoSrc')->nullable(); // Add logoSrc column, nullable
+            $table->string('currency_name')->nullable(); // Add currency_name column, nullable
         });
     }
 
@@ -26,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table->dropColumn('logoSrc');
+            $table->dropColumn('currency_name');
         });
     }
 };

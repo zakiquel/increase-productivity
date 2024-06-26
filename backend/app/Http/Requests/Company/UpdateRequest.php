@@ -23,10 +23,15 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|string|max:15',
-            'email' => 'nullable|string|email|max:255',
+            'logoSrc' => 'nullable|string|max:15',
+            'currency_name' => 'required|string|max:255',
             'description' => 'required|string',
         ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => auth()->id(),
+        ]);
     }
 }

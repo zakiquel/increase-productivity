@@ -44,15 +44,14 @@ Route::group([
     Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
 });
 
-Route::group([
-    'middleware' => 'api',
-], function ($router) {
+Route::group(['middleware' => ['api']], function () {
     Route::get('companies', [CompanyController::class, 'index']);
-    Route::get('companies/{id}', [CompanyController::class, 'show']);
+    Route::get('companies/{company}', [CompanyController::class, 'show']); // Use 'company' instead of 'id'
     Route::post('companies', [CompanyController::class, 'store']);
-    Route::put('companies/{id}', [CompanyController::class, 'update']);
-    Route::delete('companies/{id}', [CompanyController::class, 'destroy']);
+    Route::put('companies/{company}', [CompanyController::class, 'update']); // Use 'company' instead of 'id'
+    Route::delete('companies/{company}', [CompanyController::class, 'destroy']); // Use 'company' instead of 'id'
 });
+
 
 Route::group([
     'middleware' => 'api',

@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('companies', function (Blueprint $table) {
+            $table->unique('user_id'); // Add unique constraint
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::table('companies', function (Blueprint $table) {
+            $table->dropUnique(['user_id']); // Remove unique constraint
+        });
     }
 };

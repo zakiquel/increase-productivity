@@ -17,12 +17,15 @@ class Employee extends Model
         'first_name',
         'middle_name',
         'last_name',
-        'date_of_birth',
+        'imgSrc',
+        'birth_date',
+        'age_in_full_years',
         'position',
         'work_experience',
         'salary',
         'email',
         'phone_number',
+        'balance',
     ];
     public function company()
     {

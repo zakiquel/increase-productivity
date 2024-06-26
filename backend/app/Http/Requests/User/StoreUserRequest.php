@@ -26,9 +26,14 @@ class StoreUserRequest extends FormRequest
             'first_name' => 'required|string|max:25',
             'middle_name' => 'nullable|string|max:25',
             'last_name' => 'nullable|string|max:25',
-            'phone_number' => 'nullable|string|max:12|min:12|regex:/^\+7[0-9]*$/',
+            'role' => 'required|string|in:hr,employee', // Ensure role is either 'hr' or 'employee'
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'string', Password::min(6)->letters()->numbers(),]
+            'password' => [
+                'required',
+                'string',
+                Password::min(6)->letters()->numbers(),
+                'confirmed', // Ensure password_confirmation matches password
+            ],
         ];
     }
 }

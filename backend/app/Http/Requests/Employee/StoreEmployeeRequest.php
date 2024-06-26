@@ -4,7 +4,7 @@ namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,15 @@ class UpdateRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
-            'date_of_birth' => 'required|date',
+            'imgSrc' => 'required|string|max:255',
+            'birth_date' => 'required|date',
             'position' => 'required|string|max:255',
             'work_experience' => 'required|numeric|between:0,9999.99',
+            'age_in_full_years' => 'required|numeric',
             'salary' => 'required|numeric',
             'email' => 'required|email|unique:employees,email',
-            'phone_number' => 'required|string|max:20|unique:employees,phone_number',
+            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/',
+            'balance' => 'required|numeric',
         ];
     }
 }
