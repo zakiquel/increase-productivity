@@ -1,0 +1,22 @@
+.EmployeePage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  .title h3 {
+    line-height: 23px;
+  }
+
+  .employee_info,
+  .employee_charts {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .chart_card {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+}

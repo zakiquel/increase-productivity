@@ -1,0 +1,51 @@
+.EmployeeProfile {
+  .title h3 {
+    line-height: 23px;
+    font-weight: 500;
+  }
+
+  .profile_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .employee_name {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+
+  .arrow_button {
+    transition: transform 0.2s ease-in-out;
+
+    &.showDetails {
+      transform: rotateZ(-180deg);
+    }
+  }
+
+  .profile_info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+
+    .info_fields {
+      width: 428px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .info_fields_buttons {
+      margin-top: 32px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .profile_photo {
+      margin-top: 42px;
+    }
+  }
+}
