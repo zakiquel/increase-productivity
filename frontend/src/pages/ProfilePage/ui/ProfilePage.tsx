@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { classNames } from "@/shared/lib/classNames/classNames";
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 
 interface ProfilePageProps {
@@ -8,8 +8,8 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = (props: ProfilePageProps) => {
-  const {
-    className,
+  const { 
+    className 
   } = props;
   return (
     <Page className={classNames('', {}, [className])}>
