@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'first_name',
         'middle_name',
         'last_name',
-        'phone_number',
+        'role',
         'email',
         'password',
     ];
@@ -51,6 +51,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      *
      * @return mixed
      */
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

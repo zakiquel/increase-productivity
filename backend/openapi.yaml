@@ -21,11 +21,11 @@ paths:
             schema:
               type: object
               properties:
-                firstname:
+                first_name:
                   type: string
-                middlename:
+                middle_name:
                   type: string
-                lastname:
+                last_name:
                   type: string
                 email:
                   type: string
@@ -39,9 +39,11 @@ paths:
                   type: string
                   format: password
               required:
-                - firstname
+                - first_name
                 - email
+                - phone_number
                 - password
+                - password_confirmation
       responses:
         "201":
           description: User registered successfully
@@ -57,7 +59,13 @@ paths:
                     properties:
                       id:
                         type: integer
-                      name:
+                      first_name:
+                        type: string
+                      middle_name:
+                        type: string
+                      last_name:
+                        type: string
+                      phone_number:
                         type: string
                       email:
                         type: string

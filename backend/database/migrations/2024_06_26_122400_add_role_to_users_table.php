@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->after('email');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 };
