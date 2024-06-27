@@ -15,13 +15,17 @@ class Company extends Model
      */
     protected $fillable = [
         'name',
-        'address',
-        'phone_number',
-        'email',
+        'logoSrc',
+        'currency_name',
         'description',
+        'user_id',
     ];
     public function employees()
     {
         return $this->hasMany(Employee::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

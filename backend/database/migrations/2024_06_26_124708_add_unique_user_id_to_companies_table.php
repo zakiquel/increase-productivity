@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone_number')->nullable();
+        Schema::table('companies', function (Blueprint $table) {
+            $table->unique('user_id'); // Add unique constraint
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone_number');
+        Schema::table('companies', function (Blueprint $table) {
+            $table->dropUnique(['user_id']); // Remove unique constraint
         });
     }
 };

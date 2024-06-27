@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Employee\StoreRequest;
-use App\Http\Requests\Employee\UpdateRequest;
+use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
 use App\Models\Employee;
@@ -31,7 +31,7 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(StoreEmployeeRequest $request)
     {
         // Validate the request data
         $data = $request->validated();
@@ -61,10 +61,10 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         // Validate the request data
-        $data = $request->validate();
+        $data = $request->validated();
 
         // Update the employee with the validated data
         $employee->update($data);

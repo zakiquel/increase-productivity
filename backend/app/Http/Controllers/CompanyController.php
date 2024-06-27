@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Company\StoreRequest;
 use App\Http\Requests\Company\UpdateRequest;
-use App\Http\Requests\Company\UpdateRequestRequest;
 use App\Http\Resources\Company\CompanyCollectionResource;
 use App\Http\Resources\Company\CompanyResource;
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -35,14 +35,7 @@ class CompanyController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // Validate the request data
-        $data = $request->validated();
-
-        // Create a new employee
-        $company = Company::create($data);
-
-        return CompanyResource::make($company);
-
+        return $this->service->store_company($request);
     }
 
     /**
@@ -50,7 +43,16 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return CompanyResource::make($company);
+        // Ensure $company is valid and contains data
+        if (!$company) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Company not found.'
+            ], 404); // Not Found
+        }
+
+        // Return a JSON response with the company resource
+        return new CompanyResource($company);
     }
 
     /**
@@ -66,14 +68,9 @@ class CompanyController extends Controller
      */
     public function update(UpdateRequest $request, Company $company)
     {
-        // Validate the request data
-        $data = $request->validate();
-
-        // Update the employee with the validated data
+        $data = $request->validated();
         $company->update($data);
-
-        // Return a JSON response with the updated employee
-        return CompanyResource::make($company);
+        return new CompanyResource($company);
 
     }
 

@@ -2,8 +2,13 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Company\StoreRequest;
+use App\Http\Resources\Company\CompanyResource;
 use App\Models\User;
 use App\Models\Value;
+use App\Models\Company;
+
+use Illuminate\Support\Facades\Auth;
 
 class Service
 {
@@ -13,7 +18,7 @@ class Service
             'first_name' => $validatedData['first_name'],
             'middle_name' => $validatedData['middle_name'],
             'last_name' => $validatedData['last_name'],
-            'phone_number' => $validatedData['phone_number'],
+            'role' => $validatedData['role'],
             'email' => $validatedData['email'],
             'password' => \Illuminate\Support\Facades\Hash::make($validatedData['password']),
         ]);
@@ -46,5 +51,34 @@ class Service
 
     public function update(array $data, $id){
 
+    }
+
+    public function store_company(\App\Http\Requests\Company\StoreRequest $request)
+    {
+        $user = Auth::user();
+
+        // Check if the user already has a company
+        if ($user->company) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You already have a company.'
+            ], 403);
+        }
+
+        // If user doesn't have a company, return success status
+        return $this->create_company($request);
+    }
+    private function create_company(StoreRequest $request)
+    {
+        // Validate the request data
+        $data = $request->validated();
+
+        // Add the authenticated user's ID to the data
+        $data['user_id'] = auth()->id();
+
+        // Create a new company
+        $company = Company::create($data);
+
+        return CompanyResource::make($company);
     }
 }
