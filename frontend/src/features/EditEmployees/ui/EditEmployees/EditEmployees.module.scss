@@ -1,0 +1,15 @@
+.EditEmployees {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.employees_sort {
+  display: flex;
+  gap: 64px;
+}
+
+.employee_button {
+  display: flex;
+  align-items: center;
+}

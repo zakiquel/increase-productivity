@@ -27,3 +27,19 @@ export interface Employee {
   notes: Note[];
   documents: Document[];
 }
+
+export interface Metric {
+  id: number;
+  name: string;
+  value: number;
+  change: number;
+}
+
+export interface EmployeeCardInfo {
+  id: number;
+  name: string;
+  personRole: string;
+  image: string;
+  standard: number;
+  metrics?: Metric[];
+}

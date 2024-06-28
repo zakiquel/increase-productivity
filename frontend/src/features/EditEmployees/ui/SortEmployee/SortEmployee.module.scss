@@ -1,0 +1,11 @@
+.SortEmployee {
+  display: flex;
+
+  button {
+    margin: 4px;
+
+    &:nth-last-child(1) {
+      margin-left: 0;
+    }
+  }
+}

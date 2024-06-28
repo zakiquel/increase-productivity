@@ -1,5 +1,7 @@
 import { memo } from 'react';
 
+import { EmployeeList } from '@/entities/Employee';
+import { EditEmployees } from '@/features/EditEmployees';
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Page } from '@/widgets/Page';
 
@@ -13,7 +15,8 @@ const EmployeesPage = (props: EmployeesPageProps) => {
   } = props;
   return (
     <Page className={classNames('', {}, [className])}>
-      EmployeesPage
+      <EditEmployees />
+      <EmployeeList />
     </Page>
   );
 };

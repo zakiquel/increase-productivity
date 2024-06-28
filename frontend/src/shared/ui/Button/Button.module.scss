@@ -73,6 +73,12 @@
   }
 }
 
+.light {
+  color: var(--base-0-color);
+  background-color: var(--white);
+
+}
+
 .outline {
   border-color: var(--primary-color);
   color: var(--primary-color);
@@ -215,4 +221,12 @@
 
 .fullWidth {
   width: 100%;
+}
+
+.textDark {
+  color: var(--base-0-color);
+
+  &:hover {
+    color: var(--base-0-color);
+  }
 }

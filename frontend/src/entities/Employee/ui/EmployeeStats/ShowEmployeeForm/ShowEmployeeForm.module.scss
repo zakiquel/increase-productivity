@@ -1,0 +1,101 @@
+.ShowEmployeeForm {
+  width: 940px;
+}
+
+.close_button {
+  fill: var(--grey-primary-color);
+
+}
+
+.form_header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 64px;
+
+  &_name {
+    margin-left: 32px;
+  }
+
+  h2 {
+    font: var(--font-title-card);
+  }
+
+  p {
+    font: var(--font-26);
+  }
+
+  button {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+  }
+}
+
+.form_main {
+  h3 {
+    font: var(--font-26);
+    margin-bottom: 32px;
+  }
+
+  &>p {
+    font: var(--font-20);
+    color: var(--grey-primary-color);
+    margin: 32px 0 64px;
+  }
+}
+
+.metrics {
+  &_value {
+    width: 43px;
+    margin-left: 8px;
+  }
+
+  &_change {
+    width: 75px;
+    margin-left: 16px;
+
+    &.positive {
+      color: var(--success-color);
+    }
+
+    &.negative {
+      color: var(--error-color);
+    }
+
+    &.zero {
+      color: var(--grey-primary-color);
+    }
+  }
+
+  &_stats {
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
+    place-items: center center;
+    gap: 8px;
+  }
+
+  ul li {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+
+    p {
+      font: var(--font-20);
+      color: var(--grey-primary-color);
+      min-width: 338px;
+      margin-right: 16px;
+    }
+
+    span {
+      font: var(--font-20);
+      font-weight: 500;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 32px;
+}
