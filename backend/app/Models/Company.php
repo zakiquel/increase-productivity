@@ -20,6 +20,10 @@ class Company extends Model
         'description',
         'user_id',
     ];
+    public function values()
+    {
+        return $this->hasMany(Value::class);
+    }
     public function employees()
     {
         return $this->hasMany(Employee::class);
