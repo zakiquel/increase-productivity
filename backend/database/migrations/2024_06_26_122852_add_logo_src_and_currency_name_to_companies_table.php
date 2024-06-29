@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->string('logoSrc')->nullable(); // Add logoSrc column, nullable
-            $table->string('currency_name')->nullable(); // Add currency_name column, nullable
+            $table->string('logoSrc')->nullable();
+            $table->string('currency_name')->nullable();
         });
     }
 

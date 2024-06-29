@@ -8,5 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Value extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'company_id'];
+
+    public function qualities()
+    {
+        return $this->belongsToMany(Quality::class, 'value_quality');
+    }
+
+    public function qualitiesForEmployees()
+    {
+        return $this->belongsToMany(Quality::class, 'quality_value');
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function valueQualities()
+    {
+        return $this->hasMany(ValueQuality::class);
+    }
 }

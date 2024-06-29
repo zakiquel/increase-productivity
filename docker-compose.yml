@@ -2,6 +2,8 @@ version: "3.7"
 services:
   app:
     env_file: ".env"
+    # volumes:
+    #   - ./backend/:/var/www/backend
     build:
       context: .
       target: backend
@@ -32,6 +34,8 @@ services:
       - productivity
 
   nginx:
+    # volumes:
+    #   - ./backend/:/var/www/backend
     build:
       context: .
       target: nginx
@@ -52,6 +56,18 @@ services:
       SWAGGER_JSON_URL: /openapi.yaml
     volumes:
       - ./backend/openapi.yaml:/usr/share/nginx/html/openapi.yaml:ro
+    networks:
+      - productivity
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "3333:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_USERNAME: db_user
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - productivity
 
