@@ -15,23 +15,26 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 COPY --from=registry.hub.docker.com/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-
 RUN install-php-extensions intl sysvsem pdo_mysql gd exif
-
 WORKDIR /var/www/backend/
-
-# COPY ./backend/ ./
-
-# COPY ./backend/app/php.ini /usr/local/etc/php/conf.d/php.ini
-
+COPY ./backend/ ./
 COPY --from=registry.hub.docker.com/library/composer:2 /usr/bin/composer /usr/bin/composer
 
-# RUN composer install --no-dev --optimize-autoloader
 
-# RUN chmod -R 777 /var/www/backend/storage/
+
+FROM registry.hub.docker.com/library/node:18.18.0-alpine as frontend
+
+WORKDIR /var/www/frontend
+ADD frontend/package*.json ./
+COPY frontend ./
+RUN npm install && npm run build:prod
+#CMD ["npm", "run", "start"]
 
 
 FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
+WORKDIR /var/www/
+
+COPY --from=frontend /var/www/frontend/build /var/www/frontend
 COPY --from=backend /var/www/backend /var/www/backend
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY /docker/nginx/conf.d/nginx.conf /etc/nginx/conf.d/default.conf
