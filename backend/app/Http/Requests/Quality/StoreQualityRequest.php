@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Value;
+namespace App\Http\Requests\Quality;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreValueRequest extends FormRequest
+class StoreQualityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,10 @@ class StoreValueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'quality1' => 'required|exists:qualities,name',
-            'quality2' => 'nullable|exists:qualities,name',
-            'quality3' => 'nullable|exists:qualities,name',
-            'quality4' => 'nullable|exists:qualities,name',
-            'quality5' => 'nullable|exists:qualities,name',
+            'name' => 'required|string|max:255|unique:qualities,name',
+            'coefficient' => 'required|numeric',
+            'risk_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
         ];
     }
 }

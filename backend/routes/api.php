@@ -3,12 +3,15 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollectiveMetricController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\QualityController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SurveyHistoryController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\MetricsController;
+use App\Http\Controllers\QualityValueController;
+use App\Http\Controllers\ValueQualityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,24 +53,36 @@ Route::group([
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('companies', [CompanyController::class, 'index']);
-    Route::get('companies/{company}', [CompanyController::class, 'show']); // Use 'company' instead of 'id'
+    Route::get('companies/{company}', [CompanyController::class, 'show']);
     Route::post('companies', [CompanyController::class, 'store']);
-    Route::put('companies/{company}', [CompanyController::class, 'update']); // Use 'company' instead of 'id'
-    Route::delete('companies/{company}', [CompanyController::class, 'destroy']); // Use 'company' instead of 'id'
+    Route::put('companies/{company}', [CompanyController::class, 'update']);
+    Route::delete('companies/{company}', [CompanyController::class, 'destroy']);
 });
 
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'auth',
 ], function ($router) {
     Route::resource('values', ValueController::class);
 });
 
 Route::group([
+    'middleware' => 'auth',
+], function ($router) {
+    Route::resource('qualities', QualityController::class);
+});
+
+Route::group([
+    'middleware' => 'auth',
+], function ($router) {
+    Route::resource('value_qualities', ValueQualityController::class);
+});
+
+Route::group([
     'middleware' => 'api',
 ], function ($router) {
-Route::post('/subscriptions', [SubscriptionController::class, 'store']);
-Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
+    Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+    Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
 });
 
 Route::resource('events', EventController::class);
@@ -77,3 +92,5 @@ Route::resource('metrics', MetricsController::class);
 Route::resource('survey_histories', SurveyHistoryController::class);
 
 Route::resource('collective_metrics', CollectiveMetricController::class);
+
+Route::resource('quality_values', QualityValueController::class);

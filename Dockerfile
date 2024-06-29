@@ -21,7 +21,7 @@ COPY ./backend/ ./
 COPY --from=registry.hub.docker.com/library/composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
-RUN chmod -R 777 ./
+RUN chmod -R 777 .
 
 WORKDIR /var/www/backend/
 
@@ -32,6 +32,8 @@ WORKDIR /var/www/backend/
 #ADD frontend/package*.json ./
 #COPY frontend ./
 #RUN npm install && npm run build
+
+
 
 
 
