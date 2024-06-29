@@ -18,15 +18,17 @@ class Employee extends Model
         'middle_name',
         'last_name',
         'imgSrc',
+        'salary',
         'birth_date',
         'age_in_full_years',
         'position',
+        'date_of_hiring',
         'work_experience',
-        'salary',
         'email',
-        'phone_number',
         'balance',
+        'company_id',
     ];
+
     public function company()
     {
         return $this->belongsTo(Company::class);

@@ -11,7 +11,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -31,9 +31,21 @@ class UpdateEmployeeRequest extends FormRequest
             'work_experience' => 'required|numeric|between:0,9999.99',
             'age_in_full_years' => 'required|numeric',
             'salary' => 'required|numeric',
-            'email' => 'required|email|unique:employees,email',
-            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/',
+            'email' => 'required|email',
             'balance' => 'required|numeric',
+            'date_of_hiring' => 'required|date',
+            'company_id' => 'exists:companies,id',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $company = \App\Models\Company::where('user_id', auth()->id())->first();
+
+        if ($company) {
+            $this->merge([
+                'company_id' => $company->id,
+            ]);
+        }
     }
 }

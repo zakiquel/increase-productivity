@@ -11,7 +11,7 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -32,8 +32,23 @@ class StoreEmployeeRequest extends FormRequest
             'age_in_full_years' => 'required|numeric',
             'salary' => 'required|numeric',
             'email' => 'required|email|unique:employees,email',
-            'phone_number' => 'nullable|string|max:12|min:12|unique:employees|regex:/^\+7[0-9]*$/',
             'balance' => 'required|numeric',
+            'date_of_hiring' => 'required|date',
+            'company_id' => 'exists:companies,id',  // Validate that company_id exists in companies table
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        $company = \App\Models\Company::where('user_id', auth()->id())->first();
+
+        if ($company) {
+            $this->merge([
+                'company_id' => $company->id,
+            ]);
+        }
     }
 }
