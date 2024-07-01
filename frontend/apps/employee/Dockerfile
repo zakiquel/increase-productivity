@@ -34,5 +34,5 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/.next/static ./ap
 COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/public ./apps/employee/public
 
 ENV PORT=4444
-ENV HOSTNAME=employee-app
+ENV HOSTNAME=0.0.0.0
 CMD node apps/employee/server.js
