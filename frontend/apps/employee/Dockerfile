@@ -33,6 +33,6 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/.next/standalone 
 COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/.next/static ./apps/employee/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/public ./apps/employee/public
 
-ENV PORT=3000
+ENV PORT=4444
 ENV HOSTNAME=employee-app
 CMD node apps/employee/server.js
