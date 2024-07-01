@@ -14,11 +14,6 @@ services:
       context: ./frontend
       dockerfile: ./apps/employee/Dockerfile
     restart: always
-    environment:
-      VIRTUAL_PORT: 4444
-      VIRTUAL_HOST: increase-productivity.abdrashitov-academy.ru
-      VIRTUAL_PATH: /employee
-      LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
     networks:
       - default
 
