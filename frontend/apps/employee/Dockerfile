@@ -33,4 +33,4 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/.next/standalone 
 COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/.next/static ./apps/employee/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/employee/public ./apps/employee/public
 
-CMD ["node", "PORT=4444", "HOSTNAME=172.26.0.2" "apps/employee/server.js"]
+CMD ["node", "PORT=4444", "HOSTNAME=172.26.0.2", "apps/employee/server.js"]
