@@ -31,12 +31,6 @@ COPY --from=installer /app/apps/hr/dist /usr/share/nginx/html
 # Copy custom nginx configuration
 COPY /apps/hr/nginx.conf /etc/nginx/nginx.conf
 
-# Expose the port nginx is reachable on
-EXPOSE 5173
-
-# Let nginx handle the serving of the static files
-CMD ["nginx", "-g", "daemon off;"]
-
 
 # # Stage 1: Base
 # FROM node:20-alpine AS base
