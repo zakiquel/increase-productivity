@@ -1,0 +1,48 @@
+.ProfileBlock {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	gap: 16px;
+	border-radius: 4px;
+	background: var(--white);
+}
+
+.profile_info {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.profile_text {
+	display: flex;
+	flex-direction: column;
+
+	.name {
+		font-weight: 600;
+		font-size: var(--font-size-16);
+		line-height: 20.8px;
+	}
+	.position {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18.2px;
+	}
+}
+
+.buttons {
+	display: flex;
+	gap: 4px;
+
+	.exit {
+		color: var(--error-color);
+		background-color: var(--error-color-background);
+	}
+}
+
+.personal_page_button {
+	width: 100%;
+}
+
+.personal_page_link {
+	width: 100%;
+}

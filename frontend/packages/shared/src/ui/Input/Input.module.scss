@@ -1,0 +1,219 @@
+.input {
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--grey-secondary-color);
+  width: 100%;
+  color: var(--base-0-color);
+  background-color: var(--bg-color);
+
+  &:disabled {
+    color: var(--grey-secondary-color);
+    border-color: transparent;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:hover:not(:disabled):not(:read-only) {
+    box-shadow: 0px 4px 30px 0px var(--grey-secondary-color-50pct);
+  }
+
+  &::placeholder {
+    color: var(--grey-primary-color);
+  }
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  svg {
+    fill: var(--grey-primary-color);
+  }
+}
+
+.helperText {
+  color: var(--grey-primary-color);
+}
+
+.l {
+  input {
+    border-radius: 8px;
+    padding: 16px;
+    font: var(--font-20);
+
+    &::placeholder {
+      font: var(--font-20);
+    }
+  }
+
+  .InputWrapper.focused:not(.isDirty)::before {
+    border-radius: 8px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%231F2024FF' stroke-width='2' stroke-dasharray='9.3%2c 9' stroke-dashoffset='11' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  .withAddonLeft input {
+    padding-left: 48px;
+  }
+
+  .withAddonRight input {
+    padding-right: 48px;
+  }
+
+  .addonRight {
+    right: 16px;
+  }
+
+  .addonLeft {
+    left: 16px;
+  }
+
+  .addonLeft,
+  .addonRight {
+    width: 24px;
+    height: 24px;
+  }
+
+  .helperText {
+    font: var(--font-16);
+    margin-top: 8px;
+  }
+}
+
+.m {
+  input {
+    border-radius: 8px;
+    padding: 12px 8px;
+    font: var(--font-16);
+
+    &::placeholder {
+      font: var(--font-16);
+    }
+  }
+
+  .InputWrapper.focused:not(.isDirty)::before {
+    border-radius: 8px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%231F2024FF' stroke-width='2' stroke-dasharray='9.3%2c 9' stroke-dashoffset='11' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  .withAddonLeft input {
+    padding-left: 36px;
+  }
+
+  .withAddonRight input {
+    padding-right: 36px;
+  }
+
+  .addonRight {
+    right: 8px;
+  }
+
+  .addonLeft {
+    left: 8px;
+  }
+
+  .addonLeft,
+  .addonRight {
+    width: 20px;
+    height: 20px;
+  }
+
+  .helperText {
+    font: var(--font-14);
+    margin-top: 4px;
+  }
+}
+
+.s {
+  input {
+    border-radius: 4px;
+    padding: 8px;
+    font: var(--font-14);
+
+    &::placeholder {
+      font: var(--font-14);
+    }
+  }
+
+  .InputWrapper.focused:not(.isDirty)::before {
+    border-radius: 4px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%231F2024FF' stroke-width='2' stroke-dasharray='9.3%2c 9' stroke-dashoffset='11' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  .withAddonLeft input {
+    padding-left: 32px;
+  }
+
+  .withAddonRight input {
+    padding-right: 32px;
+  }
+
+  .addonRight {
+    right: 8px;
+  }
+
+  .addonLeft {
+    left: 8px;
+  }
+
+  .addonLeft,
+  .addonRight {
+    width: 16px;
+    height: 16px;
+  }
+
+  .helperText {
+    font: var(--font-12);
+    margin-top: 4px;
+  }
+}
+
+.error {
+  input {
+    border-color: var(--error-color);
+    background-color: var(--error-color-10pct);
+  }
+  .helperText {
+    color: var(--error-color);
+  }
+}
+
+.disabled {
+  .helperText {
+    color: var(--grey-secondary-color);
+  }
+  svg {
+    fill: var(--grey-secondary-color);
+  }
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.InputWrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  &.focused:not(.isDirty) {
+    &::before {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      inset: 0;
+    }
+    .input {
+      border-color: transparent;
+    }
+  }
+}

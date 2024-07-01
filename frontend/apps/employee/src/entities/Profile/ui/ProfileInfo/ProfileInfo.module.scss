@@ -1,0 +1,31 @@
+.Profile {
+	font-weight: 400;
+	line-height: 26px;
+
+	height: 100%;
+	p {
+		font-size: var(--font-size-20);
+		border-bottom: 1px solid var(--grey-secondary-color);
+		padding-bottom: 4px;
+		color: #6c6f74;
+	}
+
+	dl {
+		width: 100%;
+		font-size: var(--font-size-16);
+		margin-top: 17px;
+	}
+
+	dd {
+		margin-left: 180px;
+		margin-bottom: 32px;
+	}
+
+	dt {
+		float: left;
+		clear: both;
+		width: 180px;
+		color: #6c6f74;
+	}
+	border-radius: 4px;
+}

@@ -1,5 +1,22 @@
 version: "3.7"
 services:
+  # FRONTEND
+  hr:
+    build:
+      context: ./frontend
+      dockerfile: ./apps/hr/Dockerfile
+    restart: always
+    networks:
+      - default
+
+  employee:
+    build:
+      context: ./frontend
+      dockerfile: ./apps/employee/Dockerfile
+    restart: always
+    networks:
+      - default
+
   app:
     build:
       context: .
@@ -19,7 +36,7 @@ services:
       - mysqlfolder:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 40s
       retries: 20
     environment:
@@ -64,7 +81,6 @@ services:
 
 volumes:
   mysqlfolder:
-
 
 networks:
   academy:

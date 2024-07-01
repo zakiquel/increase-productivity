@@ -1,0 +1,27 @@
+.active {
+  
+  background: #F5E5FE;
+  
+  span {
+    color: var(--primary-color);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    right: 0;
+    background: var(--primary-color);
+    height: 33px;
+  }
+}
+
+.item {
+  height:33px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 32px;
+}
+
