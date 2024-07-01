@@ -1,0 +1,51 @@
+.default {
+	background: var(--bg-color);
+}
+
+.light {
+	background: var(--white);
+}
+
+.outlined {
+	border: 1px solid var(--footer-bg);
+}
+
+.none {
+	border-radius: 0;
+}
+
+.normal {
+	border-radius: 15px;
+}
+
+.partial {
+	border-radius: 30px;
+}
+
+.round {
+	border-radius: 40px;
+}
+
+.gap_0 {
+	padding: 0;
+}
+
+.gap_10 {
+	padding: 10px;
+}
+
+.gap_16 {
+	padding: 16px;
+}
+
+.gap_24 {
+	padding: 24px;
+}
+
+.gap_32 {
+	padding: 32px;
+}
+
+.max {
+	width: 100%;
+}

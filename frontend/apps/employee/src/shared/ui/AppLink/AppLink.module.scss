@@ -1,0 +1,40 @@
+
+
+.primary {
+	color: var(--primary-color);
+	&:hover {
+		color: var(--primary-hover-color);
+	}
+}
+
+
+.black {
+	color: var(--base-0-color);
+
+	&:hover {
+		color: var(--primary-color);
+	}
+}
+
+.white {
+	color: var(--white);
+
+	&:hover {
+		color: var(--primary-hover-color);
+	}
+}
+
+.xs {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.s {
+	font-size: var(--font-button-s);
+	font-weight: 600;
+}
+
+.m {
+	font-size: 20px;
+	font-weight: 600;
+}
