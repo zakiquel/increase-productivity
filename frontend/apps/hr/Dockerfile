@@ -29,7 +29,7 @@ FROM nginx:stable-alpine AS runner
 COPY --from=installer /app/apps/hr/dist /usr/share/nginx/html
 
 # Copy custom nginx configuration
-COPY /apps/hr/nginx.conf /etc/nginx/nginx.conf
+COPY /apps/hr/nginx.conf /etc/nginx/conf.d/default.conf
 
 
 # # Stage 1: Base
