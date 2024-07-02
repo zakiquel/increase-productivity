@@ -30,7 +30,7 @@ RUN ls -la /app
 FROM nginx:stable-alpine AS runner
 RUN ls -la
 COPY --from=installer /app/apps/hr/dist /usr/share/nginx/html
-RUN ls -la /usr/share/nginx/html
+RUN ls -la /usr/share/nginx/html/assets
 
 # Copy custom nginx configuration
 COPY /apps/hr/nginx.conf /etc/nginx/conf.d/default.conf
