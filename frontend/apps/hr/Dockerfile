@@ -27,7 +27,7 @@ RUN npx turbo run build --filter=hr...
 
 # Stage 4: Runner
 FROM nginx:stable-alpine AS runner
-# RUN ls -la /app/apps/hr/dist
+RUN ls -la /app
 COPY --from=installer /app/apps/hr/dist /usr/share/nginx/html
 RUN ls -la /usr/share/nginx/html
 
