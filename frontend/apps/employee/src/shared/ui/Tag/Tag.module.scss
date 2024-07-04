@@ -1,0 +1,22 @@
+.tag {
+	padding: 6px 8px;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 400;
+	color: var(--white);
+}
+
+.wait {
+	background-color: var(--accent-expectation);
+}
+
+.approved {
+	background-color: var(--success-color);
+}
+
+.refused {
+	background-color: var(--error-color);
+}
+.new {
+	background-color: var(--primary-color);
+}

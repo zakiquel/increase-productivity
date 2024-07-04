@@ -1,0 +1,33 @@
+.event_card {
+	width: fit-content;
+	margin: 0;
+	border-radius: 8px;
+	position: relative;
+	cursor: pointer;
+	.img {
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+	.wrapper {
+		padding: 8px 16px 16px;
+	}
+	.text_wrapper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: 8px;
+		align-items: center;
+	}
+	.button {
+		height: fit-content;
+		padding: 8px;
+	}
+	.date {
+		color: var(--grey-primary-color);
+	}
+	.tag {
+		position: absolute;
+		top: 12px;
+		right: 17px;
+	}
+}
