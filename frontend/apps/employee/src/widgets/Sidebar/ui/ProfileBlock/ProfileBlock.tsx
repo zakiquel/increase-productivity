@@ -10,18 +10,18 @@ export function ProfileBlock() {
 				<Avatar size={40} />
 				<div className={cls.profile_text}>
 					<p className={cls.name}>Александр</p>
-					<p className={cls.position}>Баллы: 69</p>
+					<p className={cls.position}>Веб-разработчик</p>
 				</div>
 			</div>
 			<div className={cls.buttons}>
 				<AppLink
 					to='/profile'
 					className={cls.personal_page_link}
-					variant='primary'
+					variant='filled'
 				>
 					Профиль
 				</AppLink>
-				<Button size='s' variant='exit'>
+				<Button size='s' variant='secondary' className={cls.btn}>
 					<Icon Svg={logout} width={14} height={14} />
 				</Button>
 			</div>

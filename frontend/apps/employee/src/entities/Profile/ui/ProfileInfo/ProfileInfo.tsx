@@ -19,12 +19,12 @@ export const getProfileItem = () => {
 		{
 			title: ProfileItem.email,
 			description: 'alexandernevski@gmail.ru',
-			color: '#9800F5',
+			color: '#0844dd',
 		},
 		{
 			title: ProfileItem.phoneNumber,
 			description: '+79239532274',
-			color: '#9800F5',
+			color: '#0844dd',
 		},
 		{
 			title: ProfileItem.dateOfBirthday,

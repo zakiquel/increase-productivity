@@ -8,11 +8,10 @@ import cls from './Personal.module.scss'
 import { ProfileInfo, ProfilePhoto } from '@/entities/Profile'
 import { ProfileSidebar } from '@/widgets/ProfileSidebar'
 
-interface PersonalageProps {
+interface PersonalPageProps {
 	className?: string
 }
-// TODO: добавить список мероприятийs
-const PersonalPage = (props: PersonalageProps) => {
+const PersonalPage = (props: PersonalPageProps) => {
 	const { className } = props
 	return (
 		<Page className={classNames(cls.PersonalPage, {}, [className])}>

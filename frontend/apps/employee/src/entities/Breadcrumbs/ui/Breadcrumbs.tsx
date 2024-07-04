@@ -18,6 +18,7 @@ export const Breadcrumbs = memo(() => {
 					{value.value}
 				</AppLink>
 			))}
+			<p className={cls.balance}>Баланс: 100000</p>
 		</div>
 	)
 })

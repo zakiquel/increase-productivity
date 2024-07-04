@@ -1,5 +1,7 @@
+import EventPage from '@/pages/EventPage/ui/EventPage'
+
 const Events = () => {
-	return <div>мероприятия</div>
+	return <EventPage />
 }
 
 export default Events

@@ -1,0 +1,98 @@
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10000;
+}
+
+.close {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	cursor: pointer;
+}
+
+.Modal {
+	border-radius: 8px;
+	padding: 70px 25px;
+	display: flex;
+	gap: 35px;
+	background: var(--white);
+
+	overflow: hidden;
+	position: relative;
+	height: min-content;
+}
+
+.text_wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tag {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+}
+
+.img_wrapper {
+	position: relative;
+}
+
+.img {
+	border-radius: 16px;
+	position: relative;
+}
+.text {
+	max-width: 470px;
+	margin-top: 18px;
+}
+.body {
+	display: flex;
+	flex-direction: row;
+}
+.date {
+	color: var(--grey-primary-color);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 7px;
+	align-items: center;
+}
+
+.title {
+	font-size: var(--font-size-32);
+	font-weight: 400;
+}
+
+.price {
+	font-size: var(--font-size-32);
+	font-weight: 600;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.description {
+	font-size: var(--font-size-16);
+	font-weight: 400;
+}

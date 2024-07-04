@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-  font-family: var(--font-family);
+	font-family: var(--font-family);
 }
 
 li {
@@ -26,70 +26,78 @@ a {
 }
 
 :root {
-  --font-family: 'Inter', sans-serif;
+	--font-family: 'Inter', sans-serif;
 
-  // Font-weights
-  --medium: 500;
+	// Font-weights
+	--medium: 500;
 
-  // Small size font
-  --font-size-16: 16px;
-  --font-line-16: 21px;
-  --font-16: var(--font-size-16) / var(--font-line-16) var(--font-family);
-  --font-size-20: 20px;
-  --font-line-20: 26px;
-  --font-20: var(--font-size-20) / var(--font-line-20) var(--font-family);
+	// Small size font
+	--font-size-16: 16px;
+	--font-line-16: 21px;
+	--font-16: var(--font-size-16) / var(--font-line-16) var(--font-family);
+	--font-size-20: 20px;
+	--font-line-20: 26px;
+	--font-20: var(--font-size-20) / var(--font-line-20) var(--font-family);
 
-  // Medium size font
-  --font-size-26: 26px;
-  --font-line-26: 31px;
-  --font-26: var(--font-size-26) / var(--font-line-26) var(--font-family);
-  --font-size-32: 32px;
-  --font-line-32: 42px;
-  --font-32: var(--font-size-32) / var(--font-line-32) var(--font-family);
+	// Medium size font
+	--font-size-26: 26px;
+	--font-line-26: 31px;
+	--font-26: var(--font-size-26) / var(--font-line-26) var(--font-family);
+	--font-size-32: 32px;
+	--font-line-32: 42px;
+	--font-32: var(--font-size-32) / var(--font-line-32) var(--font-family);
 
-  // Large size font
-  --font-size-l: 44px;
-  --font-line-l: 52px;
-  --font-l: var(--medium) var(--font-size-l) / var(--font-line-l) var(--font-family);
+	// Large size font
+	--font-size-l: 44px;
+	--font-line-l: 52px;
+	--font-l: var(--medium) var(--font-size-l) / var(--font-line-l)
+		var(--font-family);
 
-  // XLarge size font
-  --font-size-xl: 56px;
-  --font-line-xl: 64px;
-  --font-xl: var(--medium) var(--font-size-xl) / var(--font-line-xl) var(--font-family);
+	// XLarge size font
+	--font-size-xl: 56px;
+	--font-line-xl: 64px;
+	--font-xl: var(--medium) var(--font-size-xl) / var(--font-line-xl)
+		var(--font-family);
 
-  // Title card font
-  --font-size-title-card: 32px;
-  --font-line-title-card: 40px;
-  --font-title-card: var(--medium) var(--font-size-title-card) / var(--font-line-title-card) var(--font-family);
+	// Title card font
+	--font-size-title-card: 32px;
+	--font-line-title-card: 40px;
+	--font-title-card: var(--medium) var(--font-size-title-card) /
+		var(--font-line-title-card) var(--font-family);
 
-  // Button fonts
-  --font-size-button-s: 16px;
-  --font-line-button-s: 19px;
-  --font-button-s: var(--font-size-button-s) / var(--font-line-button-s) var(--font-family);
-  --font-size-button-ml: 20px;
-  --font-line-button-ml: 24px;
-  --font-button-ml: var(--medium) var(--font-size-button-ml) / var(--font-line-button-ml) var(--font-family);
+	// Button fonts
+	--font-size-button-s: 16px;
+	--font-line-button-s: 19px;
+	--font-button-s: var(--font-size-button-s) / var(--font-line-button-s)
+		var(--font-family);
+	--font-size-button-ml: 20px;
+	--font-line-button-ml: 24px;
+	--font-button-ml: var(--medium) var(--font-size-button-ml) /
+		var(--font-line-button-ml) var(--font-family);
 
-  // z - Индексы
-  --modal-z-index: 1000;
-  --overlay-z-index: 100;
+	// z - Индексы
+	--modal-z-index: 1000;
+	--overlay-z-index: 100;
 
-  // Цвета
-  --primary-color: #9800f5;
-  --primary-hover-color: #7900c3;
-  --primary-active-color: #520184;
-  --secondary-color: #00a7e1;
-  --secondary-2-color: #F5E5FE;
-  --white: #fff;
-  --bg-color: #efefef;
-  --base-0-color: #1f2024;
-  --grey-primary-color: #75777e;
-  --grey-secondary-color: #cacaca;
-  --success-color: #03ce68;
-  --error-color: #f73826;
-  --overlay-color: #2d3748;
+	// Цвета
+	--primary-color: #0844dd;
+	--primary-hover-color: #0738b4;
+	--primary-active-color: #0d2f87;
+	--secondary-color: #e6ecfc;
+	--secondary-hover-color: #c5d3f8;
+	--secondary-active-color: #aabff8;
+	--secondary-2-color: #e6ecfc;
+	--white: #fff;
+	--bg-color: #efefef;
+	--base-0-color: #1f2024;
+	--grey-primary-color: #75777e;
+	--grey-secondary-color: #cacaca;
+	--success-color: #03ce68;
+	--error-color: #f73826;
+	--overlay-color: #2d3748;
+	--accent-expectation: #ff9f1c;
 
-  // Размеры
-  --navbar-height: 70px;
-  --footer-height: 120px;
+	// Размеры
+	--navbar-height: 70px;
+	--footer-height: 120px;
 }
