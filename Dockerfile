@@ -22,19 +22,19 @@ COPY --from=registry.hub.docker.com/library/composer:2 /usr/bin/composer /usr/bi
 
 
 
-FROM registry.hub.docker.com/library/node:18.18.0-alpine as frontend
+# FROM registry.hub.docker.com/library/node:18.18.0-alpine as frontend
 
-WORKDIR /var/www/frontend
-ADD frontend/package*.json ./
-COPY frontend ./
-RUN npm install && npm run build:prod
-#CMD ["npm", "run", "start"]
+# WORKDIR /var/www/frontend
+# ADD frontend/package*.json ./
+# COPY frontend ./
+# RUN npm install && npm run build:prod
+# #CMD ["npm", "run", "start"]
 
 
 FROM registry.hub.docker.com/library/nginx:1.17 as nginx
 
 WORKDIR /var/www/
 
-COPY --from=frontend /var/www/frontend/build /var/www/frontend
+# COPY --from=frontend /var/www/frontend/build /var/www/frontend
 COPY --from=backend /var/www/backend /var/www/backend
 COPY /docker/nginx/conf.d/nginx.conf /etc/nginx/conf.d/default.conf
