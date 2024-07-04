@@ -10,11 +10,11 @@ export enum AppRoutes {
   NOT_FOUND = 'not_found',
 }
 
-export const getRouteMain = () => '/'
-export const getRouteCompany = (id: string) => `/company/${id}`
-export const getRouteEmployees = () => '/employees'
-export const getRouteEmployee = (id: string) => `/employees/${id}`
-export const getRouteEvents = () => '/events'
-export const getRouteAnalytics = () => '/analytics'
-export const getRouteInstructions = () => '/instructions'
-export const getRouteProfile = (id: string) => `/profile/${id}`
+export const getRouteMain = () => "/hr/";
+export const getRouteCompany = (id: string) => `/hr/company/${id}`;
+export const getRouteEmployees = () => "/hr/employees";
+export const getRouteEmployee = (id: string) => `/hr/employees/${id}`;
+export const getRouteEvents = () => "/hr/events";
+export const getRouteAnalytics = () => "/hr/analytics";
+export const getRouteInstructions = () => "/hr/instructions";
+export const getRouteProfile = (id: string) => `/hr/profile/${id}`;
