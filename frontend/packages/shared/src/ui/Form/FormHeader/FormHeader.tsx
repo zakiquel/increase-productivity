@@ -14,7 +14,7 @@ interface FormHeaderProps {
 
 export const FormHeader = ({ title, onClose, className }: FormHeaderProps) => (
   <div className={classNames(cls.formHeader, {}, [className])}>
-    <Text title={title} size='s' className={cls.form_title} />
+    <Text title={title} size="m" className={cls.form_title} />
     <Icon
       className={cls.close_button}
       Svg={Cancel}

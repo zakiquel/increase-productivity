@@ -7,7 +7,7 @@ import { classNames } from "../../lib/classNames/classNames";
 import cls from "./AppLink.module.scss";
 
 export type AppLinkVariant = "primary" | "white" | "black";
-export type AppLinkSize = "s" | "m";
+export type AppLinkSize = "s" | "m" | "l";
 
 interface AppLinkProps extends LinkProps {
   className?: string;
@@ -24,7 +24,7 @@ export const AppLink = memo((props: AppLinkProps) => {
     activeClassName = "",
     children,
     variant = "primary",
-    size = "m",
+    size = "l",
     ...otherProps
   } = props;
 

@@ -1,8 +1,8 @@
+import { Button, Card, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
-import { Chart } from '../../model/types/chart';
+import { Chart, Dataset } from '../../model/types/chart';
 import { ChartCard } from '../ChartCard/ChartCard';
-
 
 import cls from './ChartList.module.scss';
 
@@ -16,7 +16,7 @@ const charts: Chart[] = [
       'Уровень удовлетворенности работой',
       'Коэффициент абсентеизма',
       'Коэффициент развития сотрудников',
-      'Индекс удовлетворенности'
+      'Индекс удовлетворенности',
     ],
     datasets: [
       {
@@ -35,8 +35,8 @@ const charts: Chart[] = [
         label: '26.12.2021',
         data: [0.85, 0.85, 0.9, 0.95, 0.7, 0.6, 1],
         fill: false,
-        borderColor: '#A5A5A5'
-      }
+        borderColor: '#A5A5A5',
+      },
     ],
   },
   {
@@ -48,7 +48,7 @@ const charts: Chart[] = [
       'Уровень удовлетворенности работой',
       'Коэффициент абсентеизма',
       'Коэффициент развития сотрудников',
-      'Индекс удовлетворенности'
+      'Индекс удовлетворенности',
     ],
     datasets: [
       {
@@ -67,9 +67,9 @@ const charts: Chart[] = [
         label: '26.12.2021',
         data: [0.85, 0.85, 0.9, 0.95, 0.7, 0.6, 1],
         fill: false,
-        borderColor: '#A5A5A5'
-      }
-    ]
+        borderColor: '#A5A5A5',
+      },
+    ],
   },
   {
     title: 'Риски',
@@ -80,7 +80,7 @@ const charts: Chart[] = [
       'Уровень удовлетворенности работой',
       'Коэффициент абсентеизма',
       'Коэффициент развития сотрудников',
-      'Индекс удовлетворенности'
+      'Индекс удовлетворенности',
     ],
     datasets: [
       {
@@ -99,9 +99,9 @@ const charts: Chart[] = [
         label: '26.12.2021',
         data: [0.85, 0.85, 0.9, 0.95, 0.7, 0.6, 1],
         fill: false,
-        borderColor: '#A5A5A5'
-      }
-    ]
+        borderColor: '#A5A5A5',
+      },
+    ],
   },
   {
     title: 'Сотрудники',
@@ -112,7 +112,7 @@ const charts: Chart[] = [
       'Уровень удовлетворенности работой',
       'Коэффициент абсентеизма',
       'Коэффициент развития сотрудников',
-      'Индекс удовлетворенности'
+      'Индекс удовлетворенности',
     ],
     datasets: [
       {
@@ -131,20 +131,33 @@ const charts: Chart[] = [
         label: '26.12.2021',
         data: [0.85, 0.85, 0.9, 0.95, 0.7, 0.6, 1],
         fill: false,
-        borderColor: '#A5A5A5'
-      }
-    ]
-  }
-]
+        borderColor: '#A5A5A5',
+      },
+    ],
+  },
+];
 
-export const ChartList = memo(() => (
+export const ChartList = memo(({ data }: { data?: Dataset[] }) => (
   <section className={cls.ChartList}>
-    <ul>
-      {charts.map((item, index) => (
-        <li key={index}>
-          <ChartCard title={item.title} labels={item.labels} datasets={item.datasets}/>
-        </li>
-      ))}
-    </ul>
+    {!data && (
+      <Card variant='light' padding='16' className={cls.hello_card}>
+        <Text text='Привет!' size='m' className={cls.hello} />
+        <Text
+          text='На этой странице будет отображаться главная информация о компании. 
+          Заполни раздел «Ценности и Метрики», чтобы мы могли показать тебе статистику.'
+          size='m'
+          className={cls.hello_text}
+        />
+        <Button size='s' className={cls.hello_button}>
+          Кнопка
+        </Button>
+      </Card>
+    )}
+    <div className={cls.employees_metrics}>
+      <ChartCard title='Рейтинг коллектива по ценностям' labels={[]} />
+      <ChartCard title='Сотрудники с наибольшим влиянием' labels={[]} />
+    </div>
+    <ChartCard title='Ценности компании' labels={[]} withButtons />
+    <ChartCard title='Метрики компании' labels={[]} withButtons />
   </section>
 ));

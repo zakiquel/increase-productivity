@@ -6,7 +6,6 @@ export type ButtonVariant =
   | 'primary'
   | 'secondary'
   | 'outline'
-  | 'light'
   | 'ghost'
   | 'exit';
 export type ButtonColor = 'normal' | 'success' | 'error';
@@ -20,7 +19,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   children?: ReactNode;
   color?: ButtonColor;
-  textDark?: boolean;
   addonRight?: ReactNode;
   addonLeft?: ReactNode;
   fullWidth?: boolean;
@@ -37,7 +35,6 @@ export const Button = memo((props: ButtonProps) => {
     fullWidth,
     selected,
     color = 'normal',
-    textDark,
     addonRight,
     addonLeft,
     ...otherProps
@@ -46,7 +43,6 @@ export const Button = memo((props: ButtonProps) => {
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
     [cls.selected]: selected,
-    [cls.textDark]: textDark,
   };
 
   return (

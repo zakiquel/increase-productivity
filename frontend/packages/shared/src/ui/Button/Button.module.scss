@@ -78,19 +78,6 @@
   }
 }
 
-.light {
-  color: var(--base-0-color);
-  background-color: var(--white);
-}
-
-.textDark {
-  color: var(--base-0-color);
-
-  &:hover {
-    color: var(--base-0-color);
-  }
-}
-
 .outline {
   border-color: var(--primary-color);
   color: var(--primary-color);
@@ -131,6 +118,11 @@
   &:disabled {
     color: var(--grey-secondary-color);
   }
+}
+
+.exit {
+  background-color: var(--error-color-background);
+  color: var(--error-color);
 }
 
 .xs {
@@ -207,9 +199,4 @@
 
 .fullWidth {
   width: 100%;
-}
-
-.exit {
-  background-color: var(--error-color-background);
-  color: var(--error-color);
 }

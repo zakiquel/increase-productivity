@@ -1,8 +1,8 @@
 import { SidebarItemType } from '../types/sidebar';
 
 import {
-  getRouteAnalytics,
-  getRouteCompany, getRouteEmployees, getRouteEvents, getRouteInstructions,
+  getRouteCatalog,
+  getRouteCompany, getRouteEvents, getRouteInstructions,
   getRouteMain,
 } from '@/shared/const/router';
 
@@ -14,19 +14,15 @@ export const getSidebarItems = () => {
     },
     {
       path: getRouteCompany('id'),
-      text: 'Моя компания',
-    },
-    {
-      path: getRouteEmployees(),
-      text: 'Сотрудники',
+      text: 'Ценности и метрики',
     },
     {
       path: getRouteEvents(),
       text: 'Мероприятия',
     },
     {
-      path: getRouteAnalytics(),
-      text: 'Аналитика',
+      path: getRouteCatalog(),
+      text: 'Каталог',
     },
     {
       path: getRouteInstructions(),

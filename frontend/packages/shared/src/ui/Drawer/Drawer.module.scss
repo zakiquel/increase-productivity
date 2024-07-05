@@ -1,0 +1,32 @@
+.container {
+  --transition-speed: 0.3s;
+}
+
+.drawer {
+  background: #fff;
+  width: 600px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  padding: 32px;
+  position: fixed;
+  overflow: scroll;
+  z-index: var(--modal-z-index);
+  transition: transform var(--transition-speed) ease;
+}
+
+.drawer.left {
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.drawer.right {
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.container.in.open .left,
+.container.in.open .right {
+  transform: translateX(0);
+}

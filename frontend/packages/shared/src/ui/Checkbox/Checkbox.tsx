@@ -73,7 +73,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             onChange={onChangeHandler}
             {...otherProps}
           />
-          <Text text={label} size='s' className={cls.label} />
+          <Text text={label} size='m' className={cls.label} />
         </label>
       </div>
     );

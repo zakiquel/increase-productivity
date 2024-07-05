@@ -1,31 +1,31 @@
-import { classNames } from "@repo/shared/lib";
-import { Button, Card } from "@repo/shared/ui";
-import { Chart, ChartConfiguration, registerables } from "chart.js";
-import { memo, useEffect, useRef } from "react";
+import { classNames } from '@repo/shared/lib';
+import { Button, Card, Text } from '@repo/shared/ui';
+import { Chart, ChartConfiguration, registerables } from 'chart.js';
+import { memo, useEffect, useRef } from 'react';
 
-import { Dataset } from "../../model/types/chart";
+import { Dataset } from '../../model/types/chart';
 
-
-import cls from "./ChartCard.module.scss";
+import cls from './ChartCard.module.scss';
 
 interface ChartCardProps {
   title: string;
   labels: string[];
-  datasets: Dataset[];
+  datasets?: Dataset[];
+  withButtons?: boolean;
 }
 
 Chart.register(...registerables);
 
 export const ChartCard = memo((props: ChartCardProps) => {
-  const { title, labels, datasets } = props;
+  const { title, labels, datasets, withButtons } = props;
 
   const ctx = useRef<HTMLCanvasElement>(null);
   const chartInstanceRef = useRef<Chart | null>(null);
 
   useEffect(() => {
-    if (ctx.current) {
-      const config: ChartConfiguration<"radar", number[], string> = {
-        type: "radar",
+    if (ctx.current && datasets) {
+      const config: ChartConfiguration<'radar', number[], string> = {
+        type: 'radar',
         data: {
           labels,
           datasets,
@@ -40,14 +40,14 @@ export const ChartCard = memo((props: ChartCardProps) => {
               },
               grid: {
                 circular: true,
-                color: "rgba(0, 0, 0, 0.1)",
+                color: 'rgba(0, 0, 0, 0.1)',
               },
               pointLabels: {
                 padding: 0,
                 font: {
                   size: 12,
                 },
-                color: "#646464",
+                color: '#646464',
               },
             },
           },
@@ -72,15 +72,25 @@ export const ChartCard = memo((props: ChartCardProps) => {
   }, [datasets, labels]);
 
   return (
-    <Card variant="light" padding="32" className={classNames(cls.ChartCard)}>
-      <h2>{title}</h2>
+    <Card variant='light' padding='16' className={classNames(cls.ChartCard)}>
+      <Text title={title} size='s' className={cls.chart_title} />
       <div className={cls.canvas}>
-        <canvas ref={ctx} className={cls.chart_canvas} />
+        {datasets ? (
+          <canvas ref={ctx} className={cls.chart_canvas} />
+        ) : (
+          <div className={cls.chart_empty} />
+        )}
       </div>
-      <div className={cls.button_group}>
-        <Button variant="outline">Редактировать</Button>
-        <Button variant="outline">К ценностям</Button>
-      </div>
+      {withButtons && (
+        <div className={cls.button_group}>
+          <Button variant='secondary' size='s'>
+            К ценностям
+          </Button>
+          <Button variant='ghost' size='s'>
+            Редактировать
+          </Button>
+        </div>
+      )}
     </Card>
   );
 });

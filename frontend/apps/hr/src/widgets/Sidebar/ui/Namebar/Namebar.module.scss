@@ -1,0 +1,25 @@
+.Namebar {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .namebar_info {
+    display: flex;
+    gap: 8px;
+
+    h4 {
+      font-weight: 600;
+    }
+  }
+
+  .namebar_buttons {
+    display: grid;
+    grid-template-columns: 1fr 32px;
+    gap: 4px;
+
+    .logout_button {
+      padding: 9px;
+    }
+  }
+}

@@ -1,5 +1,4 @@
 'use client';
-import { MaskitoOptions, maskitoTransform } from '@maskito/core';
 import React, {
   forwardRef,
   InputHTMLAttributes,
@@ -12,7 +11,7 @@ import React, {
 import { Text } from '../Text/Text';
 
 import cls from './Input.module.scss';
-import { Mods, classNames } from '../../lib/classNames/classNames';
+import { Mods, classNames, mergeRefs } from '../../lib';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -26,7 +25,6 @@ interface InputProps extends HTMLInputProps {
   value?: string | number;
   label?: string;
   size?: InputSize;
-  options?: MaskitoOptions;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -37,6 +35,7 @@ interface InputProps extends HTMLInputProps {
   addonRight?: ReactNode;
   errorMessage?: string;
   helperText?: string;
+  maskedInputRef?: React.RefCallback<HTMLElement>;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
@@ -50,7 +49,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
     placeholder,
     label,
     autofocus,
-    options,
     size = 'm',
     readonly,
     disabled,
@@ -58,6 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
     addonRight,
     errorMessage,
     helperText,
+    maskedInputRef,
     ...otherProps
   } = props;
 
@@ -102,12 +101,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
     if (value === undefined) {
       setLocalValue(event.target.value);
     }
-    if (options) {
-      event.currentTarget.value = maskitoTransform(
-        event.currentTarget.value,
-        options
-      );
-    }
     onChange?.(event);
   };
 
@@ -122,7 +115,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
         <div className={cls.addonLeft}>{addonLeft}</div>
         <input
-          ref={inputRef}
+          ref={mergeRefs(inputRef, maskedInputRef)}
           type={type}
           value={setValue()}
           onChange={handleChange}

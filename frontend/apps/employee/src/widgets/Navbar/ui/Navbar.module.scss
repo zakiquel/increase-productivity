@@ -7,7 +7,7 @@
 
 	&_user {
 		display: grid;
-		grid-template-columns: 200px 1fr;
+		grid-template-columns: var(--sidebar-width) 1fr;
 		width: 100%;
 		background: var(--bg-color);
 		padding-top: 16px;

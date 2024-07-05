@@ -3,7 +3,6 @@ import { type RouteProps } from 'react-router-dom';
 import { AnalyticsPage } from "@/pages/AnalyticsPage";
 import { CompanyPage } from "@/pages/CompanyPage";
 import { EmployeePage } from "@/pages/EmployeePage";
-import { EmployeesPage } from "@/pages/EmployeesPage";
 import { EventsPage } from "@/pages/EventsPage";
 import { InstructionsPage } from "@/pages/InstructionsPage";
 import { MainPage } from "@/pages/MainPage";
@@ -13,9 +12,9 @@ import {
   AppRoutes,
   getRouteAnalytics,
   getRouteCompany,
-  getRouteEmployees,
   getRouteEmployee,
   getRouteEvents,
+  getRouteCatalog,
   getRouteInstructions,
   getRouteMain,
   getRouteProfile
@@ -34,10 +33,6 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     path: getRouteCompany(':id'),
     element: <CompanyPage />
   },
-  [AppRoutes.EMPLOYEES]: {
-    path: getRouteEmployees(),
-    element: <EmployeesPage />
-  },
   [AppRoutes.EMPLOYEE]: {
     path: getRouteEmployee(':id'),
     element: <EmployeePage />
@@ -49,6 +44,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.ANALYTICS]: {
     path: getRouteAnalytics(),
     element: <AnalyticsPage />
+  },
+  [AppRoutes.CATALOG]: {
+    path: getRouteCatalog(),
+    element: <NotFoundPage />
   },
   [AppRoutes.INSTRUCTIONS]: {
     path: getRouteInstructions(),

@@ -1,8 +1,7 @@
-import { AppLink } from "@repo/shared/ui";
+import { AppLink } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import { SidebarItemType } from '../../model/types/sidebar.js';
-
 
 import cls from './SidebarItem.module.scss';
 
@@ -11,11 +10,11 @@ interface SidebarItemProps {
 }
 
 export const SidebarItem = memo(({ item }: SidebarItemProps) => (
-    <AppLink
-      variant="black"
-      to={item.path}
-      activeClassName={cls.active}
-    >
-      <span className={cls.link}>{item.text}</span>
-    </AppLink>
-  ));
+  <AppLink
+    to={item.path}
+    activeClassName={cls.active}
+    className={cls.sidebar_button}
+  >
+    <span className={cls.link}>{item.text}</span>
+  </AppLink>
+));

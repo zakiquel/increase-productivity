@@ -27,6 +27,9 @@
 }
 
 .m {
-  font-size: 20px;
-  font-weight: 400;
+  font: var(--font-button-m);
+}
+
+.l {
+  font: var(--font-button-l);
 }

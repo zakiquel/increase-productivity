@@ -1,0 +1,54 @@
+.controls_wrapper {
+  display: flex;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  width: fit-content;
+}
+
+.segment {
+  position: relative;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--base-0-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease-in-out;
+
+  input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  &:hover {
+    color: var(--grey-primary-color);
+  }
+
+  &.disabled {
+    color: var(--grey-secondary-color);
+    cursor: default;
+  }
+
+  &.active {
+    background-color: var(--white);
+  }
+
+  &.l {
+    font: var(--font-button-l);
+    padding: 14.5px 20px;
+  }
+
+  &.m {
+    font: var(--font-button-m);
+    padding: 11.5px 16px;
+  }
+
+  &.s {
+    font: var(--font-button-s);
+    padding: 8.5px 8px;
+  }
+
+  &.xs {
+    font: var(--font-button-xs);
+    padding: 6px 8px;
+  }
+}

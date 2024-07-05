@@ -40,7 +40,19 @@
 
 .size_xs {
   .title {
-    font: var(--font-26);
+    font: var(--font-16);
+    font-weight: 500;
+  }
+
+  .text {
+    font: var(--font-14);
+  }
+}
+
+.size_s {
+  .title {
+    font: var(--font-20);
+    font-weight: 500;
   }
 
   .text {
@@ -48,7 +60,7 @@
   }
 }
 
-.size_s {
+.size_m {
   .title {
     font: var(--font-32);
   }
@@ -58,23 +70,13 @@
   }
 }
 
-.size_m {
-  .title {
-    font: var(--font-l);
-  }
-
-  .text {
-    font: var(--font-32);
-  }
-}
-
 .size_l {
   .title {
-    font: var(--font-xl);
+    font: var(--font-32);
   }
 
   .text {
-    font: var(--font-l);
+    font: var(--font-26);
   }
 }
 

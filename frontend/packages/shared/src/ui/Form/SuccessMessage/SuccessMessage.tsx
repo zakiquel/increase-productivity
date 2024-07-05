@@ -34,7 +34,7 @@ export const SuccessMessage = ({
 
   return (
     <div className={classNames(cls.successMessage, {}, [className])}>
-      <Text title={title} size='s' className={cls.message_title} />
+      <Text title={title} size="m" className={cls.message_title} />
       <Icon
         className={cls.message_icon}
         Svg={CheckCircle}
@@ -50,7 +50,7 @@ export const SuccessMessage = ({
             countdown,
             ['секундy', 'секунды', 'секунд']
           )}`}
-          size='xs'
+          size="s"
           className={cls.message_countdown}
         />
       )}

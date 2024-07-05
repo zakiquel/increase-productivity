@@ -10,6 +10,9 @@
   &:disabled {
     color: var(--grey-secondary-color);
     border-color: transparent;
+    &::placeholder {
+      color: var(--grey-secondary-color);
+    }
   }
 
   &:focus,
@@ -46,7 +49,7 @@
 .l {
   input {
     border-radius: 8px;
-    padding: 16px;
+    padding: 15px;
     font: var(--font-20);
 
     &::placeholder {
@@ -178,7 +181,7 @@
 .error {
   input {
     border-color: var(--error-color);
-    background-color: var(--error-color-10pct);
+    background-color: var(--error-color-background);
   }
   .helperText {
     color: var(--error-color);

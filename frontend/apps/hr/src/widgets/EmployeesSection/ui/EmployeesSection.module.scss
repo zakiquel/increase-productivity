@@ -1,0 +1,33 @@
+.EmployeesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.employee_control {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+
+  .control_search {
+    width: 537px;
+  }
+
+  .control_button {
+    margin-left: auto;
+  }
+}
+
+.start_layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.start_title {
+  margin-bottom: 12px;
+}
+
+.start_button {
+  margin-top: 22px;
+}
