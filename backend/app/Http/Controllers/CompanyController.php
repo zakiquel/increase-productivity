@@ -7,7 +7,6 @@ use App\Http\Requests\Company\UpdateRequest;
 use App\Http\Resources\Company\CompanyCollectionResource;
 use App\Http\Resources\Company\CompanyResource;
 use App\Models\Company;
-use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {

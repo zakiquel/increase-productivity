@@ -35,13 +35,13 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'auth',
 ], function ($router) {
     Route::get('employees', [EmployeeController::class, 'index']);
-    Route::get('employees/{id}', [EmployeeController::class, 'show']);
+    Route::get('employees/{employee}', [EmployeeController::class, 'show']);
     Route::post('employees', [EmployeeController::class, 'store']);
-    Route::put('employees/{id}', [EmployeeController::class, 'update']);
-    Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
+    Route::put('employees/{employee}', [EmployeeController::class, 'update']);
+    Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'auth'], function () {

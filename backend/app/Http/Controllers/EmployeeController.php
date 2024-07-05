@@ -7,6 +7,8 @@ use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Auth;
+
 
 class EmployeeController extends Controller
 {
@@ -15,9 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-
-        return new EmployeeCollectionResource($employees);
+        return $this->service->index_employee();
     }
 
     /**
@@ -33,13 +33,8 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        // Validate the request data
         $data = $request->validated();
-
-        // Create a new employee
-        $employee = Employee::create($data);
-
-        return EmployeeResource::make($employee);
+        return $this->service->store_employee($data);
     }
 
     /**
@@ -47,7 +42,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return EmployeeResource::make($employee);
+        return $this->service->show_employee($employee);
     }
 
     /**
@@ -63,14 +58,7 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        // Validate the request data
-        $data = $request->validated();
-
-        // Update the employee with the validated data
-        $employee->update($data);
-
-        // Return a JSON response with the updated employee
-        return EmployeeResource::make($employee);
+        return $this->service->update_employee($request ,$employee);
     }
 
     /**
@@ -78,13 +66,6 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        // Delete the employee
-        $employee->delete();
-
-        // Return a JSON response indicating successful deletion
-        return response()->json([
-            'success' => true,
-            'message' => 'Employee deleted successfully.',
-        ], 200);
+        return $this->service->delete_employee($employee);
     }
 }
