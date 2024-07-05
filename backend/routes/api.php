@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
@@ -66,3 +67,4 @@ Route::post('/subscriptions', [SubscriptionController::class, 'store']);
 Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cancel']);
 });
 
+Route::resource('events', EventController::class);
