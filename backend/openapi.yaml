@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Authentication API
+  title: Increase-productivity API
   version: 1.0.0
   description: API documentation increase-productivity site endpoints.
 
@@ -11,6 +11,7 @@ servers:
     description: local server
 
 paths:
+# authentication api
   /api/auth/register:
     post:
       summary: Register a new user
@@ -146,124 +147,6 @@ paths:
                 type: object
                 properties:
                   message:
-                    type: string
-  /api/values:
-    get:
-      summary: List all values
-      responses:
-        "200":
-          description: A list of values
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Value'
-    post:
-      summary: Create a new value
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StoreValueRequest'
-      responses:
-        "201":
-          description: Value created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Value'
-        "403":
-          description: Maximum number of Value instances reached
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  /api/values/{id}:
-    get:
-      summary: Get a single value
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: A single value
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Value'
-        "404":
-          description: Value not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-    put:
-      summary: Update an existing value
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateValueRequest'
-      responses:
-        "200":
-          description: Value updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Value'
-        "404":
-          description: Value not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-    delete:
-      summary: Delete a value
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Value deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        "404":
-          description: Value not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
                     type: string
 
 # Companies API
@@ -480,39 +363,279 @@ paths:
                 properties:
                   error:
                     type: string
+
   # employees API
   /api/employees:
-      summary: Operations about employees
-      get:
+    summary: Operations about employees
+    get:
+      tags:
+        - employees GET
+      summary: Get all the employees
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+    post:
+      tags:
+        - employees POST
+      summary: Add an employee
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreEmployeeRequest'
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/employees/{employee}:
+    summary: Operations about employees
+    get:
+      tags:
+        - employees GET
+      summary: Get an employee
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+    put:
+      tags:
+        - employees PUT
+      summary: Update an employee
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee
+          required: true
+          in: path
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmployeeRequest'
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      tags:
+        - employees DELETE
+      summary: Delete an employee
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+
+#values api
+  /api/values/:
+    get:
         tags:
-          - employees GET
-        summary: Get all the employees
+        - values GET
+        summary: Get all values
         responses:
-          200:
-            description: Success
-          400:
-            description: Incorrect input
-          default:
-            description: Success
-      post:
+          "200":
+            description: A list of values
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Value'
+    post:
         tags:
-          - employees POST
-        summary: Add an employee
+        - values POST
+        summary: Add value
         requestBody:
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StoreEmployeeRequest'
+                $ref: '#/components/schemas/StoreValueRequest'
         responses:
-          "200":
-            description: 200 response
+          "201":
+            description: Value created successfully
             content:
               application/json:
                 schema:
-                  $ref: "#/components/schemas/employee"
-          "400":
-            description: Bad request
+                  $ref: '#/components/schemas/Value'
+          "403":
+            description: Maximum number of Value instances reached
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+
+  /api/values/{value}:
+    get:
+      tags:
+        - values GET
+      summary: Get a value
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: A single value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Value'
+        "404":
+          description: Value not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    put:
+        tags:
+        - values PUT
+        summary: edit a value
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateValueRequest'
+        responses:
+          "200":
+            description: Value updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Value'
+          "404":
+            description: Value not found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+    delete:
+        tags:
+        - values DELETE
+        summary: Delete a value
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          "200":
+            description: Value deleted successfully
             content:
               application/json:
                 schema:
@@ -520,76 +643,16 @@ paths:
                   properties:
                     message:
                       type: string
-
-  /api/employees/{id}:
-      summary: Operations about employees
-      get:
-        tags:
-          - employees GET
-        summary: Get an employees
-        parameters:
-          - name: employee_id
-            required: true
-            in: path
-            schema:
-              type: integer
-        responses:
-          200:
-            description: Success
-          400:
-            description: Incorrect input
-          default:
-            description: Success
-
-      put:
-        tags:
-          - employees PUT
-        summary: Update an employees
-        parameters:
-          - name: employee_id
-            required: true
-            in: path
-            schema:
-              type: integer
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UpdateEmployeeRequest'
-        responses:
-          "200":
-            description: 200 response
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/employee"
-          "400":
-            description: Bad request
+          "404":
+            description: Value not found
             content:
               application/json:
                 schema:
                   type: object
                   properties:
-                    message:
+                    error:
                       type: string
-      delete:
-        tags:
-          - employees DELETE
-        summary: Delete an employee
-        parameters:
-          - name: employee_id
-            required: true
-            in: path
-            schema:
-              type: integer
-        responses:
-          200:
-            description: Success
-          400:
-            description: Incorrect input
-          default:
-            description: Success
+
 
 
   # events API
@@ -742,42 +805,150 @@ components:
             type: string
             required: true
 
-    employee:
+    Employee:
       type: object
       properties:
+        id:
+          type: integer
+          example: 1
         first_name:
           type: string
+          example: "John"
+        middle_name:
+          type: string
+          example: "Doe"
         last_name:
           type: string
-        date_of_birth:
+          example: "Smith"
+        birth_date:
           type: string
           format: date
+          example: "2000-01-01"
+        imgSrc:
+          type: string
+          example: "image_url"
         position:
-          type: integer
+          type: string
+          example: "backend"
         work_experience:
-          type: integer
+          type: number
+          format: float
+          example: 1.5
         salary:
           type: number
           format: float
+          example: 50000
         email:
           type: string
           format: email
-        phone_number:
+          example: "john.doe@example.com"
+        balance:
+          type: number
+          format: float
+          example: 0
+        date_of_hiring:
           type: string
+          format: date
+          example: "2024-04-10"
+        age_in_full_years:
+          type: integer
+          example: 23
+        company_id:
+          type: integer
+          example: 1
+
 
     StoreEmployeeRequest:
       type: object
       properties:
-        name:
+        first_name:
           type: string
-          required: true
+          example: "John"
+        middle_name:
+          type: string
+          example: "Doe"
+        last_name:
+          type: string
+          example: "Smith"
+        birth_date:
+          type: string
+          format: date
+          example: "2000-01-01"
+        imgSrc:
+          type: string
+          example: "image_url"
+        position:
+          type: string
+          example: "backend"
+        work_experience:
+          type: number
+          format: float
+          example: 1.5
+        salary:
+          type: number
+          format: float
+          example: 50000
+        email:
+          type: string
+          format: email
+          example: "john.doe@example.com"
+        balance:
+          type: number
+          format: float
+          example: 0
+        date_of_hiring:
+          type: string
+          format: date
+          example: "2024-04-10"
+        age_in_full_years:
+          type: integer
+          example: 23
 
     UpdateEmployeeRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          required: true
+        type: object
+        properties:
+          first_name:
+            type: string
+            example: "John"
+          middle_name:
+            type: string
+            example: "Doe"
+          last_name:
+            type: string
+            example: "Smith"
+          birth_date:
+            type: string
+            format: date
+            example: "2000-01-01"
+          imgSrc:
+            type: string
+            example: "image_url"
+          position:
+            type: string
+            example: "backend"
+          work_experience:
+            type: number
+            format: float
+            example: 1.5
+          salary:
+            type: number
+            format: float
+            example: 50000
+          email:
+            type: string
+            format: email
+            example: "john.doe@example.com"
+          balance:
+            type: number
+            format: float
+            example: 0
+          date_of_hiring:
+            type: string
+            format: date
+            example: "2024-04-10"
+          age_in_full_years:
+            type: integer
+            example: 23
 
     company:
       type: object
