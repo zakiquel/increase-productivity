@@ -5,10 +5,14 @@ namespace App\Services;
 use App\Http\Requests\Company\StoreRequest;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
+use App\Http\Requests\Event\UpdateRequest;
 use App\Http\Resources\Company\CompanyResource;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
+use App\Http\Resources\Event\EventCollectionResource;
+use App\Http\Resources\Event\EventResource;
 use App\Models\Employee;
+use App\Models\Event;
 use App\Models\User;
 use App\Models\Value;
 use App\Models\Company;
@@ -137,6 +141,75 @@ class Service
         return response()->json([
             'success' => true,
             'message' => 'Employee deleted successfully.',
+        ], 200);
+    }
+
+    public function index_event()
+    {
+        $company = \App\Models\Company::where('user_id', Auth::id())->first();
+
+        if (!$company) {
+            return response()->json(['error' => 'Company not found'], 404);
+        }
+
+        $Events = Event::where('company_id', $company->id)->get();
+
+        return new EventCollectionResource($Events);
+    }
+
+    public function show_event(Event $event)
+    {
+        $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
+        if ($event->company_id != $company_id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        return new EventResource($event);
+    }
+
+    public function store_event(\App\Http\Requests\Event\StoreRequest $request)
+    {
+        $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
+        if (!$company_id) {
+            return response()->json(['error' => 'Company not found'], 404);
+        }
+
+        $data['company_id'] = $company_id;
+
+        $event = Event::create($data);
+
+        return EventResource::make($event);
+    }
+
+    public function update_event(UpdateRequest $request, Event $event)
+    {
+
+        $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
+        if ($event->company_id != $company_id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $data = $request->validated();
+        $event->update($data);
+
+        return new EventResource($event);
+    }
+    public function destroy_event(Event $event)
+    {
+        $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
+        if ($event->company_id != $company_id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $event->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Event deleted successfully.',
         ], 200);
     }
 }
