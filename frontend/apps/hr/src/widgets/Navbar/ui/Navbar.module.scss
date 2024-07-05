@@ -1,39 +1,26 @@
 .Navbar {
-  display: flex;
-  align-items: end;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  gap: 8px;
   width: 100%;
+  padding-top: 16px;
   height: var(--navbar-height);
+  background-color: var(--bg-color);
+}
+
+.navbar_wrapper {
   background: var(--white);
-}
-
-.wrapper {
+  border-radius: 4px;
   display: flex;
   align-items: center;
-  align-self: center;
-  justify-content: space-between;
-  height: 80px;
   width: 100%;
-  padding: 0 15px;
+  padding: 0 16px;
 }
 
-.links {
-  display: flex;
-  gap: 24px;
+.navbar_logo {
+  color: var(--primary-color);
 }
 
-.buttons {
-  display: flex;
-  height: 56px;
-  font-weight: 500;
-}
-
-.logo {
-  color: var(--base-0-color);
-}
-
-.profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
+.navbar_button {
+  margin-left: auto;
 }

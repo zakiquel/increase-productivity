@@ -3,36 +3,48 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 4px 4px 30px 0px #00000026;
+  }
+
+  &:active {
+    background-color: var(--bg-color);
+  }
+
+  &:disabled {
+    border: 1px solid var(--grey-secondary-color);
+    .employee_info {
+      border-color: var(--grey-secondary-color);
+      p {
+        color: var(--grey-secondary-color);
+      }
+    }
+  }
 }
 
 .employee_info {
   display: flex;
   flex-direction: column;
+  gap: 24px;
   align-items: center;
-  width: 240px;
+  width: 296px;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--grey-primary-color);
 
-
-  h2 {
-    font: var(--font-32);
-    font-weight: 500;
-    margin-top: 32px;
-  }
-
-  p {
-    font: var(--font-26);
-    margin-top: 24px;
+  h3 {
+    font: var(--font-title-card);
   }
 }
-
 .standard_info {
-  padding: 32px 22px 0;
-  width: 100%;
+  margin-top: 32px;
+  width: 296px;
 
   p {
-    font: var(--font-26);
-    text-align: center;
-    margin-bottom: 8px;
+    color: var(--grey-primary-color);
+    margin-bottom: 24px;
+    span {
+      font: var(--font-16);
+    }
   }
 }

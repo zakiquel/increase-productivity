@@ -78,6 +78,7 @@ a {
 	// z - Индексы
 	--modal-z-index: 1000;
 	--overlay-z-index: 100;
+	--header-z-index: 50;
 
 	// Цвета
 	--primary-color: #0844dd;
@@ -100,4 +101,5 @@ a {
 	// Размеры
 	--navbar-height: 70px;
 	--footer-height: 120px;
+	--sidebar-width: 240px;
 }

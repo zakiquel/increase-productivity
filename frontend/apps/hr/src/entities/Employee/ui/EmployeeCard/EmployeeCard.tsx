@@ -1,5 +1,5 @@
-import { classNames } from '@repo/shared/lib';
-import { Avatar, Card, ProgressBar } from '@repo/shared/ui';
+import { classNames, Mods } from '@repo/shared/lib';
+import { Card, ProgressBar, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import cls from './EmployeeCard.module.scss';
@@ -8,33 +8,47 @@ export interface EmployeeCardProps {
   id: number;
   name: string;
   personRole: string;
-  image: string;
-  standard: number;
+  standard?: number;
+  disabled?: boolean;
 }
 
 export const EmployeeCard = memo((props: EmployeeCardProps) => {
-  const {
-    id,
-    name,
-    personRole,
-    image,
-    standard
-  } = props;
+  const { id, name, personRole, standard, disabled } = props;
+
+  const mods: Mods = {
+    [cls.disabled]: disabled,
+  };
 
   return (
     <Card
       variant='light'
-      padding='32'
-      className={classNames(cls.EmployeeCard, {}, [])}
+      padding='24'
+      className={classNames(cls.EmployeeCard, mods, [])}
     >
       <div className={cls.employee_info}>
-        <Avatar src={image} size={80} />
-        <h2>{name}</h2>
-        <p>{personRole}</p>
+        <h3>{name}</h3>
+        <Text text={personRole} size='l' />
       </div>
       <div className={cls.standard_info}>
-        <p>Эталон {standard}%</p>
-        <ProgressBar size={standard} />
+        {standard ? (
+          <>
+            <Text text={`Эталон ${standard}%`} size='l' align='center' />
+            <ProgressBar size={standard} />
+          </>
+        ) : (
+          <>
+            <Text
+              text={
+                <>
+                  Эталон 0%<span>(Нет информации)</span>
+                </>
+              }
+              size='l'
+              align='center'
+            />
+            <ProgressBar size={0} />
+          </>
+        )}
       </div>
     </Card>
   );

@@ -1,7 +1,35 @@
 .ChartList {
-    ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 16px;
+
+  .hello_card {
+    display: flex;
+    flex-direction: column;
+
+    .hello {
+      font-weight: 500;
+      p {
+        line-height: 15px;
+      }
+
+      margin-bottom: 12px;
     }
+
+    .hello_text {
+      width: 641px;
+    }
+
+    .hello_button {
+      width: fit-content;
+      margin-top: auto;
+    }
+  }
+
+  .employees_metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
 }

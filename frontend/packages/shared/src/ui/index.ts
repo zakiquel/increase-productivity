@@ -16,3 +16,5 @@ export * from "./Text";
 export * from "./Input";
 export * from "./Popups";
 export * from "./ProgressBar";
+export * from "./Drawer";
+export * from "./SegmentedControl";

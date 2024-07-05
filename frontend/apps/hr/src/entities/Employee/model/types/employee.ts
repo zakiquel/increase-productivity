@@ -13,19 +13,14 @@ export interface Document {
 export interface PersonalInfo {
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
-  position: number;
-  workExperience: number;
-  salary: number;
-  email: string;
-  phoneNumber: string;
-}
-
-export interface Employee {
-  id: number;
-  personalInfo: PersonalInfo;
-  notes: Note[];
-  documents: Document[];
+  patronimyc?: string;
+  dateOfBirth?: string;
+  position: string;
+  workExperience?: number;
+  salary?: number;
+  email?: string;
+  phoneNumber?: string;
+  dateOfEmployment: string;
 }
 
 export interface Metric {
@@ -35,11 +30,15 @@ export interface Metric {
   change: number;
 }
 
-export interface EmployeeCardInfo {
-  id: number;
-  name: string;
-  personRole: string;
-  image: string;
-  standard: number;
+export interface EmployeeValues {
+  standard?: number;
   metrics?: Metric[];
+}
+
+export interface Employee {
+  id: number;
+  personalInfo: PersonalInfo;
+  notes?: Note[];
+  documents?: Document[];
+  values?: EmployeeValues;
 }
