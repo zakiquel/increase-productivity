@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { ModalSuccess } from '@/shared/ui/ModalSuccess'
 import { classNames } from '@repo/shared/lib'
+import ozon from '../../assets/ozon.png'
 
 interface IProductItemModal {
   title: string
@@ -50,7 +51,13 @@ export const ProductItemModal: React.FC<IProductItemModal> = ({
               onClick={(e) => e.stopPropagation()}
               className={cls.ProductItemModal}
             >
-              <Image className={cls.img} src={img} alt={title} width={480} height={320} />
+              <Image
+                className={cls.img}
+                src={ozon}
+                alt={title}
+                width={480}
+                height={320}
+              />
               <div className={cls.body}>
                 <div className={cls.header}>
                   <h3 className={cls.title}>{title}</h3>

@@ -29,7 +29,7 @@ export const ProductItem: React.FC<IProductItem> = ({
       style={{ borderRadius: '8px' }}
     >
       <div onClick={() => setOpen(true)}>
-        <Image className={cls.img} src={img} alt={title} width={415} height={220} />
+        <Image className={cls.img} src={ozon} alt={title} width={415} height={220} />
         <h3 className={cls.title}>{title}</h3>
         <div className={cls.body}>
           <p className={cls.price}>{price} Б</p>
