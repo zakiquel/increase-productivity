@@ -1,21 +1,21 @@
 .NavPanel {
-	position: relative;
-	border-radius: 4px;
-	background: var(--white);
-	width: var(--sidebar-width);
-	height: 856px;
+  position: relative;
+  border-radius: 4px;
+  background: var(--white);
+  width: 240px;
+  height: 856px;
 }
 
 .Sidebar {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-right: 8px;
 }
 
 .items {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	padding-top: 40px;
-	
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 40px;
 }

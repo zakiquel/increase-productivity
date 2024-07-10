@@ -4,11 +4,11 @@ import { sidebarItemProfile } from '../../model/types/sidebarProfile'
 import { AppLink } from '@/shared/ui/AppLink'
 
 interface SidebarItemProps {
-	item: sidebarItemProfile
+  item: sidebarItemProfile
 }
 
 export const ProfileSidebarItem = memo(({ item }: SidebarItemProps) => (
-	<AppLink to={item.path} variant='black' size='s'>
-		{item.text}
-	</AppLink>
+  <AppLink to={item.path} variant="black" size="s">
+    {item.text}
+  </AppLink>
 ))

@@ -5,24 +5,22 @@ import { ProfileSidebarItem } from '../ProfileSidebarItems/ProfileSidebarItems'
 import { sidebarItemProfile } from '../../model'
 
 const sidebarItemsList: sidebarItemProfile[] = [
-	{
-		path: '/',
-		text: 'История транзакций',
-	},
+  {
+    path: '/',
+    text: 'История транзакций',
+  },
 ]
 
 export const ProfileSidebar = memo(() => {
-	const itemsList = useMemo(
-		() =>
-			sidebarItemsList.map((item, key) => (
-				<ProfileSidebarItem item={item} key={key} />
-			)),
-		[sidebarItemsList]
-	)
+  const itemsList = useMemo(
+    () =>
+      sidebarItemsList.map((item, key) => <ProfileSidebarItem item={item} key={key} />),
+    [sidebarItemsList]
+  )
 
-	return (
-		<aside className={cls.Sidebar}>
-			<div role='navigation'>{itemsList}</div>
-		</aside>
-	)
+  return (
+    <aside className={cls.Sidebar}>
+      <div role="navigation">{itemsList}</div>
+    </aside>
+  )
 })

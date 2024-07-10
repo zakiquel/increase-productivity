@@ -1,33 +1,41 @@
 .event_card {
-	width: fit-content;
-	margin: 0;
-	border-radius: 8px;
-	position: relative;
-	cursor: pointer;
-	.img {
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
-	}
-	.wrapper {
-		padding: 8px 16px 16px;
-	}
-	.text_wrapper {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		margin-top: 8px;
-		align-items: center;
-	}
-	.button {
-		height: fit-content;
-		padding: 8px;
-	}
-	.date {
-		color: var(--grey-primary-color);
-	}
-	.tag {
-		position: absolute;
-		top: 12px;
-		right: 17px;
-	}
+  width: fit-content;
+  margin: 0;
+
+  position: relative;
+  cursor: pointer;
+  .img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .wrapper {
+    padding: 4px 16px 8px;
+  }
+  .text_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+    align-items: center;
+  }
+  .button {
+    height: fit-content;
+    padding: 8px;
+  }
+  .date {
+    color: var(--grey-primary-color);
+    font-size: 14px;
+  }
+  .tag {
+    position: absolute;
+    top: 16px;
+    right: 6px;
+  }
+  .price {
+    font-size: 32px;
+  }
+  .wrp {
+    display: flex;
+    flex-direction: column;
+  }
 }

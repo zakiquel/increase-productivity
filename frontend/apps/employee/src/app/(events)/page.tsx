@@ -1,7 +1,7 @@
 import EventPage from '@/pages/EventPage/ui/EventPage'
 
 const Events = () => {
-	return <EventPage />
+  return <EventPage />
 }
 
 export default Events

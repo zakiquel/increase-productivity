@@ -1,4 +1,4 @@
 export interface sidebarItemProfile {
-	text: string
-	path: string
+  text: string
+  path: string
 }
