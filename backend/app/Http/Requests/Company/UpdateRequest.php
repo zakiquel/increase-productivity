@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'logoSrc' => 'nullable|string|max:255',
+            'logoSrc' => 'nullable|string|max:15',
             'currency_name' => 'required|string|max:255',
             'description' => 'required|string',
         ];
