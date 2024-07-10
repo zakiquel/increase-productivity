@@ -2,16 +2,17 @@
 @import './variables/global';
 
 .app {
-  min-height: 100vh;
-  font: var(--font-32);
-  color: var(--base-0-color);
-  background: var(--bg-color);
+	min-height: 100vh;
+	font-size: var(--font-32);
+	color: var(--base-0-color);
+	background: var(--bg-color);
+	font-family: var(--font-family);
 }
 
 .content-page {
-  display: flex;
+	display: flex;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+	display: none;
 }

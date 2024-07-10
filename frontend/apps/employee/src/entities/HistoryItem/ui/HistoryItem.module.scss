@@ -1,0 +1,90 @@
+.HistoryItem {
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  background: var(--white);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  align-items: start;
+  gap: 144px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: 144px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+}
+
+.img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21px;
+  color: var(--base-0-color);
+}
+
+.items {
+  margin-top: 10px;
+  display: grid;
+  row-gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 144px;
+}
+
+.status {
+  width: max-content;
+  padding: 8px;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  background: var(--grey-secondary-color);
+  border-radius: 6px;
+  height: min-content;
+}
+
+.time {
+  columns: 1;
+}
+
+.price {
+  width: max-content;
+  height: 100%;
+}
+.dropDownBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

@@ -9,42 +9,32 @@ import { Tag } from '@/shared/ui/Tag'
 import { TVariant } from '@/shared/ui/Tag/Tag'
 
 export const EventCard = (props: IEventCard) => {
-	const { tag, title, price, date } = props
-	const [isOpen, setIsOpen] = useState(false)
+  const { tag, title, price, date } = props
+  const [isOpen, setIsOpen] = useState(false)
 
-	return (
-		<Card
-			padding='0'
-			variant='light'
-			className={cls.event_card}
-			style={{ borderRadius: '8px' }}
-		>
-			<div onClick={() => setIsOpen(true)}>
-				<Image
-					src={event}
-					alt='event'
-					width={404}
-					height={221}
-					className={cls.img}
-				/>
+  return (
+    <Card
+      padding="0"
+      variant="light"
+      className={cls.event_card}
+      style={{ borderRadius: '8px' }}
+    >
+      <div onClick={() => setIsOpen(true)}>
+        <Image src={event} alt="event" width={404} height={221} className={cls.img} />
 
-				<Tag className={cls.tag} TagVariant={tag as TVariant}>
-					{tag}
-				</Tag>
+        <Tag className={cls.tag} TagVariant={tag as TVariant}>
+          {tag}
+        </Tag>
 
-				<div className={cls.wrapper}>
-					<TextTag size='s' text={title} />
-					<div className=''>
-						<TextTag text={price?.toString() + ' Б'} />
-						<p className={cls.date}>{date}</p>
-					</div>
-				</div>
-			</div>
-			<EventCardModal
-				isOpen={isOpen}
-				setOpen={() => setIsOpen(false)}
-				{...props}
-			/>
-		</Card>
-	)
+        <div className={cls.wrapper}>
+          <TextTag size="m" text={title} />
+          <div className={cls.wrp}>
+            <span className={cls.price}>{price?.toString() + ' Б'}</span>
+            <span className={cls.date}>{date}</span>
+          </div>
+        </div>
+      </div>
+      <EventCardModal isOpen={isOpen} setOpen={() => setIsOpen(false)} {...props} />
+    </Card>
+  )
 }

@@ -1,0 +1,29 @@
+.Products {
+  padding: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 404px);
+  justify-content: center;
+  gap: 8px;
+  @media (max-width: 1720px) {
+    grid-template-columns: repeat(3, 415px);
+  }
+  @media (max-width: 1500px) {
+    grid-template-columns: repeat(2, 415px);
+  }
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(1, 415px);
+  }
+}
+
+.page {
+  margin-left: 8px;
+}
+
+.not {
+  font-size: 20px;
+  font-weight: 500;
+  width: 100%;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: var(--white);
+}

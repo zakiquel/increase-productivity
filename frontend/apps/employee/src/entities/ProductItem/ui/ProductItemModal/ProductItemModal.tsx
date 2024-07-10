@@ -1,62 +1,134 @@
-import { classNames } from "@repo/shared/lib";
+'use client'
 import cls from './ProductItemModal.module.scss'
-import { Button } from "@repo/shared/ui";
-import Image from "next/image";
-import close from '@/shared/assets/icons/close.svg'
-import { AnimatePresence, motion } from "framer-motion";
+import { Button, Text as TextTag } from '@repo/shared/ui'
+import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
+import { ModalSuccess } from '@/shared/ui/ModalSuccess'
+import { classNames } from '@repo/shared/lib'
 
 interface IProductItemModal {
-    title: string,
-    img?: string,
-    description: string,
-    price: number
-    isOpen: boolean
-    setOpen: (arg: boolean) => void
+  title: string
+  img?: string
+  description: string
+  price: number
+  isOpen: boolean
+  setOpen: (arg: boolean) => void
 }
 
+export const ProductItemModal: React.FC<IProductItemModal> = ({
+  title,
+  img = '',
+  description,
+  price,
+  isOpen,
+  setOpen,
+}) => {
+  const [isSuccess, setSuccess] = useState(false)
+  const [isSuccessPost, setSuccessPost] = useState(false)
 
-const ProductItemModal: React.FC<IProductItemModal> = ({
-    title,
-    img = '',
-    description,
-    price,
-    isOpen,
-    setOpen
-} )=> {
-    return ( 
+  const userBalance = 200
+  return (
+    <>
+      {isOpen && (
         <AnimatePresence>
-            
-            {
-            isOpen &&
-        <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        onClick={() => setOpen(false)}  className={cls.background}>
-            <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            onClick={(e) => e.stopPropagation()} className={cls.ProductItemModal}>
-                <Image  className={cls.close} src={close} alt='close' width={24} height={24} onClick={() => setOpen(false)} />
-                <Image className={cls.img} src={img} alt={title} width={490} height={315} />
-                <div className={cls.body}>
-                    <div className={cls.header}>
-                        <h3 className={cls.title}>{title}</h3>
-                        <p className={cls.description}>{description}</p>
-                    </div>
-                    <div className={cls.footer}>
-                        <p className={cls.price}>{price} Б</p>
-                        <Button
-                            variant='primary' size='s'>Приобрести</Button>
-                    </div>
+            onClick={() => {
+              setOpen(false)
+            }}
+            className={cls.background}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              onClick={(e) => e.stopPropagation()}
+              className={cls.ProductItemModal}
+            >
+              <Image className={cls.img} src={img} alt={title} width={480} height={320} />
+              <div className={cls.body}>
+                <div className={cls.header}>
+                  <h3 className={cls.title}>{title}</h3>
+                  <div className="">
+                    <p className={cls.description}>{description}</p>
+                    {userBalance < price && (
+                      <p className={cls.error}>
+                        Недостаточное количество баллов для совершения покупки
+                      </p>
+                    )}
+                  </div>
                 </div>
-        </motion.div>
-            </motion.div>}
-            </AnimatePresence>
-     );
+                <div className={cls.footer}>
+                  <p className={cls.price}>{price} Б</p>
+                  <Button
+                    onClick={() => {
+                      setSuccess(true)
+                      setOpen(false)
+                    }}
+                    variant="primary"
+                    size="l"
+                    disabled={userBalance < price}
+                  >
+                    Приобрести
+                  </Button>
+                </div>
+                <Button
+                  className={cls.close}
+                  variant="ghost"
+                  onClick={() => setOpen(false)}
+                >
+                  <span
+                    className={classNames('material-symbols-outlined', {}, [
+                      cls.close_btn,
+                    ])}
+                  >
+                    close
+                  </span>
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+      )}
+      {isSuccess && (
+        <ModalSuccess
+          title="Вы точно хотите приобрести товар?"
+          isOpen={isSuccess}
+          onClose={() => {
+            setSuccess(false)
+          }}
+          button={
+            <div className={cls.btn_wrapper}>
+              <Button variant="secondary" size="l" onClick={() => setSuccess(false)}>
+                Отменить
+              </Button>
+              <Button
+                size="l"
+                onClick={() => {
+                  setSuccessPost(true)
+                  setSuccess(false)
+                }}
+              >
+                Купить
+              </Button>
+            </div>
+          }
+        />
+      )}
+      {isSuccessPost && (
+        <ModalSuccess
+          isTimer={true}
+          title={'Заявка успешно отправлена!'}
+          text={'Ожидайте подтверждение от HR'}
+          isOpen={isSuccessPost}
+          onClose={() => setSuccessPost(false)}
+        />
+      )}
+    </>
+  )
 }
- 
-export default ProductItemModal;
