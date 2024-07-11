@@ -20,7 +20,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       text: 'Мероприятия',
     },
     {
-      path: getProductPath(),
+      path: getCatalogPath(),
       text: 'Каталог',
     },
   ]

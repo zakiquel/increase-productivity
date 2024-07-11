@@ -2,7 +2,7 @@ export enum Routes {
   MAIN = 'main',
   PROFILE = 'profile',
   CATALOG = 'catalog',
-  EVENTS = '',
+  EVENTS = 'events',
   TRANSACTION = 'transaction',
   PRODUCTS = 'products',
   HISTORY = 'history',
@@ -11,7 +11,7 @@ export enum Routes {
 export const getMainPath = () => '/'
 export const getProfilePath = () => '/profile'
 export const getCatalogPath = () => '/catalog'
-export const getEventsPath = () => '/'
+export const getEventsPath = () => '/events'
 export const getTransactionPath = () => '/profile/transaction'
 export const getProductPath = () => '/catalog/products'
 export const getHistoryPath = () => '/catalog/history'

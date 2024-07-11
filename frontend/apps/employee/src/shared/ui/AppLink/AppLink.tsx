@@ -40,11 +40,11 @@ export const AppLink = memo((props: AppLinkProps) => {
   return (
     <Link
       href={to}
-      className={classNames(cls.AppLink, { [activeClassName]: pathname === to }, [
-        cls[variant],
-        cls[size],
-        className,
-      ])}
+      className={classNames(
+        cls.AppLink,
+        { [activeClassName]: pathname?.startsWith(to) },
+        [cls[variant], cls[size], className]
+      )}
       {...otherProps}
     >
       {children}
