@@ -34,13 +34,15 @@ const getStatusColor = (status: string) => {
   }
 }
 
-export const HistoryItem: React.FC<IHistoryItem> = ({
-  title,
-  img = '',
-  price,
-  statuses,
-  id,
-}) => {
+export const HistoryItem = (props: IHistoryItem) => {
+  const {
+    title,
+    img = '',
+    price,
+    statuses,
+    id,
+  } = props;
+
   const [isOpen, setOpen] = React.useState(false)
   return (
     <motion.div className={cls.HistoryItem}>
