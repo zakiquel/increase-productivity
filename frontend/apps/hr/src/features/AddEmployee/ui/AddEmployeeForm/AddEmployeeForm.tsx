@@ -11,6 +11,7 @@ import {
   FormOutputData,
 } from '../../lib/addEmployeeSchema';
 import dateOptions from '../../lib/dateMask';
+import firstLetterOptions from '../../lib/firstLetterMask';
 import salaryOptions from '../../lib/salaryMask';
 
 import Lock from '@/shared/assets/icons/lock.svg';
@@ -29,6 +30,10 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
   const dobInputRef = useMaskito({ options: dateOptions });
   const doeInputRef = useMaskito({ options: dateOptions });
   const salaryInputRef = useMaskito({ options: salaryOptions });
+  const firstNameInputRef = useMaskito({ options: firstLetterOptions });
+  const patronimycInputRef = useMaskito({ options: firstLetterOptions });
+  const lastnameInputRef = useMaskito({ options: firstLetterOptions });
+  const positionInputRef = useMaskito({ options: firstLetterOptions });
 
   const {
     handleSubmit,
@@ -42,6 +47,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
       lastName: '',
       patronimyc: '',
       dateOfBirth: '',
+      email: '',
       position: '',
       status: 'Работает',
       salary: '',
@@ -83,11 +89,12 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           render={({ field }) => (
             <Input
               {...field}
+              maskedInputRef={firstNameInputRef}
               placeholder='Имя'
               size='l'
               errorMessage={errors.firstName?.message}
-              onChange={event => {
-                field.onChange(event.target.value);
+              onInput={event => {
+                field.onChange(event.currentTarget.value);
                 if (errors.firstName) trigger('firstName');
               }}
             />
@@ -99,11 +106,12 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           render={({ field }) => (
             <Input
               {...field}
+              maskedInputRef={patronimycInputRef}
               placeholder='Отчество'
               size='l'
               errorMessage={errors.patronimyc?.message}
-              onChange={event => {
-                field.onChange(event.target.value);
+              onInput={event => {
+                field.onChange(event.currentTarget.value);
                 if (errors.patronimyc) trigger('patronimyc');
               }}
             />
@@ -115,11 +123,12 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           render={({ field }) => (
             <Input
               {...field}
+              maskedInputRef={lastnameInputRef}
               placeholder='Фамилия'
               size='l'
               errorMessage={errors.lastName?.message}
-              onChange={event => {
-                field.onChange(event.target.value);
+              onInput={event => {
+                field.onChange(event.currentTarget.value);
                 if (errors.lastName) trigger('lastName');
               }}
             />
@@ -143,16 +152,33 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
+          name='email'
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder='Электронная почта'
+              size='l'
+              errorMessage={errors.email?.message}
+              onChange={event => {
+                field.onChange(event.currentTarget.value);
+                if (errors.email) trigger('email');
+              }}
+            />
+          )}
+        />
+        <Controller
           name='position'
           control={control}
           render={({ field }) => (
             <Input
               {...field}
+              maskedInputRef={positionInputRef}
               placeholder='Должность'
               size='l'
               errorMessage={errors.position?.message}
-              onChange={event => {
-                field.onChange(event.target.value);
+              onInput={event => {
+                field.onChange(event.currentTarget.value);
                 if (errors.position) trigger('position');
               }}
             />
@@ -178,7 +204,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
             <Input
               {...field}
               maskedInputRef={salaryInputRef}
-              placeholder='З/П, тыс, руб.'
+              placeholder='З/П, тыс. руб.'
               size='l'
               errorMessage={errors.salary?.message}
               onInput={event => {
