@@ -18,16 +18,18 @@ interface IProductItemModal {
   setOpen: (arg: boolean) => void
 }
 
-export const EventCardModal: React.FC<IProductItemModal & IEventCard> = ({
-  title,
-  img = '',
-  description,
-  price,
-  isOpen,
-  setOpen,
-  date,
-  tag,
-}) => {
+export const EventCardModal = (props: IProductItemModal & IEventCard) => {
+  const {
+    title,
+    img = '',
+    description,
+    price,
+    isOpen,
+    setOpen,
+    date,
+    tag,
+  } = props;
+
   const [currentTag, setCurrentTag] = useState<string>(tag)
   const [isSuccess, setIsSuccess] = useState(false)
 

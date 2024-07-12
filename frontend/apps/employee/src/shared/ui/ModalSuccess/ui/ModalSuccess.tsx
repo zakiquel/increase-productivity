@@ -13,18 +13,20 @@ interface IModalSuccess {
   button?: ReactNode
 }
 
-export const ModalSuccess: React.FC<IModalSuccess> = ({
-  isOpen,
-  isTimer = false,
-  onClose,
-  title = '',
-  text = '',
-  button = (
-    <Button size="l" onClick={onClose}>
-      Отлично!
-    </Button>
-  ),
-}) => {
+export const ModalSuccess = (props: IModalSuccess) => {
+  const {
+    isOpen,
+    isTimer = false,
+    onClose,
+    title = '',
+    text = '',
+    button = (
+      <Button size="l" onClick={onClose}>
+        Отлично!
+      </Button>
+    ),
+  } = props;
+
   const [isTimeOver, setTimeOver] = useState(false)
   useEffect(() => {
     if (isTimer) {

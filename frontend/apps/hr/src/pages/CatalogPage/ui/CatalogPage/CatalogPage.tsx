@@ -3,19 +3,20 @@ import { memo } from 'react';
 
 import { Page } from '@/widgets/Page';
 
-interface AnalyticsPageProps {
+interface CatalogPageProps {
   className?: string;
 }
 
-const AnalyticsPage = (props: AnalyticsPageProps) => {
+const CatalogPage = (props: CatalogPageProps) => {
   const {
     className,
   } = props;
+
   return (
     <Page className={classNames('', {}, [className])}>
-      AnalyticsPage
+      CatalogPage
     </Page>
   );
 };
 
-export default memo(AnalyticsPage);
+export default memo(CatalogPage);

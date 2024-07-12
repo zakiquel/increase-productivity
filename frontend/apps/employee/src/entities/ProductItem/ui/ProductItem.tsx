@@ -14,12 +14,14 @@ interface IProductItem {
   price: number
 }
 
-export const ProductItem: React.FC<IProductItem> = ({
-  title,
-  img = '',
-  description,
-  price,
-}) => {
+export const ProductItem = (props: IProductItem) => {
+  const {
+    title,
+    img = '',
+    description,
+    price,
+  } = props
+
   const [isOpen, setOpen] = useState(false)
   return (
     <Card

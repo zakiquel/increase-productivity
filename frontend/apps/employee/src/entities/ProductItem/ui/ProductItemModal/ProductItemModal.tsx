@@ -1,6 +1,6 @@
 'use client'
 import cls from './ProductItemModal.module.scss'
-import { Button, Text as TextTag } from '@repo/shared/ui'
+import { Button } from '@repo/shared/ui'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
@@ -17,14 +17,16 @@ interface IProductItemModal {
   setOpen: (arg: boolean) => void
 }
 
-export const ProductItemModal: React.FC<IProductItemModal> = ({
-  title,
-  img = '',
-  description,
-  price,
-  isOpen,
-  setOpen,
-}) => {
+export const ProductItemModal = (props: IProductItemModal) => {
+  const {
+    title,
+    img = '',
+    description,
+    price,
+    isOpen,
+    setOpen,
+  } = props;
+
   const [isSuccess, setSuccess] = useState(false)
   const [isSuccessPost, setSuccessPost] = useState(false)
 
