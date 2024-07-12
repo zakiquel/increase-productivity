@@ -22,7 +22,7 @@ export const Namebar = (props: NamebarProps) => {
         </div>
       </div>
       <div className={cls.namebar_buttons}>
-        <Button size='s' variant='secondary'>
+        <Button size='s' variant='secondary' disabled>
           Профиль
         </Button>
         <Button size='s' variant='exit' className={cls.logout_button}>

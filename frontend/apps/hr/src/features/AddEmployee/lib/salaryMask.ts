@@ -1,4 +1,5 @@
 import type { MaskitoOptions } from '@maskito/core';
+import { maskitoCaretGuard } from '@maskito/kit';
 
 export default {
   mask: ({ value }) => {
@@ -11,4 +12,5 @@ export default {
 
     return [...digitsMask, ' ', 'т', 'ы', 'с', '.', ' ', 'р', 'у', 'б', '.'];
   },
+  plugins: [maskitoCaretGuard(value => [0, value.search(/\d /) + 1])],
 } as MaskitoOptions;
