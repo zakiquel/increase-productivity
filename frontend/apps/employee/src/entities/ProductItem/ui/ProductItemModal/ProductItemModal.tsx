@@ -1,12 +1,16 @@
 'use client'
-import cls from './ProductItemModal.module.scss'
-import { Button } from '@repo/shared/ui'
-import Image from 'next/image'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
-import { ModalSuccess } from '@/shared/ui/ModalSuccess'
+
 import { classNames } from '@repo/shared/lib'
+import { Button } from '@repo/shared/ui'
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
+import { useState } from 'react'
+
 import ozon from '../../assets/ozon.png'
+
+import { ModalSuccess } from '@/shared/ui/ModalSuccess'
+
+import cls from './ProductItemModal.module.scss'
 
 interface IProductItemModal {
   title: string
@@ -131,9 +135,9 @@ export const ProductItemModal = (props: IProductItemModal) => {
       )}
       {isSuccessPost && (
         <ModalSuccess
-          isTimer={true}
-          title={'Заявка успешно отправлена!'}
-          text={'Ожидайте подтверждение от HR'}
+          isTimer
+          title="Заявка успешно отправлена!"
+          text="Ожидайте подтверждение от HR"
           isOpen={isSuccessPost}
           onClose={() => setSuccessPost(false)}
         />

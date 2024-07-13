@@ -1,11 +1,9 @@
-
 import { classNames } from '@repo/shared/lib';
 import { Loader, Modal } from '@repo/shared/ui';
 import { Suspense } from 'react';
 
 import { EmployeeCardInfo } from '../../../model/types/employee';
 import { ShowEmployeeFormAsync } from '../ShowEmployeeForm/ShowEmployeeForm.async';
-
 
 interface ShowEmployeeModalProps {
   employee: EmployeeCardInfo;

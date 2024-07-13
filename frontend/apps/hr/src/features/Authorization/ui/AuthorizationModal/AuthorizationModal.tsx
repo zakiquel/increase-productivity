@@ -1,5 +1,5 @@
-import { classNames } from "@repo/shared/lib";
-import { Loader, Modal,  } from "@repo/shared/ui";
+import { classNames } from '@repo/shared/lib';
+import { Loader, Modal } from '@repo/shared/ui';
 import { Suspense } from 'react';
 
 import { AuthorizationFormAsync } from '../AuthorizationForm/AuthorizationForm.async';

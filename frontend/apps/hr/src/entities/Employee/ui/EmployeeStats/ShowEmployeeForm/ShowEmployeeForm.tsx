@@ -1,12 +1,12 @@
 import { classNames } from '@repo/shared/lib';
 import { Avatar, Button, Icon, ProgressBar } from '@repo/shared/ui';
-import React from 'react'
+import React from 'react';
 
 import { EmployeeCardInfo } from '../../../model/types/employee';
 
 import Cancel from '@/shared/assets/icons/cancel-default.svg';
 
-import cls from './ShowEmployeeForm.module.scss'
+import cls from './ShowEmployeeForm.module.scss';
 
 export interface ShowEmployeeFormProps {
   employee: EmployeeCardInfo;
@@ -19,7 +19,8 @@ const ShowEmployeeForm = (props: ShowEmployeeFormProps) => {
   const getChangeClass = (change: number) => {
     if (change > 0) {
       return cls.positive;
-    } if (change < 0) {
+    }
+    if (change < 0) {
       return cls.negative;
     }
     return cls.zero;
@@ -54,9 +55,12 @@ const ShowEmployeeForm = (props: ShowEmployeeFormProps) => {
                 <div className={cls.metrics_stats}>
                   <ProgressBar size={item.value} />
                   <span className={cls.metrics_value}>{item.value}%</span>
-                  <span className={`${cls.metrics_change} ${getChangeClass(item.change)}`}>
-                                        {item.change > 0 && '+'}{item.change}%
-                                    </span>
+                  <span
+                    className={`${cls.metrics_change} ${getChangeClass(item.change)}`}
+                  >
+                    {item.change > 0 && '+'}
+                    {item.change}%
+                  </span>
                 </div>
               </li>
             ))}
@@ -65,11 +69,11 @@ const ShowEmployeeForm = (props: ShowEmployeeFormProps) => {
         <p>Дата анализа</p>
       </div>
       <div className={cls.buttons}>
-        <Button variant='primary'>К сотруднику</Button>
-        <Button variant='outline'>Удалить</Button>
+        <Button variant="primary">К сотруднику</Button>
+        <Button variant="outline">Удалить</Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShowEmployeeForm
+export default ShowEmployeeForm;

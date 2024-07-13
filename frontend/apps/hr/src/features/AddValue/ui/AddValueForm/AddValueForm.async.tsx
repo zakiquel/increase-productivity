@@ -1,7 +1,7 @@
-import { FC, lazy } from "react";
+import { FC, lazy } from 'react';
 
-import { AddValueFormProps } from "./AddValueForm";
+import { AddValueFormProps } from './AddValueForm';
 
 export const AddValueFormAsync = lazy<FC<AddValueFormProps>>(
-  () => import("./AddValueForm")
+  () => import('./AddValueForm'),
 );

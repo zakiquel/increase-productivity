@@ -1,17 +1,19 @@
 'use client'
 
+import { classNames } from '@repo/shared/lib'
 import { Button, Text as TextTag } from '@repo/shared/ui'
-import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
-import cls from './EventCardModal.module.scss'
+import Image from 'next/image'
+import { useCallback, useState } from 'react'
+
+import { IEventCard } from '../../model/types/eventCard'
 
 import event from '@/shared/assets/images/event.png'
-import { IEventCard } from '../../model/types/eventCard'
+import { ModalSuccess } from '@/shared/ui/ModalSuccess'
 import { Tag } from '@/shared/ui/Tag'
 import { TVariant } from '@/shared/ui/Tag/Tag'
-import { useCallback, useState } from 'react'
-import { ModalSuccess } from '@/shared/ui/ModalSuccess'
-import { classNames } from '@repo/shared/lib'
+
+import cls from './EventCardModal.module.scss'
 
 interface IProductItemModal {
   isOpen: boolean
@@ -37,6 +39,7 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
     setCurrentTag('Новые')
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTakePart = () => {
     setOpen(false)
     setIsSuccess(true)
@@ -54,11 +57,13 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
             Отменить
           </Button>
         )
+      default:
+        return null;
     }
-  }, [currentTag])
+  }, [currentTag, getTakePart])
 
   return (
-    <>
+    <div>
       {isOpen ? (
         <AnimatePresence>
           <motion.div
@@ -97,7 +102,7 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
                 </div>
                 <div className={cls.wrapper}>
                   <div className={cls.wrp}>
-                    <span className={cls.price}>{price?.toString() + ' Б'}</span>
+                    <span className={cls.price}>{`${price?.toString()  } Б`}</span>
                     <span className={cls.date}>{date}</span>
                   </div>
                   {getButton()}
@@ -121,13 +126,13 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
         </AnimatePresence>
       ) : (
         <ModalSuccess
-          isTimer={true}
-          title={'Заявка успешно отправлена!'}
-          text={'Ожидайте подтверждение от HR'}
+          isTimer
+          title="Заявка успешно отправлена!"
+          text="Ожидайте подтверждение от HR"
           isOpen={isSuccess}
           onClose={() => setIsSuccess(false)}
         />
       )}
-    </>
+    </div>
   )
 }

@@ -8,14 +8,8 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = (props: ProfilePageProps) => {
-  const { 
-    className 
-  } = props;
-  return (
-    <Page className={classNames('', {}, [className])}>
-      ProfilePage
-    </Page>
-  );
+  const { className } = props;
+  return <Page className={classNames('', {}, [className])}>ProfilePage</Page>;
 };
 
 export default memo(ProfilePage);

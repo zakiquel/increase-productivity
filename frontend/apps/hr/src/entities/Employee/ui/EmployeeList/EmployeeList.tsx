@@ -15,7 +15,7 @@ export const EmployeeList = memo((props: EmployeeListProps) => {
   const { employees, className } = props;
   return (
     <ul className={classNames(cls.EmployeeList, {}, [className])}>
-      {employees.map(employee => (
+      {employees.map((employee) => (
         <li key={employee.id}>
           <EmployeeCard
             id={employee.id}

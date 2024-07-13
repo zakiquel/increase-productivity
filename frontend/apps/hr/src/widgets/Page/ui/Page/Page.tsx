@@ -1,7 +1,6 @@
 import { classNames } from '@repo/shared/lib';
 import { ReactNode } from 'react';
 
-
 import cls from './Page.module.scss';
 
 interface PageProps {
@@ -13,10 +12,6 @@ export const Page = (props: PageProps) => {
   const { className, children } = props;
 
   return (
-    <main
-      className={classNames(cls.Page, {}, [className],)}
-    >
-      {children}
-    </main>
+    <main className={classNames(cls.Page, {}, [className])}>{children}</main>
   );
 };

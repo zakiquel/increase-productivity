@@ -1,8 +1,9 @@
 import { memo, useMemo } from 'react'
 
-import cls from './ProfileSidebar.module.scss'
-import { ProfileSidebarItem } from '../ProfileSidebarItems/ProfileSidebarItems'
 import { sidebarItemProfile } from '../../model'
+import { ProfileSidebarItem } from '../ProfileSidebarItems/ProfileSidebarItems'
+
+import cls from './ProfileSidebar.module.scss'
 
 const sidebarItemsList: sidebarItemProfile[] = [
   {
@@ -15,7 +16,7 @@ export const ProfileSidebar = memo(() => {
   const itemsList = useMemo(
     () =>
       sidebarItemsList.map((item, key) => <ProfileSidebarItem item={item} key={key} />),
-    [sidebarItemsList]
+    []
   )
 
   return (

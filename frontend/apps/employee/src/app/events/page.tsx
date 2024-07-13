@@ -1,7 +1,5 @@
-import EventPage from '@/pages/EventPage/ui/EventPage'
+import { EventPage } from '@/views/EventPage';
 
-const Events = () => {
-  return <EventPage />
-}
+const Events = () => <EventPage />;
 
-export default Events
+export default Events;

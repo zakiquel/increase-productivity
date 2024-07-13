@@ -17,7 +17,7 @@ export const AddEmployeeDrawer = (props: AddEmployeeDrawerProps) => {
       className={classNames('', {}, [className])}
       isOpen={isOpen}
       onClose={onClose}
-      position='right'
+      position="right"
       removeWhenClosed
     >
       <Suspense fallback={<Loader />}>

@@ -1,5 +1,5 @@
 import { classNames } from '@repo/shared/lib';
-import { Loader , Modal } from '@repo/shared/ui';
+import { Loader, Modal } from '@repo/shared/ui';
 import { Suspense } from 'react';
 
 import { RegistrationFormAsync } from '../RegistrationForm/RegistrationForm.async.js';

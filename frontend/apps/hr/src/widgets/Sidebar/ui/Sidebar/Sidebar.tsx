@@ -20,14 +20,14 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       sidebarItemsList.map((item, key) => (
         <SidebarItem item={item} key={key} />
       )),
-    [sidebarItemsList]
+    [sidebarItemsList],
   );
 
   return (
     <aside className={classNames(cls.Sidebar, {}, [className])}>
       <Namebar className={classNames(cls.namebar, {}, [cls.sidebar_block])} />
       <div
-        role='navigation'
+        role="navigation"
         className={classNames(cls.items, {}, [cls.sidebar_block])}
       >
         {itemsList}

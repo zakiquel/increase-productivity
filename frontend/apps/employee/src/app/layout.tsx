@@ -1,20 +1,19 @@
-import { MainLayout } from '@repo/shared/layouts'
-import '@repo/shared/styles'
-import 'material-symbols'
-import { Navbar } from '@/widgets/Navbar'
-import { Sidebar } from '@/widgets/Sidebar'
+import { MainLayout } from '@repo/shared/layouts';
+import '@repo/shared/styles';
+import 'material-symbols';
+import { ReactNode } from 'react';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import { Navbar } from '@/widgets/Navbar';
+import { Sidebar } from '@/widgets/Sidebar';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="app">
-        <MainLayout
-          className="layout"
-          header={<Navbar />}
-          children={children}
-          sidebar={<Sidebar />}
-        />
+        <MainLayout header={<Navbar />} sidebar={<Sidebar />}>
+          {children}
+        </MainLayout>
       </body>
     </html>
-  )
+  );
 }

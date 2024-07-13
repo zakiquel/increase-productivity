@@ -1,8 +1,10 @@
 'use client'
-import { AnimatePresence, motion } from 'framer-motion'
-import cls from './ModalSuccess.module.scss'
+
 import { Button, Text as TextTag } from '@repo/shared/ui'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode, useEffect, useState } from 'react'
+
+import cls from './ModalSuccess.module.scss'
 
 interface IModalSuccess {
   isOpen: boolean
@@ -28,6 +30,7 @@ export const ModalSuccess = (props: IModalSuccess) => {
   } = props;
 
   const [isTimeOver, setTimeOver] = useState(false)
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (isTimer) {
       const timer = setTimeout(() => {
@@ -35,9 +38,9 @@ export const ModalSuccess = (props: IModalSuccess) => {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [])
+  }, [isTimer])
   return (
-    <>
+    <div>
       {isOpen && !isTimeOver && (
         <AnimatePresence>
           <motion.div
@@ -63,6 +66,6 @@ export const ModalSuccess = (props: IModalSuccess) => {
           </motion.div>
         </AnimatePresence>
       )}
-    </>
+    </div>
   )
 }

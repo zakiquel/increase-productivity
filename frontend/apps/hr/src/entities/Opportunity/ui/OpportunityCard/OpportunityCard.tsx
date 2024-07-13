@@ -10,13 +10,14 @@ interface OpportunityCardProps {
 }
 
 export const OpportunityCard = memo((props: OpportunityCardProps) => {
-  const {
-    id,
-    title,
-  } = props;
+  const { id, title } = props;
 
   return (
-    <Card variant='light' padding='24' className={classNames(cls.OpportunityCard, {}, [])}>
+    <Card
+      variant="light"
+      padding="24"
+      className={classNames(cls.OpportunityCard, {}, [])}
+    >
       <span>({id})</span>
       <p>{title}</p>
     </Card>

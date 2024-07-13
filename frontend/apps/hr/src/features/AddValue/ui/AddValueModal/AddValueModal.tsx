@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 
 import { AddValueFormAsync } from '../AddValueForm/AddValueForm.async';
 
-
 interface AddValueModalProps {
   className?: string;
   isOpen: boolean;

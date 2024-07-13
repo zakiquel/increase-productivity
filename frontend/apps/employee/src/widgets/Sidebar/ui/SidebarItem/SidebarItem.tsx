@@ -2,8 +2,9 @@ import { memo } from 'react'
 
 import { SidebarItemType } from '../../model/types/sidebar'
 
-import cls from './SidebarItem.module.scss'
 import { AppLink } from '@/shared/ui/AppLink'
+
+import cls from './SidebarItem.module.scss'
 
 interface SidebarItemProps {
   item: SidebarItemType

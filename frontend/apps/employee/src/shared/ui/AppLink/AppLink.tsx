@@ -1,12 +1,13 @@
 'use client'
 
-import { memo, ReactNode } from 'react'
-import { usePathname } from 'next/navigation'
-
 import { classNames } from '@repo/shared/lib'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { memo, ReactNode } from 'react'
+
 
 import cls from './AppLink.module.scss'
-import Link from 'next/link'
+
 
 export type AppLinkVariant =
   | 'primary'

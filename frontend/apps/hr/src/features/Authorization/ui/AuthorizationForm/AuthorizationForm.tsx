@@ -45,11 +45,11 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
   }, [onReset, reset]);
 
   const onSubmit: SubmitHandler<AuthorizationFormSchema> = useCallback(
-    data => {
+    () => {
       reset();
       onSuccess();
     },
-    [reset, onSuccess]
+    [reset, onSuccess],
   );
 
   const handleVisibility = () => {
@@ -59,25 +59,25 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
   return (
     <div className={classNames(cls.AuthorizationForm, {}, [className])}>
       <FormHeader
-        title='Авторизация'
+        title="Авторизация"
         onClose={onResetClick}
         className={cls.form_header}
       />
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={cls.form_inputs}>
           <Controller
-            name='email'
+            name="email"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Почта'
-                placeholder='@e-mail.ru'
-                size='s'
-                type='email'
-                autoComplete='email'
+                label="Почта"
+                placeholder="@e-mail.ru"
+                size="s"
+                type="email"
+                autoComplete="email"
                 errorMessage={errors.email?.message}
-                onChange={event => {
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.email) trigger('email');
                 }}
@@ -85,18 +85,18 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
             )}
           />
           <Controller
-            name='password'
+            name="password"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Пароль'
-                size='s'
+                label="Пароль"
+                size="s"
                 type={showPassword ? 'text' : 'password'}
-                autoComplete='current-password'
+                autoComplete="current-password"
                 errorMessage={errors.password?.message}
-                placeholder='**********'
-                onChange={event => {
+                placeholder="**********"
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.password) trigger('password');
                 }}
@@ -104,7 +104,7 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
                   <Icon
                     Svg={showPassword ? Invisible : Visible}
                     clickable
-                    onMouseDown={event => event.preventDefault()}
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => handleVisibility()}
                     tabIndex={-1}
                   />
@@ -114,14 +114,14 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
           />
         </div>
         <AppLink
-          to='*'
-          target='_blank'
-          size='s'
+          to="*"
+          target="_blank"
+          size="s"
           className={cls.forgot_password}
         >
           Забыли пароль?
         </AppLink>
-        <Button type='submit' disabled={!isValid} className={cls.form_button}>
+        <Button type="submit" disabled={!isValid} className={cls.form_button}>
           Войти
         </Button>
       </form>

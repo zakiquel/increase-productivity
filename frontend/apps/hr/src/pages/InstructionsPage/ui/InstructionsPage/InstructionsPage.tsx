@@ -1,4 +1,4 @@
-import { classNames } from "@repo/shared/lib";
+import { classNames } from '@repo/shared/lib';
 import { memo } from 'react';
 
 import { Page } from '@/widgets/Page';
@@ -8,13 +8,9 @@ interface InstructionsPageProps {
 }
 
 const InstructionsPage = (props: InstructionsPageProps) => {
-  const {
-    className,
-  } = props;
+  const { className } = props;
   return (
-    <Page className={classNames('', {}, [className])}>
-      InstructionsPage
-    </Page>
+    <Page className={classNames('', {}, [className])}>InstructionsPage</Page>
   );
 };
 

@@ -72,8 +72,12 @@ export const ChartCard = memo((props: ChartCardProps) => {
   }, [datasets, labels]);
 
   return (
-    <Card variant='light' padding='16' className={classNames(cls.ChartCard)}>
-      <Text title={title} size='s' className={cls.chart_title} />
+    <Card
+      variant="light"
+      padding="16"
+      className={classNames(cls.ChartCard)}
+    >
+      <Text title={title} size="s" className={cls.chart_title} />
       <div className={cls.canvas}>
         {datasets ? (
           <canvas ref={ctx} className={cls.chart_canvas} />
@@ -83,10 +87,10 @@ export const ChartCard = memo((props: ChartCardProps) => {
       </div>
       {withButtons && (
         <div className={cls.button_group}>
-          <Button variant='secondary' size='s'>
+          <Button variant="secondary" size="s">
             К ценностям
           </Button>
-          <Button variant='ghost' size='s'>
+          <Button variant="ghost" size="s">
             Редактировать
           </Button>
         </div>

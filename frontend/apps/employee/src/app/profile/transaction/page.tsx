@@ -1,7 +1,5 @@
-import PersonalPage from '@/pages/PersonalPage/ui/PersonalPage'
+import { PersonalPage } from '@/views/PersonalPage';
 
-const Profile = () => {
-  return <PersonalPage />
-}
+const Profile = () => <PersonalPage />;
 
-export default Profile
+export default Profile;

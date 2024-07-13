@@ -1,14 +1,15 @@
-import { ReactNode } from 'react'
-import cls from './Tag.module.scss'
 import { classNames } from '@repo/shared/lib'
+import { ReactNode } from 'react'
 
-export type TVariant = 'Новые' | 'Ожидание' | 'Отказ' | 'Отказ'
+import cls from './Tag.module.scss'
+
+export type TVariant = 'NEW' | 'WAITING' | 'REJECTED' | 'APPROVED'
 
 const TagType = {
-  Новые: 'new',
-  Ожидание: 'wait',
-  Отказ: 'refused',
-  Одобрено: 'approved',
+  NEW: 'new',
+  WAITING: 'wait',
+  REJECTED: 'refused',
+  APPROVED: 'approved',
 }
 
 interface ITag {
@@ -17,10 +18,8 @@ interface ITag {
   TagVariant?: TVariant
 }
 
-export const Tag = ({ children, className, TagVariant = 'Новые' }: ITag) => {
-  return (
+export const Tag = ({ children, className, TagVariant = 'NEW' }: ITag) => (
     <span className={classNames(cls.tag, {}, [className, cls[TagType[TagVariant]]])}>
       {children}
     </span>
   )
-}

@@ -1,6 +1,6 @@
-import { Card, File, Text } from "@repo/shared/ui";
+import { Card, File, Text } from '@repo/shared/ui';
 
-import cls from "./EmployeeDocuments.module.scss";
+import cls from './EmployeeDocuments.module.scss';
 
 export const EmployeeDocuments = () => (
   <Card variant="light" padding="24" className={cls.EmployeeDocuments}>

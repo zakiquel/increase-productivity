@@ -1,1 +1,1 @@
-export { ValuesAndQualities } from './ValuesAndQualities'
+export { ValuesAndQualities } from './ValuesAndQualities';

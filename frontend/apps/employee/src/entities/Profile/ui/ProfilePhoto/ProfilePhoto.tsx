@@ -10,7 +10,7 @@ export const ProfilePhoto = () => (
     style={{ borderRadius: '4px' }}
   >
     <Avatar size={143} alt="profile-photo" />
-    <TextTag size="s" text={'Невский Александр Иванович'} />
-    <TextTag size="xs" text={'Веб-разработчик'} />
+    <TextTag size="s" text="Невский Александр Иванович" />
+    <TextTag size="xs" text="Веб-разработчик" />
   </Card>
 )

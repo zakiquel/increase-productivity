@@ -1,8 +1,9 @@
-import { Card } from '@repo/shared/ui'
+import { Card , Text as TextTag } from '@repo/shared/ui'
+
+import { ProfileItem } from '../../model/enums/enum'
 
 import cls from './ProfileInfo.module.scss'
-import { ProfileItem } from '../../model/enums/enum'
-import { Text as TextTag } from '@repo/shared/ui'
+
 
 interface IData {
   title: ProfileItem
@@ -46,7 +47,7 @@ export const ProfileInfo = () => (
     className={cls.Profile}
     style={{ borderRadius: '4px' }}
   >
-    <TextTag size="s" text={'Информация'} />
+    <TextTag size="s" text="Информация" />
     <dl>
       {getProfileItem().map((d, key) => (
         <div key={key}>

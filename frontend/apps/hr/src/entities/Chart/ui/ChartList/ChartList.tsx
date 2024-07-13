@@ -140,24 +140,24 @@ const charts: Chart[] = [
 export const ChartList = memo(({ data }: { data?: Dataset[] }) => (
   <section className={cls.ChartList}>
     {!data && (
-      <Card variant='light' padding='16' className={cls.hello_card}>
-        <Text text='Привет!' size='m' className={cls.hello} />
+      <Card variant="light" padding="16" className={cls.hello_card}>
+        <Text text="Привет!" size="m" className={cls.hello} />
         <Text
-          text='На этой странице будет отображаться главная информация о компании. 
-          Заполни раздел «Ценности и Метрики», чтобы мы могли показать тебе статистику.'
-          size='m'
+          text="На этой странице будет отображаться главная информация о компании.
+                  Заполни раздел «Ценности и Метрики», чтобы мы могли показать тебе статистику."
+          size="m"
           className={cls.hello_text}
         />
-        <Button size='s' className={cls.hello_button}>
+        <Button size="s" className={cls.hello_button}>
           Кнопка
         </Button>
       </Card>
     )}
     <div className={cls.employees_metrics}>
-      <ChartCard title='Рейтинг коллектива по ценностям' labels={[]} />
-      <ChartCard title='Сотрудники с наибольшим влиянием' labels={[]} />
+      <ChartCard title="Рейтинг коллектива по ценностям" labels={[]} />
+      <ChartCard title="Сотрудники с наибольшим влиянием" labels={[]} />
     </div>
-    <ChartCard title='Ценности компании' labels={[]} withButtons />
-    <ChartCard title='Метрики компании' labels={[]} withButtons />
+    <ChartCard title="Ценности компании" labels={[]} withButtons />
+    <ChartCard title="Метрики компании" labels={[]} withButtons />
   </section>
 ));

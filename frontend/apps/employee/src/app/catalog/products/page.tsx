@@ -1,7 +1,5 @@
-import CatalogPage from '@/pages/CatalogPage/ui/CatalogPage'
+import { CatalogPage } from '@/views/CatalogPage';
 
-const Catalog = () => {
-  return <CatalogPage />
-}
+const Catalog = () => <CatalogPage />;
 
-export default Catalog
+export default Catalog;

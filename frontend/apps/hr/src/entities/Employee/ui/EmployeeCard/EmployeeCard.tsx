@@ -21,18 +21,18 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
 
   return (
     <Card
-      variant='light'
-      padding='24'
+      variant="light"
+      padding="24"
       className={classNames(cls.EmployeeCard, mods, [])}
     >
       <div className={cls.employee_info}>
         <h3>{name}</h3>
-        <Text text={personRole} size='l' />
+        <Text text={personRole} size="l" />
       </div>
       <div className={cls.standard_info}>
         {standard ? (
           <>
-            <Text text={`Эталон ${standard}%`} size='l' align='center' />
+            <Text text={`Эталон ${standard}%`} size="l" align="center" />
             <ProgressBar size={standard} />
           </>
         ) : (
@@ -43,8 +43,8 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
                   Эталон 0%<span>(Нет информации)</span>
                 </>
               }
-              size='l'
-              align='center'
+              size="l"
+              align="center"
             />
             <ProgressBar size={0} />
           </>
