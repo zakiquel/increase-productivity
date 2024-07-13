@@ -1,7 +1,7 @@
-import { classNames } from "@repo/shared/lib";
-import { Button , Icon } from '@repo/shared/ui';
+import { classNames } from '@repo/shared/lib';
+import { Button, Icon } from '@repo/shared/ui';
 
-import ErrorIcon from "@/shared/assets/icons/error404.svg";
+import ErrorIcon from '@/shared/assets/icons/error404.svg';
 
 import cls from './PageError.module.scss';
 
@@ -10,7 +10,6 @@ interface ErrorPageProps {
 }
 
 export const PageError = ({ className }: ErrorPageProps) => {
-
   const reloadPage = () => {
     window.location.reload();
   };

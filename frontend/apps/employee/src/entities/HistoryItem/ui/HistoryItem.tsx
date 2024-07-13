@@ -1,10 +1,13 @@
 'use client'
+
+import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
-import cls from './HistoryItem.module.scss'
+import React from 'react'
+
 import ozon from '../assets/ozon.png'
 
-import React from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import cls from './HistoryItem.module.scss'
+
 
 interface IStatus {
   time: string
@@ -49,7 +52,8 @@ export const HistoryItem = (props: IHistoryItem) => {
       <div className={cls.wrapper}>
         <div className={cls.body}>
           <div className={cls.head}>
-            <Image className={cls.img} src={ozon} alt={title} width={40} height={40} />
+            <Image className={cls.img} src={ozon} alt={title} width={40}
+height={40} />
             <h3 className={cls.title}>{title}</h3>
           </div>
           <p className={cls.price}>{price} Б</p>

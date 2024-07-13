@@ -1,13 +1,12 @@
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import App from "./app/App";
+import App from './app/App';
 
-import "@repo/shared/styles"
+import '@repo/shared/styles';
 
-import { ErrorBoundary } from "@/app/providers/ErrorBoundary";
-import { StoreProvider } from "@/app/providers/StoreProvider";
-
+import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
+import { StoreProvider } from '@/app/providers/StoreProvider';
 
 const container = document.getElementById('root');
 
@@ -26,5 +25,5 @@ root.render(
         <App />
       </ErrorBoundary>
     </StoreProvider>
-  </BrowserRouter>
-)
+  </BrowserRouter>,
+);

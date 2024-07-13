@@ -1,5 +1,6 @@
 frontend/.turbo
 frontend/build
 frontend/node_modules
+/node_modules
 .idea
 docker/backend/mysql

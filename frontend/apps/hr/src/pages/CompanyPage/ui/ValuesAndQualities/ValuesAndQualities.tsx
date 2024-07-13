@@ -72,8 +72,9 @@ export const ValuesAndQualities = memo(() => {
 
   return (
     <div className={cls.ValuesAndQualities}>
-      <Card variant='light' padding='32' border='normal'>
+      <Card variant="light" padding="32" border="normal">
         <h2>Ценности и качества</h2>
+
         <p>Добавьте до 8 ценностей, к каждой ценности до 5 качеств.</p>
       </Card>
       <ValueList
@@ -82,7 +83,7 @@ export const ValuesAndQualities = memo(() => {
         cardAction={handleEditQualities}
       />
       <Button
-        size='l'
+        size="l"
         fullWidth
         onClick={() => setIsValueModal(true)}
         className={cls.addValue_button}

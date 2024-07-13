@@ -3,7 +3,6 @@ import { classNames } from '@repo/shared/lib';
 import { Value } from '../../model/types/value';
 import { ValueCard } from '../ValueCard/ValueCard';
 
-
 import cls from './ValueList.module.scss';
 
 interface ValueListProps {
@@ -14,16 +13,11 @@ interface ValueListProps {
 }
 
 export const ValueList = (props: ValueListProps) => {
-  const {
-    values,
-    isPreset,
-    className,
-    cardAction,
-  } = props;
+  const { values, isPreset, className, cardAction } = props;
 
   return (
     <ul className={classNames(cls.value_cards, {}, [className])}>
-      {values.map(value => (
+      {values.map((value) => (
         <li key={value.id}>
           <ValueCard
             value={value}
@@ -33,5 +27,5 @@ export const ValueList = (props: ValueListProps) => {
         </li>
       ))}
     </ul>
-  )
+  );
 };

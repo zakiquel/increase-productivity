@@ -42,7 +42,7 @@ const AddValueForm = (props: AddValueFormProps) => {
   return !submitSuccess ? (
     <div className={cls.AddValueForm}>
       <FormHeader
-        title='Добавление ценности'
+        title="Добавление ценности"
         onClose={handleClose}
         className={cls.form_header}
       />
@@ -50,14 +50,14 @@ const AddValueForm = (props: AddValueFormProps) => {
         <div className={cls.form_inputs}>
           <Input
             value={value}
-            placeholder='Например, ответственность'
-            onChange={event => setValue(event.target.value)}
-            size='s'
+            placeholder="Например, ответственность"
+            onChange={(event) => setValue(event.target.value)}
+            size="s"
             autofocus
           />
         </div>
         <Button
-          type='submit'
+          type="submit"
           disabled={value === ''}
           className={cls.form_button}
         >
@@ -67,7 +67,7 @@ const AddValueForm = (props: AddValueFormProps) => {
     </div>
   ) : (
     <SuccessMessage
-      title='Ценность успешно добавлена!'
+      title="Ценность успешно добавлена!"
       onClose={handleClose}
       countdown={countdown}
       className={cls.success_message}

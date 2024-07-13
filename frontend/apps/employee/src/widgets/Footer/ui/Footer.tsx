@@ -1,11 +1,12 @@
+import { classNames } from '@repo/shared/lib'
+import { Icon } from '@repo/shared/ui'
+import Link from 'next/link'
 import { memo } from 'react'
 
 import tophr from '@/shared/assets/icons/top-hr.svg'
-import { classNames } from '@repo/shared/lib'
-import { Icon } from '@repo/shared/ui'
 
 import cls from './Footer.module.scss'
-import Link from 'next/link'
+
 
 interface FooterProps {
   className?: string

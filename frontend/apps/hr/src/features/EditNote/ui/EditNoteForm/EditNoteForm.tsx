@@ -32,7 +32,7 @@ const EditNoteForm = (props: EditNoteFormProps) => {
 
       <TextArea
         value={newNote}
-        onChange={event => setNewNote(event.target.value)}
+        onChange={(event) => setNewNote(event.target.value)}
         maxLength={300}
       />
       <Button

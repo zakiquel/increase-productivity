@@ -1,20 +1,21 @@
+import { classNames } from '@repo/shared/lib'
 import { memo, useMemo } from 'react'
 
+import { SidebarItemType } from "../../model/types/sidebar";
 import { ProfileBlock } from '../ProfileBlock/ProfileBlock'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 
-import { classNames } from '@repo/shared/lib'
+
+import { getCatalogPath, getEventsPath } from '@/shared/const/route'
 
 import cls from './Sidebar.module.scss'
-import { SidebarItemType } from '../../model/types/sidebar'
-import { getCatalogPath, getEventsPath, getProductPath } from '@/shared/const/route'
 
 interface SidebarProps {
   className?: string
 }
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
-  const sidebarItemsList: SidebarItemType[] = [
+  const sidebarItemsList: SidebarItemType[] = useMemo(() => [
     {
       path: getEventsPath(),
       text: 'Мероприятия',
@@ -23,7 +24,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       path: getCatalogPath(),
       text: 'Каталог',
     },
-  ]
+  ], []);
 
   const itemsList = useMemo(
     () => sidebarItemsList.map((item, key) => <SidebarItem item={item} key={key} />),

@@ -1,7 +1,5 @@
-import HistoryPage from '@/pages/HistoryPage/ui/HistoryPage'
+import { HistoryPage } from '@/views/HistoryPage';
 
-const History = () => {
-  return <HistoryPage />
-}
+const History = () => <HistoryPage />;
 
-export default History
+export default History;

@@ -1,6 +1,6 @@
+import { classNames } from '@repo/shared/lib'
 import { ReactNode } from 'react'
 
-import { classNames } from '@repo/shared/lib'
 
 import cls from './Page.module.scss'
 

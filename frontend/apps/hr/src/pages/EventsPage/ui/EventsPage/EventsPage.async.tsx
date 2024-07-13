@@ -1,5 +1,3 @@
-import { lazy } from 'react'
+import { lazy } from 'react';
 
-
-export const EventsPageAsync = lazy(() => import('./EventsPage'))
-
+export const EventsPageAsync = lazy(() => import('./EventsPage'));

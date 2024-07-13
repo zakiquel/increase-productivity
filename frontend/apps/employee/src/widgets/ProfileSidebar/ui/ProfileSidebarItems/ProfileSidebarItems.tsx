@@ -1,4 +1,5 @@
 import { memo } from 'react'
+
 import { sidebarItemProfile } from '../../model/types/sidebarProfile'
 
 import { AppLink } from '@/shared/ui/AppLink'

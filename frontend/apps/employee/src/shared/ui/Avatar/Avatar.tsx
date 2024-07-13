@@ -1,11 +1,11 @@
+import { classNames, Mods } from '@repo/shared/lib'
+import { AppImage , Icon } from '@repo/shared/ui'
 import { CSSProperties, useMemo } from 'react'
 
-import { AppImage } from '@repo/shared/ui'
-import { Icon } from '@repo/shared/ui'
+
 
 import UserIcon from '../../assets/icons/user-filled.svg'
 
-import { classNames, Mods } from '@repo/shared/lib'
 
 import cls from './Avatar.module.scss'
 

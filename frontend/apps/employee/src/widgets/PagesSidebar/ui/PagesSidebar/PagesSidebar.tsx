@@ -1,9 +1,14 @@
 'use client'
-import { useMemo } from 'react'
-import { PagesSidebarItems } from '../PagesSidebarItems/PagesSidebarItems'
-import cls from './PagesSidebar.module.scss'
+
 import { usePathname } from 'next/navigation'
+import { useMemo } from 'react'
+
+import { PagesSidebarItems } from '../PagesSidebarItems/PagesSidebarItems'
+
 import { pathNames } from '@/shared/const/route'
+
+import cls from './PagesSidebar.module.scss'
+
 interface IItems {
   items: (typeof pathNames)[0][]
 }
@@ -21,7 +26,7 @@ export const PageSidebar = (props: IItems) => {
           active={params === data.pathName}
         />
       )),
-    [items]
+    [items, params]
   )
   return (
     <aside className={cls.aside}>

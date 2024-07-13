@@ -1,7 +1,7 @@
-import { FC, lazy } from "react";
+import { FC, lazy } from 'react';
 
-import { AddEmployeeFormProps } from "./AddEmployeeForm";
+import { AddEmployeeFormProps } from './AddEmployeeForm';
 
 export const AddEmployeeFormAsync = lazy<FC<AddEmployeeFormProps>>(
-  () => import("./AddEmployeeForm")
+  () => import('./AddEmployeeForm'),
 );

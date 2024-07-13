@@ -1,13 +1,13 @@
 import { type RouteProps } from 'react-router-dom';
 
-import { CatalogPage } from "@/pages/CatalogPage";
-import { CompanyPage } from "@/pages/CompanyPage";
-import { EmployeePage } from "@/pages/EmployeePage";
-import { EventsPage } from "@/pages/EventsPage";
-import { InstructionsPage } from "@/pages/InstructionsPage";
-import { MainPage } from "@/pages/MainPage";
-import { NotFoundPage } from "@/pages/NotFoundPage";
-import { ProfilePage } from "@/pages/ProfilePage";
+import { CatalogPage } from '@/pages/CatalogPage';
+import { CompanyPage } from '@/pages/CompanyPage';
+import { EmployeePage } from '@/pages/EmployeePage';
+import { EventsPage } from '@/pages/EventsPage';
+import { InstructionsPage } from '@/pages/InstructionsPage';
+import { MainPage } from '@/pages/MainPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import { ProfilePage } from '@/pages/ProfilePage';
 import {
   AppRoutes,
   getRouteCompany,
@@ -16,40 +16,40 @@ import {
   getRouteCatalog,
   getRouteInstructions,
   getRouteMain,
-  getRouteProfile
-} from '@/shared/const/router'
+  getRouteProfile,
+} from '@/shared/const/router';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {
     path: getRouteMain(),
-    element: <MainPage />
+    element: <MainPage />,
   },
   [AppRoutes.PROFILE]: {
     path: getRouteProfile(':id'),
-    element: <ProfilePage />
+    element: <ProfilePage />,
   },
   [AppRoutes.COMPANY]: {
     path: getRouteCompany(':id'),
-    element: <CompanyPage />
+    element: <CompanyPage />,
   },
   [AppRoutes.EMPLOYEE]: {
     path: getRouteEmployee(':id'),
-    element: <EmployeePage />
+    element: <EmployeePage />,
   },
   [AppRoutes.EVENTS]: {
     path: getRouteEvents(),
-    element: <EventsPage />
+    element: <EventsPage />,
   },
   [AppRoutes.CATALOG]: {
     path: getRouteCatalog(),
-    element: <CatalogPage />
+    element: <CatalogPage />,
   },
   [AppRoutes.INSTRUCTIONS]: {
     path: getRouteInstructions(),
-    element: <InstructionsPage />
+    element: <InstructionsPage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: '*',
-    element: <NotFoundPage />
-  }
-}
+    element: <NotFoundPage />,
+  },
+};

@@ -22,15 +22,15 @@ export const EmployeesSection = memo((props: EmployesSectionProps) => {
   return (
     <section className={classNames(cls.EmployeesSection, {}, [className])}>
       <Card
-        variant='light'
-        padding='16'
+        variant="light"
+        padding="16"
         className={classNames(cls.employee_control, {}, [className])}
       >
         <Input
           disabled={disabled}
-          placeholder='Найти сотрудника'
+          placeholder="Найти сотрудника"
           addonLeft={<Icon Svg={Search} width={18} height={18} />}
-          size='l'
+          size="l"
           className={cls.control_search}
         />
         <SortEmployees
@@ -39,8 +39,8 @@ export const EmployeesSection = memo((props: EmployesSectionProps) => {
           disabled={disabled}
         />
         <Button
-          variant='secondary'
-          size='m'
+          variant="secondary"
+          size="m"
           className={cls.control_button}
           onClick={() => setIsAddEmployee(true)}
         >
@@ -49,15 +49,15 @@ export const EmployeesSection = memo((props: EmployesSectionProps) => {
       </Card>
       {disabled ? (
         <div className={cls.start_layout}>
-          <Card variant='light' padding='16'>
-            <Text title='Сотрудники ' size='s' className={cls.start_title} />
+          <Card variant="light" padding="16">
+            <Text title="Сотрудники " size="s" className={cls.start_title} />
             <Text
-              text='Добавь сотрудников и после заполнения раздела «Ценности и Метрики»,
-             мы сможем выводить информацию по каждому сотруднику'
-              size='m'
+              text="Добавь сотрудников и после заполнения раздела «Ценности и Метрики»,
+             мы сможем выводить информацию по каждому сотруднику"
+              size="m"
             />
             <Button
-              size='s'
+              size="s"
               onClick={() => setIsAddEmployee(true)}
               className={cls.start_button}
             >

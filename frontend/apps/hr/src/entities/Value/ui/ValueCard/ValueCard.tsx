@@ -4,7 +4,6 @@ import React from 'react';
 
 import { Value } from '../../model/types/value';
 
-
 import cls from './ValueCard.module.scss';
 
 interface ValueCardProps {
@@ -14,11 +13,7 @@ interface ValueCardProps {
 }
 
 export const ValueCard = (props: ValueCardProps) => {
-  const {
-    value,
-    isPreset,
-    onButtonClick
-  } = props;
+  const { value, isPreset, onButtonClick } = props;
 
   const cardMods: Mods = {
     [cls.isEmpty]: Boolean(value.qualities.length === 0),
@@ -29,8 +24,8 @@ export const ValueCard = (props: ValueCardProps) => {
       if (isPreset)
         return (
           <Button
-            variant='secondary'
-            size='s'
+            variant="secondary"
+            size="s"
             className={cls.value_button}
             onClick={() => onButtonClick(value)}
           >
@@ -41,8 +36,8 @@ export const ValueCard = (props: ValueCardProps) => {
       if (value.qualities.length !== 0)
         return (
           <Button
-            variant='secondary'
-            size='s'
+            variant="secondary"
+            size="s"
             className={cls.value_button}
             onClick={() => onButtonClick(value)}
           >
@@ -52,8 +47,8 @@ export const ValueCard = (props: ValueCardProps) => {
 
       return (
         <Button
-          variant='outline'
-          size='m'
+          variant="outline"
+          size="m"
           className={cls.value_button}
           onClick={() => onButtonClick(value)}
         >
@@ -66,17 +61,15 @@ export const ValueCard = (props: ValueCardProps) => {
 
   return (
     <Card
-      variant='light'
-      padding='32'
-      border='normal'
+      variant="light"
+      padding="32"
+      border="normal"
       className={classNames(cls.ValueCard, cardMods, [])}
     >
       <h3>{value.name}</h3>
       <ul className={cls.values_list}>
         {value.qualities.map((item, index) => (
-          <li key={index}>
-            {item.name}
-          </li>
+          <li key={index}>{item.name}</li>
         ))}
       </ul>
       {cardButton()}

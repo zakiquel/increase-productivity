@@ -24,12 +24,12 @@ export const SortEmployees = memo((props: SortEmployeesProps) => {
         sorted = [...employees].sort(
           (a, b) =>
             new Date(a.personalInfo.dateOfEmployment).getTime() -
-            new Date(b.personalInfo.dateOfEmployment).getTime()
+            new Date(b.personalInfo.dateOfEmployment).getTime(),
         );
         break;
       case 'byAlphabet':
         sorted = [...employees].sort((a, b) =>
-          a.personalInfo.lastName.localeCompare(b.personalInfo.lastName)
+          a.personalInfo.lastName.localeCompare(b.personalInfo.lastName),
         );
         break;
       default:
@@ -41,7 +41,7 @@ export const SortEmployees = memo((props: SortEmployeesProps) => {
 
   return (
     <SegmentedControl
-      name='sort'
+      name="sort"
       segments={segments}
       callback={handleSortChange}
       disabled={disabled}

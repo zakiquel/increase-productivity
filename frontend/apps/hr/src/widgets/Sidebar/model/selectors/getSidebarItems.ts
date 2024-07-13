@@ -2,7 +2,9 @@ import { SidebarItemType } from '../types/sidebar';
 
 import {
   getRouteCatalog,
-  getRouteCompany, getRouteEvents, getRouteInstructions,
+  getRouteCompany,
+  getRouteEvents,
+  getRouteInstructions,
   getRouteMain,
 } from '@/shared/const/router';
 
@@ -31,4 +33,4 @@ export const getSidebarItems = () => {
   ];
 
   return sidebarItemsList;
-}
+};

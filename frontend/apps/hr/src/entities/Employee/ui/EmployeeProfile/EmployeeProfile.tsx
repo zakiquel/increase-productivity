@@ -1,5 +1,13 @@
-import { classNames, Mods } from "@repo/shared/lib";
-import { AppImage, Avatar, Button, Card, Icon, Input, Text } from "@repo/shared/ui";
+import { classNames, Mods } from '@repo/shared/lib';
+import {
+  AppImage,
+  Avatar,
+  Button,
+  Card,
+  Icon,
+  Input,
+  Text,
+} from '@repo/shared/ui';
 import { useState } from 'react';
 
 import { PersonalInfo } from '../../model/types/employee';
@@ -23,13 +31,13 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
   };
 
   return (
-    <Card variant='light' padding='32' className={cls.EmployeeProfile}>
+    <Card variant="light" padding="32" className={cls.EmployeeProfile}>
       <div className={cls.profile_header}>
         <div className={cls.employee_name}>
           {!showDetails && <Avatar src={avatar} size={40} />}
           <Text
             title={`${data.firstName} ${data.lastName}`}
-            size='s'
+            size="s"
             className={cls.title}
           />
         </div>
@@ -41,23 +49,23 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
           width={24}
           height={24}
           clickable
-          onClick={() => setShowDetails(prev => !prev)}
+          onClick={() => setShowDetails((prev) => !prev)}
         />
       </div>
       {showDetails && (
         <div className={cls.profile_info}>
           <div className={cls.info_fields}>
-            <Input readonly label='Text' value={data.firstName} size='s' />
-            <Input readonly label='Text' value={data.lastName} size='s' />
-            <Input readonly label='Text' value={data.dateOfBirth} size='s' />
-            <Input readonly label='Text' value={data.position} size='s' />
-            <Input readonly label='Text' value={data.workExperience} size='s' />
-            <Input readonly label='Text' value={data.salary} size='s' />
-            <Input readonly label='Text' value={data.email} size='s' />
-            <Input readonly label='Text' value={data.phoneNumber} size='s' />
+            <Input readonly label="Text" value={data.firstName} size="s" />
+            <Input readonly label="Text" value={data.lastName} size="s" />
+            <Input readonly label="Text" value={data.dateOfBirth} size="s" />
+            <Input readonly label="Text" value={data.position} size="s" />
+            <Input readonly label="Text" value={data.workExperience} size="s" />
+            <Input readonly label="Text" value={data.salary} size="s" />
+            <Input readonly label="Text" value={data.email} size="s" />
+            <Input readonly label="Text" value={data.phoneNumber} size="s" />
             <div className={cls.info_fields_buttons}>
               <Button>Сформировать отчет</Button>
-              <Button variant='outline'>Редактировать</Button>
+              <Button variant="outline">Редактировать</Button>
             </div>
           </div>
           <div className={cls.profile_photo}>

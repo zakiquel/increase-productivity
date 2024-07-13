@@ -10,11 +10,11 @@ export const authorizationFormSchema = z.object({
     .string()
     .max(24, 'Пароль не должен содержать больше 24 символов')
     .min(6, 'Пароль должен включать минимум 6 символов')
-    .refine(value => /^(?=.*[A-Za-z])(?=.*\d)/.test(value), {
+    .refine((value) => /^(?=.*[A-Za-z])(?=.*\d)/.test(value), {
       message:
         'Пароль должен включать хотя бы одну букву латинского алфавита, хотя бы одну цифру',
     })
-    .refine(value => /^[A-Za-z\d._*!]{6,}$/.test(value), {
+    .refine((value) => /^[A-Za-z\d._*!]{6,}$/.test(value), {
       message: 'Допустимые символы: A-Z, a-z, 0-9, . _ * !',
     }),
 });

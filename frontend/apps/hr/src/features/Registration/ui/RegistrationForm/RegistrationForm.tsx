@@ -1,6 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { classNames } from '@repo/shared/lib';
-import { AppLink, Button, Checkbox, FormHeader, Icon,Input } from '@repo/shared/ui';
+import {
+  AppLink,
+  Button,
+  Checkbox,
+  FormHeader,
+  Icon,
+  Input,
+} from '@repo/shared/ui';
 import { memo, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -51,18 +58,15 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
     onReset();
   }, [onReset, reset]);
 
-  const onSubmit: SubmitHandler<RegistrationFormSchema> = useCallback(
-    data => {
-      reset();
-      onSuccess();
-    },
-    [reset, onSuccess]
-  );
+  const onSubmit: SubmitHandler<RegistrationFormSchema> = useCallback(() => {
+    reset();
+    onSuccess();
+  }, [reset, onSuccess]);
 
   const checkboxLabel = (
     <>
       Даю согласие на обработку{' '}
-      <AppLink to='*' target='_blank'>
+      <AppLink to="*" target="_blank">
         персональных данных
       </AppLink>
     </>
@@ -77,24 +81,24 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
   return (
     <div className={classNames(cls.RegistrationForm, {}, [className])}>
       <FormHeader
-        title='Регистрация'
+        title="Регистрация"
         onClose={onResetClick}
         className={cls.form_header}
       />
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={cls.form_inputs}>
           <Controller
-            name='name'
+            name="name"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Имя'
-                placeholder='Иван'
-                size='s'
-                autoComplete='given-name'
+                label="Имя"
+                placeholder="Иван"
+                size="s"
+                autoComplete="given-name"
                 errorMessage={errors.name?.message}
-                onChange={event => {
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.name) trigger('name');
                 }}
@@ -102,7 +106,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             )}
           />
           <Controller
-            name='phone'
+            name="phone"
             control={control}
             render={({ field }) => (
               <Input
@@ -113,32 +117,32 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                     field.onChange('+7 ');
                   }
                 }}
-                onChange={event => {
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.phone) trigger('phone');
                 }}
-                type='tel'
-                label='Телефон'
-                placeholder='+7 ХХХ ХХХ ХХ-ХХ'
-                size='s'
-                autoComplete='tel'
+                type="tel"
+                label="Телефон"
+                placeholder="+7 ХХХ ХХХ ХХ-ХХ"
+                size="s"
+                autoComplete="tel"
                 errorMessage={errors.phone?.message}
               />
             )}
           />
           <Controller
-            name='email'
+            name="email"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Почта'
-                placeholder='@e-mail.ru'
-                size='s'
-                type='email'
-                autoComplete='email'
+                label="Почта"
+                placeholder="@e-mail.ru"
+                size="s"
+                type="email"
+                autoComplete="email"
                 errorMessage={errors.email?.message}
-                onChange={event => {
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.email) trigger('email');
                 }}
@@ -146,18 +150,18 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             )}
           />
           <Controller
-            name='password'
+            name="password"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Пароль'
-                size='s'
-                autoComplete='new-password'
+                label="Пароль"
+                size="s"
+                autoComplete="new-password"
                 type={showPassword ? 'text' : 'password'}
                 errorMessage={errors.password?.message}
-                placeholder='**********'
-                onChange={event => {
+                placeholder="**********"
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (touchedFields.confirmPassword) trigger('confirmPassword');
                   if (errors.password) trigger('password');
@@ -166,7 +170,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
                   <Icon
                     Svg={showPassword ? Invisible : Visible}
                     clickable
-                    onMouseDown={event => event.preventDefault()}
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => handleVisibility(field.name)}
                     tabIndex={-1}
                   />
@@ -175,25 +179,25 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             )}
           />
           <Controller
-            name='confirmPassword'
+            name="confirmPassword"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label='Пароль еще раз'
-                size='s'
+                label="Пароль еще раз"
+                size="s"
                 errorMessage={errors.confirmPassword?.message}
-                onChange={event => {
+                onChange={(event) => {
                   field.onChange(event.target.value);
                   if (errors.confirmPassword) trigger('confirmPassword');
                 }}
                 type={showConfirmPassword ? 'text' : 'password'}
-                placeholder='**********'
+                placeholder="**********"
                 addonRight={
                   <Icon
                     Svg={showConfirmPassword ? Invisible : Visible}
                     clickable
-                    onMouseDown={event => event.preventDefault()}
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => handleVisibility(field.name)}
                     tabIndex={-1}
                   />
@@ -203,7 +207,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
           />
         </div>
         <Controller
-          name='agreement'
+          name="agreement"
           control={control}
           render={({ field }) => (
             <Checkbox
@@ -213,7 +217,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             />
           )}
         />
-        <Button type='submit' disabled={!isValid} className={cls.form_button}>
+        <Button type="submit" disabled={!isValid} className={cls.form_button}>
           Зарегистрироваться
         </Button>
       </form>

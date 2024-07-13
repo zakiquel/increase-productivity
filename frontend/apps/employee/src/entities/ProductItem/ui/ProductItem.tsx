@@ -1,11 +1,14 @@
 'use client'
+
+import { Card } from '@repo/shared/ui'
 import Image from 'next/image'
-import cls from './ProductItem.module.scss'
+import React, { useState } from 'react'
+
 import ozon from '../assets/ozon.png'
 
-import React, { useState } from 'react'
 import { ProductItemModal } from './ProductItemModal/ProductItemModal'
-import { Card } from '@repo/shared/ui'
+
+import cls from './ProductItem.module.scss'
 
 interface IProductItem {
   title: string
@@ -31,7 +34,8 @@ export const ProductItem = (props: IProductItem) => {
       style={{ borderRadius: '8px' }}
     >
       <div onClick={() => setOpen(true)}>
-        <Image className={cls.img} src={ozon} alt={title} width={415} height={220} />
+        <Image className={cls.img} src={ozon} alt={title} width={415}
+height={220} />
         <h3 className={cls.title}>{title}</h3>
         <div className={cls.body}>
           <p className={cls.price}>{price} Б</p>

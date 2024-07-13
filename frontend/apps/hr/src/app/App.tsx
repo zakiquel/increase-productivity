@@ -8,8 +8,8 @@ import { Sidebar } from '@/widgets/Sidebar';
 
 function App() {
   return (
-    <div className='app'>
-      <Suspense fallback='Loading...'>
+    <div className="app">
+      <Suspense fallback="Loading...">
         <MainLayout header={<Navbar />} sidebar={<Sidebar />}>
           <AppRouter />
         </MainLayout>

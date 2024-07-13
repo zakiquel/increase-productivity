@@ -1,8 +1,7 @@
-import { Button , FormHeader, SuccessMessage } from '@repo/shared/ui';
+import { Button, FormHeader, SuccessMessage } from '@repo/shared/ui';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Quality, Value } from '@/entities/Value';
-
 
 import cls from './EditQualitiesForm.module.scss';
 
@@ -70,8 +69,8 @@ const EditQualitiesForm = (props: EditQualitiesFormProps) => {
 
   const handleQualityClick = (quality: Quality) => {
     let newQualities: Quality[];
-    if (qualities.some(item => item.id === quality.id)) {
-      newQualities = qualities.filter(item => item.id !== quality.id);
+    if (qualities.some((item) => item.id === quality.id)) {
+      newQualities = qualities.filter((item) => item.id !== quality.id);
     } else if (qualities.length < 5) {
       newQualities = [...qualities, quality];
     } else return;
@@ -81,13 +80,13 @@ const EditQualitiesForm = (props: EditQualitiesFormProps) => {
   const sortedQualities = useMemo(
     () =>
       allQualities.sort((a, b) => {
-        const aSelected = qualities.some(item => item.id === a.id);
-        const bSelected = qualities.some(item => item.id === b.id);
+        const aSelected = qualities.some((item) => item.id === a.id);
+        const bSelected = qualities.some((item) => item.id === b.id);
         if (aSelected && !bSelected) return -1;
         if (!aSelected && bSelected) return 1;
         return 0;
       }),
-    [qualities]
+    [qualities],
   );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -115,11 +114,11 @@ const EditQualitiesForm = (props: EditQualitiesFormProps) => {
       />
       <form onSubmit={handleSubmit}>
         <ul className={cls.values}>
-          {sortedQualities.map(quality => (
+          {sortedQualities.map((quality) => (
             <li key={quality.id}>
               <Button
                 variant={
-                  qualities.some(item => item.id === quality.id)
+                  qualities.some((item) => item.id === quality.id)
                     ? 'primary'
                     : 'outline'
                 }
@@ -132,7 +131,7 @@ const EditQualitiesForm = (props: EditQualitiesFormProps) => {
           ))}
         </ul>
         <Button
-          type='submit'
+          type="submit"
           fullWidth
           disabled={qualities.length === 0}
           className={cls.form_button}

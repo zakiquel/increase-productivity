@@ -78,12 +78,12 @@ const EmployeePage = (props: EmployeePageProps) => {
         <EmployeeDocuments />
       </div>
       <div className={cls.employee_charts}>
-        <Card variant='light' padding='24' className={cls.chart_card}>
-          <Text title='Динамика метрик' size='s' className={cls.title} />
+        <Card variant="light" padding="24" className={cls.chart_card}>
+          <Text title="Динамика метрик" size="s" className={cls.title} />
           <AppImage src={Blanc} />
         </Card>
-        <Card variant='light' padding='24' className={cls.chart_card}>
-          <Text title='Динамика метрик' size='s' className={cls.title} />
+        <Card variant="light" padding="24" className={cls.chart_card}>
+          <Text title="Динамика метрик" size="s" className={cls.title} />
           <AppImage src={Blanc} />
         </Card>
       </div>

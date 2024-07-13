@@ -1,7 +1,10 @@
-import logout from '@/shared/assets/icons/logout.svg'
 import { Avatar, Icon, Button } from '@repo/shared/ui'
-import cls from './ProfileBlock.module.scss'
+
+import logout from '@/shared/assets/icons/logout.svg'
 import { AppLink } from '@/shared/ui/AppLink'
+
+import cls from './ProfileBlock.module.scss'
+
 
 export function ProfileBlock() {
   return (
