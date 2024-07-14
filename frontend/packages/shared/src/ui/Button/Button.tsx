@@ -1,17 +1,17 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
-import { classNames, Mods } from '../../lib/classNames/classNames';
-import cls from './Button.module.scss';
+import { ButtonHTMLAttributes, memo, ReactNode } from "react";
+import { classNames, Mods } from "../../lib/classNames/classNames";
+import cls from "./Button.module.scss";
 
 export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'outline'
-  | 'ghost'
-  | 'exit';
-export type ButtonColor = 'normal' | 'success' | 'error';
-export type ButtonSize = 'xs' | 's' | 'm' | 'l';
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "exit";
+export type ButtonColor = "normal" | "success" | "error";
+export type ButtonSize = "xs" | "s" | "m" | "l";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   variant?: ButtonVariant;
   square?: boolean;
@@ -29,12 +29,12 @@ export const Button = memo((props: ButtonProps) => {
   const {
     className,
     children,
-    variant = 'primary',
-    size = 'm',
+    variant = "primary",
+    size = "m",
     disabled,
     fullWidth,
     selected,
-    color = 'normal',
+    color = "normal",
     addonRight,
     addonLeft,
     ...otherProps
@@ -47,7 +47,7 @@ export const Button = memo((props: ButtonProps) => {
 
   return (
     <button
-      type='button'
+      type="button"
       disabled={disabled}
       className={classNames(cls.Button, mods, [
         className,
