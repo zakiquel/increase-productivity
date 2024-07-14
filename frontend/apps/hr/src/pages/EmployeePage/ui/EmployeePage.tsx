@@ -9,6 +9,7 @@ import {
   EmployeeProfile,
   Note,
 } from '@/entities/Employee';
+import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 import { EditNoteModal } from '@/features/EditNote';
 import Blanc from '@/shared/assets/images/rectangle.png';
 import { Page } from '@/widgets/Page';
@@ -78,6 +79,9 @@ const EmployeePage = (props: EmployeePageProps) => {
         <EmployeeDocuments />
       </div>
       <div className={cls.employee_charts}>
+        {/* TODO: Макет страницы сотрудника обновился, поэтому кнопку скорее всего нужно будет перенести */}
+        <DownloadEmployeeReportButton employeeId={1} />
+
         <Card variant="light" padding="24" className={cls.chart_card}>
           <Text title="Динамика метрик" size="s" className={cls.title} />
           <AppImage src={Blanc} />
