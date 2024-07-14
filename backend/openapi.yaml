@@ -777,6 +777,276 @@ paths:
           description: Success
 
 
+    # Metrics API
+  /api/metrics:
+      summary: Operations about metrics
+      get:
+        tags:
+          - Metrics GET
+        summary: Get all the metrics
+        security:
+          - bearerAuth: [ ]
+        responses:
+          200:
+            description: Success
+          400:
+            description: Incorrect input
+          401:
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          default:
+            description: Success
+      post:
+        tags:
+          - Metrics POST
+        summary: Add a metric
+        security:
+          - bearerAuth: [ ]
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/metric"
+        responses:
+          "200":
+            description: Metric added successfully
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/metric"
+          "400":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          401:
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+
+  /api/metrics/{metric}:
+      put:
+        tags:
+          - Metrics PUT
+        summary: Update a metric
+        security:
+          - bearerAuth: [ ]
+        parameters:
+          - name: metric
+            required: true
+            in: path
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/metric"
+        responses:
+          "200":
+            description: Company updated successfully
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/metric"
+          "400":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          "404":
+            description: Metric not found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+          401:
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+
+      delete:
+        tags:
+          - Metrics DELETE
+        summary: Delete a metric
+        security:
+          - bearerAuth: [ ]
+        parameters:
+          - name: metric
+            required: true
+            in: path
+            schema:
+              type: integer
+        responses:
+          200:
+            description: Metric deleted successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          400:
+            description: Incorrect input
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          401:
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          404:
+            description: Metric not found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+
+
+  # survey API
+  /api/survey_histories:
+    summary: Operations about survey_history
+    get:
+      tags:
+        - Survey_history GET
+      summary: Get all the events
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+    post:
+      tags:
+        - Survey_history POST
+      summary: Add an event
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/survey_history_input'
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/survey_history"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/survey_histories/{survey_id}:
+    summary: Operations about events
+    get:
+      tags:
+        - Survey_history GET
+      summary: Get an event
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: survey_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+    put:
+      tags:
+        - Survey_history PUT
+      summary: Update an event
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: survey_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/survey_history_put'
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/survey_history"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
 components:
   securitySchemes:
     bearerAuth:
@@ -976,4 +1246,68 @@ components:
         reward:
           type: integer
         description:
+          type: string
+
+    metric:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        coefficient:
+          type: number
+        risk_name:
+          type: string
+
+    survey_history_input:
+      type: object
+      properties:
+        employee_id:
+          type: integer
+        metric_1_mark:
+          type: integer
+        metric_2_mark:
+          type: integer
+        metric_3_mark:
+          type: integer
+        survey_date:
+          type: string
+
+    survey_history:
+      type: object
+      properties:
+        id:
+          type: integer
+        employee_id:
+          type: integer
+        metric_1_mark:
+          type: integer
+        metric_2_mark:
+          type: integer
+        metric_3_mark:
+          type: integer
+        metric_1_risk:
+          type: integer
+        metric_2_risk:
+          type: integer
+        metric_3_risk:
+          type: integer
+        risk_sum:
+          type: integer
+        survey_date:
+          type: string
+
+    survey_history_put:
+      type: object
+      properties:
+        employee_id:
+          type: integer
+        metric_1_mark:
+          type: integer
+        metric_2_mark:
+          type: integer
+        metric_3_mark:
+          type: integer
+        survey_date:
           type: string

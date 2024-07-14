@@ -33,8 +33,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        $data = $request->validated();
-        return $this->service->store_employee($data);
+        return $this->service->store_employee($request);
     }
 
     /**
