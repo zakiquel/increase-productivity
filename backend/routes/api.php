@@ -5,7 +5,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SurveyHistoryController;
 use App\Http\Controllers\ValueController;
+use App\Http\Controllers\MetricsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,3 +70,7 @@ Route::post('/subscriptions/{id}/cancel', [SubscriptionController::class, 'cance
 });
 
 Route::resource('events', EventController::class);
+
+Route::resource('metrics', MetricsController::class);
+
+Route::resource('survey_histories', SurveyHistoryController::class);

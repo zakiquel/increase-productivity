@@ -28,10 +28,10 @@ WORKDIR /var/www/backend/
 
 # FROM registry.hub.docker.com/library/node:18.18.0-alpine as frontend
 
-WORKDIR /var/www/frontend
-ADD frontend/package*.json ./
-COPY frontend ./
-RUN npm install && npm run build
+#WORKDIR /var/www/frontend
+#ADD frontend/package*.json ./
+#COPY frontend ./
+#RUN npm install && npm run build
 
 
 
