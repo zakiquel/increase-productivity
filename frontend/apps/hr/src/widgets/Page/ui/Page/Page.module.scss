@@ -1,5 +1,5 @@
 .Page {
   overflow-y: auto;
   height: 100%;
-  min-height: calc(100vh - var(--footer-height) - var(--navbar-height) - 32px);
+  min-height: calc(100vh - var(--navbar-height) - 16px);
 }

@@ -1,1 +1,0 @@
-export { ValuesAndQualities } from './ValuesAndQualities';

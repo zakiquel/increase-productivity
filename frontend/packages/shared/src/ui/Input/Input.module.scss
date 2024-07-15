@@ -40,6 +40,9 @@
   svg {
     fill: var(--grey-primary-color);
   }
+  span {
+    color: var(--grey-primary-color);
+  }
 }
 
 .helperText {
@@ -82,6 +85,11 @@
   .addonRight {
     width: 24px;
     height: 24px;
+
+    span {
+      font-size: 24px;
+      font-variation-settings: 'OPSZ' 24;
+    }
   }
 
   .helperText {
@@ -126,6 +134,11 @@
   .addonRight {
     width: 20px;
     height: 20px;
+
+    span {
+      font-size: 20px;
+      font-variation-settings: 'OPSZ' 20;
+    }
   }
 
   .helperText {
@@ -170,6 +183,11 @@
   .addonRight {
     width: 16px;
     height: 16px;
+
+    span {
+      font-size: 16px;
+      font-variation-settings: 'OPSZ' 16;
+    }
   }
 
   .helperText {
@@ -181,7 +199,7 @@
 .error {
   input {
     border-color: var(--error-color);
-    background-color: var(--error-color-background);
+    background-color: var(--error-color-10pct);
   }
   .helperText {
     color: var(--error-color);

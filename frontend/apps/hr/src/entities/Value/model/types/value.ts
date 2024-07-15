@@ -4,7 +4,7 @@ export interface Quality {
 }
 
 export interface Value {
-  id: number;
+  id?: number;
   name: string;
   qualities: Quality[];
 }

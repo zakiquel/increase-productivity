@@ -113,7 +113,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
       )}
     >
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
-        <div className={cls.addonLeft}>{addonLeft}</div>
+        {addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
         <input
           ref={mergeRefs(inputRef, maskedInputRef)}
           type={type}
@@ -128,7 +128,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
           aria-describedby='helper-text'
           {...otherProps}
         />
-        <div className={cls.addonRight}>{addonRight}</div>
+        {addonRight && <div className={cls.addonRight}>{addonRight}</div>}
       </div>
       {(errorMessage || helperText) && (
         <div id='helper-text' className={cls.helperText}>

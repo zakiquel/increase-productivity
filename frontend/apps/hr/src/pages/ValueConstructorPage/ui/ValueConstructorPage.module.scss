@@ -1,0 +1,65 @@
+.ValuesConstructorPage {
+  height: calc(100vh - var(--navbar-height) - 16px);
+  overflow-y: hidden;
+}
+
+.ValuesConstructor {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+
+  .presets {
+    width: 610px;
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    h2 {
+      color: var(--grey-primary-color);
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+    }
+
+    .presets_list {
+      overflow-y: scroll;
+    }
+  }
+
+  .values_constructor {
+    width: 100%;
+    max-width: 974px;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 32px;
+      line-height: 42px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .description {
+      color: var(--grey-primary-color);
+      font-size: 20px;
+      line-height: 26px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .values {
+      overflow-y: scroll;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .constructor_buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+  }
+}

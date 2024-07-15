@@ -1,0 +1,46 @@
+.CompanyPage {
+  height: calc(100vh - var(--navbar-height) - 16px);
+  overflow-y: hidden;
+}
+
+.company_values {
+  width: 1022px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+  max-height: calc(100vh - var(--navbar-height) - 16px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  //height: 100%;
+
+  .values_header {
+    h2 {
+      font: var(--font-20);
+      line-height: 24px;
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--grey-primary-color);
+      font: var(--font-16);
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .filled_header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .value_list_wrapper {
+    overflow-y: scroll;
+  }
+}
+
+.with_values {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

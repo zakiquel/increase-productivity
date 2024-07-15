@@ -4,6 +4,7 @@ import 'material-symbols'
 import App from './app/App';
 
 import '@repo/shared/styles';
+import 'material-symbols';
 
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
 import { StoreProvider } from '@/app/providers/StoreProvider';

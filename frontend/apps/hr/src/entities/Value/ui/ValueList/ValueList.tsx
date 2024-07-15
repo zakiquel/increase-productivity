@@ -1,31 +1,68 @@
 import { classNames } from '@repo/shared/lib';
 
 import { Value } from '../../model/types/value';
+import { PresetCard } from '../PresetCard/PresetCard';
 import { ValueCard } from '../ValueCard/ValueCard';
 
 import cls from './ValueList.module.scss';
 
-interface ValueListProps {
-  values: Value[];
-  isPreset?: boolean;
+interface BaseListProps {
   className?: string;
-  cardAction?: (value: Value) => void;
+  values: Value[];
 }
 
-export const ValueList = (props: ValueListProps) => {
-  const { values, isPreset, className, cardAction } = props;
+interface PresetListProps extends BaseListProps {
+  isPreset: true;
+  addPreset: (value: Value) => void;
+  addedPresets: string[];
+  disabledPresets: string[];
+  disabled?: boolean;
+}
 
-  return (
-    <ul className={classNames(cls.value_cards, {}, [className])}>
-      {values.map((value) => (
-        <li key={value.id}>
-          <ValueCard
-            value={value}
-            isPreset={isPreset}
-            onButtonClick={cardAction}
-          />
-        </li>
-      ))}
-    </ul>
-  );
+interface ValueListProps extends BaseListProps {
+  isPreset?: false;
+  editable?: boolean;
+  deleteValue?: (value: Value) => void;
+}
+
+type ListProps = PresetListProps | ValueListProps;
+
+export const ValueList = (props: ListProps) => {
+  const { values, isPreset, className } = props;
+
+  if (isPreset) {
+    const { addPreset, disabled, addedPresets, disabledPresets } = props;
+    return (
+      <ul className={classNames(cls.value_list, {}, [className])}>
+        {values.map((value) => (
+          <li key={value.name}>
+            <PresetCard
+              value={value}
+              addPreset={addPreset}
+              disabled={disabled || disabledPresets.includes(value.name)}
+              isAdded={addedPresets.includes(value.name)}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  {
+    const { editable, deleteValue } = props;
+    return (
+      <ul className={classNames(cls.value_list, {}, [className])}>
+        {values.map((value, index) => (
+          <li key={index}>
+            <p className={cls.value_order}>{`Ценность ${index + 1}`}</p>
+            <ValueCard
+              value={value}
+              editable={editable}
+              deleteValue={deleteValue}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  }
 };

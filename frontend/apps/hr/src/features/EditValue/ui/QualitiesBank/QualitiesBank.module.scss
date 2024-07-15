@@ -1,0 +1,20 @@
+.QualitiesBank {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  input {
+    background-color: var(--white);
+  }
+
+  .values_list {
+    max-height: 228px;
+    display: flex;
+    ul {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      overflow-y: scroll;
+    }
+  }
+}
