@@ -16,21 +16,21 @@ interface IItems {
 export const PageSidebar = (props: IItems) => {
   const { items } = props
   const params = usePathname()?.split('/').at(-1)
-  const ItemList = useMemo(
-    () =>
-      items.map((data, key) => (
-        <PagesSidebarItems
-          text={data.value}
-          path={data.path}
-          key={key}
-          active={params === data.pathName}
-        />
-      )),
-    [items, params]
-  )
+  console.log(params)
+  const ItemList = () => {
+    return items.map((data, key) => (
+      <PagesSidebarItems
+        text={data.value}
+        path={data.path}
+        key={key}
+        active={params === data.pathName}
+      />
+    ))
+  }
+
   return (
     <aside className={cls.aside}>
-      <ul>{ItemList}</ul>
+      <ul>{ItemList()}</ul>
     </aside>
   )
 }

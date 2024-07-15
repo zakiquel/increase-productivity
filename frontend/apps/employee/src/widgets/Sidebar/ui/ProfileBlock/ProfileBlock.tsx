@@ -24,7 +24,7 @@ export function ProfileBlock() {
         >
           Профиль
         </AppLink>
-        <Button size="s" variant="exit">
+        <Button size="s" variant="exit" className={cls.exit}>
           <Icon Svg={logout} width={14} height={14} />
         </Button>
       </div>

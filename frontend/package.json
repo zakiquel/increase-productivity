@@ -1,25 +1,32 @@
 {
-  "name": "with-docker",
-  "version": "0.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev"
-  },
-  "devDependencies": {
-    "turbo": "^2.0.4",
-    "vite-tsconfig-paths": "^4.3.2"
-  },
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=7.0.0"
-  },
-  "packageManager": "npm@10.8.1",
-  "dependencies": {
-    "material-symbols": "^0.21.0"
-  }
+	"name": "with-docker",
+	"version": "0.0.0",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"build": "turbo run build",
+		"clean": "turbo run clean",
+		"dev": "turbo run dev",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"lint": "turbo run lint",
+		"test": "turbo run test"
+	},
+	"devDependencies": {
+		"prettier": "^3.2.5",
+		"turbo": "^2.0.4",
+		"vite-tsconfig-paths": "^4.3.2"
+	},
+	"engines": {
+		"node": ">=14.0.0",
+		"npm": ">=7.0.0"
+	},
+	"packageManager": "npm@10.8.1",
+	"dependencies": {
+		"framer-motion": "^11.3.2",
+		"material-symbols": "^0.21.0",
+		"react-textarea-autosize": "^8.5.3"
+	}
 }

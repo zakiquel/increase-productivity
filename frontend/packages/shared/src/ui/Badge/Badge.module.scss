@@ -1,0 +1,56 @@
+.tag {
+  font-weight: 500;
+  color: var(--white);
+  width: fit-content;
+}
+
+.xs {
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.s {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.m {
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.l {
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.wait {
+  background-color: var(--warning-color);
+}
+
+.approved {
+  background-color: var(--success-color);
+}
+
+.refused {
+  background-color: var(--error-color);
+}
+.new {
+  background-color: var(--primary-color);
+}
+
+.closed {
+  background-color: var(--grey-primary-color);
+}
+
+.received {
+  background-color: var(--primary-color);
+}

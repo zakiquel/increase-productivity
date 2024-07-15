@@ -8,29 +8,29 @@ export enum Routes {
   HISTORY = 'history',
 }
 
-export const getMainPath = () => '/'
-export const getProfilePath = () => '/profile'
-export const getCatalogPath = () => '/catalog'
-export const getEventsPath = () => '/events'
-export const getTransactionPath = () => '/profile/transaction'
-export const getProductPath = () => '/catalog/products'
-export const getHistoryPath = () => '/catalog/history'
+export const getMainPath = () => '/';
+export const getProfilePath = () => '/profile';
+export const getCatalogPath = () => '/catalog';
+export const getEventsPath = () => '/events';
+export const getTransactionPath = () => '/profile/transaction';
+export const getProductPath = () => '/catalog/products';
+export const getHistoryPath = () => '/catalog/history';
 
 export const pathNames = [
   {
     path: getProfilePath(),
     pathName: Routes.PROFILE,
-    value: 'Личный кабинет /',
+    value: 'Личный кабинет',
   },
   {
     path: getCatalogPath(),
     pathName: Routes.CATALOG,
-    value: 'Каталог /',
+    value: 'Каталог',
   },
   {
     path: getEventsPath(),
     pathName: Routes.EVENTS,
-    value: 'Мероприятия /',
+    value: 'Мероприятия',
   },
 
   {
@@ -48,4 +48,4 @@ export const pathNames = [
     pathName: Routes.HISTORY,
     value: 'История',
   },
-]
+];

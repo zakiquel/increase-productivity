@@ -7,6 +7,10 @@
   background: var(--white);
 }
 
+.exit {
+  padding: 9px;
+}
+
 .profile_info {
   display: flex;
   align-items: center;
@@ -34,11 +38,13 @@
   gap: 4px;
 
   .exit {
-    color: var(--error-color);
-    background-color: #f7382610;
-    &:hover {
-      background-color: var(--primary-hover-color);
-    }
+    padding: 9px;
+    width: 32px;
+  }
+
+  .exit_icon {
+    width: 10px;
+    height: 10px;
   }
 }
 

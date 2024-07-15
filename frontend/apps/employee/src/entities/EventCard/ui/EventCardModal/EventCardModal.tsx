@@ -1,23 +1,22 @@
-'use client'
+'use client';
 
-import { classNames } from '@repo/shared/lib'
-import { Button, Text as TextTag } from '@repo/shared/ui'
-import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
-import { useCallback, useState } from 'react'
+import { classNames } from '@repo/shared/lib';
+import { Button, Status, Text as TextTag, TVariant } from '@repo/shared/ui';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useCallback, useState } from 'react';
 
-import { IEventCard } from '../../model/types/eventCard'
+import { IEventCard } from '../../model/types/eventCard';
 
-import event from '@/shared/assets/images/event.png'
-import { ModalSuccess } from '@/shared/ui/ModalSuccess'
-import { Tag } from '@/shared/ui/Tag'
-import { TVariant } from '@/shared/ui/Tag/Tag'
+import event from '@/shared/assets/images/event.png';
 
-import cls from './EventCardModal.module.scss'
+import { ModalSuccess } from '@/shared/ui/ModalSuccess';
+
+import cls from './EventCardModal.module.scss';
 
 interface IProductItemModal {
-  isOpen: boolean
-  setOpen: (arg: boolean) => void
+  isOpen: boolean;
+  setOpen: (arg: boolean) => void;
 }
 
 export const EventCardModal = (props: IProductItemModal & IEventCard) => {
@@ -32,35 +31,51 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
     tag,
   } = props;
 
-  const [currentTag, setCurrentTag] = useState<string>(tag)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [currentTag, setCurrentTag] = useState<string>(tag);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isComplete, setComplete] = useState(false);
 
   const getCancel = () => {
-    setCurrentTag('Новые')
-  }
+    setCurrentTag('Новые');
+  };
+
+  const getComplete = () => {
+    setComplete(true);
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTakePart = () => {
-    setOpen(false)
-    setIsSuccess(true)
-    setCurrentTag('Ожидание')
-  }
+    setOpen(false);
+    setIsSuccess(true);
+    setCurrentTag('Ожидание');
+  };
 
   const getButton = useCallback(() => {
     switch (currentTag) {
       case 'Новые':
-        return <Button onClick={getTakePart}>Принять участие</Button>
+        return <Button onClick={getTakePart}>Принять участие</Button>;
 
       case 'Ожидание':
         return (
           <Button variant="secondary" size="l" onClick={getCancel}>
             Отменить
           </Button>
-        )
+        );
+      case 'Одобрено':
+        return (
+          <Button
+            variant="primary"
+            size="l"
+            onClick={getComplete}
+            disabled={isComplete}
+          >
+            Завершить
+          </Button>
+        );
       default:
         return null;
     }
-  }, [currentTag, getTakePart])
+  }, [currentTag, isComplete]);
 
   return (
     <div>
@@ -88,21 +103,32 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
                   alt="event"
                   width={480}
                   height={320}
-                  className={cls.img}
+                  className={classNames(cls.img, {}, [
+                    tag === 'Закрыто' ? cls.closed : undefined,
+                  ])}
                 />
-                <Tag TagVariant={currentTag as TVariant} className={cls.tag}>
-                  {currentTag}
-                </Tag>
+                <Status
+                  variant={currentTag as TVariant}
+                  className={cls.tag}
+                  size="s"
+                />
               </div>
 
               <div className={cls.text_wrapper}>
                 <div>
                   <TextTag size="m" title={title} className={cls.title} />
                   <TextTag size="xs" className={cls.text} text={description} />
+                  {isComplete && (
+                    <span className={cls.complete}>
+                      Заявка на завершение мероприятия отправлена HR
+                    </span>
+                  )}
                 </div>
                 <div className={cls.wrapper}>
                   <div className={cls.wrp}>
-                    <span className={cls.price}>{`${price?.toString()  } Б`}</span>
+                    <span
+                      className={cls.price}
+                    >{`${price?.toString()} Б`}</span>
                     <span className={cls.date}>{date}</span>
                   </div>
                   {getButton()}
@@ -134,5 +160,5 @@ export const EventCardModal = (props: IProductItemModal & IEventCard) => {
         />
       )}
     </div>
-  )
-}
+  );
+};
