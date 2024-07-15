@@ -6,6 +6,7 @@ import { RegistrationModal } from '@/features/Registration';
 import tophr from '@/shared/assets/icons/top-hr.svg';
 
 import cls from './Navbar.module.scss';
+import { Breadcrumbs } from '@/entities/Breadcrumbs';
 
 const links = [
   { title: 'Возможности', link: '/' },
@@ -28,6 +29,7 @@ export const Navbar = memo(() => {
           />
         </div>
         <div className={cls.navbar_wrapper}>
+          <Breadcrumbs />
           <Button size="xs" variant="secondary" className={cls.navbar_button}>
             Валюта не выбрана
           </Button>

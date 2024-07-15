@@ -1,6 +1,11 @@
 .TextArea {
-  height: 188px;
-  border: none;
+  min-height: 188px;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--grey-secondary-color);
+  width: 100%;
+  color: var(--base-0-color);
   border-radius: 16px;
   background-color: var(--bg-color);
   padding: 16px;
@@ -22,5 +27,15 @@
 
   &::placeholder {
     color: var(--grey-primary-color);
+  }
+}
+
+.error {
+  textarea {
+    border-color: var(--error-color);
+    background-color: var(--error-color-background);
+  }
+  .errorMessage {
+    color: var(--error-color);
   }
 }

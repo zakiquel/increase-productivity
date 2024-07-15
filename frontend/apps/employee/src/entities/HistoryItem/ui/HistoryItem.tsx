@@ -1,59 +1,30 @@
-'use client'
+'use client';
 
-import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
-import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import React from 'react';
 
-import ozon from '../assets/ozon.png'
+import ozon from '@/shared/assets/images/ozon.png';
 
-import cls from './HistoryItem.module.scss'
-
-
-interface IStatus {
-  time: string
-  status: string
-}
-
-interface IHistoryItem {
-  id: number
-  title: string
-  price: number
-  img?: string
-  statuses: IStatus[]
-}
-
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case 'ожидание':
-      return '#FF9F1C'
-    case 'одобрено':
-      return '#05B365'
-    case 'отказ':
-      return '#D92D20'
-    case 'получено':
-      return '#0844DD'
-    default:
-      return 'var(--grey-secondary-color)'
-  }
-}
+import cls from './HistoryItem.module.scss';
+import { Status, TVariant } from '@repo/shared/ui';
 
 export const HistoryItem = (props: IHistoryItem) => {
-  const {
-    title,
-    img = '',
-    price,
-    statuses,
-    id,
-  } = props;
+  const { title, img = '', price, statuses, id } = props;
 
-  const [isOpen, setOpen] = React.useState(false)
+  const [isOpen, setOpen] = React.useState(false);
   return (
     <motion.div className={cls.HistoryItem}>
       <div className={cls.wrapper}>
         <div className={cls.body}>
           <div className={cls.head}>
-            <Image className={cls.img} src={ozon} alt={title} width={40}
-height={40} />
+            <Image
+              className={cls.img}
+              src={ozon}
+              alt={title}
+              width={40}
+              height={40}
+            />
             <h3 className={cls.title}>{title}</h3>
           </div>
           <p className={cls.price}>{price} Б</p>
@@ -66,14 +37,10 @@ height={40} />
         >
           <div className={cls.items}>
             <p className={cls.time}>{statuses[statuses.length - 1].time}</p>
-            <p
-              style={{
-                background: getStatusColor(statuses[statuses.length - 1].status),
-              }}
-              className={cls.status}
-            >
-              {statuses[statuses.length - 1].status}
-            </p>
+            <Status
+              variant={statuses[statuses.length - 1].status as TVariant}
+              size="xs"
+            />
           </div>
 
           <AnimatePresence>
@@ -91,7 +58,10 @@ height={40} />
                     transition={{ duration: 0.2, ease: 'easeInOut' }}
                   >
                     <p className={cls.time}>{d.time}</p>
-                    <p className={cls.status}>{d.status}</p>
+                    <Status
+                      className={cls.status}
+                      variant={d.status as TVariant}
+                    />
                   </motion.div>
                 ))}
           </AnimatePresence>
@@ -108,5 +78,5 @@ height={40} />
         <span className="material-symbols-outlined">keyboard_arrow_down</span>
       </motion.button>
     </motion.div>
-  )
-}
+  );
+};

@@ -1,0 +1,19 @@
+.item {
+  padding: 6px 8px;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.active {
+  background-color: var(--white);
+}
+
+.link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--base-0-color);
+  line-height: 12px;
+  &:hover {
+    color: var(--base-0-color);
+  }
+}

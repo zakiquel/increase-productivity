@@ -1,19 +1,18 @@
-import { Card, Text as TextTag } from '@repo/shared/ui'
-import Image from 'next/image'
-import { useState } from 'react'
+import { Card, Status, Text as TextTag, TVariant } from '@repo/shared/ui';
+import Image from 'next/image';
+import { useState } from 'react';
 
-import { IEventCard } from '../../model/types/eventCard'
-import { EventCardModal } from '../EventCardModal/EventCardModal'
+import { IEventCard } from '../../model/types/eventCard';
+import { EventCardModal } from '../EventCardModal/EventCardModal';
 
-import event from '@/shared/assets/images/event.png'
-import { Tag } from '@/shared/ui/Tag'
-import { TVariant } from '@/shared/ui/Tag/Tag'
+import event from '@/shared/assets/images/event.png';
 
-import cls from './EventCard.module.scss'
+import cls from './EventCard.module.scss';
+import { classNames } from '@repo/shared/lib';
 
 export const EventCard = (props: IEventCard) => {
-  const { tag, title, price, date } = props
-  const [isOpen, setIsOpen] = useState(false)
+  const { tag, title, price, date } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Card
@@ -23,22 +22,31 @@ export const EventCard = (props: IEventCard) => {
       style={{ borderRadius: '8px' }}
     >
       <div onClick={() => setIsOpen(true)}>
-        <Image src={event} alt="event" width={404} height={221}
-className={cls.img} />
+        <Image
+          src={event}
+          alt="event"
+          width={404}
+          height={221}
+          className={classNames(cls.img, {}, [
+            tag === 'Закрыто' ? cls.closed : undefined,
+          ])}
+        />
 
-        <Tag className={cls.tag} TagVariant={tag as TVariant}>
-          {tag}
-        </Tag>
+        <Status className={cls.tag} variant={tag as TVariant} size="xs" />
 
         <div className={cls.wrapper}>
           <TextTag size="m" text={title} />
           <div className={cls.wrp}>
-            <span className={cls.price}>{`${price?.toString()  } Б`}</span>
+            <span className={cls.price}>{`${price?.toString()} Б`}</span>
             <span className={cls.date}>{date}</span>
           </div>
         </div>
       </div>
-      <EventCardModal isOpen={isOpen} setOpen={() => setIsOpen(false)} {...props} />
+      <EventCardModal
+        isOpen={isOpen}
+        setOpen={() => setIsOpen(false)}
+        {...props}
+      />
     </Card>
-  )
-}
+  );
+};
