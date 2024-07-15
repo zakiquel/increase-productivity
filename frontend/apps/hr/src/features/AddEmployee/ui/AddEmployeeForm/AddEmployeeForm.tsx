@@ -63,11 +63,11 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
   }, [onReset, reset]);
 
   const onSubmit: SubmitHandler<FormOutputData> = useCallback(
-    data => {
+    (data) => {
       reset();
       onSuccess();
     },
-    [reset, onSuccess]
+    [reset, onSuccess],
   );
 
   return (
@@ -76,24 +76,24 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <Text title='Добавление сотрудника' size='m' />
+      <Text title="Добавление сотрудника" size="m" />
       <Text
-        text='Заполните поля ввода и нажмите кнопку «Сохранить». Новый сотрудник появится на главной странице.'
-        size='s'
+        text="Заполните поля ввода и нажмите кнопку «Сохранить». Новый сотрудник появится на главной странице."
+        size="s"
         className={cls.form_description}
       />
       <div className={cls.form_fields}>
         <Controller
-          name='firstName'
+          name="firstName"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={firstNameInputRef}
-              placeholder='Имя'
-              size='l'
+              placeholder="Имя"
+              size="l"
               errorMessage={errors.firstName?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.firstName) trigger('firstName');
               }}
@@ -101,16 +101,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='patronimyc'
+          name="patronimyc"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={patronimycInputRef}
-              placeholder='Отчество'
-              size='l'
+              placeholder="Отчество"
+              size="l"
               errorMessage={errors.patronimyc?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.patronimyc) trigger('patronimyc');
               }}
@@ -118,16 +118,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='lastName'
+          name="lastName"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={lastnameInputRef}
-              placeholder='Фамилия'
-              size='l'
+              placeholder="Фамилия"
+              size="l"
               errorMessage={errors.lastName?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.lastName) trigger('lastName');
               }}
@@ -135,16 +135,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='dateOfBirth'
+          name="dateOfBirth"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={dobInputRef}
-              placeholder='Дата рождения (ХХ.ХХ.ХХХХ)'
-              size='l'
+              placeholder="Дата рождения (ХХ.ХХ.ХХХХ)"
+              size="l"
               errorMessage={errors.dateOfBirth?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.dateOfBirth) trigger('dateOfBirth');
               }}
@@ -152,15 +152,15 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='email'
+          name="email"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
-              placeholder='Электронная почта'
-              size='l'
+              placeholder="Электронная почта"
+              size="l"
               errorMessage={errors.email?.message}
-              onChange={event => {
+              onChange={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.email) trigger('email');
               }}
@@ -168,16 +168,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='position'
+          name="position"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={positionInputRef}
-              placeholder='Должность'
-              size='l'
+              placeholder="Должность"
+              size="l"
               errorMessage={errors.position?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.position) trigger('position');
               }}
@@ -185,29 +185,29 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='status'
+          name="status"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               readonly
-              size='l'
-              helperText='Статус «Работает/Уволен» влияет на текучесть кадров'
+              size="l"
+              helperText="Статус «Работает/Уволен» влияет на текучесть кадров"
               addonRight={<Icon Svg={Lock} />}
             />
           )}
         />
         <Controller
-          name='salary'
+          name="salary"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={salaryInputRef}
-              placeholder='З/П, тыс. руб.'
-              size='l'
+              placeholder="З/П, тыс. руб."
+              size="l"
               errorMessage={errors.salary?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.salary) trigger('salary');
               }}
@@ -215,16 +215,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name='dateOfEmployment'
+          name="dateOfEmployment"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               maskedInputRef={doeInputRef}
-              placeholder='Дата трудоустройства (ХХ.ХХ.ХХХХ)'
-              size='l'
+              placeholder="Дата трудоустройства (ХХ.ХХ.ХХХХ)"
+              size="l"
               errorMessage={errors.dateOfEmployment?.message}
-              onInput={event => {
+              onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.dateOfEmployment) trigger('dateOfEmployment');
               }}
@@ -233,13 +233,13 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
         />
       </div>
       <div className={cls.form_buttons}>
-        <Button variant='secondary' size='l' fullWidth onClick={onResetClick}>
+        <Button variant="secondary" size="l" fullWidth onClick={onResetClick}>
           Отменить
         </Button>
         <Button
-          type='submit'
-          variant='primary'
-          size='l'
+          type="submit"
+          variant="primary"
+          size="l"
           disabled={!isValid}
           fullWidth
         >

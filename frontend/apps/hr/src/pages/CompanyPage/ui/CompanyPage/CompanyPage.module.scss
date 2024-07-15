@@ -1,5 +1,33 @@
 .CompanyPage {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+
+  .company_metrics {
+    max-width: 610px;
+    .metrics_header {
+      h2 {
+        font: var(--font-20);
+        line-height: 24px;
+        font-weight: 500;
+      }
+
+      p {
+        color: var(--grey-primary-color);
+        font: var(--font-16);
+        margin-top: 4px;
+        margin-bottom: 16px;
+      }
+    }
+    .metrics_list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      li {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+  }
 }

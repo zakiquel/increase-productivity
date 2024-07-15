@@ -19,4 +19,5 @@ export * from './ProgressBar';
 export * from './Drawer';
 export * from './SegmentedControl';
 export * from './Badge';
+export * from './Tag';
 export * from './ModalSuccess';

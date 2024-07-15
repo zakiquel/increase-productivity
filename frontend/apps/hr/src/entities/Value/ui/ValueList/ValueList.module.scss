@@ -1,6 +1,12 @@
-.value_cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  height: fit-content;
+.value_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.value_order {
+  margin-bottom: 8px;
+  color: var(--grey-primary-color);
+  font: var(--font-16);
+  line-height: 22px;
 }

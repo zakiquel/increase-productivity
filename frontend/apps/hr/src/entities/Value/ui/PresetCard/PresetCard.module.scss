@@ -1,0 +1,31 @@
+.PresetCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  h3 {
+    font: var(--font-16);
+    font-weight: 600;
+  }
+
+  .values_list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--grey-secondary-color);
+    padding-bottom: 8px;
+  }
+
+  .preset_button {
+    width: fit-content;
+  }
+
+  &.disabled,
+  &.isAdded {
+    opacity: 70%;
+    button {
+      pointer-events: none;
+    }
+  }
+}

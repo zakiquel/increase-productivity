@@ -19,11 +19,11 @@
 }
 
 .sidebar {
-	grid-area: sidebar;
-	margin-top: var(--navbar-height);
-	position: fixed;
-	top: 0;
-	height: 100vh;
+  grid-area: sidebar;
+  margin-top: var(--navbar-height);
+  position: fixed;
+  top: 0;
+  height: calc(100vh - var(--navbar-height) - 16px);
 }
 
 .content {

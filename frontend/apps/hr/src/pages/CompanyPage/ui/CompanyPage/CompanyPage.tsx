@@ -1,9 +1,12 @@
 import { classNames } from '@repo/shared/lib';
+import { Card } from '@repo/shared/ui';
 import React, { memo } from 'react';
 
-import { ValuesAndQualities } from '../ValuesAndQualities';
+import values from '../../model/data/tempCompanyValues2.json';
+import metrics from '../../model/data/tempMetrics.json';
+import { CompanyValues } from '../CompanyValues/CompanyValues';
 
-import { ValueList } from '@/entities/Value';
+import { Value } from '@/entities/Value';
 import { Page } from '@/widgets/Page';
 
 import cls from './CompanyPage.module.scss';
@@ -12,83 +15,28 @@ interface CompanyPageProps {
   className?: string;
 }
 
-const presets = [
-  {
-    id: 1,
-    name: 'Самоотдача',
-    qualities: [
-      { id: 2, name: 'Обучаемость' },
-      { id: 9, name: 'Серьезность' },
-      { id: 16, name: 'Умение заниматься рутинной работой' },
-      { id: 21, name: 'Чувство юмора' },
-      { id: 26, name: 'Лидерство' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Страсть',
-    qualities: [
-      { id: 1, name: 'Командный дух (команда-семья)' },
-      { id: 9, name: 'Серьезность' },
-      { id: 15, name: 'Амбициозность' },
-      { id: 21, name: 'Чувство юмора' },
-      { id: 26, name: 'Лидерство' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Честность',
-    qualities: [
-      { id: 3, name: 'Честность' },
-      { id: 9, name: 'Серьезность' },
-      { id: 17, name: 'Ответсвенность' },
-      { id: 4, name: 'Умение говорить' },
-      { id: 27, name: 'Умение слушать' },
-    ],
-  },
-  {
-    id: 4,
-    name: 'Открытость',
-    qualities: [
-      { id: 4, name: 'Умение говорить' },
-      { id: 10, name: 'Коммуникабельность' },
-      { id: 8, name: 'Этичность' },
-      { id: 27, name: 'Умение слушать' },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Практичный подход',
-    qualities: [
-      { id: 5, name: 'Системность мышления' },
-      { id: 11, name: 'Тайм-менеджмент и пунктуальность' },
-      { id: 18, name: 'Профессионализм и компетентность ' },
-      { id: 24, name: 'Безопасность' },
-    ],
-  },
-  {
-    id: 6,
-    name: 'Самоотдача',
-    qualities: [
-      { id: 2, name: 'Обучаемость' },
-      { id: 9, name: 'Серьезность' },
-      { id: 16, name: 'Умение заниматься рутинной работой' },
-      { id: 21, name: 'Чувство юмора' },
-      { id: 26, name: 'Лидерство' },
-    ],
-  },
-];
-
 const CompanyPage = (props: CompanyPageProps) => {
   const { className } = props;
-  const addPreset = () => {
-    // здесь функция для добавления готового пресета
-  };
+  const testValues = values;
+  const emptyValues: Value[] = [];
 
   return (
     <Page className={classNames(cls.CompanyPage, {}, [className])}>
-      <ValuesAndQualities />
-      <ValueList values={presets} isPreset cardAction={addPreset} />
+      <CompanyValues values={testValues} />
+      <Card variant="light" className={cls.company_metrics}>
+        <div className={cls.metrics_header}>
+          <h2>Метрики</h2>
+          <p>
+            По метрикам строятся прогнозы о состоянии сотрудников и коллектива
+            компании
+          </p>
+        </div>
+        <ul className={cls.metrics_list}>
+          {metrics.map((item, index) => (
+            <li key={index}>{item.name}</li>
+          ))}
+        </ul>
+      </Card>
     </Page>
   );
 };
