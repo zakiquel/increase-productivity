@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'logoSrc' => 'nullable|string|max:15',
+            'logoSrc' => 'nullable|string|max:255',
             'currency_name' => 'required|string|max:255',
             'description' => 'required|string',
         ];
