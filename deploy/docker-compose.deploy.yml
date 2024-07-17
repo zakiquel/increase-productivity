@@ -47,6 +47,22 @@ services:
     networks:
       - default
 
+  phpmyadmin:
+    image: registry.hub.docker.com/phpmyadmin/phpmyadmin:5.2.1
+    restart: unless-stopped
+    environment:
+      BASE_URL: /phpmyadmin
+      PMA_HOST: db
+      MYSQL_USERNAME: ${DB_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      VIRTUAL_PORT: 80
+      VIRTUAL_HOST: increase-productivity.abdrashitov-academy.ru
+      VIRTUAL_PATH: /phpmyadmin
+      LETSENCRYPT_HOST: increase-productivity.abdrashitov-academy.ru
+    networks:
+      - default
+      - academy
+
   docs:
     image: registry.hub.docker.com/swaggerapi/swagger-ui:v4.17.0
     restart: always
