@@ -176,6 +176,8 @@ class Service
 
     public function store_event(\App\Http\Requests\Event\StoreRequest $request)
     {
+        $data = $request->validated();
+
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
 
         if (!$company_id) {

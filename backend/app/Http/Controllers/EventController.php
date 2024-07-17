@@ -26,9 +26,7 @@ class EventController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $data = $request->validated();
-
-        return $this->service->store_event($data);
+        return $this->service->store_event($request);
     }
 
     /**
