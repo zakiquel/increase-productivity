@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Absenteeism\StoreRequest as AbsenteeismStoreRequest;
 use App\Http\Requests\Company\StoreRequest;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Event\UpdateRequest;
+use App\Http\Resources\Absenteeism\AbsenreeismResource;
+use App\Http\Resources\Absenteeism\AbsenteeismResource;
 use App\Http\Resources\Company\CompanyResource;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
@@ -15,6 +18,7 @@ use App\Http\Resources\Metrics\MetricsCollectionResource;
 use App\Http\Resources\Metrics\MetricsResource;
 use App\Http\Resources\SurveyHistory\SurveyHistoryCollectionResource;
 use App\Http\Resources\SurveyHistory\SurveyHistoryResource;
+use App\Models\AbsenteeismRate;
 use App\Models\Employee;
 use App\Models\Event;
 use App\Models\Metric;
@@ -540,6 +544,105 @@ class Service
                 'employee_statistics' => $employee_statistics_for_3_metric."%",
             ],
 
+        ], 201);
+    }
+
+    public function store_absenteeism_rate(AbsenteeismStoreRequest $request)
+    {
+        $request = $request->validated();
+
+        $company = Company::where('user_id', Auth::id())->first();
+
+        if (!$company) {
+            return response()->json(['error' => 'Create company first'], 404);
+        }
+
+        $request['company_id'] = $company->id;
+
+        $absenteeism = AbsenteeismRate::create($request);
+
+        return AbsenteeismResource::make($absenteeism);
+    }
+
+    public function index_absenteeism_rate()
+    {
+
+        if (!(auth()->check())) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $company = Company::where('user_id', Auth::id())->first();
+
+        if (!$company) {
+            return response()->json(['error' => 'Create company first'], 404);
+        }
+
+        $absenteeism_coef = AbsenteeismRate::where('company_id', $company->id)
+            ->orderBy('created_at', 'DESC')
+            ->pluck('coefficient')
+            ->first();
+
+        $metric_4_name = Metric::where('id', 4)->pluck('name')->first();
+        $metric_5_name = Metric::where('id', 5)->pluck('name')->first();
+
+        $metric_4_risk_name = Metric::where('id', 4)->pluck('risk_name')->first();
+        $metric_5_risk_name = Metric::where('id', 5)->pluck('risk_name')->first();
+
+        $avg_salary = Employee::where('company_id', $company->id)
+            ->where('status', 'working')
+            ->avg('salary');
+
+        $risk_4_coef = (float) Metric::where('id', 4)->value('coefficient');
+        $risk_5_coef = (float) Metric::where('id', 5)->value('coefficient');
+
+        $working_employees = $avg_salary = Employee::where('company_id', $company->id)
+            ->where('status', 'working')
+            ->count();
+
+        $fired_employees = $avg_salary = Employee::where('company_id', $company->id)
+            ->where('status', 'fired')
+            ->count();
+
+
+        $metric_4_risk = (int) round($avg_salary*$risk_4_coef*0.05*1000, 0);
+        $metric_5_risk = (int) round($avg_salary*$risk_5_coef*0.015*1000, 0);
+
+        if ($working_employees == 0) {
+            return response()->json(['error' => 'Hire at least one employee'], 404);
+        }
+        else {
+            $staff_turnover = (float) round(($fired_employees/$working_employees)*100, 4);
+        }
+
+        if ($staff_turnover <= 5) {
+            $metric_4_description = "≤ 5% - Метрика в норме, продолжайте ее отслеживать, чтобы контролировать состояние компании";
+        }
+        else {
+            $metric_4_description = "> 5% - Обратите внимание на причины ухода из компании сотрудников, чтобы контролировать процесс управления трудовыми ресурсами";
+        }
+
+        if ($absenteeism_coef <= 0.15) {
+            $metric_5_description = "≤ 15% - Норма, ваши сотрудники добросовестно посещают работу и выполняют трудовые обязанности";
+        }
+        else {
+            $metric_5_description = "> 15% - Рекомендуем обратить внимание на причины пропуска работы вашими сотрудниками, выявить недобросовестных работников, провести мероприятие направленное на ликвидацию рисков пропуска рабочих дней";
+        }
+
+        return response()->json([
+            'metric_4' => [
+                'metric_name' => $metric_4_name,
+                'risk_name' => $metric_4_risk_name,
+                'risk' => $metric_4_risk,
+                'coefficient' => $staff_turnover."%",
+                'description' => $metric_4_description
+            ],
+            'metric_5' => [
+                'metric_name' => $metric_5_name,
+                'risk_name' => $metric_5_risk_name,
+                'risk' => $metric_5_risk,
+                'coefficient' => $absenteeism_coef,
+                'description' => $metric_5_description
+            ]
         ], 201);
     }
 }

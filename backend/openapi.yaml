@@ -1047,6 +1047,51 @@ paths:
                   message:
                     type: string
 
+  # collective metrics API
+  /api/collective_metrics:
+    summary: Operations about collective metrics
+    get:
+      tags:
+        - Collective metrics GET
+      summary: Get all the collective metrics
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+    post:
+      tags:
+        - Collective metrics POST
+      summary: Add an absenteeism rate
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/absenteeism_rate_input'
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/survey_history_output"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1311,3 +1356,26 @@ components:
           type: integer
         survey_date:
           type: string
+
+    absenteeism_rate_input:
+      type: object
+      properties:
+        coefficient:
+          type: number
+          format: float
+          example: "0.2321"
+
+    survey_history_output:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: "1"
+        company_id:
+          type: ineger
+          example: "1"
+        coefficient:
+          type: number
+          format: float
+          example: "0.2321"
+

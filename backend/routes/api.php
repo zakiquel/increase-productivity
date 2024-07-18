@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CollectiveMetricController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
@@ -74,3 +75,5 @@ Route::resource('events', EventController::class);
 Route::resource('metrics', MetricsController::class);
 
 Route::resource('survey_histories', SurveyHistoryController::class);
+
+Route::resource('collective_metrics', CollectiveMetricController::class);
