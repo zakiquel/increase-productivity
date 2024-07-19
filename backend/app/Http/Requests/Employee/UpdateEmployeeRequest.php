@@ -22,18 +22,14 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
             'imgSrc' => 'required|string|max:255',
+            'salary' => 'required|numeric',
             'birth_date' => 'required|date',
             'position' => 'required|string|max:255',
-            'work_experience' => 'required|numeric|between:0,9999.99',
-            'age_in_full_years' => 'required|numeric',
-            'salary' => 'required|numeric',
-            'email' => 'required|email',
-            'balance' => 'required|numeric',
+            'status' => 'required|string|in:working,fired',
             'date_of_hiring' => 'required|date',
+            'work_experience' => 'required|numeric|between:0,9999.99',
+            'balance' => 'required|numeric',
             'company_id' => 'exists:companies,id',
         ];
     }

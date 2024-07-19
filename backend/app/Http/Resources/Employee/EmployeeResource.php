@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Employee;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,22 +15,21 @@ class EmployeeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $employee = Employee::where('user_id', $this->id)->first();
         return [
-            'id' => $this->id,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
-            'imgSrc' => $this->imgSrc,
-            'birth_date' => $this->birth_date,
-            'position' => $this->position,
-            'age_in_full_years' => $this->age_in_full_years,
-            'work_experience' => $this->work_experience,
-            'balance' => $this->balance,
-            'salary' => $this->salary,
-            'phone_number' => $this->phone_number,
             'email' => $this->email,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'company_id' => $employee->company_id,
+            'imgSrc' => $employee->imgSrc,
+            'salary' => $employee->salary,
+            'birth_date' => $employee->birth_date,
+            'position' => $employee->position,
+            'status' => $employee->status,
+            'date_of_hiring' => $employee->date_of_hiring,
+            'work_experience' => $employee->work_experience,
+            'balance' => $employee->balance,
         ];
     }
 }

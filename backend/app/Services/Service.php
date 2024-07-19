@@ -12,6 +12,7 @@ use App\Http\Resources\Absenteeism\AbsenteeismResource;
 use App\Http\Resources\Company\CompanyResource;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
+use App\Http\Resources\Employee\EmployeeUpdateResource;
 use App\Http\Resources\Event\EventCollectionResource;
 use App\Http\Resources\Event\EventResource;
 use App\Http\Resources\Metrics\MetricsCollectionResource;
@@ -97,9 +98,10 @@ class Service
         if (!$company) {
             return response()->json(['error' => 'Company not found'], 404);
         }
-        $employees = Employee::where('company_id', $company->id)->get();
 
-        return new EmployeeCollectionResource($employees);
+        $users_employees = User::whereIn('id', Employee::where('company_id', $company->id)->pluck('user_id'))->get();
+
+        return new EmployeeCollectionResource($users_employees);
     }
     public function show_employee($employee)
     {
@@ -108,11 +110,13 @@ class Service
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        return new EmployeeResource($employee);
+        $user = User::where('id', $employee->user_id)->first();
+
+        return new EmployeeResource($user);
     }
     public function store_employee(StoreEmployeeRequest $request)
     {
-        $data = $request->validated();
+        $data = (object) $request->validated();
 
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
 
@@ -120,15 +124,32 @@ class Service
             return response()->json(['error' => 'Company not found'], 404);
         }
 
-        $data['company_id'] = $company_id;
+        $new_employee = User::query()->create([
+            'first_name' => $data->first_name,
+            'middle_name' => $data->middle_name,
+            'last_name' => $data->last_name,
+            'email' => $data->email,
+            'role' => $data->role,
+            'password' => bcrypt($data->password),
+        ]);
 
-        $employee = Employee::create($data);
+        Employee::query()->create([
+            'company_id' => $company_id,
+            'user_id' => $new_employee->id,
+            'imgSrc' => $data->imgSrc,
+            'salary' => $data->salary,
+            'birth_date' => $data->birth_date,
+            'position' => $data->position,
+            'status' => $data->status,
+            'date_of_hiring' => $data->date_of_hiring,
+            'work_experience' => $data->work_experience,
+            'balance' => $data->balance,
+        ]);
 
-        return EmployeeResource::make($employee);
+        return EmployeeResource::make($new_employee);
     }
     public function update_employee(UpdateEmployeeRequest $request, Employee $employee)
     {
-
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
         if ($employee->company_id != $company_id) {
             return response()->json(['error' => 'Unauthorized'], 403);
@@ -137,7 +158,7 @@ class Service
 
         $employee->update($data);
 
-        return new EmployeeResource($employee);
+        return new EmployeeUpdateResource($employee);
     }
     public function delete_employee(Employee $employee)
     {

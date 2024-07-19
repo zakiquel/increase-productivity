@@ -14,19 +14,16 @@ class Employee extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
         'imgSrc',
         'salary',
         'birth_date',
-        'age_in_full_years',
         'position',
+        'status',
         'date_of_hiring',
         'work_experience',
-        'email',
         'balance',
         'company_id',
+        'user_id',
     ];
 
     public function company()
