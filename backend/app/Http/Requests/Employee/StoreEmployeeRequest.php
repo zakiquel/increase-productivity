@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class StoreEmployeeRequest extends FormRequest
 {
@@ -22,16 +23,23 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:25',
+            'middle_name' => 'nullable|string|max:25',
+            'last_name' => 'nullable|string|max:25',
+            'role' => 'required|string|in:employee', // Ensure role is 'employee'
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => [
+                'required',
+                'string',
+                Password::min(6)->letters()->numbers(),
+                'confirmed', // Ensure password_confirmation matches password
+            ],
             'imgSrc' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'position' => 'required|string|max:255',
             'work_experience' => 'required|numeric|between:0,9999.99',
-            'age_in_full_years' => 'required|numeric',
+            'status' => 'required|string|in:working,fired',
             'salary' => 'required|numeric',
-            'email' => 'required|email|unique:employees,email',
             'balance' => 'required|numeric',
             'date_of_hiring' => 'required|date',
             'company_id' => 'exists:companies,id',  // Validate that company_id exists in companies table

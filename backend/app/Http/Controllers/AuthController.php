@@ -31,6 +31,7 @@ class AuthController extends BaseController
 
         // Return the response
         return response()->json($data, 201);
+
     }
     /**
      * Get a JWT via given credentials.
