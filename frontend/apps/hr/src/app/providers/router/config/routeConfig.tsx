@@ -10,6 +10,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { ValueConstructorPage } from '@/pages/ValueConstructorPage';
 import { RequestsEventsPage } from '@/pages/RequestsEventsPage';
+import { TestDiagramsPage } from '@/pages/TestDiagrams'; // TODO: Потом удалить
 import {
   AppRoutes,
   getRouteCompany,
@@ -18,6 +19,7 @@ import {
   getRouteEvents,
   getRouteCatalog,
   getRouteInstructions,
+  getTestDiagrams, // TODO: Потом удалить
   getRouteMain,
   getRouteProfile,
   getRouteRequestsEvents,
@@ -63,5 +65,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.NOT_FOUND]: {
     path: '*',
     element: <NotFoundPage />,
+  },
+  [AppRoutes.TEST_DIAGRAMS]: {
+    // TODO: Потом удалить
+    path: getTestDiagrams(),
+    element: <TestDiagramsPage />,
   },
 };

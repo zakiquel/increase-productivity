@@ -1,0 +1,9 @@
+.CompanyRiskСhart {
+  width: 50%;
+}
+
+.diagram_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
