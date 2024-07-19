@@ -7,6 +7,7 @@ export enum AppRoutes {
   EVENTS = 'events',
   REQUESTS = 'requests',
   CATALOG = 'catalog',
+  TEST_DIAGRAMS = 'test_diagrams', // TODO: Потом удалить
   INSTRUCTIONS = 'instructions',
   NOT_FOUND = 'not_found',
 }
@@ -21,6 +22,7 @@ export const getRouteCatalog = () => '/hr/catalog';
 export const getRouteInstructions = () => '/hr/instructions';
 export const getRouteRequestsEvents = () => '/hr/events/requests';
 export const getRouteProfile = (id: string) => `/hr/profile/${id}`;
+export const getTestDiagrams = () => '/hr/test_diagrams'; // TODO: Потом удалить
 
 export const pathNames = [
   {
