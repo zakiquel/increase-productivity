@@ -1,14 +1,12 @@
 import { classNames } from '@repo/shared/lib';
 import { memo, useState } from 'react';
 
-import { pathNames } from '@/shared/const/router';
-import { Page } from '@/widgets/Page';
-import { PageSidebar } from '@/widgets/PagesSidebar';
+import { SectionSwitcher } from '../SectionSwitcher';
 
-import cls from './EventsPage.module.scss';
-import EventsDesk from '@/widgets/EventDesk/ui/EventDesk';
+import { type Event } from '@/entities/Event';
 import { AddEventDrawer } from '@/features/AddEvent';
-import { EventPageSidebar } from '@/features/EventPageSidebar';
+import { EventModal } from '@/features/EditEvent';
+import { Page } from '@/widgets/Page';
 
 interface EventsPageProps {
   className?: string;
@@ -16,11 +14,26 @@ interface EventsPageProps {
 
 const EventsPage = (props: EventsPageProps) => {
   const { className } = props;
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [activeEvent, setActiveEvent] = useState<Event>();
+  const [isOpenModal, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <Page className={classNames('', {}, [className])}>
-      <EventPageSidebar />
-      <EventsDesk />
+      <SectionSwitcher
+        setIsDrawerOpen={setIsDrawerOpen}
+        setActiveEvent={setActiveEvent}
+        setIsModalOpen={setIsModalOpen}
+      />
+      <AddEventDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      />
+      <EventModal
+        isOpen={isOpenModal}
+        setOpen={() => setIsModalOpen(false)}
+        event={activeEvent}
+      />
     </Page>
   );
 };

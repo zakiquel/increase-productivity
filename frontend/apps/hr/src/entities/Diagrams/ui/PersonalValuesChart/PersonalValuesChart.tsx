@@ -1,8 +1,8 @@
 // Динамика личных ценностей, паутинчатая диаграмма балл
 
 import 'chart.js/auto';
-import { Radar } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { Radar } from 'react-chartjs-2';
 
 const data: ChartData<'radar'> = {
   labels: [

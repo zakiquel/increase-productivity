@@ -1,0 +1,25 @@
+.ProductItem {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.title {
+  font-size: var(--font-size-20);
+  font-weight: 400;
+  margin: 4px 16px 0;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 4px;
+
+  .price {
+    font-size: var(--font-size-32);
+    font-weight: 500;
+  }
+}

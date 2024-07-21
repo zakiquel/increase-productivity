@@ -1,8 +1,8 @@
 // Динамика личных метрик, линейная (балл/дата)
 
 import 'chart.js/auto';
-import { Line } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 const data: ChartData<'line'> = {
   labels: ['Ценность 1', 'Ценность 2'],

@@ -111,6 +111,7 @@ const RegistrationForm = memo((props: RegistrationFormProps) => {
             render={({ field }) => (
               <Input
                 {...field}
+                // @ts-ignore
                 options={options}
                 onFocus={() => {
                   if (field.value === '') {

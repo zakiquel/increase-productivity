@@ -1,10 +1,8 @@
-import { Avatar, Icon, Button } from '@repo/shared/ui'
+import { Avatar, Icon, Button } from '@repo/shared/ui';
 
-import logout from '@/shared/assets/icons/logout.svg'
-import { AppLink } from '@/shared/ui/AppLink'
+import logout from '@/shared/assets/icons/logout.svg';
 
-import cls from './ProfileBlock.module.scss'
-
+import cls from './ProfileBlock.module.scss';
 
 export function ProfileBlock() {
   return (
@@ -17,17 +15,18 @@ export function ProfileBlock() {
         </div>
       </div>
       <div className={cls.buttons}>
-        <AppLink
-          to="/profile/transaction"
+        <Button
+          size="s"
           className={cls.personal_page_link}
-          variant="filled"
+          variant="secondary"
+          disabled
         >
           Профиль
-        </AppLink>
+        </Button>
         <Button size="s" variant="exit" className={cls.exit}>
           <Icon Svg={logout} width={14} height={14} />
         </Button>
       </div>
     </div>
-  )
+  );
 }

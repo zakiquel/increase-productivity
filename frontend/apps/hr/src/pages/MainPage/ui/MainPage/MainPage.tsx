@@ -1,9 +1,10 @@
 import { classNames } from '@repo/shared/lib';
 import React, { memo } from 'react';
 
+import { EmployeesSection } from '../EmployeesSection';
+
 import { ChartList } from '@/entities/Chart';
 import { Employee } from '@/entities/Employee';
-import { EmployeesSection } from '@/widgets/EmployeesSection';
 import { Page } from '@/widgets/Page';
 
 import cls from './MainPage.module.scss';

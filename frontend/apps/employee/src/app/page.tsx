@@ -1,14 +1,16 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import { getEventsPath } from '@/shared/const/route'
-import { useEffect } from 'react'
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
+import { getEventsPath } from '@/shared/const/route';
 
 const Page = () => {
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
-    router.replace(getEventsPath())
-  }, [])
-  return <div></div>
-}
+    router.replace(getEventsPath());
+  }, [router]);
+  return <div />;
+};
 
-export default Page
+export default Page;

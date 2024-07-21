@@ -1,18 +1,15 @@
-.Products {
-  padding: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 404px);
-  justify-content: center;
+.page {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  @media (max-width: 1720px) {
-    grid-template-columns: repeat(3, 415px);
-  }
-  @media (max-width: 1500px) {
-    grid-template-columns: repeat(2, 415px);
-  }
-  @media (max-width: 1080px) {
-    grid-template-columns: repeat(1, 415px);
-  }
+  
+}
+
+.History {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: Inter, sans-serif;
 }
 
 .not {
@@ -22,4 +19,17 @@
   padding: 16px;
   border-radius: 4px;
   background-color: var(--white);
+}
+
+.nav {
+  height: 40px;
+  padding: 4px 16px;
+  border-radius: 4px;
+  background-color: var(--white);
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
 }

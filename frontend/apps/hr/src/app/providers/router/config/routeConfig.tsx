@@ -8,9 +8,8 @@ import { InstructionsPage } from '@/pages/InstructionsPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
-import { ValueConstructorPage } from '@/pages/ValueConstructorPage';
-import { RequestsEventsPage } from '@/pages/RequestsEventsPage';
 import { TestDiagramsPage } from '@/pages/TestDiagrams'; // TODO: Потом удалить
+import { ValueConstructorPage } from '@/pages/ValueConstructorPage';
 import {
   AppRoutes,
   getRouteCompany,
@@ -22,7 +21,6 @@ import {
   getTestDiagrams, // TODO: Потом удалить
   getRouteMain,
   getRouteProfile,
-  getRouteRequestsEvents,
 } from '@/shared/const/router';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -35,16 +33,12 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <ProfilePage />,
   },
   [AppRoutes.COMPANY]: {
-    path: getRouteCompany(),
+    path: getRouteCompany(':id'),
     element: <CompanyPage />,
   },
   [AppRoutes.VALUE_CONSTRUCTOR]: {
     path: getRouteValueConstructor(),
     element: <ValueConstructorPage />,
-  },
-  [AppRoutes.REQUESTS]: {
-    path: getRouteRequestsEvents(),
-    element: <RequestsEventsPage />,
   },
   [AppRoutes.EMPLOYEE]: {
     path: getRouteEmployee(':id'),

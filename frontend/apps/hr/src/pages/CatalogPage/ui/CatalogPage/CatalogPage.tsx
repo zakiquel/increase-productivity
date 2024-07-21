@@ -1,6 +1,11 @@
 import { classNames } from '@repo/shared/lib';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
+import { SectionSwitcher } from '../SectionSwitcher/ui/SectionSwitcher';
+
+import { Product } from '@/entities/Product';
+import { AddProductDrawer } from '@/features/AddProduct';
+import { ProductItemModal } from '@/features/EditProduct';
 import { Page } from '@/widgets/Page';
 
 interface CatalogPageProps {
@@ -10,7 +15,29 @@ interface CatalogPageProps {
 const CatalogPage = (props: CatalogPageProps) => {
   const { className } = props;
 
-  return <Page className={classNames('', {}, [className])}>CatalogPage</Page>;
+  const [isOpenForm, setIsOpenForm] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const [isProduct, setProduct] = useState<Product>();
+
+  return (
+    <Page className={classNames('', {}, [className])}>
+      <SectionSwitcher
+        setIsOpenForm={setIsOpenForm}
+        setActiveProduct={setProduct}
+        setIsModalOpen={setIsOpenModal}
+      />
+      <AddProductDrawer
+        isOpen={isOpenForm}
+        onClose={() => setIsOpenForm(false)}
+      />
+      <ProductItemModal
+        isOpen={isOpenModal}
+        setOpen={() => setIsOpenModal(false)}
+        product={isProduct}
+      />
+    </Page>
+  );
 };
 
 export default memo(CatalogPage);
