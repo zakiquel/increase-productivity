@@ -3,7 +3,7 @@ import { Button, Card } from '@repo/shared/ui';
 import { useNavigate } from 'react-router-dom';
 
 import { Value, ValueList } from '@/entities/Value';
-import { getRouteValueConstructor } from '@/shared/const/router';
+import { getRouteValuesConstructor } from '@/shared/const/router';
 
 import cls from './CompanyValues.module.scss';
 
@@ -15,8 +15,9 @@ export const CompanyValues = (props: CompanyValuesProps) => {
   const { values } = props;
   const navigate = useNavigate();
   const openConstructor = () => {
-    navigate(getRouteValueConstructor());
+    navigate(getRouteValuesConstructor());
   };
+
   return (
     <Card variant="light" padding="16" className={cls.company_values}>
       {!values || values.length === 0 ? (

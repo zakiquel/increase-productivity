@@ -1,8 +1,8 @@
 export enum AppRoutes {
   MAIN = 'main',
   PROFILE = 'profile',
-  COMPANY = 'company',
-  VALUE_CONSTRUCTOR = 'value_constructor',
+  VALUES = 'values',
+  VALUES_CONSTRUCTOR = 'values_constructor',
   EMPLOYEE = 'employee',
   EVENTS = 'events',
   CATALOG = 'catalog',
@@ -12,8 +12,8 @@ export enum AppRoutes {
 }
 
 export const getRouteMain = () => '/hr/';
-export const getRouteCompany = (id: string) => `/hr/company/${id}`;
-export const getRouteValueConstructor = () => '/hr/company/constructor';
+export const getRouteValues = () => `/hr/values`;
+export const getRouteValuesConstructor = () => '/hr/values/constructor';
 export const getRouteEmployees = () => '/hr/employees';
 export const getRouteEmployee = (id: string) => `/hr/employees/${id}`;
 export const getRouteEvents = () => '/hr/events';

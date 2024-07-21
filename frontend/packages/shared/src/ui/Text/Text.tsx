@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
-import { Mods, classNames } from '../../lib/classNames/classNames';
+import { classNames } from '../../lib/classNames/classNames';
 
 import cls from './Text.module.scss';
 
-export type TextVariant = 'primary' | 'error' | 'accent';
+export type TextVariant = 'primary' | 'error' | 'accent' | 'grey';
 export type TextAlign = 'left' | 'right' | 'center';
 export type TextSize = 'xs' | 's' | 'm' | 'l';
 

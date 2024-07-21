@@ -1,5 +1,4 @@
 stages:
-  # - linting
   - build
   - deploy
   - clear
@@ -9,18 +8,6 @@ stages:
 
 .merge_request_event: &merge_request_event
   if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-
-# linting:
-#   stage: linting
-#   script:
-#     - cp ./frontend/apps/hr/linting/Dockerfile Dockerfile
-#     - cp ./frontend/apps/hr/linting/package_.json package_.json
-#     - docker build -t test .
-#   rules:
-#     - <<: *branch_rule
-#     - <<: *merge_request_event
-#   tags:
-#     - academy
 
 build:
   stage: build

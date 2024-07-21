@@ -12,15 +12,11 @@ interface ProgressBarProps {
   className?: string;
   size: number;
   color?: ProgressBarColor;
+  thin?: boolean;
 }
 
 export const ProgressBar = memo((props: ProgressBarProps) => {
-  const {
-    className,
-    size,
-    color = 'default',
-    ...otherProps
-  } = props;
+  const { className, size, color = 'default', thin, ...otherProps } = props;
 
   let dynamicColor: ProgressBarColor = color;
   if (color === 'default') {
@@ -34,11 +30,14 @@ export const ProgressBar = memo((props: ProgressBarProps) => {
   }
 
   return (
-    <div className={classNames(cls.ProgressBar, {}, [
-      className,
-    ])}
-         {...otherProps}>
-      <div className={classNames(cls.progress_fill, {}, [cls[dynamicColor]])} style={{ width: `${size}%` }} />
+    <div
+      className={classNames(cls.ProgressBar, { [cls.thin]: thin }, [className])}
+      {...otherProps}
+    >
+      <div
+        className={classNames(cls.progress_fill, {}, [cls[dynamicColor]])}
+        style={{ width: `${size}%` }}
+      />
     </div>
   );
 });

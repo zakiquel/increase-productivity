@@ -1,1 +1,1 @@
-export { EmployeePageAsync as EmployeePage } from './ui/EmployeePage.async';
+export { EmployeePageAsync as EmployeePage } from './ui/EmployeePage/EmployeePage.async';

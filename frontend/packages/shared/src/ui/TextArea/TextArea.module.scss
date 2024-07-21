@@ -13,14 +13,13 @@
   position: relative;
   resize: none;
   &:hover {
-    box-shadow: 0px 4px 30px 0px #cacaca80;
+    box-shadow: 0 4px 30px 0 #cacaca80;
   }
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 
   &:focus,

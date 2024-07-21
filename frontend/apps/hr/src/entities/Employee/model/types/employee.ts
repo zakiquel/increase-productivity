@@ -12,15 +12,19 @@ export interface Document {
 
 export interface PersonalInfo {
   firstName: string;
+  patronymic?: string;
   lastName: string;
-  patronimyc?: string;
-  dateOfBirth?: string;
-  position: string;
-  workExperience?: number;
+  imgSrc?: string;
   salary?: number;
+  dateOfBirth?: Date;
+  age?: number;
+  position: string;
+  status?: string;
+  hiring?: Date;
+  workExperience?: number;
   email?: string;
+  balance?: number;
   phoneNumber?: string;
-  dateOfEmployment?: string;
 }
 
 export interface Metric {
@@ -35,10 +39,32 @@ export interface EmployeeValues {
   metrics?: Metric[];
 }
 
+export interface Event {
+  companyId: number;
+  name: string;
+  format?: string;
+  category: string;
+  description?: string;
+  imgSrc?: string;
+  reward?: number;
+  date: string;
+}
+
+export interface Transaction {
+  productId: number;
+  amount?: number;
+  description?: string;
+  type?: string;
+  date: string;
+  status: string;
+}
+
 export interface Employee {
   id: number;
   personalInfo: PersonalInfo;
   notes?: Note[];
   documents?: Document[];
   values?: EmployeeValues;
+  events?: Event[];
+  transactions?: Transaction[];
 }
