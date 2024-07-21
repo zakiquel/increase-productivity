@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'first_name',
         'middle_name',
         'last_name',
-        'role',
+        'role_id',
         'email',
         'password',
     ];

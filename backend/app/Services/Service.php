@@ -27,7 +27,7 @@ use App\Models\SurveyHistory;
 use App\Models\User;
 use App\Models\Value;
 use App\Models\Company;
-
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class Service
@@ -38,7 +38,7 @@ class Service
             'first_name' => $validatedData['first_name'],
             'middle_name' => $validatedData['middle_name'],
             'last_name' => $validatedData['last_name'],
-            'role' => $validatedData['role'],
+            'role_id' => Role::where('role_name', 'hr')->pluck('id')->first(),
             'email' => $validatedData['email'],
             'password' => \Illuminate\Support\Facades\Hash::make($validatedData['password']),
         ]);

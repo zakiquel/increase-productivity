@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
             'first_name' => 'required|string|max:25',
             'middle_name' => 'nullable|string|max:25',
             'last_name' => 'nullable|string|max:25',
-            'role' => 'required|string|in:hr,employee', // Ensure role is either 'hr' or 'employee'
+            'role_id' => 'exists:roles,id',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => [
                 'required',

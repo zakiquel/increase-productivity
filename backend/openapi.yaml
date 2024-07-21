@@ -24,25 +24,28 @@ paths:
               properties:
                 first_name:
                   type: string
+                  example: Денис
                 middle_name:
                   type: string
+                  example: Николаевич
                 last_name:
                   type: string
-                role:
-                  type: string
+                  example: Вылетялов
                 email:
                   type: string
                   format: email
+                  example: viletyalov1212@gmail.com
                 password:
                   type: string
                   format: password
+                  example: passvdn1212
                 password_confirmation:
                   type: string
                   format: password
+                  example: passvdn1212
               required:
                 - first_name
                 - email
-                - phone_number
                 - password
                 - password_confirmation
       responses:
@@ -55,21 +58,43 @@ paths:
                 properties:
                   message:
                     type: string
+                    example: User successfully registered
                   user:
                     type: object
                     properties:
-                      id:
-                        type: integer
                       first_name:
                         type: string
+                        example: Денис
                       middle_name:
                         type: string
+                        example: Николаевич
                       last_name:
                         type: string
-                      role:
-                        type: string
+                        example: Вылетялов
+                      role_id:
+                        type: integer
+                        example: 1
                       email:
                         type: string
+                        example: viletyalov1212@gmail.com
+                      updated_at:
+                        type: string
+                        example: 2024-07-21T06:58:17.000000Z
+                      created_at:
+                        type: string
+                        example: 2024-07-21T06:58:17.000000Z
+                      id:
+                        type: integer
+                        example: 1
+                  access_token:
+                    type: string
+                    example: 123456789
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 3600
         "400":
           description: Bad request
           content:
