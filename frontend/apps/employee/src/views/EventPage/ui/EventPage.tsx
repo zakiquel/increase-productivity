@@ -5,7 +5,7 @@ import { memo } from 'react';
 import dataCommon from '../model/data/tempData.json';
 import dataUser from '../model/data/tempDataUser.json';
 
-import { EventCard } from '@/entities/EventCard';
+import { EventCard } from '@/entities/Event';
 import { Page } from '@/widgets/Page';
 
 import cls from './EventPage.module.scss';

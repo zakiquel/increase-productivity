@@ -26,7 +26,7 @@ const testEmployee: Employee = {
     firstName: 'Иван',
     lastName: 'Иванов',
     dateOfBirth: '01.01.1990',
-    position: 2,
+    position: '2',
     workExperience: 3,
     salary: 100000,
     email: 'ivanov@mail.com',

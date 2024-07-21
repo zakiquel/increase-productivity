@@ -20,7 +20,7 @@ export interface PersonalInfo {
   salary?: number;
   email?: string;
   phoneNumber?: string;
-  dateOfEmployment: string;
+  dateOfEmployment?: string;
 }
 
 export interface Metric {

@@ -1,20 +1,20 @@
 {
   "devDependencies": {
+    "@next/eslint-plugin-next": "^14.1.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
-    "@next/eslint-plugin-next": "^14.1.1",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.9.0",
-    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-zavalition-fsd": "^0.1.9",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "prettier": "3.3.2",
-    "typescript": "^5.3.3"
+    "typescript": "5.2.2"
   },
   "scripts": {
     "lint": "eslint \"frontend/apps/**/*.{ts,tsx}\" --fix",

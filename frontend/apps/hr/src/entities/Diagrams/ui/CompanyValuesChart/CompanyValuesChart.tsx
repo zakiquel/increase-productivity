@@ -1,8 +1,8 @@
 // Диаграмма по ценностям компании (усредненная по всем сотрудникам), паутинчатая, балл ценности округленный до целого
 
 import 'chart.js/auto';
-import { Radar } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { Radar } from 'react-chartjs-2';
 
 const data: ChartData<'radar'> = {
   labels: [

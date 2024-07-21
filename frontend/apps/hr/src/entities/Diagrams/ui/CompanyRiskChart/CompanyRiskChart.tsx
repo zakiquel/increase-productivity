@@ -1,7 +1,7 @@
 // Диаграмма рисков компании, круговая руб и %
 import 'chart.js/auto';
-import { Pie } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
 
 const data: ChartData<'pie'> = {
   labels: ['Ценность 1', 'Ценность 2'],

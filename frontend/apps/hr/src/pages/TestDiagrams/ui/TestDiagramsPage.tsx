@@ -1,7 +1,6 @@
 import { classNames } from '@repo/shared/lib';
 import { memo } from 'react';
 
-import { Page } from '@/widgets/Page';
 import {
   CompanyMetricsChart,
   CompanyQualityChart,
@@ -12,6 +11,7 @@ import {
   PersonalRiskChart,
   PersonalValuesChart,
 } from '@/entities/Diagrams';
+import { Page } from '@/widgets/Page';
 
 import styles from './TestDiagramsPage.module.scss';
 

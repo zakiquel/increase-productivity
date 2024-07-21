@@ -1,18 +1,18 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMaskito } from "@maskito/react";
-import { classNames } from "@repo/shared/lib";
-import { Button, Input, Text, TextArea } from "@repo/shared/ui";
-import { memo, useCallback, useState } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMaskito } from '@maskito/react';
+import { classNames } from '@repo/shared/lib';
+import { Button, Input, Text, TextArea } from '@repo/shared/ui';
+import { memo, useCallback, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import {
   addEventSchema,
   FormInputData,
   FormOutputData,
-} from "../../lib/addEventSchema";
-import dateOptions from "../../lib/dateMask";
+} from '../../lib/addEventSchema';
+import dateOptions from '../../lib/dateMask';
 
-import cls from "./AddEventForm.module.scss";
+import cls from './AddEventForm.module.scss';
 
 export interface AddEventFormProps {
   className?: string;
@@ -34,13 +34,13 @@ const AddEventForm = memo((props: AddEventFormProps) => {
     formState: { errors, isValid },
   } = useForm<FormInputData, any, FormOutputData>({
     defaultValues: {
-      title: "",
-      date: "",
-      reward: "",
-      description: "",
+      title: '',
+      date: '',
+      reward: '',
+      description: '',
     },
     resolver: zodResolver(addEventSchema),
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const onResetClick = useCallback(async () => {
@@ -63,7 +63,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
       reset();
       onSuccess();
     },
-    [reset, onSuccess, onSaveClick]
+    [reset, onSuccess, onSaveClick],
   );
 
   return (
@@ -90,7 +90,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.title?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.title) trigger("title");
+                if (errors.title) trigger('title');
               }}
             />
           )}
@@ -106,7 +106,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.format?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.format) trigger("format");
+                if (errors.format) trigger('format');
               }}
             />
           )}
@@ -124,7 +124,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.date?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.date) trigger("date");
+                if (errors.date) trigger('date');
               }}
             />
           )}
@@ -140,7 +140,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.reward?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.reward) trigger("reward");
+                if (errors.reward) trigger('reward');
               }}
             />
           )}
@@ -153,10 +153,11 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               {...field}
               placeholder="Описание (до 1000 символов)"
               maxLength={1000}
+              className={cls.textarea}
               errorMessage={errors.description?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.description) trigger("description");
+                if (errors.description) trigger('description');
               }}
             />
           )}

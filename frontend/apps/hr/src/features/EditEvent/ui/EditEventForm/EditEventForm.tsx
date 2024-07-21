@@ -5,12 +5,12 @@ import { Button, Input, Text, TextArea } from '@repo/shared/ui';
 import { memo, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
+import dateOptions from '../../lib/dateMask';
 import {
   editEventSchema,
   FormInputData,
   FormOutputData,
 } from '../../lib/editEventSchema';
-import dateOptions from '../../lib/dateMask';
 
 import cls from './EditEventForm.module.scss';
 
@@ -21,15 +21,13 @@ export interface EditEventFormProps {
   onReset: () => void;
 }
 
-const getEventById = (id: string) => {
-  return {
-    title: 'Заголовок мероприятия',
-    format: 'Формат мероприятия',
-    date: '01.01.2022',
-    reward: '1000',
-    description: 'Описание мероприятия',
-  };
-};
+const getEventById = (id: string) => ({
+  title: 'Заголовок мероприятия',
+  format: 'Формат мероприятия',
+  date: '01.01.2022',
+  reward: '1000',
+  description: 'Описание мероприятия',
+});
 
 const EditEventForm = memo((props: EditEventFormProps) => {
   const { eventId, className, onSuccess, onReset } = props;

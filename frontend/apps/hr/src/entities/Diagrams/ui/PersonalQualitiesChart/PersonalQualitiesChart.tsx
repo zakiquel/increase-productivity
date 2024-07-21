@@ -1,8 +1,8 @@
 // Динамика личных качеств, столбчатые диаграммы (балл/время)
 
 import 'chart.js/auto';
-import { Bar } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 const data: ChartData<'bar'> = {
   labels: ['Ценность 1', 'Ценность 2'],

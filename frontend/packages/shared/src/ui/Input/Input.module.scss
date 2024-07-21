@@ -6,6 +6,7 @@
   width: 100%;
   color: var(--base-0-color);
   background-color: var(--bg-color);
+  border-radius: 4px;
 
   &:disabled {
     color: var(--grey-secondary-color);
@@ -51,17 +52,17 @@
 
 .l {
   input {
-    border-radius: 8px;
+    height: 48px;
     padding: 15px;
-    font: var(--font-20);
+    font: var(--font-14);
 
     &::placeholder {
-      font: var(--font-20);
+      font: var(--font-14);
     }
   }
 
   .InputWrapper.focused:not(.isDirty)::before {
-    border-radius: 8px;
+    border-radius: 4px;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%231F2024FF' stroke-width='2' stroke-dasharray='9.3%2c 9' stroke-dashoffset='11' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 
@@ -93,19 +94,18 @@
   }
 
   .helperText {
-    font: var(--font-16);
+    font: var(--font-14);
     margin-top: 8px;
   }
 }
 
 .m {
   input {
-    border-radius: 8px;
-    padding: 12px 8px;
-    font: var(--font-16);
+    padding: 11px 8px;
+    font: var(--font-14);
 
     &::placeholder {
-      font: var(--font-16);
+      font: var(--font-14);
     }
   }
 
@@ -149,12 +149,11 @@
 
 .s {
   input {
-    border-radius: 4px;
     padding: 8px;
-    font: var(--font-14);
+    font: var(--font-12);
 
     &::placeholder {
-      font: var(--font-14);
+      font: var(--font-12);
     }
   }
 

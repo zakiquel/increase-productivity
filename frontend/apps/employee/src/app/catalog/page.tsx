@@ -1,16 +1,7 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { CatalogPage } from '@/views/CatalogPage';
 
-import { getProductPath } from '@/shared/const/route'
+const Page = () => <CatalogPage />;
 
-const Page = () => {
-  const router = useRouter()
-  useEffect(() => {
-    router.replace(getProductPath())
-  }, [router])
-  return <div />
-}
-
-export default Page
+export default Page;

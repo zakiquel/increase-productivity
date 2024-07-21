@@ -33,7 +33,8 @@ export const SegmentedControl = (props: SegmentedControlProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (defaultIndex) onInputChange(segments[defaultIndex].value, defaultIndex);
+    if (defaultIndex !== undefined)
+      onInputChange(segments[defaultIndex].value, defaultIndex);
   }, []);
 
   const onInputChange = (value: string, index: number) => {
@@ -49,11 +50,11 @@ export const SegmentedControl = (props: SegmentedControlProps) => {
           className={classNames(
             cls.segment,
             { [cls.active]: index === activeIndex, [cls.disabled]: disabled },
-            [className, cls[size]]
+            [className, cls[size]],
           )}
         >
           <input
-            type='radio'
+            type="radio"
             value={segment.value}
             name={name}
             checked={index === activeIndex}
