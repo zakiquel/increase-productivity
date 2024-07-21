@@ -22,7 +22,7 @@
   }
 
   &:hover:not(:disabled):not(:read-only) {
-    box-shadow: 0px 4px 30px 0px var(--grey-secondary-color-50pct);
+    box-shadow: 0 4px 30px 0 var(--grey-secondary-color-50pct);
   }
 
   &::placeholder {

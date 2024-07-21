@@ -1,7 +1,6 @@
 import { type RouteProps } from 'react-router-dom';
 
 import { CatalogPage } from '@/pages/CatalogPage';
-import { CompanyPage } from '@/pages/CompanyPage';
 import { EmployeePage } from '@/pages/EmployeePage';
 import { EventsPage } from '@/pages/EventsPage';
 import { InstructionsPage } from '@/pages/InstructionsPage';
@@ -10,10 +9,11 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { TestDiagramsPage } from '@/pages/TestDiagrams'; // TODO: Потом удалить
 import { ValueConstructorPage } from '@/pages/ValueConstructorPage';
+import { ValuesPage } from '@/pages/ValuesPage';
 import {
   AppRoutes,
-  getRouteCompany,
-  getRouteValueConstructor,
+  getRouteValues,
+  getRouteValuesConstructor,
   getRouteEmployee,
   getRouteEvents,
   getRouteCatalog,
@@ -32,12 +32,12 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     path: getRouteProfile(':id'),
     element: <ProfilePage />,
   },
-  [AppRoutes.COMPANY]: {
-    path: getRouteCompany(':id'),
-    element: <CompanyPage />,
+  [AppRoutes.VALUES]: {
+    path: getRouteValues(),
+    element: <ValuesPage />,
   },
-  [AppRoutes.VALUE_CONSTRUCTOR]: {
-    path: getRouteValueConstructor(),
+  [AppRoutes.VALUES_CONSTRUCTOR]: {
+    path: getRouteValuesConstructor(),
     element: <ValueConstructorPage />,
   },
   [AppRoutes.EMPLOYEE]: {

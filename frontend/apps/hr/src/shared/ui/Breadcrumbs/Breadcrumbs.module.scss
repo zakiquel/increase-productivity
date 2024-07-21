@@ -1,0 +1,27 @@
+.breadcrumbs {
+  display: flex;
+  gap: 8px;
+  max-width: 1200px;
+}
+
+.crumb {
+  color: var(--base-0-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+.breadcrumbs .crumb:last-child {
+  color: var(--grey-primary-color);
+  pointer-events: none;
+}
+
+.breadcrumbs .crumb:last-child:after {
+  display: none;
+}
+
+.breadcrumbs .crumb:after {
+  content: '/';
+  margin-left: 8px;
+}

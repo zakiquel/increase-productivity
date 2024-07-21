@@ -1,7 +1,7 @@
 import { AppLink } from '@repo/shared/ui';
 import { memo } from 'react';
 
-import { SidebarItemType } from '../../model/types/sidebar.js';
+import { SidebarItemType } from '@/shared/lib';
 
 import cls from './SidebarItem.module.scss';
 

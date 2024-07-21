@@ -1,17 +1,17 @@
-import { memo } from 'react'
+import { memo } from 'react';
 
-import { SidebarItemType } from '../../model/types/sidebar'
+import { SidebarItemType } from '../../model/types/sidebar';
 
-import { AppLink } from '@/shared/ui/AppLink'
+import { AppLink } from '@/shared/ui/AppLink';
 
-import cls from './SidebarItem.module.scss'
+import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
-  item: SidebarItemType
+  item: SidebarItemType;
 }
 
 export const SidebarItem = memo(({ item }: SidebarItemProps) => (
-  <AppLink className={cls.item} activeClassName={cls.active} to={item.path} size="s">
+  <AppLink className={cls.item} activeClassName={cls.active} to={item.path}>
     <span>{item.text}</span>
   </AppLink>
-))
+));

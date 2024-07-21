@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import testValues from '../model/data/tempCompanyValues2.json';
 import testPresets from '../model/data/tempPresets.json';
 
-
 import { Value, ValueList } from '@/entities/Value';
 import { EditValue } from '@/features/EditValue';
-import { getRouteCompany } from '@/shared/const/router';
+import { getRouteValues } from '@/shared/const/router';
 import { Page } from '@/widgets/Page';
 
 import cls from './ValueConstructorPage.module.scss';
@@ -44,11 +43,11 @@ const ValueConstructorPage = () => {
 
   const navigate = useNavigate();
   const onCancel = () => {
-    navigate(getRouteCompany());
+    navigate(getRouteValues());
   };
 
   const onSave = () => {
-    navigate(getRouteCompany());
+    navigate(getRouteValues());
   };
 
   return (

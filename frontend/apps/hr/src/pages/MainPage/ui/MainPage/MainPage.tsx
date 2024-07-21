@@ -16,7 +16,7 @@ const staff: Employee[] = [
       firstName: 'Петр',
       lastName: 'Петров',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2017-03-15',
+      hiring: new Date('2017-03-15'),
     },
     values: {
       standard: 70,
@@ -28,7 +28,7 @@ const staff: Employee[] = [
       firstName: 'Петр',
       lastName: 'Иванов',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2015-03-15',
+      hiring: new Date('2015-03-15'),
     },
     values: {
       standard: 45,
@@ -40,7 +40,7 @@ const staff: Employee[] = [
       firstName: 'Пётр',
       lastName: 'Сидоров',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2022-11-04',
+      hiring: new Date('2022-11-04'),
     },
     values: {
       standard: 20,
@@ -52,7 +52,7 @@ const staff: Employee[] = [
       firstName: 'Петр',
       lastName: 'Пушкин',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2021-04-15',
+      hiring: new Date('2021-04-15'),
     },
     values: {
       standard: 90,
@@ -64,7 +64,7 @@ const staff: Employee[] = [
       firstName: 'Петр',
       lastName: 'Потапов',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2017-03-14',
+      hiring: new Date('2017-03-14'),
     },
     values: {
       standard: 100,
@@ -76,7 +76,7 @@ const staff: Employee[] = [
       firstName: 'Петр',
       lastName: 'Круглов',
       position: 'UX/UI дизайнер',
-      dateOfEmployment: '2024-06-15',
+      hiring: new Date('2024-06-15'),
     },
   },
 ];

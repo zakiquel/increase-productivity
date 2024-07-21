@@ -1,5 +1,5 @@
 'use client';
-import React, {
+import {
   forwardRef,
   InputHTMLAttributes,
   ReactNode,
@@ -38,7 +38,7 @@ interface InputProps extends HTMLInputProps {
   maskedInputRef?: React.RefCallback<HTMLElement>;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
   const {
     className,
     value,
@@ -109,7 +109,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
       className={classNames(
         cls.wrapper,
         wrapperMods,
-        label ? [cls[size]] : [cls[size], className]
+        label ? [cls[size]] : [cls[size], className],
       )}
     >
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
@@ -125,13 +125,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(props => {
           placeholder={placeholder}
           readOnly={readonly}
           disabled={disabled}
-          aria-describedby='helper-text'
+          aria-describedby="helper-text"
           {...otherProps}
         />
         {addonRight && <div className={cls.addonRight}>{addonRight}</div>}
       </div>
       {(errorMessage || helperText) && (
-        <div id='helper-text' className={cls.helperText}>
+        <div id="helper-text" className={cls.helperText}>
           {errorMessage ?? helperText}
         </div>
       )}

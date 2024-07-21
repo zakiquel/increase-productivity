@@ -21,11 +21,15 @@ export const SortEmployees = memo((props: SortEmployeesProps) => {
     let sorted: Employee[];
     switch (method) {
       case 'byDate':
-        sorted = [...employees].sort(
-          (a, b) =>
-            new Date(a.personalInfo.dateOfEmployment).getTime() -
-            new Date(b.personalInfo.dateOfEmployment).getTime(),
-        );
+        sorted = [...employees].sort((a, b) => {
+          const dateA = a.personalInfo.hiring
+            ? a.personalInfo.hiring.getTime()
+            : 0;
+          const dateB = b.personalInfo.hiring
+            ? b.personalInfo.hiring.getTime()
+            : 0;
+          return dateA - dateB;
+        });
         break;
       case 'byAlphabet':
         sorted = [...employees].sort((a, b) =>

@@ -9,13 +9,13 @@ import { CompanyValues } from '../CompanyValues/CompanyValues';
 import { Value } from '@/entities/Value';
 import { Page } from '@/widgets/Page';
 
-import cls from './CompanyPage.module.scss';
+import cls from './ValuesPage.module.scss';
 
 interface CompanyPageProps {
   className?: string;
 }
 
-const CompanyPage = (props: CompanyPageProps) => {
+const ValuesPage = (props: CompanyPageProps) => {
   const { className } = props;
   const testValues = values;
   const emptyValues: Value[] = [];
@@ -41,4 +41,4 @@ const CompanyPage = (props: CompanyPageProps) => {
   );
 };
 
-export default memo(CompanyPage);
+export default memo(ValuesPage);

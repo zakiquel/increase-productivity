@@ -1,8 +1,8 @@
-import { SidebarItemType } from '../types/sidebar';
+import { SidebarItemType } from './sidebar';
 
 import {
   getRouteCatalog,
-  getRouteCompany,
+  getRouteValues,
   getRouteEvents,
   getRouteInstructions,
   getRouteMain,
@@ -15,7 +15,7 @@ export const getSidebarItems = () => {
       text: 'Главная',
     },
     {
-      path: getRouteCompany('id'),
+      path: getRouteValues(),
       text: 'Ценности и метрики',
     },
     {

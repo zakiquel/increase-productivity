@@ -2,9 +2,10 @@ import { classNames } from '@repo/shared/lib';
 import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { Namebar } from '../Namebar/Namebar';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
+
+import { getSidebarItems } from '@/shared/lib/getSidebarItems/getSidebarItems';
 
 import cls from './Sidebar.module.scss';
 

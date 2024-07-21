@@ -1,0 +1,29 @@
+.EmployeeInfo {
+  display: flex;
+  gap: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating_balance {
+  display: flex;
+  gap: 8px;
+}
+
+.report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 110px;
+}
+
+.events_operations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
