@@ -14,6 +14,8 @@ paths:
 # authentication api
   /api/auth/register:
     post:
+      tags:
+        - Authentication
       summary: Register a new user
       requestBody:
         required: true
@@ -91,7 +93,7 @@ paths:
                     example: 123456789
                   token_type:
                     type: string
-                    example: bearer
+                    example: Bearer
                   expires_in:
                     type: integer
                     example: 3600
@@ -107,6 +109,8 @@ paths:
 
   /api/auth/login:
     post:
+      tags:
+        - Authentication
       summary: Log in a user
       requestBody:
         required: true
@@ -118,9 +122,11 @@ paths:
                 email:
                   type: string
                   format: email
+                  example: viletyalov1212@gmail.com
                 password:
                   type: string
                   format: password
+                  example: passvdn1212
               required:
                 - email
                 - password
@@ -134,11 +140,13 @@ paths:
                 properties:
                   access_token:
                     type: string
+                    example: 123456789
                   token_type:
                     type: string
                     example: Bearer
                   expires_in:
                     type: integer
+                    example: 3600
         "401":
           description: Unauthorized
           content:
@@ -151,6 +159,8 @@ paths:
 
   /api/auth/logout:
     post:
+      tags:
+        - Authentication
       summary: Log out the authenticated user
       security:
         - bearerAuth: []
@@ -180,7 +190,7 @@ paths:
     get:
       tags:
         - Companies GET
-      summary: Get all the companies
+      summary: Get all your companies
       security:
         - bearerAuth: [ ]
       responses:
@@ -976,7 +986,7 @@ paths:
     get:
       tags:
         - Survey_history GET
-      summary: Get all the events
+      summary: Get statistic about company
       security:
         - bearerAuth: [ ]
       responses:
@@ -989,7 +999,7 @@ paths:
     post:
       tags:
         - Survey_history POST
-      summary: Add an event
+      summary: Add an survey results
       security:
         - bearerAuth: [ ]
       requestBody:
@@ -1016,11 +1026,11 @@ paths:
                     type: string
 
   /api/survey_histories/{survey_id}:
-    summary: Operations about events
+    summary: Operations about survey_history
     get:
       tags:
         - Survey_history GET
-      summary: Get an event
+      summary: Get the statistic of employee
       security:
         - bearerAuth: [ ]
       parameters:
@@ -1040,7 +1050,7 @@ paths:
     put:
       tags:
         - Survey_history PUT
-      summary: Update an event
+      summary: Update an survey results
       security:
         - bearerAuth: [ ]
       parameters:
@@ -1288,92 +1298,131 @@ components:
       properties:
         name:
           type: string
+          example: Gold
         logoSrc:
           type: string
+          example: 123.jpg
         currency_name:
           type: string
+          example: Gold coin
         description:
           type: string
+          example: Gold - Инновационная финтех-компания, предлагающая инвестиционные решения в драгоценные металлы и связанные с ними финансовые инструменты.
 
     event:
       type: object
       properties:
         name:
           type: string
+          example: "Корпоратив"
         event_date:
           type: string
+          format: date
+          example: "2024-04-10"
         format:
           type: string
+          example: "Пьянка"
         imgSrc:
           type: string
+          example: "1234.jpg"
         reward:
           type: integer
+          example: 25
         description:
           type: string
+          example: "Организовать корпоратив бла бла бла..."
 
     metric:
       type: object
       properties:
         name:
           type: string
+          example: "Оценка вовлеченности персонала"
         description:
           type: string
+          example: Оценка вовлеченности персонала (метрика Gallup Q12)
         coefficient:
           type: number
+          example: 1
         risk_name:
           type: string
+          example: Риск саботажа работы
 
     survey_history_input:
       type: object
       properties:
         employee_id:
           type: integer
+          example: 1
         metric_1_mark:
           type: integer
+          example: 1
         metric_2_mark:
           type: integer
+          example: 1
         metric_3_mark:
           type: integer
+          example: 1
         survey_date:
           type: string
+          format: date
+          example: "2024-06-01"
 
     survey_history:
       type: object
       properties:
         id:
           type: integer
+          example: 1
         employee_id:
           type: integer
+          example: 1
         metric_1_mark:
           type: integer
+          example: 1
         metric_2_mark:
           type: integer
+          example: 1
         metric_3_mark:
           type: integer
+          example: 1
         metric_1_risk:
           type: integer
+          example: 100000
         metric_2_risk:
           type: integer
+          example: 100000
         metric_3_risk:
           type: integer
+          example: 100000
         risk_sum:
           type: integer
+          example: 300000
         survey_date:
           type: string
+          format: date
+          example: "2024-06-02"
 
     survey_history_put:
       type: object
       properties:
         employee_id:
           type: integer
+          example: 1
         metric_1_mark:
           type: integer
+          example: 1
         metric_2_mark:
           type: integer
+          example: 1
         metric_3_mark:
           type: integer
+          example: 1
         survey_date:
           type: string
+          format: date
+          example: "2024-06-02"
+
 
     absenteeism_rate_input:
       type: object
