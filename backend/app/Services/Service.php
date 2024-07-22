@@ -9,6 +9,7 @@ use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Event\UpdateRequest;
 use App\Http\Resources\Absenteeism\AbsenreeismResource;
 use App\Http\Resources\Absenteeism\AbsenteeismResource;
+use App\Http\Resources\Company\CompanyCollectionResource;
 use App\Http\Resources\Company\CompanyResource;
 use App\Http\Resources\Employee\EmployeeCollectionResource;
 use App\Http\Resources\Employee\EmployeeResource;
@@ -50,12 +51,13 @@ class Service
             'user' => $user,
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60 * 100000
         ];
     }
     public function store_value(array $validatedData)
     {
         $count = Value::count();
+
         if ($count >= 8) {
             return response()->json(['error' => 'Maximum number of Value instances reached.'], 403);
         }
@@ -92,9 +94,22 @@ class Service
 
         return CompanyResource::make($company);
     }
+
+    public function index_company()
+    {
+        $companies = Company::where('user_id', Auth::id())->get();
+
+        if (!$companies) {
+            return response()->json(['error' => 'You have no companies'], 404);
+        }
+
+        return new CompanyCollectionResource($companies);
+    }
+
     public function index_employee()
     {
         $company = \App\Models\Company::where('user_id', Auth::id())->first();
+
         if (!$company) {
             return response()->json(['error' => 'Company not found'], 404);
         }
@@ -106,6 +121,7 @@ class Service
     public function show_employee($employee)
     {
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
         if ($employee->company_id != $company_id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
@@ -151,9 +167,11 @@ class Service
     public function update_employee(UpdateEmployeeRequest $request, Employee $employee)
     {
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
         if ($employee->company_id != $company_id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
+
         $data = $request->validated();
 
         $employee->update($data);
@@ -163,6 +181,7 @@ class Service
     public function delete_employee(Employee $employee)
     {
         $company_id = \App\Models\Company::where('user_id', Auth::id())->pluck('id')->first();
+
         if ($employee->company_id != $company_id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }

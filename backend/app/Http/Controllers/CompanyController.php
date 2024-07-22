@@ -15,10 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-
-        return new CompanyCollectionResource($companies);
-
+        return $this->service->index_company();
     }
 
     /**
