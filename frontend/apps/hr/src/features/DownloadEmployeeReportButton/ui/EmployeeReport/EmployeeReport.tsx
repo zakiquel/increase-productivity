@@ -5,53 +5,57 @@ import {
   Document,
   StyleSheet,
   Font,
-} from "@react-pdf/renderer";
+  Image,
+} from '@react-pdf/renderer';
+import { useEffect, useState } from 'react';
 
-import { formatDate } from "../../lib/formatDate";
+import { canvasToSrc } from '../../lib/canvasToSrc';
+import { formatDate } from '../../lib/formatDate';
 
-import { Chart1 } from "./Chart1";
-import { Chart2 } from "./Chart2";
-import { Chart3 } from "./Chart3";
-import { Chart4 } from "./Chart4";
-
-import { Employee } from "@/entities/Employee";
+import {
+  PersonalMetricsChart,
+  PersonalQualitiesChart,
+  PersonalRiskChart,
+  PersonalValuesChart,
+} from '@/entities/Diagrams';
+import { Employee } from '@/entities/Employee';
 
 Font.register({
-  family: "Roboto",
-  src: "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf",
+  family: 'Roboto',
+  src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf',
 });
 
 const styles = StyleSheet.create({
   document: {
-    fontFamily: "Roboto",
+    fontFamily: 'Roboto',
   },
   title: {
     fontSize: 44,
-    textAlign: "center",
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
   },
   mainPage: {
-    height: "100%",
-    fontFamily: "Roboto",
+    height: '100%',
+    fontFamily: 'Roboto',
     padding: 20,
-    display: "flex",
+    display: 'flex',
   },
   mainView: {
     flexGrow: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   chartPage: {
     padding: 20,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     gap: 20,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   chartView: {},
   section: {
@@ -62,10 +66,31 @@ const styles = StyleSheet.create({
 });
 
 interface EmployeeReportProps {
-  employeeId: Employee["id"];
+  employeeId: Employee['id'];
 }
 
 export function EmployeeReport({ employeeId }: EmployeeReportProps) {
+  const [persinalMetricsSrc, setPersonalMetricsSrc] = useState('');
+  const [personalQualitiesSrc, setPersonalQualitiesSrc] = useState('');
+  const [personalRiskSrc, setPersonalRiskSrc] = useState('');
+  const [personalValuesSrc, setPersonalValuesSrc] = useState('');
+
+  useEffect(() => {
+    const generateData = async () => {
+      const personalMetricsSrc = await canvasToSrc(<PersonalMetricsChart />);
+      const personalQualitiesSrc = await canvasToSrc(
+        <PersonalQualitiesChart />,
+      );
+      const personalRiskSrc = await canvasToSrc(<PersonalRiskChart />);
+      const personalValuesSrc = await canvasToSrc(<PersonalValuesChart />);
+      setPersonalMetricsSrc(personalMetricsSrc);
+      setPersonalQualitiesSrc(personalQualitiesSrc);
+      setPersonalRiskSrc(personalRiskSrc);
+      setPersonalValuesSrc(personalValuesSrc);
+    };
+    generateData();
+  });
+
   return (
     <Document language="ru" style={styles.document}>
       <Page style={styles.mainPage}>
@@ -78,23 +103,18 @@ export function EmployeeReport({ employeeId }: EmployeeReportProps) {
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>
-          <Chart1 />
+          <Image src={persinalMetricsSrc} />
+        </View>
+        <View style={styles.chartView}>
+          <Image src={personalQualitiesSrc} />
         </View>
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>
-          <Chart2 />
+          <Image src={personalRiskSrc} />
         </View>
         <View style={styles.chartView}>
-          <Chart2 />
-        </View>
-      </Page>
-      <Page style={styles.chartPage}>
-        <View style={styles.chartView}>
-          <Chart3 />
-        </View>
-        <View style={styles.chartView}>
-          <Chart4 />
+          <Image src={personalValuesSrc} />
         </View>
       </Page>
     </Document>
