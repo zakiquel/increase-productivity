@@ -1,8 +1,9 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import cls from './ModalSuccess.module.scss';
-import { Button, Text as TextTag } from '@repo/shared/ui';
 import { ReactNode, useEffect, useState } from 'react';
+import { classNames } from '../../../lib/classNames/classNames';
+import { Button, Text as TextTag } from '@repo/shared/ui';
 
 interface IModalSuccess {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface IModalSuccess {
   title?: string;
   text?: string;
   button?: ReactNode;
+  variant?: 'default' | 'constructor';
 }
 
 export const ModalSuccess = (props: IModalSuccess) => {
@@ -25,6 +27,7 @@ export const ModalSuccess = (props: IModalSuccess) => {
         Спасибо!
       </Button>
     ),
+    variant = 'default',
   } = props;
 
   const [isTimeOver, setTimeOver] = useState(false);
@@ -54,7 +57,7 @@ export const ModalSuccess = (props: IModalSuccess) => {
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               onClick={(e) => e.stopPropagation()}
-              className={cls.ModalSuccess}
+              className={classNames(cls.ModalSuccess, {}, [cls[variant]])}
             >
               <TextTag title={title} />
               <TextTag text={text} size="s" />

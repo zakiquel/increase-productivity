@@ -1,17 +1,15 @@
-.CompanyPage {
-  height: calc(100vh - var(--navbar-height) - 16px);
-  overflow-y: hidden;
-}
-
 .company_values {
   width: 1022px;
   padding-right: 32px;
-  padding-bottom: 32px;
   max-height: calc(100vh - var(--navbar-height) - 16px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  //height: 100%;
+  
+  &:has(.with_values) {
+    height: 100%;
+  }
+  
 
   .values_header {
     h2 {
@@ -36,6 +34,12 @@
 
   .value_list_wrapper {
     overflow-y: scroll;
+
+    .value_list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
   }
 }
 

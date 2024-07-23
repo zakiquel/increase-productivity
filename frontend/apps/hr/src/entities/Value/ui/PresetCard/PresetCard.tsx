@@ -11,7 +11,7 @@ interface PresetCardProps {
   className?: string;
   disabled?: boolean;
   isAdded?: boolean;
-  addPreset: (value: Value) => void;
+  addPreset: () => void;
 }
 
 export const PresetCard = (props: PresetCardProps) => {
@@ -45,8 +45,9 @@ export const PresetCard = (props: PresetCardProps) => {
       ) : (
         <Button
           size="xs"
+          variant="ghost"
           className={cls.preset_button}
-          onClick={() => addPreset(value)}
+          onClick={addPreset}
           disabled={disabled}
         >
           Добавить пресет

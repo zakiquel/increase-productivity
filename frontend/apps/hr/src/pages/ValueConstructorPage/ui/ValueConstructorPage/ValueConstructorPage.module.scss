@@ -1,6 +1,10 @@
 .ValuesConstructorPage {
   height: calc(100vh - var(--navbar-height) - 16px);
   overflow-y: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .ValuesConstructor {
@@ -23,6 +27,9 @@
     }
 
     .presets_list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       overflow-y: scroll;
     }
   }
@@ -50,10 +57,22 @@
 
     .values {
       overflow-y: scroll;
-      margin-bottom: 32px;
+      scroll-behavior: smooth;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      max-height: 720px;
+
+      .values_list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    .add_value_button {
+      width: fit-content;
+      margin-top: 16px;
+      margin-bottom: 16px;
     }
 
     .constructor_buttons {

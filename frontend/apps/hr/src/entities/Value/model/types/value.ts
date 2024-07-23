@@ -6,5 +6,6 @@ export interface Quality {
 export interface Value {
   id?: number;
   name: string;
+  edit?: boolean;
   qualities: Quality[];
 }

@@ -1,1 +1,1 @@
-export { ValueConstructorPageAsync as ValueConstructorPage } from './ui/ValueConstructorPage.async';
+export { ValueConstructorPageAsync as ValueConstructorPage } from './ui/ValueConstructorPage/ValueConstructorPage.async';
