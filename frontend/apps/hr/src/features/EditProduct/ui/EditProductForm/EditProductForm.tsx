@@ -1,8 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { classNames } from '@repo/shared/lib';
-import { Button, Input, Text, TextArea } from '@repo/shared/ui';
-import { memo, useCallback, useState } from 'react';
+import {
+  Button,
+  Drawer,
+  Input,
+  Loader,
+  ModalSuccess,
+  Text,
+  TextArea,
+  Toast,
+} from '@repo/shared/ui';
+import { memo, Suspense, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useToaster } from 'rsuite';
 
 import {
   editProductSchema,
@@ -18,144 +28,194 @@ export interface EditProductFormProps {
   onReset: () => void;
   id: string;
 }
+
+interface EditProductDrawerProps {
+  className?: string;
+  isOpen: boolean;
+  onClose: () => void;
+  id: string;
+}
 const getProductById = (id: string) => ({
   title: 'Название',
   price: '32',
   description: 'Описание',
 });
 
-const EditProductForm = memo((props: EditProductFormProps) => {
-  const { id, className, onSuccess, onReset } = props;
-  const [isSuccess, setIsSuccess] = useState(false);
-  const product = getProductById(id);
-  const {
-    handleSubmit,
-    reset,
-    control,
-    trigger,
-    formState: { errors, isValid },
-  } = useForm<FormInputData, any, FormOutputData>({
-    defaultValues: product,
-    resolver: zodResolver(editProductSchema),
-    mode: 'onBlur',
-  });
+const EditProductForm = memo(
+  (props: EditProductFormProps & EditProductDrawerProps) => {
+    const { id, className, onSuccess, onReset, isOpen, onClose } = props;
+    const [isSuccess, setIsSuccess] = useState(false);
+    const product = getProductById(id);
+    const [isCancel, setIsCancel] = useState(false);
 
-  const onResetClick = useCallback(async () => {
-    reset();
-    onReset();
-  }, [onReset, reset]);
+    const {
+      handleSubmit,
+      reset,
+      control,
+      trigger,
+      formState: { errors, isValid },
+    } = useForm<FormInputData, any, FormOutputData>({
+      defaultValues: product,
+      resolver: zodResolver(editProductSchema),
+      mode: 'onBlur',
+    });
 
-  const onSaveClick = useCallback(async () => {
-    if (isValid) {
-      setIsSuccess(true);
-      await new Promise((resolve) => {
-        setTimeout(resolve, 5000);
-      });
-    }
-  }, [isValid]);
+    const toaster = useToaster();
 
-  const onSubmit: SubmitHandler<FormOutputData> = useCallback(
-    async (data) => {
-      await onSaveClick();
+    const ToasterShow = useCallback(() => {
+      toaster.push(
+        <Toast
+          text="Изменения успешно сохранены"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }, [toaster]);
+
+    const onResetClick = useCallback(async () => {
       reset();
-      onSuccess();
-    },
-    [reset, onSuccess, onSaveClick],
-  );
+      setIsCancel(false);
+      onClose();
+    }, [reset, setIsCancel, onClose]);
 
-  return (
-    <form
-      className={classNames(cls.EditProductForm, {}, [className])}
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-    >
-      <Text title="Редактирование товара" size="m" />
-      <Text
-        text="Заполните поля ввода и нажмите кнопку «Сохранить». Изменения будут сохранены"
-        size="s"
-        className={cls.form_description}
-      />
-      <div className={cls.form_fields}>
-        <Controller
-          name="title"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              placeholder="Название товара"
-              size="l"
-              errorMessage={errors.title?.message}
-              onChange={(event) => {
-                field.onChange(event.target.value);
-                if (errors.title) trigger('title');
-              }}
-            />
-          )}
-        />
+    const onSaveClick = useCallback(async () => {
+      if (isValid) setIsSuccess(true);
+    }, [isValid]);
 
-        <Controller
-          name="price"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              placeholder="Цена товара в баллах"
-              size="l"
-              errorMessage={errors.price?.message}
-              onChange={(event) => {
-                field.onChange(event.target.value);
-                if (errors.price) trigger('price');
-              }}
-            />
-          )}
+    const onSubmit: SubmitHandler<FormOutputData> = useCallback(
+      async (data) => {
+        await onSaveClick();
+        reset();
+        onSuccess();
+        ToasterShow();
+      },
+      [reset, onSuccess, onSaveClick, ToasterShow],
+    );
+
+    if (isCancel)
+      return (
+        <ModalSuccess
+          isOpen={isCancel}
+          onClose={() => setIsCancel(false)}
+          title="Хотите покинуть форму?"
+          text="Данные не будут сохранены"
+          button={
+            <div className={cls.btn}>
+              <Button
+                variant="secondary"
+                size="l"
+                onClick={() => setIsCancel(false)}
+              >
+                Остаться
+              </Button>
+              <Button size="l" onClick={onResetClick}>
+                Покинуть
+              </Button>
+            </div>
+          }
         />
-        <Controller
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <TextArea
-              {...field}
-              placeholder="Описание"
-              maxLength={1000}
-              errorMessage={errors.description?.message}
-              onChange={(event) => {
-                field.onChange(event.target.value);
-                if (errors.description) trigger('description');
-              }}
-            />
-          )}
-        />
-      </div>
-      {isSuccess ? (
-        <div className={cls.success__wrapper}>
-          <div className={cls.success}>
-            <p className={cls.success__text}>Изменения успешно внесены!</p>
-          </div>
-          <Button variant="primary" size="l" fullWidth onClick={onResetClick}>
-            Закрыть
-          </Button>
-          <p className={cls.success__footer}>
-            Окно автоматически закроется через 5 секунд
-          </p>
-        </div>
-      ) : (
-        <div className={cls.form_buttons}>
-          <Button variant="secondary" size="l" fullWidth onClick={onResetClick}>
-            Отменить
-          </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            size="l"
-            disabled={!isValid}
-            fullWidth
+      );
+
+    return (
+      <Drawer
+        className={classNames('', {}, [className])}
+        isOpen={isOpen}
+        onClose={onClose}
+        position="right"
+        removeWhenClosed
+      >
+        <Suspense fallback={<Loader />}>
+          <form
+            className={classNames(cls.EditProductForm, {}, [className])}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
           >
-            Сохранить
-          </Button>
-        </div>
-      )}
-    </form>
-  );
-});
+            <Text title="Редактирование товара" size="m" />
+            <Text
+              text="Заполните поля ввода и нажмите кнопку «Сохранить». Изменения будут сохранены"
+              size="s"
+              className={cls.form_description}
+            />
+            <div className={cls.form_fields}>
+              <Controller
+                name="title"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="Название товара"
+                    size="l"
+                    errorMessage={errors.title?.message}
+                    onChange={(event) => {
+                      field.onChange(event.target.value);
+                      if (errors.title) trigger('title');
+                    }}
+                  />
+                )}
+              />
+
+              <Controller
+                name="price"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="Цена товара в баллах"
+                    size="l"
+                    errorMessage={errors.price?.message}
+                    onChange={(event) => {
+                      field.onChange(event.target.value);
+                      if (errors.price) trigger('price');
+                    }}
+                  />
+                )}
+              />
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <TextArea
+                    {...field}
+                    placeholder="Описание"
+                    maxLength={1000}
+                    errorMessage={errors.description?.message}
+                    onChange={(event) => {
+                      field.onChange(event.target.value);
+                      if (errors.description) trigger('description');
+                    }}
+                  />
+                )}
+              />
+            </div>
+
+            <div className={cls.form_buttons}>
+              <Button
+                variant="secondary"
+                size="l"
+                fullWidth
+                onClick={() => setIsCancel(true)}
+              >
+                Отменить
+              </Button>
+              <Button
+                type="submit"
+                variant="primary"
+                size="l"
+                disabled={!isValid}
+                fullWidth
+              >
+                Сохранить
+              </Button>
+            </div>
+          </form>
+        </Suspense>
+      </Drawer>
+    );
+  },
+);
 
 export default EditProductForm;

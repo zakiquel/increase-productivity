@@ -1,11 +1,11 @@
-"use client";
+'use client';
 import {
   MutableRefObject,
   useCallback,
   useEffect,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
 interface UseModalProps {
   onClose?: () => void;
@@ -36,21 +36,21 @@ export function useModal({ animationDelay, onClose, isOpen }: UseModalProps) {
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         close();
       }
     },
-    [close]
+    [close],
   );
 
   useEffect(() => {
     if (isOpen) {
-      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener('keydown', onKeyDown);
     }
 
     return () => {
       clearTimeout(timerRef.current);
-      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
 

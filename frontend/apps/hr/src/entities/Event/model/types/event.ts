@@ -16,5 +16,5 @@ export interface EventRequest {
   description: string;
   price: number;
   img?: string;
-  status: string;
+  tag: string;
 }

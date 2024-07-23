@@ -1,5 +1,6 @@
 .TextArea {
   height: 48px;
+  height: 48px;
   transition:
     border-color 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
@@ -7,13 +8,16 @@
   width: 100%;
   color: var(--base-0-color);
   border-radius: 4px;
+  border-radius: 4px;
   background-color: var(--bg-color);
+  padding: 15px;
+  font: var(--font-14);
   padding: 15px;
   font: var(--font-14);
   position: relative;
   resize: none;
   &:hover {
-    box-shadow: 0 4px 30px 0 #cacaca80;
+    box-shadow: 0px 4px 30px 0px #cacaca80;
   }
 
   &::-webkit-scrollbar {

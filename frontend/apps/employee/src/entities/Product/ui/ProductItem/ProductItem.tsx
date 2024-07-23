@@ -2,47 +2,38 @@
 
 import { Card } from '@repo/shared/ui';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 
-import { ProductItemModal } from '../ProductItemModal/ProductItemModal';
+import { Product } from '../../model/types/historyItem';
 
 import ozon from '@/shared/assets/images/ozon.png';
 
 import cls from './ProductItem.module.scss';
 
 interface IProductItem {
-  title: string;
-  img?: string;
-  description: string;
-  price: number;
+  product: Product;
+  onOpen: (arg: boolean) => void;
+  onProduct: (arg: Product) => void;
 }
 
 export const ProductItem = (props: IProductItem) => {
-  const { title, img = '', description, price } = props;
-
-  const [isOpen, setOpen] = useState(false);
+  const { product, onOpen, onProduct } = props;
   return (
     <Card
       padding="0"
       variant="light"
       className={cls.ProductItem}
       style={{ borderRadius: '8px' }}
+      onClick={() => {
+        onOpen(true);
+        onProduct(product);
+      }}
     >
-      <div onClick={() => setOpen(true)}>
-        <Image src={ozon} alt={title} width={404} height={221} />
-        <h3 className={cls.title}>{title}</h3>
-        <div className={cls.body}>
-          <p className={cls.price}>{price} Б</p>
-        </div>
+      <Image src={ozon} alt={product.title} width={404} height={221} />
+      <h3 className={cls.title}>{product.title}</h3>
+      <div className={cls.body}>
+        <p className={cls.price}>{product.price} Б</p>
       </div>
-      <ProductItemModal
-        title={title}
-        img={img}
-        description={description}
-        price={price}
-        isOpen={isOpen}
-        setOpen={() => setOpen(false)}
-      />
     </Card>
   );
 };

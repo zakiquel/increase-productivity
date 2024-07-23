@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
-import { Button, Input, Text, TextArea } from '@repo/shared/ui';
+import { Button, Input, Text, TextArea, Toast } from '@repo/shared/ui';
 import { memo, useCallback, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useToaster } from 'rsuite';
 
 import {
   addEventSchema,
@@ -36,12 +37,28 @@ const AddEventForm = memo((props: AddEventFormProps) => {
     defaultValues: {
       title: '',
       date: '',
+      format: '',
       reward: '',
       description: '',
     },
     resolver: zodResolver(addEventSchema),
     mode: 'onBlur',
   });
+  const toaster = useToaster();
+
+  const ToasterShow = useCallback(() => {
+    toaster.push(
+      <Toast
+        text="Изменения успешно сохранены"
+        size="l"
+        variant="success"
+        addOnLeft={
+          <span className="material-symbols-outlined">check_circle</span>
+        }
+      />,
+      { placement: 'bottomCenter' },
+    );
+  }, [toaster]);
 
   const onResetClick = useCallback(async () => {
     reset();
@@ -51,9 +68,6 @@ const AddEventForm = memo((props: AddEventFormProps) => {
   const onSaveClick = useCallback(async () => {
     if (isValid) {
       setIsSuccess(true);
-      await new Promise((resolve) => {
-        setTimeout(resolve, 5000);
-      });
     }
   }, [isValid]);
 
@@ -62,8 +76,9 @@ const AddEventForm = memo((props: AddEventFormProps) => {
       await onSaveClick();
       reset();
       onSuccess();
+      ToasterShow();
     },
-    [reset, onSuccess, onSaveClick],
+    [reset, onSuccess, onSaveClick, ToasterShow],
   );
 
   return (
@@ -91,6 +106,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               onChange={(event) => {
                 field.onChange(event.target.value);
                 if (errors.title) trigger('title');
+                if (errors.title) trigger('title');
               }}
             />
           )}
@@ -106,6 +122,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.format?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
+                if (errors.format) trigger('format');
                 if (errors.format) trigger('format');
               }}
             />
@@ -125,6 +142,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
                 if (errors.date) trigger('date');
+                if (errors.date) trigger('date');
               }}
             />
           )}
@@ -140,6 +158,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.reward?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
+                if (errors.reward) trigger('reward');
                 if (errors.reward) trigger('reward');
               }}
             />
@@ -158,39 +177,21 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               onChange={(event) => {
                 field.onChange(event.target.value);
                 if (errors.description) trigger('description');
+                if (errors.description) trigger('description');
               }}
             />
           )}
         />
       </div>
-      {isSuccess ? (
-        <div className={cls.success__wrapper}>
-          <div className={cls.success}>
-            <p className={cls.success__text}>Мероприятие успешно добавлено!</p>
-          </div>
-          <Button variant="primary" size="l" fullWidth onClick={onResetClick}>
-            Закрыть
-          </Button>
-          <p className={cls.success__footer}>
-            Окно автоматически закроется через 5 секунд
-          </p>
-        </div>
-      ) : (
-        <div className={cls.form_buttons}>
-          <Button variant="secondary" size="l" fullWidth onClick={onResetClick}>
-            Отменить
-          </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            size="l"
-            disabled={!isValid}
-            fullWidth
-          >
-            Сохранить
-          </Button>
-        </div>
-      )}
+
+      <div className={cls.form_buttons}>
+        <Button variant="secondary" size="l" fullWidth onClick={onResetClick}>
+          Отменить
+        </Button>
+        <Button variant="primary" size="l" fullWidth type="submit">
+          Сохранить
+        </Button>
+      </div>
     </form>
   );
 });

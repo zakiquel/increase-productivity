@@ -25,6 +25,11 @@
     margin-top: auto;
   }
 }
+.btn {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
 
 .success {
   animation: fade-in 0.3s ease-in-out;

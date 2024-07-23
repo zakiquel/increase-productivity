@@ -19,17 +19,24 @@
 
 .description {
   grid-column-start: 1;
-  grid-column-end: 6;
+  grid-column-end: 5;
   font-weight: 400;
   font-size: 16px;
   margin-top: 16px;
+  line-height: 22px;
 }
 
 .head {
   display: flex;
   align-items: center;
+
   gap: 8px;
   margin-right: 20px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .dropDownBtn {
@@ -40,8 +47,4 @@
   position: absolute;
   top: 20px;
   right: 16px;
-
-  &:hover {
-    transform: scale(1.2);
-  }
 }

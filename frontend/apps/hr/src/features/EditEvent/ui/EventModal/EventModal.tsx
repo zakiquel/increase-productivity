@@ -5,10 +5,12 @@ import {
   ModalSuccess,
   Status,
   Text as TextTag,
+  Toast,
   TVariant,
 } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
+import { useToaster } from 'rsuite';
 
 import { EditEventDrawer } from '../EditEventDrawer/EditEventDrawer';
 
@@ -24,13 +26,33 @@ interface EventModalProps {
   setOpen: (arg: boolean) => void;
 }
 
-export const EventModal = (props: EventModalProps) => {
+const EventModal = memo((props: EventModalProps) => {
   const { event, isOpen, setOpen, className } = props;
 
   const [edit, setEdit] = useState<boolean>(false);
   const [isDelete, setDelete] = useState<boolean>(false);
   const [isDeleteSuccess, setDeleteSuccess] = useState<boolean>(false);
+  const toaster = useToaster();
 
+  const ToasterShow = useCallback(() => {
+    toaster.push(
+      <Toast
+        text="Мероприятие удалено"
+        size="l"
+        variant="success"
+        addOnLeft={
+          <span className="material-symbols-outlined">check_circle</span>
+        }
+      />,
+      { placement: 'bottomCenter' },
+    );
+  }, [toaster]);
+
+  const onDeleteClick = useCallback(async () => {
+    setDeleteSuccess(true);
+    setDelete(false);
+    ToasterShow();
+  }, [setDelete, setDeleteSuccess, ToasterShow]);
   if (!event) {
     return null;
   }
@@ -146,13 +168,7 @@ export const EventModal = (props: EventModalProps) => {
               >
                 Оставить
               </Button>
-              <Button
-                size="l"
-                onClick={() => {
-                  setDeleteSuccess(true);
-                  setDelete(false);
-                }}
-              >
+              <Button size="l" onClick={onDeleteClick}>
                 Удалить
               </Button>
             </div>
@@ -166,13 +182,8 @@ export const EventModal = (props: EventModalProps) => {
         }}
         eventId={event.id.toString()}
       />
-      {isDeleteSuccess && (
-        <ModalSuccess
-          isOpen={isDeleteSuccess}
-          onClose={() => setDeleteSuccess(false)}
-          title="Мероприятие удалено"
-        />
-      )}
     </>
   );
-};
+});
+
+export default EventModal;

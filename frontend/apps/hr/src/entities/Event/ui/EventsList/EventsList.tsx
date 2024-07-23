@@ -45,7 +45,6 @@ export const EventsList = (props: EventsListProps) => {
             event={event}
             setIsModalOpen={setIsModalOpen}
             setActiveEvent={setActiveEvent}
-            key={event.id}
           />
         ))}
       </div>
@@ -55,7 +54,6 @@ export const EventsList = (props: EventsListProps) => {
             event={event}
             setIsModalOpen={setIsModalOpen}
             setActiveEvent={setActiveEvent}
-            key={event.id}
           />
         ))}
       </div>
@@ -65,7 +63,6 @@ export const EventsList = (props: EventsListProps) => {
             event={event}
             setIsModalOpen={setIsModalOpen}
             setActiveEvent={setActiveEvent}
-            key={event.id}
           />
         ))}
       </div>

@@ -1,17 +1,15 @@
 import { Button, Icon, SegmentedControl } from '@repo/shared/ui';
 import { memo, useState } from 'react';
 
+import { RequestsInfiniteList } from '../../EventRequestsInfiniteList/ui/EventRequestInfinitList';
 import { EventsInfiniteList } from '../../EventsInfiniteList/ui/EventsInfiniteList';
-import requests from '../model/data/tempDataRequests.json';
 
-import { RequestCard } from '@/entities/Event';
 import { type Event } from '@/entities/Event';
 import plus from '@/shared/assets/icons/plus.svg';
 
 import cls from './SectionSwitcher.module.scss';
 
 interface SectionSwitcherProps {
-  className?: string;
   setIsDrawerOpen: (value: boolean) => void;
   setActiveEvent: (value: Event) => void;
   setIsModalOpen: (value: boolean) => void;
@@ -29,7 +27,7 @@ const segments = [
 ];
 
 export const SectionSwitcher = memo((props: SectionSwitcherProps) => {
-  const { className, setIsDrawerOpen, setIsModalOpen, setActiveEvent } = props;
+  const { setIsDrawerOpen, setIsModalOpen, setActiveEvent } = props;
 
   const [isActive, setActive] = useState('events');
 
@@ -44,7 +42,7 @@ export const SectionSwitcher = memo((props: SectionSwitcherProps) => {
           />
         );
       case 'requests':
-        return requests?.map((data) => <RequestCard key={data.id} {...data} />);
+        return <RequestsInfiniteList />;
       default:
         break;
     }

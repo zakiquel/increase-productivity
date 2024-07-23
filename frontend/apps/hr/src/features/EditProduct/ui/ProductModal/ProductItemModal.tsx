@@ -1,9 +1,10 @@
 import { classNames } from '@repo/shared/lib';
-import { Button, ModalSuccess } from '@repo/shared/ui';
+import { Button, ModalSuccess, Toast } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import { useToaster } from 'rsuite';
 
-import { EditProductDrawer } from '../..';
+import EditProductForm from '../EditProductForm/EditProductForm';
 
 import { Product } from '@/entities/Product';
 import ozon from '@/shared/assets/images/ozon.png';
@@ -24,6 +25,22 @@ export const ProductItemModal = (props: IProductItemModal) => {
   const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   const userBalance = 200;
+
+  const toaster = useToaster();
+
+  const ToasterShow = () => {
+    toaster.push(
+      <Toast
+        text="Товар удален"
+        size="l"
+        variant="success"
+        addOnLeft={
+          <span className="material-symbols-outlined">check_circle</span>
+        }
+      />,
+      { placement: 'bottomCenter' },
+    );
+  };
 
   if (!product) {
     return null;
@@ -74,7 +91,6 @@ export const ProductItemModal = (props: IProductItemModal) => {
                   <div className={cls.buttons}>
                     <Button
                       variant="secondary"
-                      size="l"
                       onClick={() => {
                         setIsDelete(true);
                         setOpen(false);
@@ -88,7 +104,6 @@ export const ProductItemModal = (props: IProductItemModal) => {
                         setOpen(false);
                       }}
                       variant="primary"
-                      size="l"
                     >
                       Изменить
                     </Button>
@@ -121,18 +136,14 @@ export const ProductItemModal = (props: IProductItemModal) => {
         }}
         button={
           <div className={cls.btn_wrapper}>
-            <Button
-              variant="secondary"
-              size="l"
-              onClick={() => setIsDelete(false)}
-            >
+            <Button variant="secondary" onClick={() => setIsDelete(false)}>
               Оставить
             </Button>
             <Button
-              size="l"
               onClick={() => {
                 setDeleteSuccess(true);
                 setIsDelete(false);
+                ToasterShow();
               }}
             >
               Удалить
@@ -140,21 +151,12 @@ export const ProductItemModal = (props: IProductItemModal) => {
           </div>
         }
       />
-      <ModalSuccess
-        isTimer
-        title="Товар удален"
-        isOpen={deleteSuccess}
-        onClose={() => setDeleteSuccess(false)}
-        button={
-          <Button onClick={() => setDeleteSuccess(false)} size="l">
-            Спасибо!
-          </Button>
-        }
-      />
-      <EditProductDrawer
+      <EditProductForm
         id={product.id.toString()}
         isOpen={isEdit}
         onClose={() => setIsEdit(false)}
+        onSuccess={() => setIsEdit(false)}
+        onReset={() => setIsEdit(false)}
       />
     </>
   );

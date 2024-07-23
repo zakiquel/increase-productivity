@@ -3,16 +3,22 @@
 import { Status, TVariant } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+
+import { HistoryItem as IHistoryItem } from '../../model/types/historyItem';
 
 import ozon from '@/shared/assets/images/ozon.png';
 
 import cls from './HistoryItem.module.scss';
 
-export const HistoryItem = (props: IHistoryItem) => {
-  const { title, img = '', price, statuses, id } = props;
+interface HistoryItemProps {
+  historyItem: IHistoryItem;
+}
 
-  const [isOpen, setOpen] = React.useState(false);
+export const HistoryItem = (props: HistoryItemProps) => {
+  const { historyItem } = props;
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <motion.div className={cls.HistoryItem}>
       <div className={cls.wrapper}>
@@ -21,14 +27,14 @@ export const HistoryItem = (props: IHistoryItem) => {
             <Image
               className={cls.img}
               src={ozon}
-              alt={title}
+              alt={historyItem.title}
               width={40}
               height={40}
             />
-            
-            <h3 className={cls.title}>{title}</h3>
+
+            <h3 className={cls.title}>{historyItem.title}</h3>
           </div>
-          <p className={cls.price}>{price} Б</p>
+          <p className={cls.price}>{historyItem.price} Б</p>
         </div>
         <motion.div
           initial={{ height: 0 }}
@@ -37,16 +43,21 @@ export const HistoryItem = (props: IHistoryItem) => {
           transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           <div className={cls.items}>
-            <p className={cls.time}>{statuses[statuses.length - 1].time}</p>
+            <p className={cls.time}>
+              {historyItem.statuses[historyItem.statuses.length - 1].time}
+            </p>
             <Status
-              variant={statuses[statuses.length - 1].status as TVariant}
+              variant={
+                historyItem.statuses[historyItem.statuses.length - 1]
+                  .status as TVariant
+              }
               size="xs"
             />
           </div>
 
           <AnimatePresence>
             {isOpen &&
-              statuses
+              historyItem.statuses
                 .slice(0, -1)
                 .reverse()
                 .map((d, key) => (

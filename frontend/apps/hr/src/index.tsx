@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'rsuite/dist/rsuite-no-reset.min.css';
 import 'material-symbols';
 import App from './app/App';
 

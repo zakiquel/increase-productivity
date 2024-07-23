@@ -36,26 +36,30 @@ const getButton = (status: string) => {
   return false;
 };
 
-export const RequestCard = (props: EventRequest) => {
-  const { name, description, date, img = '', price, status, id, theme } = props;
+interface IRequest {
+  request: EventRequest;
+}
+
+export const RequestCard = (props: IRequest) => {
+  const { request } = props;
   const [isOpen, setOpen] = React.useState(false);
 
   return (
     <motion.div className={cls.body}>
       <div className={cls.head}>
-        <Avatar alt={name} size={40} />
-        <h3>{name}</h3>
+        <Avatar alt={request.name} size={40} />
+        <h3 className={cls.name}>{request.name}</h3>
       </div>
-      <p>{date}</p>
-      <p>{theme}</p>
-      <Status variant={status as TVariant} />
-      <p> {price} Б</p>
+      <p>{request.date}</p>
+      <p>{request.theme}</p>
+      <Status variant={request.tag as TVariant} />
+      <p> {request.price} Б</p>
 
-      {getButton(status)}
+      {getButton(request.tag)}
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        animate={{ rotate: isOpen ? 180 : 0 }}
+        animate={{ rotate: isOpen ? 180 : 0, translateY: isOpen ? -14 : 0 }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
         className={cls.dropDownBtn}
         onClick={() => setOpen(!isOpen)}
@@ -66,13 +70,13 @@ export const RequestCard = (props: EventRequest) => {
         <AnimatePresence>
           <motion.div
             className={cls.description}
-            key={id}
+            key={request.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            <p>{description}</p>
+            <p>{request.description}</p>
           </motion.div>
         </AnimatePresence>
       )}
