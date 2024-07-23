@@ -1217,18 +1217,17 @@ components:
           type: string
         last_name:
           type: string
-        role:
-          type: string
-          example: "employee"
         email:
           type: string
           format: email
         password:
           type: string
           format: password
+          example: string1
         password_confirmation:
           type: string
           format: password
+          example: string1
         imgSrc:
           type: string
           example: "image_url"

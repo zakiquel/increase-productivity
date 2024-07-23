@@ -144,8 +144,8 @@ class Service
             'first_name' => $data->first_name,
             'middle_name' => $data->middle_name,
             'last_name' => $data->last_name,
+            'role_id' => Role::where('role_name', 'employee')->pluck('id')->first(),
             'email' => $data->email,
-            'role' => $data->role,
             'password' => bcrypt($data->password),
         ]);
 
