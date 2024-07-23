@@ -17,6 +17,7 @@ class EmployeeResource extends JsonResource
     {
         $employee = Employee::where('user_id', $this->id)->first();
         return [
+            'id' => $employee->id,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
