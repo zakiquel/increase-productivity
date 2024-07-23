@@ -23,7 +23,6 @@ type InputSize = 's' | 'm' | 'l';
 interface InputProps extends HTMLInputProps {
   className?: string;
   value?: string | number;
-  label?: string;
   size?: InputSize;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -47,7 +46,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     onFocus,
     type = 'text',
     placeholder,
-    label,
     autofocus,
     size = 'm',
     readonly,
@@ -104,13 +102,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     onChange?.(event);
   };
 
-  const input = (
+  return (
     <div
-      className={classNames(
-        cls.wrapper,
-        wrapperMods,
-        label ? [cls[size]] : [cls[size], className],
-      )}
+      className={classNames(cls.wrapper, wrapperMods, [cls[size], className])}
     >
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
         {addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
@@ -137,15 +131,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
       )}
     </div>
   );
-
-  if (label) {
-    return (
-      <label className={classNames(cls.labelWrapper, {}, [className])}>
-        <Text text={label} size={size} />
-        {input}
-      </label>
-    );
-  }
-
-  return input;
 });

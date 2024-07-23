@@ -2,7 +2,7 @@ import { classNames } from '@repo/shared/lib';
 import { Button, Card } from '@repo/shared/ui';
 import { useNavigate } from 'react-router-dom';
 
-import { Value, ValueList } from '@/entities/Value';
+import { Value, ValueCard } from '@/entities/Value';
 import { getRouteValuesConstructor } from '@/shared/const/router';
 
 import cls from './CompanyValues.module.scss';
@@ -17,7 +17,6 @@ export const CompanyValues = (props: CompanyValuesProps) => {
   const openConstructor = () => {
     navigate(getRouteValuesConstructor());
   };
-
   return (
     <Card variant="light" padding="16" className={cls.company_values}>
       {!values || values.length === 0 ? (
@@ -44,7 +43,13 @@ export const CompanyValues = (props: CompanyValuesProps) => {
             </Button>
           </div>
           <Card padding="16" className={cls.value_list_wrapper}>
-            <ValueList values={values} />
+            <ul className={cls.value_list}>
+              {values.map((value, index) => (
+                <li key={index}>
+                  <ValueCard value={value} index={index} />
+                </li>
+              ))}
+            </ul>
           </Card>
         </section>
       )}

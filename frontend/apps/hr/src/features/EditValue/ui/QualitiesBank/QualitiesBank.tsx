@@ -8,10 +8,11 @@ import cls from './QualitiesBank.module.scss';
 interface QualitiesBankProps {
   qualities: Quality[];
   selectedQualities: Quality[];
+  handleQualityClick: (quality: Quality) => void;
 }
 
 export const QualitiesBank = (props: QualitiesBankProps) => {
-  const { qualities, selectedQualities } = props;
+  const { qualities, selectedQualities, handleQualityClick } = props;
   const [search, setSearch] = useState<string>('');
   const [filteredQualities, setFilteredQualities] = useState<Quality[]>([]);
 
@@ -52,7 +53,9 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
     setFilteredQualities(searchResult);
   };
 
-  // Drag and drop
+  const isSelected = (quality: Quality) =>
+    selectedQualities.some((item) => item.id === quality.id);
+
   const handleDragStart = (
     event: React.DragEvent<HTMLDivElement>,
     quality: Quality,
@@ -84,13 +87,13 @@ export const QualitiesBank = (props: QualitiesBankProps) => {
           {filteredQualities.map((quality) => (
             <li key={quality.id}>
               <Tag
-                variant="secondary"
+                variant={isSelected(quality) ? 'primary' : 'secondary'}
                 size="s"
-                draggable
+                draggable={!isSelected(quality)}
                 onDragStart={(event) => handleDragStart(event, quality)}
-                disabled={selectedQualities.some(
-                  (item) => item.id === quality.id,
-                )}
+                onClick={() => {
+                  if (isSelected(quality)) handleQualityClick(quality);
+                }}
               >
                 {quality.name}
               </Tag>

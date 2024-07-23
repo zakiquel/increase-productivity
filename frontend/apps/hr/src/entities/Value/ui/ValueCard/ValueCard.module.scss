@@ -1,20 +1,21 @@
 .ValueCard {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
 
   &:hover {
-    .close_button {
-      opacity: 1;
+    .card_buttons { 
+      border-top: 1px solid var(--grey-secondary-color);
+      padding-top: 8px;
+      margin-top: 8px;
+      max-height: 40px;
     }
   }
 
   .card_content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
   }
 
   h3 {
@@ -28,8 +29,18 @@
     flex-wrap: wrap;
   }
 
-  .close_button {
-    opacity: 0;
-    transition: opacity 0.2s ease;
+  .card_buttons {
+    display: flex;
+    gap: 8px;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height .4s, padding .3s, margin .3s;
   }
+}
+
+.value_order {
+  margin-bottom: 8px;
+  color: var(--grey-primary-color);
+  font: var(--font-16);
+  line-height: 22px;
 }
