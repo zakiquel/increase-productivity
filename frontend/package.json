@@ -29,6 +29,7 @@
 		"framer-motion": "^11.3.2",
 		"material-symbols": "^0.21.0",
 		"react-chartjs-2": "^5.2.0",
-		"react-textarea-autosize": "^8.5.3"
+		"react-textarea-autosize": "^8.5.3",
+		"rsuite": "^5.67.0"
 	}
 }

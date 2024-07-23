@@ -1,3 +1,3 @@
-import EventPage from './ui/EventPage';
+import EventPage from './ui/EventPage/EventPage';
 
 export { EventPage };

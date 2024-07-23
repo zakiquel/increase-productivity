@@ -4,6 +4,7 @@ export enum ListEventEnum {
   APPROVED = 'Одобрено',
   WAITING = 'Ожидание',
   CLOSED = 'Закрыто',
+  REFUSED = 'Отказано',
 }
 
 export interface IEventsList {

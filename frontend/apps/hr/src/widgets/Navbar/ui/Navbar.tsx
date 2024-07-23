@@ -2,7 +2,6 @@ import { Button, Icon } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import tophr from '@/shared/assets/icons/top-hr.svg';
-import { Breadcrumbs } from '@/shared/ui/Breadcrumbs';
 
 import cls from './Navbar.module.scss';
 
@@ -12,7 +11,6 @@ export const Navbar = memo(() => (
       <Icon Svg={tophr} width={88} height={24} className={cls.navbar_logo} />
     </div>
     <div className={cls.navbar_wrapper}>
-      <Breadcrumbs />
       <Button size="xs" variant="secondary" className={cls.navbar_button}>
         Валюта не выбрана
       </Button>

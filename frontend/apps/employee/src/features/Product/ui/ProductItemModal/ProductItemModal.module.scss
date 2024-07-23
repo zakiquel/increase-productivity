@@ -1,0 +1,103 @@
+.background {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProductItemModal {
+  border-radius: 8px;
+  padding: 40px 25px;
+  display: flex;
+  gap: 16px;
+  background: var(--white);
+  width: 960px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  height: min-content;
+  cursor: auto;
+}
+
+.img {
+  width: 490px;
+  height: 315px;
+  object-fit: cover;
+}
+
+.btn_wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.close_btn {
+  color: var(--base-0-color);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.title {
+  font-size: var(--font-size-32);
+  font-weight: 400;
+}
+
+.price {
+  font-size: var(--font-size-32);
+  font-weight: 500;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.ModalSuccess {
+  border-radius: 8px;
+  background: var(--white);
+  overflow: hidden;
+  position: relative;
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  align-items: center;
+  gap: 16px;
+}
+
+.error {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--error-color);
+  margin-top: 9px;
+}

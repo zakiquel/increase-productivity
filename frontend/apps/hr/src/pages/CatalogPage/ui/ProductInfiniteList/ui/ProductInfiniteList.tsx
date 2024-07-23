@@ -1,14 +1,15 @@
+import products from '../model/data/tempData.json';
+
 import { Product, ProductList } from '@/entities/Product';
 
 interface ProductsListProps {
-  products: Product[];
   setIsOpenForm: (value: boolean) => void;
   setActiveProduct: (value: Product) => void;
   setIsModalOpen: (value: boolean) => void;
 }
 
 export const ProductInfiniteList = (props: ProductsListProps) => {
-  const { products, setActiveProduct, setIsModalOpen, setIsOpenForm } = props;
+  const { setActiveProduct, setIsModalOpen, setIsOpenForm } = props;
 
   return (
     <ProductList

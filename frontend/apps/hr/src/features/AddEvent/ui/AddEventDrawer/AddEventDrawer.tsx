@@ -1,8 +1,8 @@
-import { classNames } from "@repo/shared/lib";
-import { Loader, Drawer } from "@repo/shared/ui";
-import { Suspense } from "react";
+import { classNames } from '@repo/shared/lib';
+import { Loader, Drawer } from '@repo/shared/ui';
+import { Suspense } from 'react';
 
-import { AddEventFormAsync } from "../AddEventForm/AddEventForm.async";
+import { AddEventFormAsync } from '../AddEventForm/AddEventForm.async';
 
 interface AddEventDrawerProps {
   className?: string;
@@ -15,7 +15,7 @@ export const AddEventDrawer = (props: AddEventDrawerProps) => {
 
   return (
     <Drawer
-      className={classNames("", {}, [className])}
+      className={classNames('', {}, [className])}
       isOpen={isOpen}
       onClose={onClose}
       position="right"

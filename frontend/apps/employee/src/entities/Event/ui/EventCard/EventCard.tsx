@@ -1,18 +1,21 @@
 import { classNames } from '@repo/shared/lib';
 import { Card, Status, Text as TextTag, TVariant } from '@repo/shared/ui';
 import Image from 'next/image';
-import { useState } from 'react';
 
-import { IEventCard } from '../../../Event/model/types/eventCard';
-import { EventCardModal } from '../EventCardModal/EventCardModal';
+import { Event } from '../../model/types/eventCard';
 
-import event from '@/shared/assets/images/event.png';
+import eventImg from '@/shared/assets/images/event.png';
 
 import cls from './EventCard.module.scss';
 
+interface IEventCard {
+  event: Event;
+  onOpen: (arg: boolean) => void;
+  onEvent: (arg: Event) => void;
+}
+
 export const EventCard = (props: IEventCard) => {
-  const { tag, title, price, date } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { event, onOpen, onEvent } = props;
 
   return (
     <Card
@@ -20,33 +23,30 @@ export const EventCard = (props: IEventCard) => {
       variant="light"
       className={cls.event_card}
       style={{ borderRadius: '8px' }}
+      onClick={() => {
+        onOpen(true);
+        onEvent(event);
+      }}
     >
-      <div onClick={() => setIsOpen(true)}>
-        <Image
-          src={event}
-          alt="event"
-          width={404}
-          height={221}
-          className={classNames(cls.img, {}, [
-            tag === 'Закрыто' ? cls.closed : undefined,
-          ])}
-        />
+      <Image
+        src={eventImg}
+        alt="event"
+        width={404}
+        height={221}
+        className={classNames(cls.img, {}, [
+          event.tag === 'Закрыто' ? cls.closed : undefined,
+        ])}
+      />
 
-        <Status className={cls.tag} variant={tag as TVariant} size="xs" />
+      <Status className={cls.tag} variant={event.tag as TVariant} size="xs" />
 
-        <div className={cls.wrapper}>
-          <TextTag size="m" text={title} />
-          <div className={cls.wrp}>
-            <span className={cls.price}>{`${price?.toString()} Б`}</span>
-            <span className={cls.date}>{date}</span>
-          </div>
+      <div className={cls.wrapper}>
+        <TextTag size="m" text={event.title} />
+        <div className={cls.wrp}>
+          <span className={cls.price}>{`${event.price?.toString()} Б`}</span>
+          <span className={cls.date}>{event.date}</span>
         </div>
       </div>
-      <EventCardModal
-        isOpen={isOpen}
-        setOpen={() => setIsOpen(false)}
-        {...props}
-      />
     </Card>
   );
 };

@@ -23,15 +23,11 @@ const BadgeType = {
 
 interface IBadge {
   className?: string;
-  variant?: TVariant;
+  variant: TVariant;
   size?: TSize;
 }
 
-export const Status = ({
-  className,
-  variant = 'Новые',
-  size = 'xs',
-}: IBadge) => {
+export const Status = ({ className, variant, size = 'xs' }: IBadge) => {
   return (
     <Badge
       size={size}

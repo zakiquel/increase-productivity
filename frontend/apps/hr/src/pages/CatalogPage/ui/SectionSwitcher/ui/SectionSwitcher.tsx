@@ -2,7 +2,7 @@ import { Button, Icon, SegmentedControl } from '@repo/shared/ui';
 import { memo, useState } from 'react';
 
 import { ProductInfiniteList } from '../../ProductInfiniteList';
-import products from '../model/data/tempData.json';
+import { RequestsInfiniteList } from '../../ProductRequestInfiniteList';
 
 import { Product } from '@/entities/Product';
 import plus from '@/shared/assets/icons/plus.svg';
@@ -30,18 +30,18 @@ export const SectionSwitcher = memo((props: ProductsSwitcherProps) => {
   const { setActiveProduct, setIsModalOpen, setIsOpenForm } = props;
 
   const [isActive, setActive] = useState('products');
-  // TODO: Дополнить case, когда появятся макеты
   const getSection = () => {
     switch (isActive) {
       case 'products':
         return (
           <ProductInfiniteList
-            products={products}
             setActiveProduct={setActiveProduct}
             setIsModalOpen={setIsModalOpen}
             setIsOpenForm={setIsOpenForm}
           />
         );
+      case 'requests':
+        return <RequestsInfiniteList />;
 
       default:
         break;

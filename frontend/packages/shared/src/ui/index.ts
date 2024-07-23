@@ -21,3 +21,4 @@ export * from './SegmentedControl';
 export * from './Badge';
 export * from './Tag';
 export * from './ModalSuccess';
+export * from './Toast';
