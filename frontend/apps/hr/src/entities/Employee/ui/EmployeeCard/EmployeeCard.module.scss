@@ -1,50 +1,76 @@
 .EmployeeCard {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 1fr;
   align-items: center;
   cursor: pointer;
+  width: 100%;
+  height: 56px;
+  background-color: var(--white);
+  transition: background-color 0.2s ease-in-out;
+  position: relative;
+
+  h4,
+  p,
+  span {
+    font-size: 20px;
+    color: var(--base-0-color);
+  }
+
+  .fire_button {
+    color: var(--error-color);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
 
   &:hover {
-    box-shadow: 4px 4px 30px 0px #00000026;
-  }
-
-  &:active {
-    background-color: var(--bg-color);
-  }
-
-  &:disabled {
-    border: 1px solid var(--grey-secondary-color);
-    .employee_info {
-      border-color: var(--grey-secondary-color);
-      p {
-        color: var(--grey-secondary-color);
-      }
+    background-color: var(--face-color);
+    .fire_button {
+      opacity: 100%;
     }
   }
-}
 
-.employee_info {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-  width: 296px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--grey-primary-color);
+  &.disabled {
+    background-color: var(--face-color);
 
-  h3 {
-    font: var(--font-title-card);
-  }
-}
-.standard_info {
-  margin-top: 32px;
-  width: 296px;
-
-  p {
-    color: var(--grey-primary-color);
-    margin-bottom: 24px;
+    h4,
+    p,
     span {
-      font: var(--font-16);
+      color: var(--grey-secondary-color);
     }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: calc(100% - 32px);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--grey-secondary-color);
+  }
+
+  .employee_name {
+    font-weight: 500;
+    margin-left: 16px;
+  }
+
+  .employee_position {
+    font-weight: 400;
+  }
+
+  .employee_stat {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .stat_text {
+    font-weight: 400;
+  }
+
+  .card_button {
+    margin-left: auto;
+    margin-right: 16px;
   }
 }

@@ -2,18 +2,18 @@ import { Card } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import {
-  Employee,
   EmployeeBalance,
   EmployeeProfile,
   EmployeeRating,
   EmployeeOperations,
   EmployeeEvents,
+  EmployeeTest,
 } from '@/entities/Employee';
 import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 
 import cls from './EmployeeInfo.module.scss';
 
-const testEmployee: Employee = {
+const testEmployee: EmployeeTest = {
   id: 1,
   personalInfo: {
     firstName: 'Антон',

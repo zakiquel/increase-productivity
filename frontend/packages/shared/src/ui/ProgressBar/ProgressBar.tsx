@@ -1,43 +1,25 @@
 import { memo } from 'react';
 
-import { ProgressBarThreshold } from '../../types/ui';
-
 import { classNames } from '../../lib';
 
 import cls from './ProgressBar.module.scss';
 
-export type ProgressBarColor = 'default' | 'success' | 'secondary' | 'error';
-
 interface ProgressBarProps {
   className?: string;
   size: number;
-  color?: ProgressBarColor;
-  thin?: boolean;
+  disabled?: boolean;
 }
 
 export const ProgressBar = memo((props: ProgressBarProps) => {
-  const { className, size, color = 'default', thin, ...otherProps } = props;
-
-  let dynamicColor: ProgressBarColor = color;
-  if (color === 'default') {
-    if (size < ProgressBarThreshold.ERROR) {
-      dynamicColor = 'error';
-    } else if (size < ProgressBarThreshold.SECONDARY) {
-      dynamicColor = 'secondary';
-    } else {
-      dynamicColor = 'success';
-    }
-  }
+  const { className, size, disabled = false } = props;
 
   return (
     <div
-      className={classNames(cls.ProgressBar, { [cls.thin]: thin }, [className])}
-      {...otherProps}
+      className={classNames(cls.ProgressBar, { [cls.disabled]: disabled }, [
+        className,
+      ])}
     >
-      <div
-        className={classNames(cls.progress_fill, {}, [cls[dynamicColor]])}
-        style={{ width: `${size}%` }}
-      />
+      <div className={cls.progress_fill} style={{ width: `${size}%` }} />
     </div>
   );
 });

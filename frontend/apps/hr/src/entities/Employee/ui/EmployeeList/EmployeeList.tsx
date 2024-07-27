@@ -16,17 +16,13 @@ interface EmployeeListProps {
 
 export const EmployeeList = memo((props: EmployeeListProps) => {
   const { employees, className } = props;
+
   return (
     <ul className={classNames(cls.EmployeeList, {}, [className])}>
       {employees.map((employee) => (
         <li key={employee.id}>
           <AppLink to={getRouteEmployee(String(employee.id))}>
-            <EmployeeCard
-              id={employee.id}
-              name={`${employee.personalInfo.firstName} ${employee.personalInfo.lastName}`}
-              personRole={employee.personalInfo.position}
-              standard={employee.values?.standard}
-            />
+            <EmployeeCard employee={employee} standard={34} />
           </AppLink>
         </li>
       ))}

@@ -1,96 +1,308 @@
 import { classNames } from '@repo/shared/lib';
-import { Button, Card, Icon, Input, Text } from '@repo/shared/ui';
+import { Button, Card } from '@repo/shared/ui';
 import { memo, useState } from 'react';
 
 import { Employee, EmployeeList } from '@/entities/Employee';
 import { AddEmployeeDrawer } from '@/features/AddEmployee';
+import { Pagination } from '@/features/Pagination';
 import { SortEmployees } from '@/features/SortEmployees';
-import Search from '@/shared/assets/icons/search.svg';
 
 import cls from './EmployeesSection.module.scss';
 
 interface EmployeesSectionProps {
   className?: string;
-  employees: Employee[];
 }
 
 const employees: Employee[] = [
   {
     id: 1,
-    personalInfo: {
-      firstName: 'Петр',
-      lastName: 'Петров',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2017-03-15'),
-    },
-    values: {
-      standard: 70,
-    },
+    first_name: 'Петр',
+    last_name: 'Петров',
+    position: 'UX/UI дизайнер',
+    status: 'working',
+    date_of_hiring: '2017-03-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
   {
     id: 2,
-    personalInfo: {
-      firstName: 'Петр',
-      lastName: 'Иванов',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2015-03-15'),
-    },
-    values: {
-      standard: 45,
-    },
+    first_name: 'Петр',
+    last_name: 'Иванов',
+    position: 'UX/UI дизайнер',
+    status: 'working',
+    date_of_hiring: '2015-03-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
   {
     id: 3,
-    personalInfo: {
-      firstName: 'Пётр',
-      lastName: 'Сидоров',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2022-11-04'),
-    },
-    values: {
-      standard: 20,
-    },
+    first_name: 'Пётр',
+    last_name: 'Сидоров',
+    position: 'UX/UI дизайнер',
+    status: 'working',
+    date_of_hiring: '2022-11-04',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
   {
     id: 4,
-    personalInfo: {
-      firstName: 'Петр',
-      lastName: 'Пушкин',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2021-04-15'),
-    },
-    values: {
-      standard: 90,
-    },
+    first_name: 'Пётр',
+    last_name: 'Пушкин',
+    position: 'Дизайнер',
+    status: 'fired',
+    date_of_hiring: '2021-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
   {
     id: 5,
-    personalInfo: {
-      firstName: 'Петр',
-      lastName: 'Потапов',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2017-03-14'),
-    },
-    values: {
-      standard: 100,
-    },
+    first_name: 'Петр',
+    last_name: 'Потапов',
+    position: 'Тестировщик',
+    status: 'working',
+    date_of_hiring: '2017-03-14',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
   {
     id: 6,
-    personalInfo: {
-      firstName: 'Петр',
-      lastName: 'Круглов',
-      position: 'UX/UI дизайнер',
-      hiring: new Date('2024-06-15'),
-    },
+    first_name: 'Петр',
+    last_name: 'Круглов',
+    position: 'Менеджер',
+    status: 'fired',
+    date_of_hiring: '2024-06-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 7,
+    first_name: 'Ильнура',
+    last_name: 'Кашафутдинова ',
+    position: 'PM',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 8,
+    first_name: 'Мария',
+    last_name: 'Матвеева',
+    middle_name: 'Александровна',
+    position: 'Системный аналитик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 9,
+    first_name: 'Вячеслав',
+    last_name: 'Трубицын',
+    middle_name: 'Владимирович',
+    position: 'Системный аналитик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 10,
+    first_name: 'Антон',
+    last_name: 'Пастухов',
+    middle_name: 'Андреевич',
+    position: 'Дизайнер UX/UI',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 11,
+    first_name: 'Ангелина',
+    last_name: 'Шагивалиева',
+    middle_name: 'Олеговна',
+    position: 'Дизайнер UX/UI',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 12,
+    first_name: 'Алексей',
+    last_name: 'Абросимов',
+    middle_name: 'Олегович',
+    position: 'Backend разработчик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 13,
+    first_name: 'Кирилл',
+    last_name: 'Завалишин',
+    middle_name: 'Дмитриевич',
+    position: 'Frontend разработчик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 14,
+    first_name: 'Мария',
+    last_name: 'Пенькова',
+    middle_name: 'Даниловна',
+    position: 'Frontend разработчик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 15,
+    first_name: 'Юлия',
+    last_name: 'Ярлыкова',
+    middle_name: 'Алексеевна',
+    position: 'Frontend разработчик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 16,
+    first_name: 'Айнур',
+    last_name: 'Ярулин',
+    middle_name: 'Дамирович',
+    position: 'Frontend разработчик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 17,
+    first_name: 'Кирилл',
+    last_name: 'Кузнецов',
+    middle_name: 'Дмитриевич',
+    position: 'Тестировщик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
+  },
+  {
+    id: 18,
+    first_name: 'Ольга',
+    last_name: 'Киселева',
+    position: 'Тестировщик',
+    status: 'working',
+    date_of_hiring: '2024-04-15',
+    email: '',
+    company_id: 1,
+    imgSrc: '',
+    salary: 1,
+    birth_date: '',
+    work_experience: 1,
+    balance: '',
   },
 ];
 
 export const EmployeesSection = memo((props: EmployeesSectionProps) => {
-  const { className, employees } = props;
-  const [sortedEmployees, setSortedEmployees] = useState<Employee[]>(employees);
+  const { className } = props;
+  const [filteredEmployees, setFilteredEmployees] =
+    useState<Employee[]>(employees);
+  const [employeesToDraw, setEmployeesToDraw] = useState<Employee[]>(employees);
   const [isAddEmployee, setIsAddEmployee] = useState(false);
-  const disabled = !employees.length;
+
   return (
     <section className={classNames(cls.EmployeesSection, {}, [className])}>
       <Card
@@ -98,20 +310,9 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
         padding="16"
         className={classNames(cls.employee_control, {}, [className])}
       >
-        <Input
-          disabled={disabled}
-          placeholder="Найти сотрудника"
-          addonLeft={<Icon Svg={Search} width={18} height={18} />}
-          size="l"
-          className={cls.control_search}
-        />
-        <SortEmployees
-          employees={employees}
-          onSorted={setSortedEmployees}
-          disabled={disabled}
-        />
+        <SortEmployees employees={employees} onFilter={setFilteredEmployees} />
         <Button
-          variant="secondary"
+          variant="primary"
           size="m"
           className={cls.control_button}
           onClick={() => setIsAddEmployee(true)}
@@ -119,27 +320,22 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
           Добавить сотрудника
         </Button>
       </Card>
-      {disabled ? (
-        <div className={cls.start_layout}>
-          <Card variant="light" padding="16">
-            <Text title="Сотрудники " size="s" className={cls.start_title} />
-            <Text
-              text="Добавь сотрудников и после заполнения раздела «Ценности и Метрики»,
-             мы сможем выводить информацию по каждому сотруднику"
-              size="m"
-            />
-            <Button
-              size="s"
-              onClick={() => setIsAddEmployee(true)}
-              className={cls.start_button}
-            >
-              Добавить сотрудника
-            </Button>
-          </Card>
+      <Card variant="light" padding="0" className={cls.employees_list}>
+        <div className={cls.employees_header}>
+          <span>ФИО</span>
+          <span>Должность</span>
+          <span>Рейтинг ценностей</span>
         </div>
-      ) : (
-        <EmployeeList employees={sortedEmployees} />
-      )}
+        <EmployeeList employees={employeesToDraw} />
+
+        <Pagination
+          list={filteredEmployees}
+          interval={15}
+          callback={setEmployeesToDraw}
+          className={cls.employees_pagination}
+        />
+      </Card>
+
       <AddEmployeeDrawer
         isOpen={isAddEmployee}
         onClose={() => setIsAddEmployee(false)}

@@ -1,19 +1,19 @@
 import { z } from 'zod';
 
 export const addEmployeeSchema = z.object({
-  firstName: z
+  first_name: z
     .string()
     .max(50, 'Допустимое количество символов 1-50')
     .min(1, 'Необходимо заполнить все обязательные поля')
     .regex(/^[a-zA-Zа-яёА-ЯЁ-]+$/, 'Допустимо использовать А-я, A-z, символ -')
     .transform((value) => value.trim()),
-  lastName: z
+  last_name: z
     .string()
     .max(50, 'Допустимое количество символов 1-50')
     .min(1, 'Необходимо заполнить все обязательные поля')
     .regex(/^[a-zA-Zа-яёА-ЯЁ-]+$/, 'Допустимо использовать А-я, A-z, символ -')
     .transform((value) => value.trim()),
-  patronimyc: z
+  middle_name: z
     .string()
     .max(50, 'Допустимое количество символов 1-50')
     .refine((value) => /^[a-zA-Zа-яёА-ЯЁ-]*$/.test(value), {
@@ -21,7 +21,7 @@ export const addEmployeeSchema = z.object({
     })
     .transform((value) => value.trim())
     .optional(),
-  dateOfBirth: z
+  birth_date: z
     .string()
     .min(1, 'Необходимо заполнить все обязательные поля')
     .length(10, 'Допустимо использовать символы 0-9. Допустимый вид XX.XX.XXXX')
@@ -51,13 +51,27 @@ export const addEmployeeSchema = z.object({
     .refine((val) => val > 0 && val < 1000, {
       message: 'Допустимо использовать 1-3 символа, 0-9',
     }),
-  dateOfEmployment: z
+  date_of_hiring: z
     .string()
     .min(1, 'Необходимо заполнить все обязательные поля')
     .length(10, 'Допустимо использовать символы 0-9. Допустимый вид XX.XX.XXXX')
     .transform((value) => {
       const [day, month, year] = value.split('.');
       return `${year}-${month}-${day}`;
+    }),
+  password: z
+    .string()
+    .min(1, 'Необходимо заполнить все обязательные поля')
+    .max(24, 'Пароль не должен содержать больше 24 символов')
+    .refine((value) => value.length >= 6, {
+      message: 'Пароль должен включать минимум 6 символов',
+    })
+    .refine((value) => /^[A-Za-z\d]{6,}$/.test(value), {
+      message: 'Допустимо использовать цифры и буквы латинского алфавита',
+    })
+    .refine((value) => /^(?=.*[A-Za-z])(?=.*\d)/.test(value), {
+      message:
+        'Пароль должен включать хотя бы одну букву латинского алфавита, хотя бы одну цифру',
     }),
 });
 

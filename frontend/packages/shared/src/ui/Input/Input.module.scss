@@ -6,8 +6,9 @@
   border-radius: 4px;
   width: 100%;
   color: var(--base-0-color);
+  font-weight: 400;
+  font-family: var(--font-family);
   background-color: var(--bg-color);
-  border-radius: 4px;
 
   &:disabled {
     color: var(--grey-secondary-color);
@@ -55,7 +56,8 @@
   input {
     height: 48px;
     padding: 0 15px;
-    font: var(--font-14);
+    font-size: 14px;
+    line-height: 48px;
 
     &::placeholder {
       font: var(--font-14);
@@ -98,9 +100,10 @@
 .m {
   input {
     height: 40px;
+    line-height: 40px;
+    font-size: 14px;
     padding: 0 7px;
-    font: var(--font-14);
-
+    
     &::placeholder {
       font: var(--font-12);
     }
@@ -143,7 +146,8 @@
   input {
     height: 32px;
     padding: 0 7px;
-    font: var(--font-12);
+    font-size: 12px;
+    line-height: 32px;
 
     &::placeholder {
       font: var(--font-12);
