@@ -5,7 +5,13 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 const data: ChartData<'doughnut'> = {
-  labels: ['Риск 1', 'Риск 2', 'Риск 3', 'Риск 4', 'Риск 5'],
+  labels: [
+    'Короткий Риск 1',
+    'Средний риск Риск 2',
+    'Немного длинный риск Риск 3',
+    'Очень очень длинный риск Риск 4',
+    'Риск 5',
+  ],
   datasets: [
     {
       data: [12, 19, 20, 5, 10],
@@ -15,29 +21,27 @@ const data: ChartData<'doughnut'> = {
 };
 
 const options: ChartOptions<'doughnut'> = {
-  layout: {
-    padding: 16,
-  },
+  maintainAspectRatio: false,
   datasets: {
     doughnut: {
       borderWidth: 2,
-      borderColor: '#00000000',
+      borderRadius: 6,
     },
   },
   plugins: {
     title: {
       align: 'start',
-      text: 'Диаграмма личных рисков, руб',
+      text: 'Риски',
       display: true,
-      padding: 16,
       color: '#000',
       font: {
         size: 18,
       },
     },
     legend: {
-      position: 'right',
+      position: 'bottom',
       labels: {
+        padding: 16,
         color: '#000',
         font: {
           size: 16,

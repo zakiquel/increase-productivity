@@ -38,6 +38,7 @@ const data: ChartData<'radar'> = {
 // ['20.06.2024', '20.12.2024', '19.05.2025']
 
 const options: ChartOptions<'radar'> = {
+  maintainAspectRatio: false,
   datasets: {
     radar: {
       fill: false,
@@ -47,9 +48,8 @@ const options: ChartOptions<'radar'> = {
   plugins: {
     title: {
       align: 'start',
-      text: 'Диаграмма по ценностям компании (усредненная по всем сотрудникам), паутинчатая, балл ценности округленный до целого',
+      text: 'Ценности компании',
       display: true,
-      padding: 32,
       color: '#000',
       font: {
         size: 18,
@@ -85,5 +85,5 @@ const options: ChartOptions<'radar'> = {
 };
 
 export function CompanyValuesChart() {
-  return <Radar data={data} options={options} />;
+  return <Radar data={data} options={options} height="100%" />;
 }

@@ -16,29 +16,27 @@ const data: ChartData<'doughnut'> = {
 };
 
 const options: ChartOptions<'doughnut'> = {
-  layout: {
-    padding: 16,
-  },
+  maintainAspectRatio: false,
   datasets: {
     doughnut: {
       borderWidth: 2,
-      borderColor: '#00000000',
+      borderRadius: 6,
     },
   },
   plugins: {
     title: {
       align: 'start',
-      text: 'Диаграмма рисков компании, круговая руб и %',
+      text: 'Риски',
       display: true,
-      padding: 16,
       color: '#000',
       font: {
         size: 18,
       },
     },
     legend: {
-      position: 'right',
+      position: 'bottom',
       labels: {
+        padding: 16,
         color: '#000',
         font: {
           size: 16,
@@ -50,5 +48,5 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export function CompanyRiskChart() {
-  return <Doughnut data={data} options={options} />;
+  return <Doughnut data={data} options={options} height="100%" />;
 }

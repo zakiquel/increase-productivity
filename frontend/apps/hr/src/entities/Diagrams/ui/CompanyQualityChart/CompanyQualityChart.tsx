@@ -29,6 +29,7 @@ const data: ChartData<'bar'> = {
 };
 
 const options: ChartOptions<'bar'> = {
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'bottom',
@@ -76,5 +77,5 @@ const options: ChartOptions<'bar'> = {
 };
 
 export function CompanyQualityChart() {
-  return <Bar data={data} options={options} />;
+  return <Bar data={data} options={options} height="100%" width="100%" />;
 }
