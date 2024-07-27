@@ -29,6 +29,7 @@ const data: ChartData<'line'> = {
 };
 
 const options: ChartOptions<'line'> = {
+  maintainAspectRatio: false,
   datasets: {
     line: {
       borderWidth: 4,
@@ -81,5 +82,5 @@ const options: ChartOptions<'line'> = {
 };
 
 export function PersonalMetricsChart() {
-  return <Line data={data} options={options} />;
+  return <Line data={data} options={options} height="100%" />;
 }

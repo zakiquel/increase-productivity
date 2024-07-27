@@ -36,6 +36,7 @@ const data: ChartData<'radar'> = {
 };
 
 const options: ChartOptions<'radar'> = {
+  maintainAspectRatio: false,
   datasets: {
     radar: {
       fill: false,
@@ -45,9 +46,8 @@ const options: ChartOptions<'radar'> = {
   plugins: {
     title: {
       align: 'start',
-      text: 'Диаграмма по ценностям компании (усредненная по всем сотрудникам), паутинчатая, балл ценности округленный до целого',
+      text: 'Динамика ценностей',
       display: true,
-      padding: 32,
       color: '#000',
       font: {
         size: 18,
@@ -57,6 +57,7 @@ const options: ChartOptions<'radar'> = {
       position: 'bottom',
       labels: {
         color: '#000',
+        padding: 16,
         font: {
           size: 16,
         },

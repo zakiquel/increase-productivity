@@ -28,53 +28,62 @@ const data: ChartData<'bar'> = {
   ],
 };
 
-const options: ChartOptions<'bar'> = {
-  plugins: {
-    legend: {
-      position: 'bottom',
-      labels: {
-        color: '#000',
-        font: {
-          size: 16,
-        },
-      },
-    },
-    title: {
-      align: 'start',
-      text: 'Динамика личных качеств, столбчатые диаграммы (балл/время)',
-      display: true,
-      padding: 32,
-      color: '#000',
-      font: {
-        size: 18,
-      },
-    },
-  },
-  scales: {
-    y: {
-      min: 0,
-      max: 12,
-      ticks: {
-        color: '#000',
-        font: {
-          size: 14,
-          weight: 'bolder',
-        },
-      },
-    },
-    x: {
-      ticks: {
-        color: '#000',
-        font: {
-          size: 14,
-          weight: 'bolder',
-        },
-      },
-    },
-  },
-  animation: false,
-};
+interface PersonalQualitiesChartProps {
+  title: string;
+}
 
-export function PersonalQualitiesChart() {
+export function PersonalQualitiesChart({ title }: PersonalQualitiesChartProps) {
+  const options: ChartOptions<'bar'> = {
+    maintainAspectRatio: false,
+    datasets: {
+      bar: {
+        borderRadius: 4,
+      },
+    },
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          color: '#000',
+          font: {
+            size: 16,
+          },
+        },
+      },
+      title: {
+        align: 'start',
+        text: title,
+        display: true,
+        padding: 32,
+        color: '#000',
+        font: {
+          size: 18,
+        },
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+        max: 12,
+        ticks: {
+          color: '#000',
+          font: {
+            size: 14,
+            weight: 'bolder',
+          },
+        },
+      },
+      x: {
+        ticks: {
+          color: '#000',
+          font: {
+            size: 14,
+            weight: 'bolder',
+          },
+        },
+      },
+    },
+    animation: false,
+  };
   return <Bar data={data} options={options} />;
 }

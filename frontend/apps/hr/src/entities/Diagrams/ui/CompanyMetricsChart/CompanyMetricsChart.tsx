@@ -29,6 +29,7 @@ const data: ChartData<'line'> = {
 };
 
 const options: ChartOptions<'line'> = {
+  maintainAspectRatio: false,
   datasets: {
     line: {
       borderWidth: 4,
@@ -37,9 +38,8 @@ const options: ChartOptions<'line'> = {
   plugins: {
     title: {
       align: 'start',
-      text: 'Диаграмма метрик компании (усредненная по всем сотрудникам), линейный график (оценка - дата)',
+      text: 'Метрики компании',
       display: true,
-      padding: 32,
       color: '#000',
       font: {
         size: 18,
@@ -81,5 +81,5 @@ const options: ChartOptions<'line'> = {
 };
 
 export function CompanyMetricsChart() {
-  return <Line data={data} options={options} />;
+  return <Line data={data} options={options} height="100%" />;
 }
