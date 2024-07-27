@@ -8,8 +8,6 @@ import {
   useState,
 } from 'react';
 
-import { Text } from '../Text/Text';
-
 import cls from './Input.module.scss';
 import { Mods, classNames, mergeRefs } from '../../lib';
 

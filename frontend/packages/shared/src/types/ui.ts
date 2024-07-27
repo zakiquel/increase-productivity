@@ -3,8 +3,3 @@ export type DropdownDirection =
   | 'top right'
   | 'bottom left'
   | 'bottom right';
-
-export enum ProgressBarThreshold {
-  ERROR = 25,
-  SECONDARY = 60
-}

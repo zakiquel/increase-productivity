@@ -19,7 +19,7 @@ export interface PersonalInfo {
   dateOfBirth?: Date;
   age?: number;
   position: string;
-  status?: string;
+  status?: 'working' | 'fired';
   hiring?: Date;
   workExperience?: number;
   email?: string;
@@ -60,6 +60,23 @@ export interface Transaction {
 }
 
 export interface Employee {
+  id: number;
+  first_name: string;
+  middle_name?: string;
+  last_name: string;
+  email: string;
+  company_id: number;
+  imgSrc: string;
+  salary: number;
+  birth_date: string;
+  position: string;
+  status: string;
+  date_of_hiring: string;
+  work_experience: number;
+  balance: string;
+}
+
+export interface EmployeeTest {
   id: number;
   personalInfo: PersonalInfo;
   notes?: Note[];

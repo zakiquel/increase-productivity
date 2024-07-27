@@ -13,6 +13,9 @@
   color: var(--base-0-color);
   background-color: var(--bg-color);
   transition: background-color 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  text-wrap:nowrap;
 
   input {
     opacity: 0;
@@ -34,21 +37,25 @@
 
   &.l {
     font: var(--font-button-l);
-    padding: 14.5px 20px;
+    height: 48px;
+    padding: 0 20px;
   }
 
   &.m {
     font: var(--font-button-m);
-    padding: 11.5px 16px;
+    height: 40px;
+    padding: 0 16px;
   }
 
   &.s {
     font: var(--font-button-s);
-    padding: 8.5px 8px;
+    height: 32px;
+    padding: 0 8px;
   }
 
   &.xs {
     font: var(--font-button-xs);
-    padding: 6px 8px;
+    height: 24px;
+    padding: 0 8px;
   }
 }

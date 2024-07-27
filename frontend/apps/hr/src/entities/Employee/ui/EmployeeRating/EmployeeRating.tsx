@@ -14,7 +14,7 @@ export const EmployeeRating = memo((props: EmployeeRatingProps) => {
     <Card padding="16" className={cls.EmployeeRating} variant="light">
       <Text text="Рейтинг ценности" className={cls.title} />
       <Text text={`${rating}%`} className={cls.text} size="s" />
-      <ProgressBar size={rating || 0} thin />
+      <ProgressBar size={rating || 0} />
     </Card>
   );
 });

@@ -1,7 +1,7 @@
 .ProgressBar {
-  height: 16px;
+  height: 8px;
   width: 100%;
-  background-color: var(--grey-secondary-color);
+  background-color: var(--secondary-hover-color);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -9,20 +9,14 @@
 .progress_fill {
   height: 100%;
   transition: width 0.3s ease;
-
-  &.success {
-    background-color: var(--success-color);
-  }
-
-  &.secondary {
-    background-color: var(--test);
-  }
-
-  &.error {
-    background-color: var(--error-color);
-  }
+  border-radius: 5px;
+  background-color: var(--primary-color);
 }
 
-.thin {
-  height: 8px;
+.disabled {
+  background-color: var(--secondary-color);
+
+  .progress_fill {
+    background-color: var(--secondary-active-color);
+  }
 }

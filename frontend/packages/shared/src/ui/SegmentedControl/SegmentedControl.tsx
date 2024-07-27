@@ -43,14 +43,14 @@ export const SegmentedControl = (props: SegmentedControlProps) => {
   };
 
   return (
-    <div className={cls.controls_wrapper}>
+    <div className={classNames(cls.controls_wrapper, {}, [className])}>
       {segments.map((segment, index) => (
         <label
           key={index}
           className={classNames(
             cls.segment,
             { [cls.active]: index === activeIndex, [cls.disabled]: disabled },
-            [className, cls[size]],
+            [cls[size]],
           )}
         >
           <input

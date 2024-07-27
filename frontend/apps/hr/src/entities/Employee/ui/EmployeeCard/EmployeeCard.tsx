@@ -1,55 +1,59 @@
 import { classNames, Mods } from '@repo/shared/lib';
-import { Card, ProgressBar, Text } from '@repo/shared/ui';
+import { Button, ProgressBar } from '@repo/shared/ui';
 import { memo } from 'react';
+
+import { Employee } from '../../model/types/employee';
 
 import cls from './EmployeeCard.module.scss';
 
 export interface EmployeeCardProps {
-  id: number;
-  name: string;
-  personRole: string;
+  employee: Employee;
   standard?: number;
-  disabled?: boolean;
 }
 
 export const EmployeeCard = memo((props: EmployeeCardProps) => {
-  const { id, name, personRole, standard, disabled } = props;
+  const { employee, standard } = props;
+  const disabled = employee.status === 'fired';
+
+  let name = `${employee.last_name} ${employee.first_name}`;
+  if (employee.middle_name) name += ` ${employee.middle_name}`;
 
   const mods: Mods = {
     [cls.disabled]: disabled,
   };
 
   return (
-    <Card
-      variant="light"
-      padding="24"
-      className={classNames(cls.EmployeeCard, mods, [])}
-    >
-      <div className={cls.employee_info}>
-        <h3>{name}</h3>
-        <Text text={personRole} size="l" />
-      </div>
-      <div className={cls.standard_info}>
-        {standard ? (
-          <>
-            <Text text={`Эталон ${standard}%`} size="l" align="center" />
-            <ProgressBar size={standard} />
-          </>
-        ) : (
-          <>
-            <Text
-              text={
-                <>
-                  Эталон 0%<span>(Нет информации)</span>
-                </>
-              }
-              size="l"
-              align="center"
-            />
-            <ProgressBar size={0} />
-          </>
-        )}
-      </div>
-    </Card>
+    <div className={classNames(cls.EmployeeCard, mods, [])}>
+      <h4 className={cls.employee_name}>{name}</h4>
+      <p className={cls.employee_position}>{employee.position}</p>
+      {standard ? (
+        <div className={cls.employee_stat}>
+          <span className={cls.stat_text}>{`${standard}%`}</span>
+          <ProgressBar size={standard} disabled={disabled} />
+        </div>
+      ) : (
+        <span className={cls.stat_text}>Данные отсутствуют</span>
+      )}
+      {!disabled ? (
+        <Button
+          size="xs"
+          variant="ghost"
+          className={classNames(cls.card_button, {}, [cls.fire_button])}
+        >
+          Уволить
+        </Button>
+      ) : (
+        <Button
+          size="xs"
+          variant="ghost"
+          addonLeft={
+            <span className="material-symbols-outlined">person_off</span>
+          }
+          disabled
+        >
+          Сотрудник уволен
+        </Button>
+      )}
+    </div>
   );
 });

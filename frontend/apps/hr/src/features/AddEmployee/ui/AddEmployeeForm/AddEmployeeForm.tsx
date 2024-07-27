@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
-import { Button, Icon, Input, Text } from '@repo/shared/ui';
+import { Button, Input, Text, Toast } from '@repo/shared/ui';
 import { memo, useCallback } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useToaster } from 'rsuite';
 
 import {
   addEmployeeSchema,
@@ -13,8 +14,6 @@ import {
 import dateOptions from '../../lib/dateMask';
 import firstLetterOptions from '../../lib/firstLetterMask';
 import salaryOptions from '../../lib/salaryMask';
-
-import Lock from '@/shared/assets/icons/lock.svg';
 
 import cls from './AddEmployeeForm.module.scss';
 
@@ -43,19 +42,36 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
     formState: { errors, isValid },
   } = useForm<FormInputData, any, FormOutputData>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      patronimyc: '',
-      dateOfBirth: '',
+      first_name: '',
+      last_name: '',
+      middle_name: '',
+      birth_date: '',
       email: '',
       position: '',
-      status: 'Работает',
+      status: 'working',
       salary: '',
-      dateOfEmployment: '',
+      date_of_hiring: '',
+      password: '',
     },
     resolver: zodResolver(addEmployeeSchema),
     mode: 'onBlur',
   });
+
+  const toaster = useToaster();
+
+  const ToasterShow = useCallback(() => {
+    toaster.push(
+      <Toast
+        text="Сотрудник добавлен!"
+        size="l"
+        variant="success"
+        addOnLeft={
+          <span className="material-symbols-outlined">check_circle</span>
+        }
+      />,
+      { placement: 'bottomCenter' },
+    );
+  }, [toaster]);
 
   const onResetClick = useCallback(async () => {
     reset();
@@ -66,8 +82,9 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
     (data) => {
       reset();
       onSuccess();
+      ToasterShow();
     },
-    [reset, onSuccess],
+    [reset, onSuccess, ToasterShow],
   );
 
   return (
@@ -76,7 +93,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <Text title="Добавление сотрудника" size="m" />
+      <Text title="Добавление сотрудника" size="m" className={cls.form_title} />
       <Text
         text="Заполните поля ввода и нажмите кнопку «Сохранить». Новый сотрудник появится на главной странице."
         size="s"
@@ -84,7 +101,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
       />
       <div className={cls.form_fields}>
         <Controller
-          name="firstName"
+          name="first_name"
           control={control}
           render={({ field }) => (
             <Input
@@ -92,16 +109,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
               maskedInputRef={firstNameInputRef}
               placeholder="Имя"
               size="l"
-              errorMessage={errors.firstName?.message}
+              errorMessage={errors.first_name?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.firstName) trigger('firstName');
+                if (errors.first_name) trigger('first_name');
               }}
             />
           )}
         />
         <Controller
-          name="patronimyc"
+          name="middle_name"
           control={control}
           render={({ field }) => (
             <Input
@@ -109,16 +126,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
               maskedInputRef={patronimycInputRef}
               placeholder="Отчество"
               size="l"
-              errorMessage={errors.patronimyc?.message}
+              errorMessage={errors.middle_name?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.patronimyc) trigger('patronimyc');
+                if (errors.middle_name) trigger('middle_name');
               }}
             />
           )}
         />
         <Controller
-          name="lastName"
+          name="last_name"
           control={control}
           render={({ field }) => (
             <Input
@@ -126,16 +143,16 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
               maskedInputRef={lastnameInputRef}
               placeholder="Фамилия"
               size="l"
-              errorMessage={errors.lastName?.message}
+              errorMessage={errors.last_name?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.lastName) trigger('lastName');
+                if (errors.last_name) trigger('last_name');
               }}
             />
           )}
         />
         <Controller
-          name="dateOfBirth"
+          name="birth_date"
           control={control}
           render={({ field }) => (
             <Input
@@ -143,26 +160,10 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
               maskedInputRef={dobInputRef}
               placeholder="Дата рождения (ХХ.ХХ.ХХХХ)"
               size="l"
-              errorMessage={errors.dateOfBirth?.message}
+              errorMessage={errors.birth_date?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.dateOfBirth) trigger('dateOfBirth');
-              }}
-            />
-          )}
-        />
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              placeholder="Электронная почта"
-              size="l"
-              errorMessage={errors.email?.message}
-              onChange={(event) => {
-                field.onChange(event.currentTarget.value);
-                if (errors.email) trigger('email');
+                if (errors.birth_date) trigger('birth_date');
               }}
             />
           )}
@@ -184,18 +185,11 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
             />
           )}
         />
-        <Controller
-          name="status"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              readonly
-              size="l"
-              helperText="Статус «Работает/Уволен» влияет на текучесть кадров"
-              addonRight={<Icon Svg={Lock} />}
-            />
-          )}
+        <Input
+          value="Работает"
+          disabled
+          size="l"
+          helperText="Статус «Работает/Уволен» влияет на текучесть кадров"
         />
         <Controller
           name="salary"
@@ -215,7 +209,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           )}
         />
         <Controller
-          name="dateOfEmployment"
+          name="date_of_hiring"
           control={control}
           render={({ field }) => (
             <Input
@@ -223,11 +217,49 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
               maskedInputRef={doeInputRef}
               placeholder="Дата трудоустройства (ХХ.ХХ.ХХХХ)"
               size="l"
-              errorMessage={errors.dateOfEmployment?.message}
+              errorMessage={errors.date_of_hiring?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.dateOfEmployment) trigger('dateOfEmployment');
+                if (errors.date_of_hiring) trigger('date_of_hiring');
               }}
+            />
+          )}
+        />
+        <Text
+          text="По этим данным сотрудник сможет войти в систему"
+          size="s"
+          className={cls.form_registration}
+        />
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder="Логин (Электронная почта)"
+              size="l"
+              errorMessage={errors.email?.message}
+              onChange={(event) => {
+                field.onChange(event.currentTarget.value);
+                if (errors.email) trigger('email');
+              }}
+            />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder="Пароль"
+              size="l"
+              errorMessage={errors.password?.message}
+              onChange={(event) => {
+                field.onChange(event.currentTarget.value);
+                if (errors.password) trigger('password');
+              }}
+              helperText="В пароле должно содержаться минимум 6 символов, одна буква латинского алфавита и одна цифра"
             />
           )}
         />
