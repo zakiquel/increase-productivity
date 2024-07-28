@@ -29,7 +29,12 @@ export const EmployeeValues = memo((props: EmployeeValuesProps) => (
       </Card>
 
       {Array.from({ length: 11 }).map((_, index) => (
-        <Card variant="light" padding="16" className={cls.canvas_container}>
+        <Card
+          variant="light"
+          padding="16"
+          key={index}
+          className={cls.canvas_container}
+        >
           <PersonalQualitiesChart title={`Ценность ${index + 1}`} />
         </Card>
       ))}

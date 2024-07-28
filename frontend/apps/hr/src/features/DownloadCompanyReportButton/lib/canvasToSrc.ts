@@ -14,7 +14,6 @@ export async function canvasToSrc(
 
   return new Promise((resolve) => {
     root.render(CanvasComponent);
-
     const checkCanvas = () => {
       const canvas = container.querySelector('canvas');
       if (canvas) {
