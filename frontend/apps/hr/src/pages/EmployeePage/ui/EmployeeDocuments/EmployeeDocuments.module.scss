@@ -1,0 +1,37 @@
+.EmployeeDocuments {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .file {
+    height: 150px;
+
+    span {
+      justify-content: center;
+      align-items: center;
+      font: var(--font-16);
+      color: var(--grey-secondary-color);
+      font-weight: 500;
+    }
+  }
+
+  .document {
+    height: 150px;
+  }
+
+  .documents {
+    display: flex;
+    gap: 8px;
+    align-items: end;
+  }
+
+  .documents_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .document_btn {
+    max-width: 159px;
+  }
+}

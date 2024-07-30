@@ -12,11 +12,10 @@ import cls from './ChartList.module.scss';
 export const ChartList = memo(() => (
   <section className={cls.ChartList}>
     <Card variant="light" padding="16" className={cls.hello_card}>
-      <Text text="Привет!" size="m" className={cls.hello} />
+      <Text text="Привет!" className={cls.hello} />
       <Text
         text="На этой странице будет отображаться главная информация о компании.
                   Заполни раздел «Ценности и Метрики», чтобы мы могли показать тебе статистику."
-        size="m"
         className={cls.hello_text}
       />
       <Button size="s" className={cls.hello_button}>

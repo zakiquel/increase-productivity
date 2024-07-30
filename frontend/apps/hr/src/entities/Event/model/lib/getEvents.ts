@@ -19,21 +19,22 @@ export const getEvents = (events: Event[]) => {
     Закрыто: [],
   };
 
-  events.forEach((event) => {
-    switch (event.tag) {
-      case ListEventEnum.APPROVED:
-        EventsOnStatus[event.tag].push(event);
-        break;
-      case ListEventEnum.WAITING:
-        EventsOnStatus[event.tag].push(event);
-        break;
-      case ListEventEnum.CLOSED:
-        EventsOnStatus[event.tag].push(event);
-        break;
+  // events.forEach((event) => {
+  //   switch (event.tag) {
+  //     case ListEventEnum.APPROVED:
+  //       EventsOnStatus[event.tag].push(event);
+  //       break;
+  //     case ListEventEnum.WAITING:
+  //       EventsOnStatus[event.tag].push(event);
+  //       break;
+  //     case ListEventEnum.CLOSED:
+  //       EventsOnStatus[event.tag].push(event);
+  //       break;
+  //
+  //     default:
+  //       break;
+  //   }
+  // });
 
-      default:
-        break;
-    }
-  });
   return EventsOnStatus;
 };

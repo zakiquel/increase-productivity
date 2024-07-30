@@ -3,10 +3,8 @@ import {
   AppImage,
   Button,
   ModalSuccess,
-  Status,
   Text as TextTag,
   Toast,
-  TVariant,
 } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import { memo, useCallback, useState } from 'react';
@@ -83,55 +81,40 @@ const EventModal = memo((props: EventModalProps) => {
                   alt="event"
                   width={480}
                   height={320}
-                  className={classNames(
-                    cls.img,
-                    { [cls.closed]: event.tag === 'Закрыто' },
-                    [],
-                  )}
-                />
-                <Status
-                  variant={event.tag as TVariant}
-                  className={cls.tag}
-                  size="s"
+                  className={classNames(cls.img, {}, [])}
                 />
               </div>
               <div className={cls.text_wrapper}>
                 <div>
-                  <TextTag title={event.title} className={cls.title} />
-                  <TextTag
-                    size="xs"
-                    className={cls.text}
-                    text={event.description}
-                  />
+                  <TextTag title={event.name} className={cls.title} />
+                  <TextTag size="xs" className={cls.text} text={event.name} />
                 </div>
                 <div className={cls.wrapper}>
                   <div className={cls.wrp}>
                     <span className={cls.price}>
-                      {`${event.price?.toString()} Б`}
+                      {`${event.reward?.toString()} Б`}
                     </span>
                     <span className={cls.date}>{event.date}</span>
                   </div>
-                  {(event.tag === 'Одобрено' || event.tag === 'Ожидание') && (
-                    <div className={cls.btn_wrapper}>
-                      <Button
-                        variant="secondary"
-                        onClick={() => {
-                          setDelete(true);
-                          setOpen(false);
-                        }}
-                      >
-                        Удалить
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          setOpen(false);
-                          setEdit(true);
-                        }}
-                      >
-                        Изменить
-                      </Button>
-                    </div>
-                  )}
+                  <div className={cls.btn_wrapper}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        setDelete(true);
+                        setOpen(false);
+                      }}
+                    >
+                      Удалить
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setOpen(false);
+                        setEdit(true);
+                      }}
+                    >
+                      Изменить
+                    </Button>
+                  </div>
                 </div>
                 <Button
                   className={cls.close}

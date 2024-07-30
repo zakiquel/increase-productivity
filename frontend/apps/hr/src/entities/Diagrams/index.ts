@@ -5,4 +5,5 @@ export { CompanyValuesChart } from './ui/CompanyValuesChart/CompanyValuesChart';
 export { PersonalMetricsChart } from './ui/PersonalMetricsChart/PersonalMetricsChart';
 export { PersonalQualitiesChart } from './ui/PersonalQualitiesChart/PersonalQualitiesChart';
 export { PersonalRiskChart } from './ui/PersonalRiskChart/PersonalRiskChart';
+export { PersonalRatingChart } from './ui/PersonalRatingChart/PersonalRatingChart';
 export { PersonalValuesChart } from './ui/PersonalValuesChart/PersonalValuesChart';

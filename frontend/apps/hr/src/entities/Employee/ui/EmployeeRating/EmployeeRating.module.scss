@@ -1,6 +1,5 @@
 .EmployeeRating {
-  width: 400px;
-  height: 110px;
+  position: relative;
 }
 
 .title {
@@ -9,4 +8,11 @@
 
 .text {
   margin-bottom: 8px;
+}
+
+.rating {
+  position: absolute;
+  top: 52%;
+  left: 46%;
+  bottom: 0;
 }

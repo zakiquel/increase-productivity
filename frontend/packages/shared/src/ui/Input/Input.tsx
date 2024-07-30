@@ -13,7 +13,7 @@ import { Mods, classNames, mergeRefs } from '../../lib';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange' | 'readOnly' | 'size' | 'disabled'
+  'value' | 'onChange' | 'readOnly' | 'size' | 'disabled' | 'label'
 >;
 
 type InputSize = 's' | 'm' | 'l';
@@ -28,6 +28,7 @@ interface InputProps extends HTMLInputProps {
   autofocus?: boolean;
   readonly?: boolean;
   disabled?: boolean;
+  label?: string;
   addonLeft?: ReactNode;
   addonRight?: ReactNode;
   errorMessage?: string;
@@ -47,6 +48,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     autofocus,
     size = 'm',
     readonly,
+    label,
     disabled,
     addonLeft,
     addonRight,
@@ -104,6 +106,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     <div
       className={classNames(cls.wrapper, wrapperMods, [cls[size], className])}
     >
+      {label && <div className={cls.label}>{label}</div>}
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
         {addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
         <input

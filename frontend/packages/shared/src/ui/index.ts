@@ -22,3 +22,4 @@ export * from './Badge';
 export * from './Tag';
 export * from './ModalSuccess';
 export * from './Toast';
+export * from './Skeleton';

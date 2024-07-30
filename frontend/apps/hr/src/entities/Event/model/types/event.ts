@@ -1,11 +1,9 @@
 export interface Event {
   id: number;
-  img?: string;
-  title?: string;
-  date?: string;
-  price?: number;
-  tag: string;
-  description: string;
+  name: string;
+  event_date: string;
+  reward: number;
+  format: string;
 }
 
 export interface EventRequest {

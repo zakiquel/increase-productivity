@@ -1,10 +1,12 @@
-import { Card, ProgressBar, Text } from '@repo/shared/ui';
+import { Card, Text } from '@repo/shared/ui';
 import { memo } from 'react';
+
+import { PersonalRatingChart } from '@/entities/Diagrams';
 
 import cls from './EmployeeRating.module.scss';
 
 interface EmployeeRatingProps {
-  rating: number | undefined;
+  rating?: number;
 }
 
 export const EmployeeRating = memo((props: EmployeeRatingProps) => {
@@ -12,9 +14,10 @@ export const EmployeeRating = memo((props: EmployeeRatingProps) => {
 
   return (
     <Card padding="16" className={cls.EmployeeRating} variant="light">
-      <Text text="Рейтинг ценности" className={cls.title} />
-      <Text text={`${rating}%`} className={cls.text} size="s" />
-      <ProgressBar size={rating || 0} />
+      <div className={cls.rating}>
+        <Text text={`${50}%`} size="s" />
+      </div>
+      <PersonalRatingChart rating={rating || 50} />
     </Card>
   );
 });

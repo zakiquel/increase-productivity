@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
 });
 
 interface EmployeeReportProps {
-  employeeId: Employee['id'];
+  employee?: Employee['id'];
 }
 
-export function EmployeeReport({ employeeId }: EmployeeReportProps) {
+export function EmployeeReport({ employee }: EmployeeReportProps) {
   const [persinalMetricsSrc, setPersonalMetricsSrc] = useState('');
   const [personalQualitiesSrc, setPersonalQualitiesSrc] = useState('');
   const [personalRiskSrc, setPersonalRiskSrc] = useState('');
@@ -79,7 +79,7 @@ export function EmployeeReport({ employeeId }: EmployeeReportProps) {
     const generateData = async () => {
       const personalMetricsSrc = await canvasToSrc(<PersonalMetricsChart />);
       const personalQualitiesSrc = await canvasToSrc(
-        <PersonalQualitiesChart />,
+        <PersonalQualitiesChart title="title" />,
       );
       const personalRiskSrc = await canvasToSrc(<PersonalRiskChart />);
       const personalValuesSrc = await canvasToSrc(<PersonalValuesChart />);

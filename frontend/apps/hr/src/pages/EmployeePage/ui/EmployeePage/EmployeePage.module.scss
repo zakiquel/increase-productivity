@@ -1,5 +1,27 @@
 .EmployeePage {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 551px 706px 733px 307px 344px;
+  gap: 8px;
+}
+
+.canvas_container {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 28% 50% 22%;
+  max-width: calc((100vw - var(--sidebar-width)) / 2);
+  max-height: 535px;
+  gap: 8px;
+}
+
+.profile {
+  grid-row-start: 1;
+  grid-row-end: 4;
 }
