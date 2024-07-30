@@ -1,27 +1,20 @@
-import { TextareaHTMLAttributes } from "react";
-import TextareaAutosize from "react-textarea-autosize";
+import { TextareaHTMLAttributes } from 'react';
 
-import cls from "./TextArea.module.scss";
-import { classNames, Mods } from "../../lib/classNames/classNames";
+import cls from './TextArea.module.scss';
+import { classNames, Mods } from '../../lib/classNames/classNames';
 
 type HTMLTextAreaProps = Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
-  "value" | "onChange" | "disabled"
+  'value' | 'onChange' | 'disabled'
 >;
-
-type Styles = React.CSSProperties & {
-  height?: number;
-};
 
 interface TextAreaProps extends HTMLTextAreaProps {
   className?: string;
   value?: string;
-  placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   disabled?: boolean;
   errorMessage?: string;
   maxLength?: number;
-  style?: Styles;
 }
 
 export const TextArea = (props: TextAreaProps) => {
@@ -45,11 +38,11 @@ export const TextArea = (props: TextAreaProps) => {
     <div
       className={classNames(
         cls.TextAreaWrapper,
-        { [cls.error]: !!errorMessage },
-        [className]
+        { [cls.error]: errorMessage },
+        [className],
       )}
     >
-      <TextareaAutosize
+      <textarea
         maxLength={maxLength}
         className={classNames(cls.TextArea, mods, [className])}
         placeholder={placeholder}

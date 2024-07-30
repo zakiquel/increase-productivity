@@ -1,29 +1,13 @@
 .EmployeeInfo {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 28% 50% 22%;
+  max-width: calc((100vw - var(--sidebar-width)) / 2);
+  max-height: 535px;
   gap: 8px;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.rating_balance {
-  display: flex;
-  gap: 8px;
-}
-
-.report {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 110px;
-}
-
-.events_operations {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.profile {
+  grid-row-start: 1;
+  grid-row-end: 4;
 }

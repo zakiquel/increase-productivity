@@ -1,7 +1,7 @@
 import { Card, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
-import { Transaction } from '../../model/types/employee';
+import { Transaction } from '../../../../entities/Employee/model/types/employee';
 
 import cls from './EmployeeOperations.module.scss';
 
@@ -13,9 +13,9 @@ export const EmployeeOperations = memo((props: EmployeeOperationsProps) => {
   const { transactions } = props;
   return (
     <Card className={cls.EmployeeOperations} variant="light" padding="16">
-      <Text text="История операций" />
+      <Text text="История операций" bold />
       <div className={cls.title}>
-        <Text text="Операция" variant="grey" size="s" />
+        <Text text="Описание" variant="grey" size="s" />
         <Text text="Дата" variant="grey" size="s" />
         <Text text="Статус" variant="grey" size="s" />
       </div>

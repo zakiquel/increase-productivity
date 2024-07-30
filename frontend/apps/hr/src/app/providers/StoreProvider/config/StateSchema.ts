@@ -1,13 +1,10 @@
-import { AxiosInstance } from 'axios';
+import { rtkApi } from '@/shared/api/rtkApi';
 
-export interface StateSchema {}
-
-export interface ThunkExtraArg {
-  api: AxiosInstance;
+export interface StateSchema {
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 }
 
 export interface ThunkConfig<T> {
   rejectValue: T;
-  extra: ThunkExtraArg;
   state: StateSchema;
 }

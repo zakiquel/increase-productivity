@@ -1,11 +1,21 @@
 import { classNames } from '@repo/shared/lib';
-import { memo, useState } from 'react';
+import { Skeleton, Text } from '@repo/shared/ui';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { EmployeeInfo } from '../EmployeeInfo/EmployeeInfo';
+import { EmployeeMetrics } from '../EmployeeMetrics/EmployeeMetrics';
+import { EmployeeRisks } from '../EmployeeRisks/EmployeeRisks';
 import { EmployeeValues } from '../EmployeeValues/EmployeeValues';
+import { EmployeeValuesList } from '../EmployeeValuesList/EmployeeValuesList';
 
-import { Note } from '@/entities/Employee';
+import {
+  EmployeeDocuments,
+  EmployeeEvents,
+  EmployeeNotes,
+  EmployeeOperations,
+  fetchEmployeeById,
+} from '@/entities/Employee';
 import { Page } from '@/widgets/Page';
 
 import cls from './EmployeePage.module.scss';
@@ -18,47 +28,52 @@ const EmployeePage = (props: EmployeePageProps) => {
   const { className } = props;
   const { id } = useParams<{ id: string }>();
 
-  const [isEditNote, setIsEditNote] = useState(false);
-  const [editingNote, setEditingNode] = useState<Note | null>(null);
-
   if (!id) {
-    return null;
+    return <Text title="Пользователь не найден" align="center" />;
   }
 
-  const handleNoteClick = (note: Note) => {
-    setIsEditNote(true);
-    setEditingNode(note);
-  };
+  const { data: response, isLoading, isError } = fetchEmployeeById(id);
+
+  if (isLoading) {
+    return (
+      <Page className={classNames(cls.EmployeePage, {}, [className])}>
+        <div className={cls.info}>
+          <Skeleton
+            width="100%"
+            height="100%"
+            border="4px"
+            className={cls.profile}
+          />
+          <Skeleton width="100%" height="100%" border="4px" />
+          <Skeleton width="100%" height="100%" border="4px" />
+          <Skeleton width="100%" height="100%" border="4px" />
+        </div>
+        <Skeleton width="100%" height="100%" border="4px" />
+        <Skeleton width="100%" height="100%" border="4px" />
+        <Skeleton width="100%" height="100%" border="4px" />
+      </Page>
+    );
+  }
+
+  if (!response || isError) {
+    return <Text title="Произошла ошибка при загрузке данных" align="center" />;
+  }
+
+  const employee = response.data;
 
   return (
     <Page className={classNames(cls.EmployeePage, {}, [className])}>
-      <EmployeeInfo />
+      <EmployeeInfo employee={employee} />
+      <EmployeeRisks />
       <EmployeeValues />
+      <EmployeeMetrics />
+      <EmployeeValuesList />
+      <EmployeeNotes employee={employee} />
+      <EmployeeDocuments employee={employee} />
+      <EmployeeOperations />
+      <EmployeeEvents />
     </Page>
   );
 };
 
 export default memo(EmployeePage);
-
-/* <EmployeeNotes
-  notes={testEmployee.notes}
-  handleEditNote={handleNoteClick}
-/>
-<EmployeeDocuments />
-{isEditNote && editingNote && (
-  <EditNoteModal
-    isOpen={isEditNote}
-    onClose={() => setIsEditNote(false)}
-    note={editingNote}
-  />
-)}
-<div className={cls.employee_charts}>
-  <Card variant="light" padding="24" className={cls.chart_card}>
-    <Text title="Динамика метрик" size="s" className={cls.title} />
-    <AppImage src={Blanc} />
-  </Card>
-  <Card variant="light" padding="24" className={cls.chart_card}>
-    <Text title="Динамика метрик" size="s" className={cls.title} />
-    <AppImage src={Blanc} />
-  </Card>
-</div> */

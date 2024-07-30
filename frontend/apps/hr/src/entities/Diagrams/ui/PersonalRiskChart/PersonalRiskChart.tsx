@@ -21,6 +21,7 @@ const data: ChartData<'doughnut'> = {
 };
 
 const options: ChartOptions<'doughnut'> = {
+  cutout: 140,
   maintainAspectRatio: false,
   datasets: {
     doughnut: {

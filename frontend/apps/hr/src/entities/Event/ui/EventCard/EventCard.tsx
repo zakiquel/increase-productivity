@@ -1,5 +1,5 @@
 import { classNames } from '@repo/shared/lib';
-import { AppImage, Card, Status, TVariant, Text } from '@repo/shared/ui';
+import { AppImage, Card, Text } from '@repo/shared/ui';
 
 import { Event } from '../../model/types/event';
 
@@ -33,18 +33,13 @@ export const EventCard = (props: EventCardProps) => {
         alt="event"
         width={404}
         height={221}
-        className={classNames(
-          cls.img,
-          { [cls.closed]: event.tag === 'Закрыто' },
-          [],
-        )}
+        className={classNames(cls.img, {}, [])}
       />
-      <Status className={cls.tag} variant={event.tag as TVariant} size="xs" />
       <div className={cls.wrapper}>
-        <Text text={event.title} />
+        <Text text={event.name} />
         <div className={cls.wrp}>
-          <span className={cls.price}>{`${event.price?.toString()} Б`}</span>
-          <span className={cls.date}>Создано: {event.date}</span>
+          <span className={cls.price}>{`${event.reward?.toString()} Б`}</span>
+          <span className={cls.date}>Создано: {event.event_date}</span>
         </div>
       </div>
     </Card>

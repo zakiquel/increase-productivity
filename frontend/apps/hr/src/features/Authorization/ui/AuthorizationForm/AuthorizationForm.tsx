@@ -44,13 +44,10 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
     onReset();
   }, [onReset, reset]);
 
-  const onSubmit: SubmitHandler<AuthorizationFormSchema> = useCallback(
-    () => {
-      reset();
-      onSuccess();
-    },
-    [reset, onSuccess],
-  );
+  const onSubmit: SubmitHandler<AuthorizationFormSchema> = useCallback(() => {
+    reset();
+    onSuccess();
+  }, [reset, onSuccess]);
 
   const handleVisibility = () => {
     setShowPassword(!showPassword);
@@ -71,7 +68,6 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
             render={({ field }) => (
               <Input
                 {...field}
-                label="Почта"
                 placeholder="@e-mail.ru"
                 size="s"
                 type="email"
@@ -90,7 +86,6 @@ const AuthorizationForm = memo((props: AuthorizationFormProps) => {
             render={({ field }) => (
               <Input
                 {...field}
-                label="Пароль"
                 size="s"
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"

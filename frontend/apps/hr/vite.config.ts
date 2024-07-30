@@ -16,7 +16,7 @@ export default defineConfig({
   define: {
     __IS_DEV__: JSON.stringify(true),
     __API__: JSON.stringify(
-      'https://increase-productivity.abdrashitov-academy.ru/',
+      'https://increase-productivity.abdrashitov-academy.ru/api',
     ),
   },
 });

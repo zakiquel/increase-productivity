@@ -1,14 +1,12 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 
-import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { StateSchema } from './StateSchema';
 
-import { $api } from '@/shared/api/api';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export function createReduxStore(initialState?: StateSchema) {
-  const rootReducers: ReducersMapObject<StateSchema> = {};
-
-  const extraArg: ThunkExtraArg = {
-    api: $api,
+  const rootReducers: ReducersMapObject<StateSchema> = {
+    [rtkApi.reducerPath]: rtkApi.reducer,
   };
 
   return configureStore({
@@ -16,11 +14,7 @@ export function createReduxStore(initialState?: StateSchema) {
     devTools: __IS_DEV__,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        thunk: {
-          extraArgument: extraArg,
-        },
-      }),
+      getDefaultMiddleware().concat(rtkApi.middleware),
   });
 }
 

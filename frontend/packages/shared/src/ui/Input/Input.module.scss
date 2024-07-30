@@ -7,7 +7,7 @@
   width: 100%;
   color: var(--base-0-color);
   font-weight: 400;
-  font-family: var(--font-family);
+  font: var(--font-family);
   background-color: var(--bg-color);
 
   &:disabled {
@@ -204,6 +204,13 @@
   svg {
     fill: var(--grey-secondary-color);
   }
+}
+
+.label {
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--grey-secondary-color);
+  margin-bottom: 8px;
 }
 
 .wrapper {

@@ -1,30 +1,32 @@
-import { Button, Card, Input, SegmentedControl, Text } from '@repo/shared/ui';
+import { classNames } from '@repo/shared/lib';
+import { Card, Input, SegmentedControl, Text } from '@repo/shared/ui';
 import React, { useCallback, useState } from 'react';
 
-import { PersonalInfo } from '../../model/types/employee';
+import { Employee } from '../../model/types/employee';
 
 import cls from './EployeeProfile.module.scss';
 
 interface EmployeeProfileProps {
-  data: PersonalInfo;
+  data?: Employee;
+  className?: string;
 }
 
 const segments = [
-  { value: 'working', label: 'Работает' },
+  { value: 'working', label: 'Трудоустроен' },
   { value: 'fired', label: 'Уволен' },
 ];
 
 export const EmployeeProfile = (props: EmployeeProfileProps) => {
-  const { data } = props;
+  const { data, className } = props;
 
-  const [editing, setEditing] = useState<boolean>(false);
-  const [firstname, setFirstname] = useState<string>('Антон');
-  const [patronymic, setPatronymic] = useState<string>('Андреевич');
-  const [lastname, setLastname] = useState<string>('Пастухов');
-  const [position, setPosition] = useState<string>('Дизайнер');
-  const [salary, setSalary] = useState<string>('50 000 руб.');
-  const [birth, setBirth] = useState<string>('16.01.2002');
-  const [hiring, setHiring] = useState<string>('17.01.2002');
+  const [editing, setEditing] = useState<boolean>(true);
+  const [firstname, setFirstname] = useState<string>('');
+  const [patronymic, setPatronymic] = useState<string>('');
+  const [lastname, setLastname] = useState<string>('');
+  const [position, setPosition] = useState<string>('');
+  const [salary, setSalary] = useState<string>('');
+  const [birth, setBirth] = useState<string>('');
+  const [hiring, setHiring] = useState<string>('');
 
   const onEdit = () => {
     setEditing(true);
@@ -83,62 +85,40 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
     [],
   );
 
+  if (!data) {
+    return null;
+  }
+
   return (
-    <Card variant="light" padding="16" className={cls.EmployeeProfile}>
-      <Text text="Личные данные сотрудника" />
+    <Card
+      variant="light"
+      padding="16"
+      className={classNames(cls.EmployeeProfile, {}, [className])}
+    >
+      <Text title="Личные данные сотрудника" size="xs" bold />
       <form className={cls.inputs}>
+        <div className={cls.name_patronymic}>
+          <Input value={data.first_name} onChange={onChangeFirstname} />
+          <Input value={data.middle_name} onChange={onChangePatronymic} />
+        </div>
+        <Input value={data.last_name} onChange={onChangeLastname} />
+        <Input value={data.birth_date} onChange={onChangeDateOfBirth} />
+        <Input value={data.email} disabled />
+        <Input value={data.position} onChange={onChangePosition} />
+        <Input value={data.salary} onChange={onChangeSalary} />
         <Input
-          readonly={!editing}
-          value={firstname}
-          onChange={onChangeFirstname}
+          value={data.date_of_hiring}
+          onChange={onChangeHiring}
+          label="Дата трудоустройства"
         />
-        <Input
-          readonly={!editing}
-          value={patronymic}
-          onChange={onChangePatronymic}
-        />
-        <Input
-          readonly={!editing}
-          value={lastname}
-          onChange={onChangeLastname}
-        />
-        <Input
-          readonly={!editing}
-          value={birth}
-          onChange={onChangeDateOfBirth}
-        />
-        <Input
-          readonly={!editing}
-          value={position}
-          onChange={onChangePosition}
-        />
-        <Input readonly={!editing} value={salary} onChange={onChangeSalary} />
-        <Input readonly={!editing} value={hiring} onChange={onChangeHiring} />
       </form>
       <SegmentedControl
         name="status"
+        className={cls.control}
         segments={segments}
         callback={() => {}}
         defaultIndex={1}
-        disabled={!editing}
       />
-      <Text
-        text="Статус «Работает/Уволен» влияет на текучесть кадров.
-            При удалении сотрудник не включается в статистику"
-        variant="grey"
-        size="s"
-        className={cls.status_text}
-      />
-      <div className={cls.btns}>
-        <Button variant="secondary" onClick={onEdit} className={cls.edit_btn}>
-          Редактировать
-        </Button>
-        {editing && (
-          <Button variant="exit" onClick={cancelEdit} className={cls.edit_btn}>
-            Отменить
-          </Button>
-        )}
-      </div>
     </Card>
   );
 };
