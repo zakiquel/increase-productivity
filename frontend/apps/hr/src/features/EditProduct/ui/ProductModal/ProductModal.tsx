@@ -1,4 +1,3 @@
-import { classNames } from '@repo/shared/lib';
 import { Button, ModalSuccess, Toast } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
@@ -6,10 +5,9 @@ import { useToaster } from 'rsuite';
 
 import EditProductForm from '../EditProductForm/EditProductForm';
 
-import { Product } from '@/entities/Product';
-import ozon from '@/shared/assets/images/ozon.png';
+import { Product, ProductItemModal } from '@/entities/Product';
 
-import cls from './ProductItemModal.module.scss';
+import cls from './ProductModal.module.scss';
 
 interface IProductItemModal {
   product?: Product;
@@ -17,14 +15,12 @@ interface IProductItemModal {
   setOpen: (arg: boolean) => void;
 }
 
-export const ProductItemModal = (props: IProductItemModal) => {
+export const ProductModal = (props: IProductItemModal) => {
   const { product, isOpen, setOpen } = props;
 
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-
-  const userBalance = 200;
 
   const toaster = useToaster();
 
@@ -65,29 +61,12 @@ export const ProductItemModal = (props: IProductItemModal) => {
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               onClick={(e) => e.stopPropagation()}
-              className={cls.ProductItemModal}
+              className={cls.Modal}
             >
-              <img
-                className={cls.img}
-                src={ozon}
-                alt={product.title}
-                width={480}
-                height={320}
-              />
-              <div className={cls.body}>
-                <div className={cls.header}>
-                  <h3 className={cls.title}>{product.title}</h3>
-                  <div className="">
-                    <p className={cls.description}>{product.description}</p>
-                    {userBalance < product.price && (
-                      <p className={cls.error}>
-                        Недостаточное количество баллов для совершения покупки
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className={cls.footer}>
-                  <p className={cls.price}>{product.price} Б</p>
+              <ProductItemModal
+                product={product}
+                onOpen={setOpen}
+                buttons={
                   <div className={cls.buttons}>
                     <Button
                       variant="secondary"
@@ -108,21 +87,8 @@ export const ProductItemModal = (props: IProductItemModal) => {
                       Изменить
                     </Button>
                   </div>
-                </div>
-                <Button
-                  className={cls.close}
-                  variant="ghost"
-                  onClick={() => setOpen(false)}
-                >
-                  <span
-                    className={classNames('material-symbols-outlined', {}, [
-                      cls.close_btn,
-                    ])}
-                  >
-                    close
-                  </span>
-                </Button>
-              </div>
+                }
+              />
             </motion.div>
           </motion.div>
         </AnimatePresence>

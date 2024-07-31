@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes } from 'react';
+import { forwardRef, TextareaHTMLAttributes } from 'react';
 
 import cls from './TextArea.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
@@ -17,42 +17,44 @@ interface TextAreaProps extends HTMLTextAreaProps {
   maxLength?: number;
 }
 
-export const TextArea = (props: TextAreaProps) => {
-  const {
-    placeholder,
-    value,
-    onChange,
-    disabled,
-    errorMessage,
-    maxLength,
-    style = {},
-    className,
-    ...otherProps
-  } = props;
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props) => {
+    const {
+      placeholder,
+      value,
+      onChange,
+      disabled,
+      errorMessage,
+      maxLength,
+      style = {},
+      className,
+      ...otherProps
+    } = props;
 
-  const mods: Mods = {
-    [cls.isDirty]: Boolean(value),
-  };
+    const mods: Mods = {
+      [cls.isDirty]: Boolean(value),
+    };
 
-  return (
-    <div
-      className={classNames(
-        cls.TextAreaWrapper,
-        { [cls.error]: errorMessage },
-        [className],
-      )}
-    >
-      <textarea
-        maxLength={maxLength}
-        className={classNames(cls.TextArea, mods, [className])}
-        placeholder={placeholder}
-        disabled={disabled}
-        value={value}
-        onChange={onChange}
-        style={style}
-        {...otherProps}
-      />
-      {errorMessage && <div className={cls.errorMessage}>{errorMessage}</div>}
-    </div>
-  );
-};
+    return (
+      <div
+        className={classNames(
+          cls.TextAreaWrapper,
+          { [cls.error]: errorMessage },
+          [className],
+        )}
+      >
+        <textarea
+          maxLength={maxLength}
+          className={classNames(cls.TextArea, mods, [className])}
+          placeholder={placeholder}
+          disabled={disabled}
+          value={value}
+          onChange={onChange}
+          style={style}
+          {...otherProps}
+        />
+        {errorMessage && <div className={cls.errorMessage}>{errorMessage}</div>}
+      </div>
+    );
+  },
+);

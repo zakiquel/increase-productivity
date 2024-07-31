@@ -3,7 +3,9 @@ export interface Event {
   name: string;
   event_date: string;
   reward: number;
-  format: string;
+  format?: string;
+  imgSrc?: string;
+  description?: string;
 }
 
 export interface EventRequest {

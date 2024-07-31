@@ -5,7 +5,7 @@ import { SectionSwitcher } from '../SectionSwitcher/ui/SectionSwitcher';
 
 import { Product } from '@/entities/Product';
 import { AddProductDrawer } from '@/features/AddProduct';
-import { ProductItemModal } from '@/features/EditProduct';
+import { ProductModal } from '@/features/EditProduct';
 import { Page } from '@/widgets/Page';
 
 interface CatalogPageProps {
@@ -31,7 +31,7 @@ const CatalogPage = (props: CatalogPageProps) => {
         isOpen={isOpenForm}
         onClose={() => setIsOpenForm(false)}
       />
-      <ProductItemModal
+      <ProductModal
         isOpen={isOpenModal}
         setOpen={() => setIsOpenModal(false)}
         product={isProduct}

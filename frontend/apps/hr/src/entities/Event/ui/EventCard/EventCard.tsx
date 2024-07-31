@@ -17,6 +17,12 @@ interface EventCardProps {
 export const EventCard = (props: EventCardProps) => {
   const { className, event, setIsModalOpen, setActiveEvent } = props;
 
+  const dataEdit = (data: string) => {
+    const splitData = data.split('-').reverse();
+    const newData = `${splitData[0]}.${splitData[1]}.${splitData[2].slice(2)}`;
+    return newData;
+  };
+
   return (
     <Card
       padding="0"
@@ -28,18 +34,21 @@ export const EventCard = (props: EventCardProps) => {
         setIsModalOpen(true);
       }}
     >
-      <AppImage
-        src={img}
-        alt="event"
-        width={404}
-        height={221}
-        className={classNames(cls.img, {}, [])}
-      />
+      <div className={cls.img_wrap}>
+        <AppImage
+          src={img}
+          alt="event"
+          className={classNames(cls.img, {}, [])}
+        />
+      </div>
+
       <div className={cls.wrapper}>
         <Text text={event.name} />
         <div className={cls.wrp}>
           <span className={cls.price}>{`${event.reward?.toString()} Б`}</span>
-          <span className={cls.date}>Создано: {event.event_date}</span>
+          <span className={cls.date}>
+            Создано: {dataEdit(event.event_date)}
+          </span>
         </div>
       </div>
     </Card>

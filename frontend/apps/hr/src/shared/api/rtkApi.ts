@@ -14,5 +14,6 @@ export const rtkApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Events'],
   endpoints: () => ({}),
 });

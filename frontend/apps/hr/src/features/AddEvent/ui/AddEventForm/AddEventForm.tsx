@@ -2,10 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
 import { Button, Input, Text, TextArea, Toast } from '@repo/shared/ui';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToaster } from 'rsuite';
 
+import { postEvent } from '../../api/addEventApi';
 import {
   addEventSchema,
   FormInputData,
@@ -23,8 +24,8 @@ export interface AddEventFormProps {
 
 const AddEventForm = memo((props: AddEventFormProps) => {
   const { className, onSuccess, onReset } = props;
-  const [isSuccess, setIsSuccess] = useState(false);
-
+  const toaster = useToaster();
+  const [createPost, { isSuccess }] = postEvent();
   const dobInputRef = useMaskito({ options: dateOptions });
 
   const {
@@ -35,50 +36,46 @@ const AddEventForm = memo((props: AddEventFormProps) => {
     formState: { errors, isValid },
   } = useForm<FormInputData, any, FormOutputData>({
     defaultValues: {
-      title: '',
-      date: '',
+      name: '',
+      event_date: '',
+      imgSrc: '',
       format: '',
-      reward: '',
+      reward: 0,
       description: '',
     },
     resolver: zodResolver(addEventSchema),
     mode: 'onBlur',
   });
-  const toaster = useToaster();
 
-  const ToasterShow = useCallback(() => {
-    toaster.push(
-      <Toast
-        text="Изменения успешно сохранены"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
-  }, [toaster]);
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      onSuccess();
+      toaster.push(
+        <Toast
+          text="Изменения успешно сохранены"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const onResetClick = useCallback(async () => {
     reset();
     onReset();
   }, [onReset, reset]);
 
-  const onSaveClick = useCallback(async () => {
-    if (isValid) {
-      setIsSuccess(true);
-    }
-  }, [isValid]);
-
   const onSubmit: SubmitHandler<FormOutputData> = useCallback(
     async (data) => {
-      await onSaveClick();
-      reset();
-      onSuccess();
-      ToasterShow();
+      createPost(data);
     },
-    [reset, onSuccess, onSaveClick, ToasterShow],
+    [createPost],
   );
 
   return (
@@ -95,18 +92,17 @@ const AddEventForm = memo((props: AddEventFormProps) => {
       />
       <div className={cls.form_fields}>
         <Controller
-          name="title"
+          name="name"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               placeholder="Название мероприятия"
               size="l"
-              errorMessage={errors.title?.message}
+              errorMessage={errors.name?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.title) trigger('title');
-                if (errors.title) trigger('title');
+                if (errors.name) trigger('name');
               }}
             />
           )}
@@ -123,14 +119,13 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               onChange={(event) => {
                 field.onChange(event.target.value);
                 if (errors.format) trigger('format');
-                if (errors.format) trigger('format');
               }}
             />
           )}
         />
 
         <Controller
-          name="date"
+          name="event_date"
           control={control}
           render={({ field }) => (
             <Input
@@ -138,11 +133,10 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               maskedInputRef={dobInputRef}
               placeholder="Дата проведения (ХХ.ХХ.ХХХХ)"
               size="l"
-              errorMessage={errors.date?.message}
+              errorMessage={errors.event_date?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.date) trigger('date');
-                if (errors.date) trigger('date');
+                if (errors.event_date) trigger('event_date');
               }}
             />
           )}
@@ -157,8 +151,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               size="l"
               errorMessage={errors.reward?.message}
               onChange={(event) => {
-                field.onChange(event.target.value);
-                if (errors.reward) trigger('reward');
+                field.onChange(Number(event.target.value));
                 if (errors.reward) trigger('reward');
               }}
             />
@@ -177,7 +170,6 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               onChange={(event) => {
                 field.onChange(event.target.value);
                 if (errors.description) trigger('description');
-                if (errors.description) trigger('description');
               }}
             />
           )}
@@ -188,7 +180,13 @@ const AddEventForm = memo((props: AddEventFormProps) => {
         <Button variant="secondary" size="l" fullWidth onClick={onResetClick}>
           Отменить
         </Button>
-        <Button variant="primary" size="l" fullWidth type="submit">
+        <Button
+          variant="primary"
+          size="l"
+          fullWidth
+          type="submit"
+          disabled={!isValid}
+        >
           Сохранить
         </Button>
       </div>

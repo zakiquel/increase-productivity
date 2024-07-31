@@ -11,5 +11,11 @@ export type {
   EmployeeTest,
   Note,
   Document,
+  EmployeeEvent,
+  EmployeeOperation,
 } from './model/types/employee';
 export { fetchEmployees, fetchEmployeeById } from './api/employeesApi';
+
+export { OperationEmployeeBar } from './ui/OperationEmployeeBar/OperationEmployeeBar';
+
+export { EventEmployeeBar } from './ui/EventEmployeeBar/EventEmployeeBar';

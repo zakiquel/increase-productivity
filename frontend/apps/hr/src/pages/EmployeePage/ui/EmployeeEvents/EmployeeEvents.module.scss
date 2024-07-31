@@ -1,14 +1,19 @@
 .title {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: space-between;
   margin-top: 16px;
   padding-bottom: 16px;
-  padding-right: 150px;
   border-bottom: 1px solid var(--grey-secondary-color);
 }
 
-.event {
-  display: flex;
-  gap: 310px;
-  margin-top: 20px;
+.EmployeeEvents {
+  height: fit-content;
+  ul {
+    margin-bottom: 16px;
+  }
+}
+
+.textEmpty {
+  margin-top: 16px;
 }

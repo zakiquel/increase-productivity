@@ -2,10 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
 import { Button, Input, Text, TextArea, Toast } from '@repo/shared/ui';
-import { memo, useCallback, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToaster } from 'rsuite';
 
+import { getEvent, putEvent } from '../../api/eventApi';
 import dateOptions from '../../lib/dateMask';
 import {
   editEventSchema,
@@ -16,28 +17,18 @@ import {
 import cls from './EditEventForm.module.scss';
 
 export interface EditEventFormProps {
-  eventId: string;
+  eventId: number;
   className?: string;
   onSuccess: () => void;
   onReset: () => void;
 }
 
-const getEventById = (id: string) => ({
-  title: 'Заголовок мероприятия',
-  format: 'Формат мероприятия',
-  date: '01.01.2022',
-  reward: '1000',
-  description: 'Описание мероприятия',
-});
-
-const EditEventForm = memo((props: EditEventFormProps) => {
+const EditEventForm = (props: EditEventFormProps) => {
   const { eventId, className, onSuccess, onReset } = props;
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const event = getEventById(eventId);
-
+  const { data: event, isLoading } = getEvent(eventId);
+  const [editEvent, { isSuccess }] = putEvent();
+  const toaster = useToaster();
   const dobInputRef = useMaskito({ options: dateOptions });
-
   const {
     handleSubmit,
     reset,
@@ -45,45 +36,61 @@ const EditEventForm = memo((props: EditEventFormProps) => {
     trigger,
     formState: { errors, isValid },
   } = useForm<FormInputData, any, FormOutputData>({
-    defaultValues: event,
+    defaultValues: {
+      name: '',
+      event_date: '',
+      format: '',
+      reward: 0,
+      description: '',
+    },
     resolver: zodResolver(editEventSchema),
     mode: 'onBlur',
   });
 
-  const toaster = useToaster();
+  useEffect(() => {
+    if (event) {
+      reset({
+        ...event.data,
+        event_date: event.data.event_date.split('-').reverse().join('.'),
+      });
+    }
+  }, [event, reset]);
 
-  const ToasterShow = useCallback(() => {
-    toaster.push(
-      <Toast
-        text="Изменения успешно сохранены"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
-  }, [toaster]);
+  useEffect(() => {
+    if (isSuccess) {
+      onSuccess();
+      reset();
+      toaster.push(
+        <Toast
+          text="Изменения успешно сохранены"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const onResetClick = useCallback(async () => {
     reset();
     onReset();
   }, [onReset, reset]);
 
-  const onSaveClick = useCallback(async () => {
-    if (isValid) setIsSuccess(true);
-  }, [isValid]);
-
   const onSubmit: SubmitHandler<FormOutputData> = useCallback(
     async (data) => {
-      await onSaveClick();
-      reset();
-      onSuccess();
-      ToasterShow();
+      const sendData = {
+        ...data,
+        id: eventId,
+      };
+      editEvent(sendData);
     },
-    [reset, onSuccess, onSaveClick, ToasterShow],
+    [editEvent, eventId],
   );
+  if (isLoading) return <div className="">Данные прогружаются</div>;
 
   return (
     <form
@@ -99,17 +106,17 @@ const EditEventForm = memo((props: EditEventFormProps) => {
       />
       <div className={cls.form_fields}>
         <Controller
-          name="title"
+          name="name"
           control={control}
           render={({ field }) => (
             <Input
               {...field}
               placeholder="Название мероприятия"
               size="l"
-              errorMessage={errors.title?.message}
+              errorMessage={errors.name?.message}
               onChange={(event) => {
                 field.onChange(event.target.value);
-                if (errors.title) trigger('title');
+                if (errors.name) trigger('name');
               }}
             />
           )}
@@ -132,7 +139,7 @@ const EditEventForm = memo((props: EditEventFormProps) => {
         />
 
         <Controller
-          name="date"
+          name="event_date"
           control={control}
           render={({ field }) => (
             <Input
@@ -140,10 +147,10 @@ const EditEventForm = memo((props: EditEventFormProps) => {
               maskedInputRef={dobInputRef}
               placeholder="Дата проведения (ХХ.ХХ.ХХХХ)"
               size="l"
-              errorMessage={errors.date?.message}
+              errorMessage={errors.event_date?.message}
               onInput={(event) => {
                 field.onChange(event.currentTarget.value);
-                if (errors.date) trigger('date');
+                if (errors.event_date) trigger('event_date');
               }}
             />
           )}
@@ -158,7 +165,7 @@ const EditEventForm = memo((props: EditEventFormProps) => {
               size="l"
               errorMessage={errors.reward?.message}
               onChange={(event) => {
-                field.onChange(event.target.value);
+                field.onChange(Number(event.target.value));
                 if (errors.reward) trigger('reward');
               }}
             />
@@ -198,6 +205,6 @@ const EditEventForm = memo((props: EditEventFormProps) => {
       </div>
     </form>
   );
-});
+};
 
 export default EditEventForm;

@@ -8,6 +8,7 @@ const eventApi = rtkApi.injectEndpoints({
         url: `/events`,
         method: 'GET',
       }),
+      providesTags: ['Events'],
     }),
   }),
 });
