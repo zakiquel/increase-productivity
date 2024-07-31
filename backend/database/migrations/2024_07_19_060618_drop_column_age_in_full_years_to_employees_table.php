@@ -23,7 +23,6 @@ return new class extends Migration
     {
         Schema::table('employees', function (Blueprint $table) {
             $table->integer('age_in_full_years')->nullable();
-
         });
     }
 };

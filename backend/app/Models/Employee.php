@@ -30,9 +30,4 @@ class Employee extends Model
     {
         return $this->belongsTo(Company::class);
     }
-
-    public function valueQualities()
-    {
-        return $this->hasMany(ValueQuality::class);
-    }
 }
