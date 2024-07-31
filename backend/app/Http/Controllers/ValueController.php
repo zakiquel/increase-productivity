@@ -7,7 +7,7 @@ use App\Http\Requests\Value\UpdateValueRequest;
 use App\Http\Resources\Value\ValueCollection;
 use App\Http\Resources\Value\ValueResource;
 use App\Models\Value;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Http\Request;
 
 class ValueController extends Controller
 {
@@ -16,18 +16,18 @@ class ValueController extends Controller
      */
     public function index()
     {
-        $user = JWTAuth::parseToken()->authenticate();
-        $company = $user->company;
-        if (!$company) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Company not found.'
-            ], 404); // Not Found
-        }
-        $values = $company->values;
+        $values = Value::all();
+
         return new ValueCollection($values);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,6 +47,14 @@ class ValueController extends Controller
     public function show(Value $value)
     {
         return ValueResource::make($value);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Value $value)
+    {
+        //
     }
 
     /**
@@ -70,5 +78,6 @@ class ValueController extends Controller
         $value->delete();
 
         return response()->json(['message' => 'Value deleted successfully']);
+
     }
 }

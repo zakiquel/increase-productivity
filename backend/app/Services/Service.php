@@ -20,7 +20,6 @@ use App\Http\Resources\Metrics\MetricsCollectionResource;
 use App\Http\Resources\Metrics\MetricsResource;
 use App\Http\Resources\SurveyHistory\SurveyHistoryCollectionResource;
 use App\Http\Resources\SurveyHistory\SurveyHistoryResource;
-use App\Http\Resources\Value\ValueResource;
 use App\Models\AbsenteeismRate;
 use App\Models\Employee;
 use App\Models\Event;
@@ -29,11 +28,7 @@ use App\Models\SurveyHistory;
 use App\Models\User;
 use App\Models\Value;
 use App\Models\Company;
-use App\Models\Quality;
-use App\Models\QualityValue;
 use App\Models\Role;
-use Tymon\JWTAuth\Facades\JWTAuth;
-
 use Illuminate\Support\Facades\Auth;
 
 class Service
@@ -59,53 +54,21 @@ class Service
             'expires_in' => auth()->factory()->getTTL() * 60 * 100000
         ];
     }
-
     public function store_value(array $validatedData)
     {
-        // Retrieve the authenticated user
-        $user = JWTAuth::parseToken()->authenticate();
-
-        // Get the company associated with the user
-        $company = $user->company;
-
-        // Check if the number of Value instances is 8 or more
-        $count = Value::where('company_id', $company->id)->count();
-
-        // Get the company associated with the user
-        $company = $user->company;
-
-        // Check if the number of Value instances for this company is 8 or more
-        $count = $company->values()->count();
+        $count = Value::count();
 
         if ($count >= 8) {
             return response()->json(['error' => 'Maximum number of Value instances reached.'], 403);
         }
 
-        // Create a new Value instance
-        $value = Value::create([
-            'name' => $validatedData['name'],
-            'company_id' => $company->id,
-        ]);
+        $value = Value::create(['name' => $validatedData['name']]);
 
-        $qualities = array(
-            0 => Quality::where('name', $validatedData['quality1'])->pluck('id')->first(),
-            1 => Quality::where('name', $validatedData['quality2'])->pluck('id')->first(),
-            2 => Quality::where('name', $validatedData['quality3'])->pluck('id')->first(),
-            3 => Quality::where('name', $validatedData['quality4'])->pluck('id')->first(),
-            4 => Quality::where('name', $validatedData['quality5'])->pluck('id')->first(),
-        );
+        return response()->json($value, 201);
+    }
 
-        $i = 0;
+    public function update(array $data, $id){
 
-        while ($qualities[$i]) {
-            QualityValue::create([
-                'value_id' => $value->id,
-                'quality_id' => $qualities[$i],
-            ]);
-            $i += 1;
-        };
-
-        return new ValueResource($value);
     }
 
     public function store_company(\App\Http\Requests\Company\StoreRequest $request)
@@ -502,9 +465,9 @@ class Service
 
         $employee_salary = (float) $employee->salary;
 
-        $data['metric_1_risk'] = $employee_salary * $risk_1_coef * $metric_1_coef[$metric_1_mark];
-        $data['metric_2_risk'] = $employee_salary * $risk_2_coef * $metric_2_3_coef[$metric_2_mark];
-        $data['metric_3_risk'] = $employee_salary * $risk_3_coef * $metric_2_3_coef[$metric_3_mark];
+        $data['metric_1_risk'] = (($employee_salary)*1000)*$risk_1_coef*$metric_1_coef[$metric_1_mark];
+        $data['metric_2_risk'] = (($employee_salary)*1000)*$risk_2_coef*$metric_2_3_coef[$metric_2_mark];
+        $data['metric_3_risk'] = (($employee_salary)*1000)*$risk_3_coef*$metric_2_3_coef[$metric_3_mark];
         $data['risk_sum'] = $data['metric_1_risk'] + $data['metric_2_risk'] + $data['metric_3_risk'];
 
         $survey = SurveyHistory::create($data);
@@ -564,9 +527,9 @@ class Service
 
         $employee_salary = (float) $employee->salary;
 
-        $data['metric_1_risk'] = $employee_salary * $risk_1_coef * $metric_1_coef[$metric_1_mark];
-        $data['metric_2_risk'] = $employee_salary * $risk_2_coef * $metric_2_3_coef[$metric_2_mark];
-        $data['metric_3_risk'] = $employee_salary * $risk_3_coef * $metric_2_3_coef[$metric_3_mark];
+        $data['metric_1_risk'] = (($employee_salary)*1000)*$risk_1_coef*$metric_1_coef[$metric_1_mark];
+        $data['metric_2_risk'] = (($employee_salary)*1000)*$risk_2_coef*$metric_2_3_coef[$metric_2_mark];
+        $data['metric_3_risk'] = (($employee_salary)*1000)*$risk_3_coef*$metric_2_3_coef[$metric_3_mark];
         $data['risk_sum'] = $data['metric_1_risk'] + $data['metric_2_risk'] + $data['metric_3_risk'];
 
         $surveyHistory->update($data);

@@ -23,11 +23,6 @@ class StoreValueRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'quality1' => 'required|exists:qualities,name',
-            'quality2' => 'nullable|exists:qualities,name',
-            'quality3' => 'nullable|exists:qualities,name',
-            'quality4' => 'nullable|exists:qualities,name',
-            'quality5' => 'nullable|exists:qualities,name',
         ];
     }
 }
