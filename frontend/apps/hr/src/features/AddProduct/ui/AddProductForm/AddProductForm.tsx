@@ -82,7 +82,7 @@ const AddProductForm = memo((props: AddProductFormProps) => {
     >
       <Text title="Добавление товара" size="m" />
       <Text
-        text="Заполните поля ввода и нажмите кнопку «Сохранить». Новый товар появится в каталоге."
+        text="Заполните поля ввода и нажмите кнопку «Добавить». Новый товар появится в каталоге."
         size="s"
         className={cls.form_description}
       />

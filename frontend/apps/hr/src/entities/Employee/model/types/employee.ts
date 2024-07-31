@@ -85,3 +85,20 @@ export interface EmployeeTest {
   events?: Event[];
   transactions?: Transaction[];
 }
+
+export interface EmployeeOperation {
+  id: number;
+  name: string;
+  date: string;
+  status: string;
+  description?: string;
+}
+
+export interface EmployeeEvent {
+  id: number;
+  name: string;
+  date: string;
+  status: string;
+  duration: number;
+  description?: string;
+}

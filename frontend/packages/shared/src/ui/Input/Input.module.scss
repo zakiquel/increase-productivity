@@ -9,7 +9,10 @@
   font-weight: 400;
   font: var(--font-family);
   background-color: var(--bg-color);
-
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-color) inset !important;
+    border-color: var(--grey-secondary-color) !important;
+  }
   &:disabled {
     color: var(--grey-secondary-color);
     border-color: transparent;
@@ -103,7 +106,7 @@
     line-height: 40px;
     font-size: 14px;
     padding: 0 7px;
-    
+
     &::placeholder {
       font: var(--font-12);
     }

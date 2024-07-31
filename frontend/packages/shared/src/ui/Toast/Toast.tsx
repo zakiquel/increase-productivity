@@ -21,7 +21,7 @@ interface IToast {
 
 export const Toast = (props: IToast) => {
   const {
-    time = 5000,
+    time = 1500,
     text,
     className,
     size = 'm',

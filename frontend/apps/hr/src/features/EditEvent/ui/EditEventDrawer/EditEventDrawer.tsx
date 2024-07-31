@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import { EditEventFormAsync } from '../EditEventForm/EditEventForm.async';
 
 interface EditEventDrawerProps {
-  eventId: string;
+  eventId: number;
   className?: string;
   isOpen: boolean;
   onClose: () => void;

@@ -26,6 +26,10 @@
   }
 }
 
+.textarea {
+  max-height: 250px;
+}
+
 .success {
   animation: fade-in 0.3s ease-in-out;
   background: var(--success-color);

@@ -1,4 +1,5 @@
 .background {
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,22 +9,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000;
 }
 
 .Modal {
   border-radius: 8px;
-  padding: 40px 24px;
+  padding: 40px 25px;
   display: flex;
   gap: 16px;
   background: var(--white);
-  cursor: auto;
+  width: 960px;
   overflow: hidden;
   position: relative;
   height: min-content;
-  min-width: 960px;
+  cursor: auto;
 }
+
 .btn_wrapper {
   display: flex;
+  flex-direction: row;
   gap: 8px;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }

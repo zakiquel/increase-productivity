@@ -38,6 +38,7 @@ export const EventsList = (props: EventsListProps) => {
     <div className={cls.wrapper}>
       {events.map((event) => (
         <EventCard
+          key={event.id}
           event={event}
           setIsModalOpen={setIsModalOpen}
           setActiveEvent={setActiveEvent}

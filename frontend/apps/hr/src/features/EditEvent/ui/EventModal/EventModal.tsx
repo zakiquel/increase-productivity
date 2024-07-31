@@ -1,19 +1,12 @@
-import { classNames } from '@repo/shared/lib';
-import {
-  AppImage,
-  Button,
-  ModalSuccess,
-  Text as TextTag,
-  Toast,
-} from '@repo/shared/ui';
+import { Button, ModalSuccess, Toast } from '@repo/shared/ui';
 import { AnimatePresence, motion } from 'framer-motion';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useToaster } from 'rsuite';
 
+import { deleteEvent } from '../../api/eventApi';
 import { EditEventDrawer } from '../EditEventDrawer/EditEventDrawer';
 
-import { Event } from '@/entities/Event';
-import img from '@/shared/assets/images/event.png';
+import { Event, EventCardModal } from '@/entities/Event';
 
 import cls from './EventModal.module.scss';
 
@@ -23,38 +16,34 @@ interface EventModalProps {
   isOpen: boolean;
   setOpen: (arg: boolean) => void;
 }
-
 const EventModal = memo((props: EventModalProps) => {
   const { event, isOpen, setOpen, className } = props;
-
   const [edit, setEdit] = useState<boolean>(false);
   const [isDelete, setDelete] = useState<boolean>(false);
-  const [isDeleteSuccess, setDeleteSuccess] = useState<boolean>(false);
   const toaster = useToaster();
-
-  const ToasterShow = useCallback(() => {
-    toaster.push(
-      <Toast
-        text="Мероприятие удалено"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
-  }, [toaster]);
-
+  const [delEvent, { isSuccess }] = deleteEvent();
   const onDeleteClick = useCallback(async () => {
-    setDeleteSuccess(true);
-    setDelete(false);
-    ToasterShow();
-  }, [setDelete, setDeleteSuccess, ToasterShow]);
+    await delEvent(event?.id);
+  }, [delEvent, event]);
+  useEffect(() => {
+    if (isSuccess) {
+      setDelete(false);
+      toaster.push(
+        <Toast
+          text="Мероприятие удалено"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }
+  }, [isSuccess, toaster]);
   if (!event) {
     return null;
   }
-
   return (
     <>
       {isOpen && (
@@ -75,27 +64,10 @@ const EventModal = memo((props: EventModalProps) => {
               onClick={(e) => e.stopPropagation()}
               className={cls.Modal}
             >
-              <div className={cls.img_wrapper}>
-                <AppImage
-                  src={img}
-                  alt="event"
-                  width={480}
-                  height={320}
-                  className={classNames(cls.img, {}, [])}
-                />
-              </div>
-              <div className={cls.text_wrapper}>
-                <div>
-                  <TextTag title={event.name} className={cls.title} />
-                  <TextTag size="xs" className={cls.text} text={event.name} />
-                </div>
-                <div className={cls.wrapper}>
-                  <div className={cls.wrp}>
-                    <span className={cls.price}>
-                      {`${event.reward?.toString()} Б`}
-                    </span>
-                    <span className={cls.date}>{event.date}</span>
-                  </div>
+              <EventCardModal
+                event={event}
+                onOpen={setOpen}
+                buttons={
                   <div className={cls.btn_wrapper}>
                     <Button
                       variant="secondary"
@@ -115,21 +87,8 @@ const EventModal = memo((props: EventModalProps) => {
                       Изменить
                     </Button>
                   </div>
-                </div>
-                <Button
-                  className={cls.close}
-                  variant="ghost"
-                  onClick={() => setOpen(false)}
-                >
-                  <span
-                    className={classNames('material-symbols-outlined', {}, [
-                      cls.close_btn,
-                    ])}
-                  >
-                    close
-                  </span>
-                </Button>
-              </div>
+                }
+              />
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -163,7 +122,7 @@ const EventModal = memo((props: EventModalProps) => {
         onClose={() => {
           setEdit(false);
         }}
-        eventId={event.id.toString()}
+        eventId={event.id}
       />
     </>
   );

@@ -28,13 +28,9 @@ export const ProductItem = (props: ProductsListProps) => {
         setIsModalOpen(true);
       }}
     >
-      <AppImage
-        className={cls.img}
-        src={ozon}
-        alt={product.title}
-        width={404}
-        height={221}
-      />
+      <div className={cls.img_wrap}>
+        <AppImage className={cls.img} src={ozon} alt={product.title} />
+      </div>
       <h3 className={cls.title}>{product.title}</h3>
       <div className={cls.body}>
         <p className={cls.price}>{product.price} Б</p>

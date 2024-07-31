@@ -8,3 +8,5 @@ export { ProductList } from './ui/ProductList/ProductList';
 export { RequestList as RequestProductList } from './ui/RequestList/RequestList';
 
 export { RequestCard as ProductRequestCard } from './ui/RequestCard/RequestCard';
+
+export { ProductItemModal } from './ui/ProductItemModal/ProductItemModal';

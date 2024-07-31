@@ -1,12 +1,16 @@
 import { z } from 'zod';
 
 export const editEventSchema = z.object({
-  title: z
+  name: z
+    .string()
+    .min(1, 'Заполните обязательные поля')
+    .max(256, 'Допустимое количество символов 1-256'),
+  format: z
     .string()
     .max(256, 'Допустимое количество символов 1-256')
-    .min(1, 'Заполните обязательные поля'),
-  format: z.string().max(256, 'Допустимое количество символов 1-256'),
-  date: z
+    .optional(),
+  imgSrc: z.string().optional(),
+  event_date: z
     .string()
     .min(1, 'Заполните обязательные поля')
     .length(10, 'Допустимо использовать символы 0-9. Допустимый вид XX.XX.XXXX')
@@ -14,20 +18,25 @@ export const editEventSchema = z.object({
       const [day, month, year] = value.split('.');
       return `${year}-${month}-${day}`;
     })
+
     .refine((date) => {
       const currentDate = new Date().getFullYear();
       return Number(date.split('-')[0]) <= currentDate + 1;
     }, 'Неверный формат даты'),
   reward: z
-    .string()
+    .number()
     .min(1, 'Заполните обязательные поля')
-    .min(1, 'Заполните обязательные поля')
-    .regex(/^[0-9]*$/, 'Допустимо использовать символы 0-9')
+    .int()
     .refine(
       (value) => Number(value) > 0,
       'Вознаграждение не может быть равно нулю',
     ),
-  description: z.string().max(1000, 'Допустимое количество символов 1-1000'),
+  description: z
+    .string()
+    .min(1, 'Заполните обязательные поля')
+
+    .max(1000, 'Допустимое количество символов 1-1000')
+    .optional(),
 });
 
 export type FormInputData = z.input<typeof editEventSchema>;
