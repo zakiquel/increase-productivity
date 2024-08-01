@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->dropColumn('age_in_full_years');
+        Schema::create('qualities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->double('coefficient');
+            $table->string('description');
+            $table->string('risk_name');
+            $table->timestamps();
         });
     }
 
@@ -21,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->integer('age_in_full_years')->nullable();
-
-        });
+        Schema::dropIfExists('qualities');
     }
 };
