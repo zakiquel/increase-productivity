@@ -3,19 +3,17 @@ import { Skeleton, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { EmployeeDocuments } from '../EmployeeDocuments/EmployeeDocuments';
+import { EmployeeEvents } from '../EmployeeEvents/EmployeeEvents';
 import { EmployeeInfo } from '../EmployeeInfo/EmployeeInfo';
 import { EmployeeMetrics } from '../EmployeeMetrics/EmployeeMetrics';
+import { EmployeeNotes } from '../EmployeeNotes/EmployeeNotes';
+import { EmployeeOperations } from '../EmployeeOperations/EmployeeOperations';
 import { EmployeeRisks } from '../EmployeeRisks/EmployeeRisks';
 import { EmployeeValues } from '../EmployeeValues/EmployeeValues';
 import { EmployeeValuesList } from '../EmployeeValuesList/EmployeeValuesList';
 
-import {
-  EmployeeDocuments,
-  EmployeeEvents,
-  EmployeeNotes,
-  EmployeeOperations,
-  fetchEmployeeById,
-} from '@/entities/Employee';
+import { fetchEmployeeById } from '@/entities/Employee';
 import { Page } from '@/widgets/Page';
 
 import cls from './EmployeePage.module.scss';

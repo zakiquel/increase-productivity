@@ -23,7 +23,7 @@ export function DownloadEmployeeReportButton({
       className={classNames('', {}, [className])}
       padding="16"
     >
-      <Text title="Отчет по сотруднику" size="xs" bold />
+      <Text title="Отчет по сотруднику" size="s" bold />
       <Text
         text="Страница в формате PDF будет загружена на ваш компьютер"
         size="s"
@@ -35,7 +35,14 @@ export function DownloadEmployeeReportButton({
         fileName="Отчёт"
       >
         {({ loading }) => (
-          <Button fullWidth disabled={loading} size="s">
+          <Button
+            fullWidth
+            disabled={loading}
+            size="s"
+            addonRight={
+              <span className="material-symbols-outlined">download</span>
+            }
+          >
             Сформировать отчёт
           </Button>
         )}

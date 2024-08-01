@@ -13,7 +13,7 @@ const MainPage = () => (
   <Page className={classNames(cls.MainPage, {}, [])}>
     <DownloadCompanyReportButton />
     <ChartList />
-    <EmployeesSection />
+    <EmployeesSection className={cls.EmployeesSection} />
   </Page>
 );
 

@@ -57,7 +57,7 @@ export function PersonalQualitiesChart({ title }: PersonalQualitiesChartProps) {
         padding: 32,
         color: '#000',
         font: {
-          size: 18,
+          size: 16,
         },
       },
     },

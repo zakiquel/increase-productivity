@@ -1,12 +1,9 @@
 import { classNames } from '@repo/shared/lib';
 import { memo } from 'react';
 
-import {
-  Employee,
-  EmployeeBalance,
-  EmployeeProfile,
-  EmployeeRating,
-} from '@/entities/Employee';
+import { EmployeeBalance } from '../EmployeeBalance/EmployeeBalance';
+
+import { Employee, EmployeeProfile, EmployeeRating } from '@/entities/Employee';
 import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 
 import cls from './EmployeeInfo.module.scss';

@@ -165,6 +165,8 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               {...field}
               placeholder="Описание (до 1000 символов)"
               maxLength={1000}
+              minRows={1}
+              maxRows={12}
               className={cls.textarea}
               errorMessage={errors.description?.message}
               onChange={(event) => {

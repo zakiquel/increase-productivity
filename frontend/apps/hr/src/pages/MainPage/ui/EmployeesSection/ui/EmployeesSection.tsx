@@ -1,9 +1,10 @@
 import { classNames } from '@repo/shared/lib';
-import { Button, Card, Text } from '@repo/shared/ui';
+import { Button, Card, Skeleton, Text } from '@repo/shared/ui';
 import { memo, useState } from 'react';
 
 import { Employee, EmployeeList, fetchEmployees } from '@/entities/Employee';
 import { AddEmployeeDrawer } from '@/features/AddEmployee';
+import { FireEmployee } from '@/features/FireEmployee';
 import { Pagination } from '@/features/Pagination';
 import { SortEmployees } from '@/features/SortEmployees';
 
@@ -15,12 +16,25 @@ interface EmployeesSectionProps {
 
 export const EmployeesSection = memo((props: EmployeesSectionProps) => {
   const { className } = props;
-  const { isLoading, data: response, error } = fetchEmployees('');
+  const { isLoading, data: response, isError } = fetchEmployees('');
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
   const [employeesToDraw, setEmployeesToDraw] = useState<Employee[]>([]);
   const [isAddEmployee, setIsAddEmployee] = useState(false);
 
-  if (!response || !response.data) {
+  if (isLoading) {
+    return (
+      <div className={cls.EmployeesSection}>
+        <Skeleton width="100%" height={88} border="4px" />
+        <Skeleton width="100%" height={400} border="4px" />
+      </div>
+    );
+  }
+
+  if (!response || isError) {
+    return <Text title="Произошла ошибка при загрузке данных" align="center" />;
+  }
+
+  if (!response.data || response.data.length === 0) {
     return (
       <div className={cls.start_layout}>
         <Card variant="light" padding="16">
@@ -43,11 +57,7 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
 
   return (
     <section className={classNames(cls.EmployeesSection, {}, [className])}>
-      <Card
-        variant="light"
-        padding="16"
-        className={classNames(cls.employee_control, {}, [className])}
-      >
+      <Card variant="light" padding="16" className={cls.employee_control}>
         <SortEmployees
           employees={response.data}
           onFilter={setFilteredEmployees}
@@ -66,8 +76,10 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
           <span>Должность</span>
           <span>Рейтинг ценностей</span>
         </div>
-        <EmployeeList employees={employeesToDraw} />
-
+        <EmployeeList
+          employees={employeesToDraw}
+          FireEmployeeComponent={FireEmployee}
+        />
         <Pagination
           list={filteredEmployees}
           interval={15}

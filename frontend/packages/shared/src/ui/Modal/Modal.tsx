@@ -8,6 +8,7 @@ import { Mods, classNames } from '../../lib/classNames/classNames';
 import { useModal } from '../../lib';
 
 import cls from './Modal.module.scss';
+import { Card } from '../Card';
 
 interface ModalProps {
   className?: string;
@@ -41,7 +42,9 @@ export const Modal = (props: ModalProps) => {
     <Portal element={document.getElementById('app') ?? document.body}>
       <div className={classNames(cls.Modal, mods, [className])}>
         <Overlay />
-        <div className={cls.content}>{children}</div>
+        <Card padding="24" className={cls.content}>
+          {children}
+        </Card>
       </div>
     </Portal>
   );
