@@ -9,10 +9,15 @@ import cls from './EmployeeCard.module.scss';
 export interface EmployeeCardProps {
   employee: Employee;
   standard?: number;
+  onCardClick: (id: number) => void;
+  FireEmployeeComponent: React.ComponentType<{
+    id: number;
+    className?: string;
+  }>;
 }
 
 export const EmployeeCard = memo((props: EmployeeCardProps) => {
-  const { employee, standard } = props;
+  const { employee, standard, onCardClick, FireEmployeeComponent } = props;
   const disabled = employee.status === 'fired';
 
   let name = `${employee.last_name} ${employee.first_name}`;
@@ -23,7 +28,10 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
   };
 
   return (
-    <div className={classNames(cls.EmployeeCard, mods, [])}>
+    <div
+      className={classNames(cls.EmployeeCard, mods, [])}
+      onClick={() => onCardClick(employee.id)}
+    >
       <h4 className={cls.employee_name}>{name}</h4>
       <p className={cls.employee_position}>{employee.position}</p>
       {standard ? (
@@ -35,13 +43,10 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
         <span className={cls.stat_text}>Данные отсутствуют</span>
       )}
       {!disabled ? (
-        <Button
-          size="xs"
-          variant="ghost"
+        <FireEmployeeComponent
+          id={employee.id}
           className={classNames(cls.card_button, {}, [cls.fire_button])}
-        >
-          Уволить
-        </Button>
+        />
       ) : (
         <Button
           size="xs"

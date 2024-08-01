@@ -21,7 +21,7 @@ const options: ChartOptions<'doughnut'> = {
       display: true,
       color: '#000',
       font: {
-        size: 18,
+        size: 16,
       },
     },
     legend: {

@@ -12,7 +12,7 @@ export const EmployeeBalance = memo((props: EmployeeBalanceProps) => {
 
   return (
     <Card padding="16" className={cls.EmployeeBalance} variant="light">
-      <Text title="Баланс" size="xs" bold />
+      <Text title="Баланс" size="s" bold />
       <Input value={`${balance || 0} HR-коинов`} />
     </Card>
   );

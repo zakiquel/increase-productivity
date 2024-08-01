@@ -31,10 +31,15 @@ export const useValue = (
     valuesRef.current[index]?.getElementsByTagName('input')[0].focus();
   };
 
-  const addValue = useCallback((value: Value) => {
-    setValues((prev) => [...prev, value]);
-    setIsDirty(true);
-  }, []);
+  const addValue = useCallback(
+    (value: Value) => {
+      if (values.length < 8) {
+        setValues((prev) => [...prev, value]);
+        setIsDirty(true);
+      }
+    },
+    [values.length],
+  );
 
   const deleteValue = (index: number) => {
     const newValues = [...values];

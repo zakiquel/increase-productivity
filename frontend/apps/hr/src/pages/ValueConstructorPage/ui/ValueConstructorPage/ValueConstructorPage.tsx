@@ -173,8 +173,10 @@ const ValueConstructorPage = () => {
             </Button>
             <Button
               disabled={
-                values.length === 1 &&
-                (values[0].name === '' || values[0].qualities.length === 0)
+                (values.length === 1 &&
+                  (values[0].name === '' ||
+                    values[0].qualities.length === 0)) ||
+                !isDirty
               }
               onClick={onSave}
             >
@@ -190,7 +192,9 @@ const ValueConstructorPage = () => {
                 <PresetCard
                   value={preset}
                   addPreset={() => addPreset(preset, index)}
-                  disabled={disabledPresets.includes(preset.name)}
+                  disabled={
+                    disabledPresets.includes(preset.name) || values.length >= 8
+                  }
                   isAdded={addedPresets.includes(preset.name)}
                 />
               </li>

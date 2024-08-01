@@ -38,12 +38,12 @@ const options: ChartOptions<'line'> = {
   plugins: {
     title: {
       align: 'start',
-      text: 'Динамика личных метрик, линейная (балл/дата)',
+      text: 'Динамика метрик',
       display: true,
       padding: 32,
       color: '#000',
       font: {
-        size: 18,
+        size: 16,
       },
     },
     legend: {

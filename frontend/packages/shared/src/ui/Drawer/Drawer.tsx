@@ -31,7 +31,7 @@ export const Drawer = (props: DrawerProps) => {
     unmountDelay: 300,
   });
   const bodyRef = useRef<HTMLBodyElement | null>(
-    document.querySelector('body')
+    document.querySelector('body'),
   );
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export const Drawer = (props: DrawerProps) => {
       >
         <div
           className={classNames(cls.drawer, {}, [cls[position]])}
-          role='dialog'
+          role="dialog"
         >
           {children}
         </div>
