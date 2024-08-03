@@ -16,12 +16,6 @@
     color: var(--base-0-color);
   }
 
-  .fire_button {
-    color: var(--error-color);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-  }
-
   &:hover {
     background-color: var(--face-color);
     .fire_button {
@@ -49,28 +43,57 @@
     transform: translateX(-50%);
     background-color: var(--grey-secondary-color);
   }
+}
 
-  .employee_name {
+.fire_button {
+  color: var(--error-color);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.employee_name {
+  font-weight: 500;
+  margin-left: 16px;
+}
+
+.employee_position {
+  font-weight: 400;
+}
+
+.employee_stat {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.stat_text {
+  font-weight: 400;
+}
+
+.card_button {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.SimpleEmployeeCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: var(--white);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--base-0-color);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--grey-secondary-color);
+  .name {
     font-weight: 500;
-    margin-left: 16px;
+    line-height: 22px;
+    margin-left: 0;
   }
-
-  .employee_position {
-    font-weight: 400;
+  h4 {
+    margin-right: 190px;
   }
-
-  .employee_stat {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .stat_text {
-    font-weight: 400;
-  }
-
-  .card_button {
-    margin-left: auto;
-    margin-right: 16px;
+  p {
+    line-height: 22px;
   }
 }

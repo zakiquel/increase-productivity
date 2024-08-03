@@ -29,14 +29,14 @@
 }
 
 .status {
+  font-size: 10px;
+  line-height: 12px;
+  padding: 3px 10px;
+  height: 20px;
+}
+
+.duration {
   font-size: 12px;
   line-height: 14px;
-}
-
-.status_red {
-  color: var(--error-color);
-}
-
-.status_green {
-  color: var(--success-color);
+  color: var(--primary-color);
 }

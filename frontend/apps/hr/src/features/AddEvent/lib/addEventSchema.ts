@@ -1,14 +1,18 @@
 import { z } from 'zod';
 
+const regex = /^[А-яA-z-. ]+$/;
+
 export const addEventSchema = z.object({
   name: z
     .string()
-    .max(256, 'Допустимое количество символов 1-256')
-    .min(1, 'Заполните обязательные поля'),
+    .min(1, 'Заполните обязательные поля')
+    .regex(regex, 'Поле содержит недопустимые символы')
+    .max(256, 'Допустимое количество символов 1-256'),
   format: z
     .string()
-    .max(256, 'Допустимое количество символов 1-256')
-    .optional(),
+    .min(1, 'Заполните обязательные поля')
+    .regex(regex, 'Поле содержит недопустимые символы')
+    .max(256, 'Допустимое количество символов 1-256'),
   imgSrc: z.string(),
   event_date: z
     .string()
@@ -31,9 +35,10 @@ export const addEventSchema = z.object({
     .refine((value) => value > 0, 'Вознаграждение не может быть равно нулю'),
   description: z
     .string()
-    .min(1, 'Заполните обязательные поля')
-
-    .max(1000, 'Допустимое количество символов 1-1000'),
+    .regex(regex, 'Поле содержит недопустимые символы')
+    .max(1000, 'Допустимое количество символов 1-1000')
+    .optional()
+    .or(z.literal('')),
 });
 
 export type FormInputData = z.input<typeof addEventSchema>;

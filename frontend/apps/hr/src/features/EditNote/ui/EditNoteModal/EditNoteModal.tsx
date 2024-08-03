@@ -33,8 +33,6 @@ export const EditNoteModal = (props: EditNoteModalProps) => {
             </Button>
           </div>
           <TextArea
-            minRows={7}
-            maxRows={7}
             value={newNote}
             onChange={(event) => setNewNote(event.target.value)}
             maxLength={300}

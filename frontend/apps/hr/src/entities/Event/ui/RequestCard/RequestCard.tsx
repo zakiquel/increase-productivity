@@ -51,7 +51,7 @@ export const RequestCard = (props: IRequest) => {
         <h3 className={cls.name}>{request.name}</h3>
       </div>
       <p>{request.date}</p>
-      <p>{request.theme}</p>
+      <p>{request.format}</p>
       <Status variant={request.tag as TVariant} />
       <p> {request.price} Б</p>
 
@@ -76,7 +76,7 @@ export const RequestCard = (props: IRequest) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            <p>{request.description}</p>
+            <p>{`${request.theme}. ${request.description}`}</p>
           </motion.div>
         </AnimatePresence>
       )}

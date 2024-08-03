@@ -14,6 +14,8 @@ import {
   FormOutputData,
 } from '../../lib/editEventSchema';
 
+import { Event } from '@/entities/Event';
+
 import cls from './EditEventForm.module.scss';
 
 export interface EditEventFormProps {
@@ -39,6 +41,7 @@ const EditEventForm = (props: EditEventFormProps) => {
     defaultValues: {
       name: '',
       event_date: '',
+      imgSrc: '',
       format: '',
       reward: 0,
       description: '',
@@ -82,11 +85,14 @@ const EditEventForm = (props: EditEventFormProps) => {
 
   const onSubmit: SubmitHandler<FormOutputData> = useCallback(
     async (data) => {
+      const filterData = Object.fromEntries(
+        Object.entries(data).filter(([_, v]) => v !== ''),
+      );
       const sendData = {
-        ...data,
+        ...filterData,
         id: eventId,
       };
-      editEvent(sendData);
+      editEvent(sendData as Event);
     },
     [editEvent, eventId],
   );
@@ -145,7 +151,7 @@ const EditEventForm = (props: EditEventFormProps) => {
             <Input
               {...field}
               maskedInputRef={dobInputRef}
-              placeholder="Дата проведения (ХХ.ХХ.ХХХХ)"
+              placeholder="Дата создания (ХХ.ХХ.ХХХХ)"
               size="l"
               errorMessage={errors.event_date?.message}
               onInput={(event) => {

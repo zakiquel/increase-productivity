@@ -12,7 +12,7 @@ interface EmployeeOperationsProps {
 const tempOperationsList: EmployeeOperation[] = [
   {
     id: 1,
-    name: 'Мероприятие',
+    name: 'Сертификат OZON',
     description:
       'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
     status: '-1500',
@@ -20,7 +20,7 @@ const tempOperationsList: EmployeeOperation[] = [
   },
   {
     id: 2,
-    name: 'Мероприятие',
+    name: 'Сертификат OZON',
     description:
       'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
     status: '-1500',
@@ -36,7 +36,7 @@ const tempOperationsList: EmployeeOperation[] = [
   },
   {
     id: 4,
-    name: 'Мероприятие',
+    name: 'Сертификат OZON',
     description:
       'Описание до 300 символов с пробелами. Здесь как раз 300. Dynamic Labs is an IT consulting company that provides robust IT solutions for complex design and development needs. They offer cloud-based, real-time BIM-model analysis, a learning management system, and unique custom design automation tools.',
     status: '-1500',

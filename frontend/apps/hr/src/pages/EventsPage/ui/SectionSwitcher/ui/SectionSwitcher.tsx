@@ -59,13 +59,15 @@ export const SectionSwitcher = memo((props: SectionSwitcherProps) => {
           callback={(value) => setActive(value)}
           size="xs"
         />
-        <Button
-          addonLeft={<Icon Svg={plus} />}
-          size="s"
-          onClick={() => setIsDrawerOpen(true)}
-        >
-          Создать мероприятие
-        </Button>
+        {isActive === 'events' && (
+          <Button
+            addonLeft={<Icon Svg={plus} />}
+            size="s"
+            onClick={() => setIsDrawerOpen(true)}
+          >
+            Создать мероприятие
+          </Button>
+        )}
       </nav>
       {getSection()}
     </>

@@ -1,14 +1,19 @@
 import { z } from 'zod';
 
+const regex = /^[А-яA-z-. ]+$/;
+
 export const editEventSchema = z.object({
   name: z
     .string()
     .min(1, 'Заполните обязательные поля')
+    .regex(regex, 'Поле содержит недопустимые символы')
     .max(256, 'Допустимое количество символов 1-256'),
   format: z
     .string()
+    .regex(regex, 'Поле содержит недопустимые символы')
     .max(256, 'Допустимое количество символов 1-256')
-    .optional(),
+    .optional()
+    .or(z.literal('')),
   imgSrc: z.string().optional(),
   event_date: z
     .string()
@@ -34,9 +39,10 @@ export const editEventSchema = z.object({
   description: z
     .string()
     .min(1, 'Заполните обязательные поля')
-
+    .regex(regex, 'Поле содержит недопустимые символы')
     .max(1000, 'Допустимое количество символов 1-1000')
-    .optional(),
+    .optional()
+    .or(z.literal('')),
 });
 
 export type FormInputData = z.input<typeof editEventSchema>;

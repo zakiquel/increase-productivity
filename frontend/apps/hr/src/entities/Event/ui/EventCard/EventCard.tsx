@@ -1,6 +1,7 @@
 import { classNames } from '@repo/shared/lib';
-import { AppImage, Card, Text } from '@repo/shared/ui';
+import { AppImage, Card, Status, Text } from '@repo/shared/ui';
 
+import { dataEdit } from '../../model/lib/getDate';
 import { Event } from '../../model/types/event';
 
 import img from '@/shared/assets/images/event.png';
@@ -16,12 +17,6 @@ interface EventCardProps {
 
 export const EventCard = (props: EventCardProps) => {
   const { className, event, setIsModalOpen, setActiveEvent } = props;
-
-  const dataEdit = (data: string) => {
-    const splitData = data.split('-').reverse();
-    const newData = `${splitData[0]}.${splitData[1]}.${splitData[2].slice(2)}`;
-    return newData;
-  };
 
   return (
     <Card
@@ -41,7 +36,7 @@ export const EventCard = (props: EventCardProps) => {
           className={classNames(cls.img, {}, [])}
         />
       </div>
-
+      <Status className={cls.tag} variant="Ожидание" size="xs" />
       <div className={cls.wrapper}>
         <Text text={event.name} />
         <div className={cls.wrp}>

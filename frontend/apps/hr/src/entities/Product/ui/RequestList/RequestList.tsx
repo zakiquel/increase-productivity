@@ -28,7 +28,7 @@ export const RequestList = (props: RequestListProps) => {
         ))}
       </div>
       <div className={cls.wrapper}>
-        {SortedProductRequests?.Получено.map((request) => (
+        {SortedProductRequests?.Получен.map((request) => (
           <RequestCard request={request} />
         ))}
       </div>

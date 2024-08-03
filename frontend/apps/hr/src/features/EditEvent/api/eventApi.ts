@@ -1,7 +1,7 @@
 import { Event } from '@/entities/Event';
 import { rtkApi } from '@/shared/api/rtkApi';
 
-type EventScheme = Omit<Event, 'id'>;
+export type EventScheme = Omit<Event, 'id'>;
 
 const eventApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
