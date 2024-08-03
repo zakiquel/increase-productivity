@@ -6,6 +6,19 @@
   padding-top: 16px;
   padding-bottom: 8px;
   background-color: var(--bg-color);
+  p,
+  span {
+    font-size: 12px;
+  }
+  p {
+    font-weight: 400;
+    color: var(--grey-primary-color);
+  }
+
+  span {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
 }
 
 .navbar_wrapper {
@@ -14,9 +27,12 @@
   border-radius: 4px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   padding: 0 16px;
+}
+
+.wrap {
+  justify-content: flex-end;
 }
 
 .navbar_logo {

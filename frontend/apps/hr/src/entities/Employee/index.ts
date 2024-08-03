@@ -14,3 +14,5 @@ export { fetchEmployees, fetchEmployeeById } from './api/employeesApi';
 export { OperationEmployeeBar } from './ui/OperationEmployeeBar/OperationEmployeeBar';
 
 export { EventEmployeeBar } from './ui/EventEmployeeBar/EventEmployeeBar';
+
+export { EmployeeCard } from './ui/EmployeeCard/EmployeeCard';

@@ -1,12 +1,14 @@
-import TextareaAutosize, {
-  TextareaAutosizeProps,
-} from 'react-textarea-autosize';
+import { forwardRef, TextareaHTMLAttributes } from 'react';
 
 import cls from './TextArea.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
-import { forwardRef } from 'react';
 
-interface TextAreaProps extends TextareaAutosizeProps {
+type HTMLTextAreaProps = Omit<
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  'value' | 'onChange' | 'disabled'
+>;
+
+interface TextAreaProps extends HTMLTextAreaProps {
   className?: string;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -19,11 +21,13 @@ interface TextAreaProps extends TextareaAutosizeProps {
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props) => {
     const {
+      placeholder,
       value,
       onChange,
       disabled,
       errorMessage,
       maxLength,
+      style = {},
       className,
       enterFunction,
       ...otherProps
@@ -51,18 +55,20 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       <div
         className={classNames(
           cls.TextAreaWrapper,
-          { [cls.error]: !!errorMessage },
+          { [cls.error]: errorMessage },
           [className],
         )}
       >
-        <TextareaAutosize
+        <textarea
           maxLength={maxLength}
           className={classNames(cls.TextArea, mods, [className])}
+          placeholder={placeholder}
           disabled={disabled}
           value={value}
           onKeyUp={handleEnterPress}
           onKeyDown={handleKeyDown}
           onChange={onChange}
+          style={style}
           {...otherProps}
         />
         {errorMessage && <div className={cls.errorMessage}>{errorMessage}</div>}
