@@ -19,7 +19,7 @@ export const EmployeeValuesList = (props: EmployeeValuesListProps) => {
           variant="light"
           padding="16"
           key={index}
-          className={cls.canvas_container}
+          className={cls.diagram_card}
         >
           <PersonalQualitiesChart title={`Ценность ${index + 1}`} />
         </Card>

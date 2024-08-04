@@ -5,27 +5,38 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 const data: ChartData<'bar'> = {
-  labels: [
-    'Качество 1',
-    'Качество 2',
-    'Качество 3',
-    'Качество 4',
-    'Качество 5',
-  ],
+  labels: ['сила', 'ловкость'],
   datasets: [
     {
-      label: '# of Votes',
-      data: [3, 5, 7, 9, 5],
-      borderColor: '#464D77',
-      backgroundColor: '#464D77',
+      label: '2024-06-26',
+      data: [8, 8],
     },
     {
-      label: '# of Votes',
-      data: [4, 6, 3, 6, 8],
-      borderColor: '#FF5C00',
-      backgroundColor: '#FF5C00',
+      label: '2024-07-26',
+      data: [5, 5],
     },
   ],
+  // labels: [
+  //   'Качество 1',
+  //   'Качество 2',
+  //   'Качество 3',
+  //   'Качество 4',
+  //   'Качество 5',
+  // ],
+  // datasets: [
+  //   {
+  //     label: '# of Votes',
+  //     data: [3, 5, 7, 9, 5],
+  //     borderColor: '#464D77',
+  //     backgroundColor: '#464D77',
+  //   },
+  //   {
+  //     label: '# of Votes',
+  //     data: [4, 6, 3, 6, 8],
+  //     borderColor: '#FF5C00',
+  //     backgroundColor: '#FF5C00',
+  //   },
+  // ],
 };
 
 interface PersonalQualitiesChartProps {
@@ -64,7 +75,7 @@ export function PersonalQualitiesChart({ title }: PersonalQualitiesChartProps) {
     scales: {
       y: {
         min: 0,
-        max: 12,
+        max: 10,
         ticks: {
           color: '#000',
           font: {

@@ -1,10 +1,13 @@
 .EmployeeInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 28% 50% 22%;
-  max-width: calc((100vw - var(--sidebar-width)) / 2);
-  max-height: 535px;
+  // grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   gap: 8px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .profile {

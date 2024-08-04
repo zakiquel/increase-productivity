@@ -123,13 +123,13 @@ export const ChartList = memo(() => (
     </div>
     <Card
       variant="light"
-      className={classNames(cls.canvas_container, {}, [cls.block2])}
+      className={classNames(cls.diagram_card, {}, [cls.block2])}
     >
       <CompanyRiskChart />
     </Card>
     <Card
       variant="light"
-      className={classNames(cls.canvas_container, {}, [cls.block3])}
+      className={classNames(cls.diagram_card, {}, [cls.block3])}
     >
       <CompanyValuesChart />
     </Card>
@@ -149,7 +149,7 @@ export const ChartList = memo(() => (
     </Card>
     <Card
       variant="light"
-      className={classNames(cls.canvas_container, {}, [cls.block5])}
+      className={classNames(cls.diagram_card, {}, [cls.block5])}
     >
       <CompanyMetricsChart />
     </Card>

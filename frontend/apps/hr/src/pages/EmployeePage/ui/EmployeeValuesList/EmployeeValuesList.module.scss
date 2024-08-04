@@ -1,7 +1,16 @@
 .EmployeeValuesList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr 1fr;
-  grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column: 1 / span 2;
+
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.diagram_card {
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
 }

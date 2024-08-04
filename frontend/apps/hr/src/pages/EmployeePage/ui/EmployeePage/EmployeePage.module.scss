@@ -1,8 +1,8 @@
 .EmployeePage {
+  gap: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 551px 706px 733px 1fr 160px;
-  gap: 8px;
+  grid-template-rows: 551px 706px repeat(auto-fill, auto);
 }
 
 .canvas_container {
