@@ -28,6 +28,7 @@ const data: ChartData<'bar'> = {
 const options: ChartOptions<'bar'> = {
   indexAxis: 'y',
   maintainAspectRatio: false,
+  devicePixelRatio: 2,
   datasets: {
     bar: {
       borderWidth: 2,

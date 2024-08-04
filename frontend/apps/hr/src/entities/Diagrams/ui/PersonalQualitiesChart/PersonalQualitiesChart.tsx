@@ -45,6 +45,7 @@ interface PersonalQualitiesChartProps {
 
 export function PersonalQualitiesChart({ title }: PersonalQualitiesChartProps) {
   const options: ChartOptions<'bar'> = {
+    devicePixelRatio: 2,
     maintainAspectRatio: false,
     datasets: {
       bar: {

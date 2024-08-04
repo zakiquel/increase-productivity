@@ -23,6 +23,7 @@ const data: ChartData<'line'> = {
 };
 
 const options: ChartOptions<'line'> = {
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   datasets: {
     line: {

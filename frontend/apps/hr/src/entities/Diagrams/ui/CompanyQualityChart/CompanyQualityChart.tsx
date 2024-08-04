@@ -29,6 +29,7 @@ const data: ChartData<'bar'> = {
 };
 
 const options: ChartOptions<'bar'> = {
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   plugins: {
     legend: {

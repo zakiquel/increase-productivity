@@ -38,6 +38,7 @@ const data: ChartData<'radar'> = {
 // ['20.06.2024', '20.12.2024', '19.05.2025']
 
 const options: ChartOptions<'radar'> = {
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   datasets: {
     radar: {
