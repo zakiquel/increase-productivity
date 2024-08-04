@@ -25,6 +25,7 @@ const data: ChartData<'bar'> = {
 };
 
 const options: ChartOptions<'bar'> = {
+  devicePixelRatio: 2,
   indexAxis: 'y',
   maintainAspectRatio: false,
   datasets: {

@@ -55,6 +55,7 @@ const data: ChartData<'radar'> = {
 };
 
 const options: ChartOptions<'radar'> = {
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   datasets: {
     radar: {
