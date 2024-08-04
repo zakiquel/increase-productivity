@@ -1,16 +1,7 @@
 import { classNames } from '@repo/shared/lib';
 import { memo } from 'react';
 
-import {
-  CompanyMetricsChart,
-  CompanyQualityChart,
-  CompanyRiskChart,
-  CompanyValuesChart,
-  PersonalMetricsChart,
-  PersonalQualitiesChart,
-  PersonalRiskChart,
-  PersonalValuesChart,
-} from '@/entities/Diagrams';
+import { CompanyMetricsChart } from '@/entities/Diagrams';
 import { Page } from '@/widgets/Page';
 
 import styles from './TestDiagramsPage.module.scss';
@@ -24,37 +15,9 @@ const TestDiagramsPage = (props: TestDiagramsPageProps) => {
 
   return (
     <Page className={classNames('', {}, [className])}>
-      <h2>Диаграммы для компаний</h2>
-      <div className={styles.diagram_container}>
-        <div>
+      <div className={styles.diagram_grid_container}>
+        <div className={styles.diagram_card}>
           <CompanyMetricsChart />
-        </div>
-        <div>
-          <CompanyQualityChart />
-        </div>
-        <div>
-          <CompanyRiskChart />
-        </div>
-        <div>
-          <CompanyValuesChart />
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <h2>Диаграммы по сотруднику</h2>
-      <div className={styles.diagram_container}>
-        <div>
-          <PersonalMetricsChart />
-        </div>
-        <div>
-          <PersonalQualitiesChart />
-        </div>
-        <div>
-          <PersonalRiskChart />
-        </div>
-        <div>
-          <PersonalValuesChart />
         </div>
       </div>
     </Page>

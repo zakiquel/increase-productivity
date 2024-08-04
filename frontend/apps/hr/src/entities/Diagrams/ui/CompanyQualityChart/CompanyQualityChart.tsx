@@ -54,7 +54,7 @@ const options: ChartOptions<'bar'> = {
   scales: {
     y: {
       min: 0,
-      max: 12,
+      max: 10,
       ticks: {
         color: '#000',
         font: {

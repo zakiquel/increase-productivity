@@ -77,7 +77,10 @@ const options: ChartOptions<'radar'> = {
       min: 0,
       max: 10,
       ticks: {
-        display: false,
+        font: {
+          weight: 'bolder',
+        },
+        // display: false,
       },
     },
   },

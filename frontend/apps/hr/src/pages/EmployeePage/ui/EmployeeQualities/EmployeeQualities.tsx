@@ -1,3 +1,4 @@
+import { classNames } from '@repo/shared/lib';
 import { Card } from '@repo/shared/ui';
 
 import { PersonalQualitiesChart } from '@/entities/Diagrams';
@@ -17,7 +18,7 @@ export const EmployeeQualities = (props: EmployeeQualitiesProps) => {
         <Card
           variant="light"
           padding="16"
-          className={cls.canvas_container}
+          className={classNames(cls.diagram_card, {}, [className])}
           key={index}
         >
           <PersonalQualitiesChart title={`Ценность ${index + 1}`} />

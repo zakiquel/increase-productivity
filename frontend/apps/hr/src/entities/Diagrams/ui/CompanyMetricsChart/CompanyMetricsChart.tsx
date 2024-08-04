@@ -69,6 +69,7 @@ const options: ChartOptions<'line'> = {
       min: 0,
       max: 12,
       ticks: {
+        stepSize: 1,
         color: '#000',
         font: {
           weight: 'bolder',

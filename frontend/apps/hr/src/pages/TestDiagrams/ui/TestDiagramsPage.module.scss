@@ -7,3 +7,12 @@
   grid-template-columns: 1fr 1fr;
   gap: 32px;
 }
+
+.diagram_grid_container {
+  display: grid;
+}
+
+.diagram_card {
+  overflow: hidden;
+  position: relative;
+}
