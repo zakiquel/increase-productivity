@@ -1345,6 +1345,163 @@ paths:
         default:
           description: Success
 
+  # Values Qualities Graphics API
+  /api/company_values_qualities_graphics/:
+    summary: Operations about Company Values Qualities Graphics
+    get:
+      tags:
+        - Company Values Qualities Graphics GET
+      summary: Get Company Values Qualities Graphics
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+
+  /api/personal_values_qualities_graphics/{employee_id}:
+    summary: Operations about Pesonal Values Qualities Graphics
+    get:
+      tags:
+        - Pesonal Values Qualities Graphics GET
+      summary: Get Pesonal Values Qualities Graphics
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  # Metrics Graphics API
+  /api/company_metrics_graphics/:
+    summary: Operations about Company Metrics Graphics
+    get:
+      tags:
+        - Company Metrics Graphics GET
+      summary: Get Company Metrics Graphics
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  /api/personal_metrics_graphics/{employee_id}:
+    summary: Operations about Pesonal Metrics Graphics
+    get:
+      tags:
+        - Pesonal Metrics Graphics GET
+      summary: Get Pesonal Metrics Graphics
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  # Values Graphics API
+  /api/company_values_graphics/:
+    summary: Operations about Company Values Graphics
+    get:
+      tags:
+        - Company Values Graphics GET
+      summary: Get Company Values Graphics
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  /api/personal_values_graphics/{employee_id}:
+    summary: Operations about Pesonal Values Graphics
+    get:
+      tags:
+        - Pesonal Values Graphics GET
+      summary: Get Pesonal Values Graphics
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  # Top Qualities Risk Graphics API
+  /api/company_top_qualities_risk_graphics/:
+    summary: Operations about Company Top Qualities Risk Graphics
+    get:
+      tags:
+        - Company Top Qualities Risks GET
+      summary: Get Company Top Qualities Risk Graphics
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  /api/personal_top_qualities_risk_graphics/{employee_id}:
+    summary: Operations about Top Qualities Risk Graphics
+    get:
+      tags:
+        - Pesonal Top Qualities Risks GET
+      summary: Get Top Qualities Risk Graphics
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1458,7 +1615,7 @@ components:
             example: 'Описание качества'
             required: true
 
-    employee:
+    Employee:
       type: object
       properties:
         id:

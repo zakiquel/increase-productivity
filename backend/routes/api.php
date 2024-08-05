@@ -10,8 +10,12 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SurveyHistoryController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\MetricsController;
+use App\Http\Controllers\MetricsGraphicsController;
 use App\Http\Controllers\QualityValueController;
+use App\Http\Controllers\TopQualitiesRiskController;
 use App\Http\Controllers\ValueQualityController;
+use App\Http\Controllers\ValuesGraphicsController;
+use App\Http\Controllers\ValuesQualitiesGraphicsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -94,3 +98,33 @@ Route::resource('survey_histories', SurveyHistoryController::class);
 Route::resource('collective_metrics', CollectiveMetricController::class);
 
 Route::resource('quality_values', QualityValueController::class);
+
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('personal_values_qualities_graphics/{employee_id}', [ValuesQualitiesGraphicsController::class, 'show']);
+    Route::get('company_values_qualities_graphics/', [ValuesQualitiesGraphicsController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('personal_metrics_graphics/{employee_id}', [MetricsGraphicsController::class, 'show']);
+    Route::get('company_metrics_graphics/', [MetricsGraphicsController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('personal_values_graphics/{employee_id}', [ValuesGraphicsController::class, 'show']);
+    Route::get('company_values_graphics/', [ValuesGraphicsController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('personal_top_qualities_risk_graphics/{employee_id}', [TopQualitiesRiskController::class, 'show']);
+    Route::get('company_top_qualities_risk_graphics/', [TopQualitiesRiskController::class, 'index']);
+});
+
