@@ -4,22 +4,31 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 const data: ChartData<'bar'> = {
-  labels: [
-    'Риск по метрике 1',
-    'Риск по метрике 2',
-    'Риск по метрике 3',
-    'Риск по качеству 1',
-    'Риск по качеству 2',
-    'Риск по качеству 3',
-  ],
+  labels: ['Риски по метрикам', 'Риски по качествам'],
   datasets: [
     {
-      label: 'Риски по метрикам',
-      data: [15, 10, 5, 0, 0, 0],
+      label: 'Риск по метрике 1',
+      data: [15, null],
     },
     {
-      label: 'Риски по качеству',
-      data: [0, 0, 0, -15, -10, -5],
+      label: 'Риск по метрике 2',
+      data: [10, null],
+    },
+    {
+      label: 'Риск по метрике 3',
+      data: [5, null],
+    },
+    {
+      label: 'Риск по качеству 1',
+      data: [null, -15],
+    },
+    {
+      label: 'Риск по качеству 2',
+      data: [null, -10],
+    },
+    {
+      label: 'Риск по качеству 3',
+      data: [null, -5],
     },
   ],
 };
@@ -28,6 +37,7 @@ const options: ChartOptions<'bar'> = {
   devicePixelRatio: 2,
   indexAxis: 'y',
   maintainAspectRatio: false,
+  skipNull: true,
   datasets: {
     bar: {
       borderWidth: 2,
@@ -36,7 +46,6 @@ const options: ChartOptions<'bar'> = {
   },
   scales: {
     x: {
-      stacked: true,
       ticks: {
         callback(tickValue) {
           if (typeof tickValue === 'number') {
@@ -47,7 +56,7 @@ const options: ChartOptions<'bar'> = {
       },
     },
     y: {
-      stacked: true,
+      display: false,
     },
   },
   plugins: {

@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react';
 import { canvasToSrc } from '../../lib/canvasToSrc';
 import { formatDate } from '../../lib/formatDate';
 
+import { StoreProvider } from '@/app/providers/StoreProvider';
 import {
   CompanyMetricsChart,
-  CompanyQualityChart,
+  // CompanyQualityChart,
   CompanyRiskChart,
   CompanyValuesChart,
 } from '@/entities/Diagrams';
@@ -66,18 +67,30 @@ const styles = StyleSheet.create({
 
 export function CompanyReport() {
   const [companyMetricsSrc, setCompanyMetricsSrc] = useState('');
-  const [companyQualitiesSrc, setCompanyQualitiesSrc] = useState('');
+  // const [companyQualitiesSrc, setCompanyQualitiesSrc] = useState('');
   const [companyRiskSrc, setCompanyRiskSrc] = useState('');
   const [companyValuesSrc, setCompanyValuesSrc] = useState('');
 
   useEffect(() => {
     const generateData = async () => {
-      const companyMetricsSrc = await canvasToSrc(<CompanyMetricsChart />);
-      const companyQualitiesSrc = await canvasToSrc(<CompanyQualityChart />);
-      const companyRiskSrc = await canvasToSrc(<CompanyRiskChart />);
-      const companyValuesSrc = await canvasToSrc(<CompanyValuesChart />);
+      const companyMetricsSrc = await canvasToSrc(
+        <StoreProvider>
+          <CompanyMetricsChart />
+        </StoreProvider>,
+      );
+      // const companyQualitiesSrc = await canvasToSrc(<CompanyQualityChart />);
+      const companyRiskSrc = await canvasToSrc(
+        <StoreProvider>
+          <CompanyRiskChart />
+        </StoreProvider>,
+      );
+      const companyValuesSrc = await canvasToSrc(
+        <StoreProvider>
+          <CompanyValuesChart />
+        </StoreProvider>,
+      );
       setCompanyMetricsSrc(companyMetricsSrc);
-      setCompanyQualitiesSrc(companyQualitiesSrc);
+      // setCompanyQualitiesSrc(companyQualitiesSrc);
       setCompanyRiskSrc(companyRiskSrc);
       setCompanyValuesSrc(companyValuesSrc);
     };
@@ -96,9 +109,9 @@ export function CompanyReport() {
         <View style={styles.chartView}>
           <Image src={companyMetricsSrc} />
         </View>
-        <View style={styles.chartView}>
+        {/* <View style={styles.chartView}>
           <Image src={companyQualitiesSrc} />
-        </View>
+        </View> */}
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>

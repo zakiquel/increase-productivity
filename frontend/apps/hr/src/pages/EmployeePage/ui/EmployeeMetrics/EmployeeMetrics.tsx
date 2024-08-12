@@ -6,11 +6,12 @@ import { PersonalMetricsChart } from '@/entities/Diagrams';
 import cls from './EmployeeMetrics.module.scss';
 
 interface EmployeeMetricsProps {
+  employeeId: string;
   className?: string;
 }
 
 export const EmployeeMetrics = (props: EmployeeMetricsProps) => {
-  const { className } = props;
+  const { className, employeeId } = props;
 
   return (
     <Card
@@ -18,7 +19,7 @@ export const EmployeeMetrics = (props: EmployeeMetricsProps) => {
       padding="16"
       className={classNames(cls.EmployeeMetrics, {}, [className])}
     >
-      <PersonalMetricsChart />
+      <PersonalMetricsChart employeeId={employeeId} />
     </Card>
   );
 };

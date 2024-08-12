@@ -4,55 +4,7 @@ import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
-const data: ChartData<'radar'> = {
-  labels: ['Сильность', 'Добротность', 'Спёртость'],
-  datasets: [
-    {
-      label: '2024-04-26',
-      data: [6, 6, 4],
-    },
-    {
-      label: '2024-05-26',
-      data: [4, 4, 8],
-    },
-    {
-      label: '2024-06-26',
-      data: [8, 8, 2],
-    },
-    {
-      label: '2024-07-26',
-      data: [5, 5, 5],
-    },
-  ],
-  // labels: [
-  //   'Ценность 1',
-  //   'Ценность 2',
-  //   'Ценность 3',
-  //   'Ценность 4',
-  //   'Ценность 5',
-  //   'Ценность 6',
-  // ],
-  // datasets: [
-  //   {
-  //     label: '20.06.2024',
-  //     data: [3, 4, 6, 2, 5, 8],
-  //     borderColor: '#8A38F6',
-  //     backgroundColor: '#8A38F6',
-  //   },
-  //   {
-  //     label: '20.12.2024',
-  //     data: [6, 1, 6, 7, 8, 5],
-  //     borderColor: '#FF5C00',
-  //     backgroundColor: '#FF5C00',
-  //   },
-  //   {
-  //     label: '19.05.2025',
-  //     data: [4, 5, 6, 6, 1, 2],
-  //     borderColor: '#E56399',
-  //     backgroundColor: '#E56399',
-  //   },
-  // ],
-};
+import { getPersonalValues } from '../../model/api/graphicsApi';
 
 const options: ChartOptions<'radar'> = {
   devicePixelRatio: 2,
@@ -103,6 +55,26 @@ const options: ChartOptions<'radar'> = {
   animation: false,
 };
 
-export function PersonalValuesChart() {
-  return <Radar data={data} options={options} />;
+type PersonalValuesChartProps = {
+  employeeId: string;
+};
+
+const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
+
+export function PersonalValuesChart({ employeeId }: PersonalValuesChartProps) {
+  const { data } = getPersonalValues(employeeId);
+
+  if (!data) return null;
+
+  const formattedData: ChartData<'radar'> = {
+    labels: data.labels,
+    datasets: data.datasets.map((dataset, i) => ({
+      label: dataset.label,
+      data: dataset.data.map((data) => Number(data)),
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+    })),
+  };
+
+  return <Radar data={formattedData} options={options} />;
 }

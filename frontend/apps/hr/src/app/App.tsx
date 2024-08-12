@@ -12,7 +12,9 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(login({ email: 'stronhold@gmail.com', password: 'zakiqueL123' }));
+    dispatch(
+      login({ email: 'viletyalov1212@gmail.com', password: 'passvdn1212' }),
+    );
   }, [dispatch]);
 
   return (

@@ -20,7 +20,7 @@ export const EmployeeInfo = memo((props: EmployeeInfoProps) => {
     <section className={classNames(cls.EmployeeInfo, {}, [className])}>
       <EmployeeProfile data={employee} className={cls.profile} />
       <DownloadEmployeeReportButton
-        employee={employee.id}
+        employeeId={employee.id}
         className={cls.report}
       />
       <EmployeeRating />
