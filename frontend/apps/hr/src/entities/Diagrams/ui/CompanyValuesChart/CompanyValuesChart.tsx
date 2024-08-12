@@ -4,38 +4,7 @@ import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
-const data: ChartData<'radar'> = {
-  labels: [
-    'Ценность 1',
-    'Ценность 2',
-    'Ценность 3',
-    'Ценность 4',
-    'Ценность 5',
-    'Ценность 6',
-  ],
-  datasets: [
-    {
-      label: '20.06.2024',
-      data: [3, 4, 6, 2, 5, 8],
-      borderColor: '#8A38F6',
-      backgroundColor: '#8A38F6',
-    },
-    {
-      label: '20.12.2024',
-      data: [6, 1, 6, 7, 8, 5],
-      borderColor: '#FF5C00',
-      backgroundColor: '#FF5C00',
-    },
-    {
-      label: '19.05.2025',
-      data: [4, 5, 6, 6, 1, 2],
-      borderColor: '#E56399',
-      backgroundColor: '#E56399',
-    },
-  ],
-};
-// ['#8A38F6', '#214E34', '#464D77', '#E56399', '#FF5C00']
-// ['20.06.2024', '20.12.2024', '19.05.2025']
+import { getCompanyMetrics } from '../../model/api/graphicsApi';
 
 const options: ChartOptions<'radar'> = {
   devicePixelRatio: 2,
@@ -81,13 +50,28 @@ const options: ChartOptions<'radar'> = {
         font: {
           weight: 'bolder',
         },
-        // display: false,
       },
     },
   },
   animation: false,
 };
 
+const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
+
 export function CompanyValuesChart() {
-  return <Radar data={data} options={options} height="100%" />;
+  const { data } = getCompanyMetrics();
+
+  if (!data) return null;
+
+  const formattedData: ChartData<'radar'> = {
+    labels: data.labels,
+    datasets: data.datasets.map((dataset, i) => ({
+      label: dataset.label,
+      data: dataset.data.map((data) => Number(data)),
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+    })),
+  };
+
+  return <Radar data={formattedData} options={options} height="100%" />;
 }

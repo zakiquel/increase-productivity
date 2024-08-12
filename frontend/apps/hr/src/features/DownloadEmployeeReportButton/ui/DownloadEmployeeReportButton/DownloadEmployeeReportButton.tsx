@@ -9,12 +9,12 @@ import type { Employee } from '@/entities/Employee';
 import cls from './DownloadEmployeeReportButton.module.scss';
 
 interface DownloadEmployeeReportButtonProps {
-  employee: Employee['id'];
+  employeeId: Employee['id'];
   className?: string;
 }
 
 export function DownloadEmployeeReportButton({
-  employee,
+  employeeId,
   className,
 }: DownloadEmployeeReportButtonProps) {
   return (
@@ -31,7 +31,7 @@ export function DownloadEmployeeReportButton({
         className={cls.text}
       />
       <PDFDownloadLink
-        document={<EmployeeReport employee={employee} />}
+        document={<EmployeeReport employeeId={employeeId} />}
         fileName="Отчёт"
       >
         {({ loading }) => (

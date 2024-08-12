@@ -4,29 +4,7 @@ import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-const data: ChartData<'line'> = {
-  labels: ['20.06.2024', '20.12.2024', '19.05.2025'],
-  datasets: [
-    {
-      label: 'Метрика 1',
-      data: [4, 4, 7],
-      borderColor: '#8A38F6',
-      backgroundColor: '#8A38F6',
-    },
-    {
-      label: 'Метрика 2',
-      data: [3, 6, 4],
-      borderColor: '#FF5C00',
-      backgroundColor: '#FF5C00',
-    },
-    {
-      label: 'Метрика 3',
-      data: [3, 5, 11],
-      borderColor: '#E56399',
-      backgroundColor: '#E56399',
-    },
-  ],
-};
+import { getCompanyMetrics } from '../../model/api/graphicsApi';
 
 const options: ChartOptions<'line'> = {
   devicePixelRatio: 2,
@@ -82,6 +60,22 @@ const options: ChartOptions<'line'> = {
   animation: false,
 };
 
+const colors = ['#8A38F6', '#FF5C00', '#E56399'];
+
 export function CompanyMetricsChart() {
-  return <Line data={data} options={options} height="100%" />;
+  const { data } = getCompanyMetrics();
+
+  if (!data) return null;
+
+  const formattedData: ChartData<'line'> = {
+    labels: data.labels,
+    datasets: data.datasets.map((dataset, i) => ({
+      label: dataset.label,
+      data: dataset.data.map((data) => Number(data)),
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+    })),
+  };
+
+  return <Line data={formattedData} options={options} height="100%" />;
 }

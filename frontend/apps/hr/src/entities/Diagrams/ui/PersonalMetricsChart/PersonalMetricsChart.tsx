@@ -4,23 +4,7 @@ import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-const data: ChartData<'line'> = {
-  labels: ['2024-10-02', '2024-10-03', '2024-10-04', '2024-10-05'],
-  datasets: [
-    {
-      label: 'Оценка вовлеченности персонала',
-      data: [2, 3, 4, 5],
-    },
-    {
-      label: 'Оценка лояльности сотрудников',
-      data: [1, 6, 10, 3],
-    },
-    {
-      label: 'Индекс удовлетворённости сотрудников',
-      data: [3, 2, 7, 1],
-    },
-  ],
-};
+import { getPersonalMetrics } from '../../model/api/graphicsApi';
 
 const options: ChartOptions<'line'> = {
   devicePixelRatio: 2,
@@ -77,6 +61,28 @@ const options: ChartOptions<'line'> = {
   animation: false,
 };
 
-export function PersonalMetricsChart() {
-  return <Line data={data} options={options} height="100%" />;
+type PersonalMetricsChartProps = {
+  employeeId: string;
+};
+
+const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
+
+export function PersonalMetricsChart({
+  employeeId,
+}: PersonalMetricsChartProps) {
+  const { data } = getPersonalMetrics(employeeId);
+
+  if (!data) return null;
+
+  const formattedData: ChartData<'line'> = {
+    labels: data?.labels,
+    datasets: data?.datasets.map((dataset, i) => ({
+      label: dataset.label,
+      data: dataset.data.map((data) => Number(data)),
+      borderColor: colors[i],
+      backgroundColor: colors[i],
+    })),
+  };
+
+  return <Line data={formattedData} options={options} height="100%" />;
 }
