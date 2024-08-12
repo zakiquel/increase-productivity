@@ -7,6 +7,7 @@ import { Doughnut } from 'react-chartjs-2';
 const options: ChartOptions<'doughnut'> = {
   events: [],
   cutout: 60,
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   datasets: {
     doughnut: {
@@ -21,7 +22,7 @@ const options: ChartOptions<'doughnut'> = {
       display: true,
       color: '#000',
       font: {
-        size: 18,
+        size: 16,
       },
     },
     legend: {

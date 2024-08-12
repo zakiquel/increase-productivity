@@ -59,13 +59,15 @@ export const SectionSwitcher = memo((props: ProductsSwitcherProps) => {
           callback={(value) => setActive(value)}
           size="xs"
         />
-        <Button
-          addonLeft={<Icon Svg={plus} />}
-          size="s"
-          onClick={() => setIsOpenForm(true)}
-        >
-          Добавить товар
-        </Button>
+        {isActive === 'products' && (
+          <Button
+            addonLeft={<Icon Svg={plus} />}
+            size="s"
+            onClick={() => setIsOpenForm(true)}
+          >
+            Добавить товар
+          </Button>
+        )}
       </nav>
       {getSection()}
     </>

@@ -64,7 +64,7 @@ export const EmployeeDocuments = (props: EmployeeDocumentsProps) => {
 
   return (
     <Card variant="light" padding="16" className={cls.EmployeeDocuments}>
-      <Text title="Документы" size="s" className={cls.title} bold />
+      <Text title="Документы" size="s" bold />
       <File className={cls.file} />
       {documents && (
         <div className={cls.documents}>

@@ -36,8 +36,8 @@ export const SortEmployees = memo((props: SortEmployeesProps) => {
       case 'byDate':
         sorted = [...employees].sort(
           (a, b) =>
-            new Date(a.date_of_hiring).getTime() -
-            new Date(b.date_of_hiring).getTime(),
+            new Date(b.date_of_hiring).getTime() -
+            new Date(a.date_of_hiring).getTime(),
         );
         break;
       case 'byPosition':

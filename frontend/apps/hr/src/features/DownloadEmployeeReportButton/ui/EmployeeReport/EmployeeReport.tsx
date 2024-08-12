@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react';
 import { canvasToSrc } from '../../lib/canvasToSrc';
 import { formatDate } from '../../lib/formatDate';
 
+import { StoreProvider } from '@/app/providers/StoreProvider';
 import {
   PersonalMetricsChart,
-  PersonalQualitiesChart,
+  // PersonalQualitiesChart,
   PersonalRiskChart,
   PersonalValuesChart,
 } from '@/entities/Diagrams';
@@ -66,23 +67,39 @@ const styles = StyleSheet.create({
 });
 
 interface EmployeeReportProps {
-  employee?: Employee['id'];
+  employeeId: Employee['id'];
 }
 
-export function EmployeeReport({ employee }: EmployeeReportProps) {
-  const [persinalMetricsSrc, setPersonalMetricsSrc] = useState('');
+export function EmployeeReport({ employeeId }: EmployeeReportProps) {
+  const id = employeeId?.toString();
+
+  const [personalMetricsSrc, setPersonalMetricsSrc] = useState('');
   const [personalQualitiesSrc, setPersonalQualitiesSrc] = useState('');
   const [personalRiskSrc, setPersonalRiskSrc] = useState('');
   const [personalValuesSrc, setPersonalValuesSrc] = useState('');
 
   useEffect(() => {
     const generateData = async () => {
-      const personalMetricsSrc = await canvasToSrc(<PersonalMetricsChart />);
-      const personalQualitiesSrc = await canvasToSrc(
-        <PersonalQualitiesChart title="title" />,
+      const personalMetricsSrc = await canvasToSrc(
+        <StoreProvider>
+          <PersonalMetricsChart employeeId={id} />,
+        </StoreProvider>,
       );
-      const personalRiskSrc = await canvasToSrc(<PersonalRiskChart />);
-      const personalValuesSrc = await canvasToSrc(<PersonalValuesChart />);
+      // const personalQualitiesSrc = await canvasToSrc(
+      //   <StoreProvider>
+      //     <PersonalQualitiesChart title="title" data={id} />,
+      //   </StoreProvider>,
+      // );
+      const personalRiskSrc = await canvasToSrc(
+        <StoreProvider>
+          <PersonalRiskChart />,
+        </StoreProvider>,
+      );
+      const personalValuesSrc = await canvasToSrc(
+        <StoreProvider>
+          <PersonalValuesChart employeeId={id} />,
+        </StoreProvider>,
+      );
       setPersonalMetricsSrc(personalMetricsSrc);
       setPersonalQualitiesSrc(personalQualitiesSrc);
       setPersonalRiskSrc(personalRiskSrc);
@@ -103,11 +120,11 @@ export function EmployeeReport({ employee }: EmployeeReportProps) {
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>
-          <Image src={persinalMetricsSrc} />
+          <Image src={personalMetricsSrc} />
         </View>
-        <View style={styles.chartView}>
+        {/* <View style={styles.chartView}>
           <Image src={personalQualitiesSrc} />
-        </View>
+        </View> */}
       </Page>
       <Page style={styles.chartPage}>
         <View style={styles.chartView}>

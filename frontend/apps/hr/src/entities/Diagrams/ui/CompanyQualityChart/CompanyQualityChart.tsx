@@ -4,6 +4,7 @@ import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
+
 const data: ChartData<'bar'> = {
   labels: [
     'Качество 1',
@@ -29,6 +30,7 @@ const data: ChartData<'bar'> = {
 };
 
 const options: ChartOptions<'bar'> = {
+  devicePixelRatio: 2,
   maintainAspectRatio: false,
   plugins: {
     legend: {
@@ -54,7 +56,7 @@ const options: ChartOptions<'bar'> = {
   scales: {
     y: {
       min: 0,
-      max: 12,
+      max: 10,
       ticks: {
         color: '#000',
         font: {
@@ -76,6 +78,9 @@ const options: ChartOptions<'bar'> = {
   animation: false,
 };
 
-export function CompanyQualityChart() {
+export async function CompanyQualityChart() {
+  // const s = getCompanyQuality();
+  // console.log(s);
+
   return <Bar data={data} options={options} height="100%" width="100%" />;
 }

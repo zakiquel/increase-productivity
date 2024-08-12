@@ -3,10 +3,6 @@
   flex-direction: column;
   gap: 16px;
 
-  .note {
-    height: 150px;
-  }
-
   .notes {
     display: flex;
     gap: 8px;
@@ -17,9 +13,5 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
-  }
-
-  .note_btn {
-    max-width: 159px;
   }
 }

@@ -1,5 +1,6 @@
 .EmployeeRating {
   position: relative;
+  overflow: hidden;
 }
 
 .title {
@@ -12,7 +13,7 @@
 
 .rating {
   position: absolute;
-  top: 52%;
-  left: 46%;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, 20%);
 }

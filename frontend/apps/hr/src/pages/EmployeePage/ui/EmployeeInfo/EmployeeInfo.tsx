@@ -1,12 +1,9 @@
 import { classNames } from '@repo/shared/lib';
 import { memo } from 'react';
 
-import {
-  Employee,
-  EmployeeBalance,
-  EmployeeProfile,
-  EmployeeRating,
-} from '@/entities/Employee';
+import { EmployeeBalance } from '../EmployeeBalance/EmployeeBalance';
+
+import { Employee, EmployeeProfile, EmployeeRating } from '@/entities/Employee';
 import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 
 import cls from './EmployeeInfo.module.scss';
@@ -23,7 +20,7 @@ export const EmployeeInfo = memo((props: EmployeeInfoProps) => {
     <section className={classNames(cls.EmployeeInfo, {}, [className])}>
       <EmployeeProfile data={employee} className={cls.profile} />
       <DownloadEmployeeReportButton
-        employee={employee.id}
+        employeeId={employee.id}
         className={cls.report}
       />
       <EmployeeRating />

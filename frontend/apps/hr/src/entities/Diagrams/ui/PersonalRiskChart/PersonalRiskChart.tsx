@@ -1,35 +1,77 @@
 // Диаграмма личных рисков, руб
-
+// Диаграмма рисков компании, круговая руб и %
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-const data: ChartData<'doughnut'> = {
-  labels: [
-    'Короткий Риск 1',
-    'Средний риск Риск 2',
-    'Немного длинный риск Риск 3',
-    'Очень очень длинный риск Риск 4',
-    'Риск 5',
-  ],
+const data: ChartData<'bar'> = {
+  labels: ['Риски по метрикам', 'Риски по качествам'],
   datasets: [
     {
-      data: [12, 19, 20, 5, 10],
-      backgroundColor: ['#8A38F6', '#214E34', '#464D77', '#E56399', '#FF5C00'],
+      label: 'Риск по метрике 1',
+      data: [15, null],
+    },
+    {
+      label: 'Риск по метрике 2',
+      data: [10, null],
+    },
+    {
+      label: 'Риск по метрике 3',
+      data: [5, null],
+    },
+    {
+      label: 'Риск по качеству 1',
+      data: [null, -15],
+    },
+    {
+      label: 'Риск по качеству 2',
+      data: [null, -10],
+    },
+    {
+      label: 'Риск по качеству 3',
+      data: [null, -5],
     },
   ],
 };
 
-const options: ChartOptions<'doughnut'> = {
-  cutout: 140,
+const options: ChartOptions<'bar'> = {
+  skipNull: true,
+  indexAxis: 'y',
   maintainAspectRatio: false,
+  devicePixelRatio: 2,
   datasets: {
-    doughnut: {
+    bar: {
       borderWidth: 2,
       borderRadius: 6,
     },
   },
+  scales: {
+    x: {
+      ticks: {
+        callback(tickValue) {
+          if (typeof tickValue === 'number') {
+            return Math.abs(tickValue);
+          }
+          return tickValue;
+        },
+      },
+    },
+    y: {
+      display: false,
+    },
+  },
   plugins: {
+    tooltip: {
+      callbacks: {
+        label(tooltipItem) {
+          const value =
+            typeof tooltipItem.raw === 'number'
+              ? Math.abs(tooltipItem.raw)
+              : tooltipItem.raw;
+          return `${tooltipItem.dataset.label}: ${value}`;
+        },
+      },
+    },
     title: {
       align: 'start',
       text: 'Риски',
@@ -54,5 +96,5 @@ const options: ChartOptions<'doughnut'> = {
 };
 
 export function PersonalRiskChart() {
-  return <Doughnut data={data} options={options} />;
+  return <Bar data={data} options={options} height="100%" />;
 }

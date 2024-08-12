@@ -1,6 +1,10 @@
 .MainPage {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   overflow-y: scroll;
+
+  .EmployeesSection {
+    margin-bottom: 16px;
+  }
 }

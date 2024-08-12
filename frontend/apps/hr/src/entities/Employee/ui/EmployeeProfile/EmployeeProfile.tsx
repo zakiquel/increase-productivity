@@ -95,7 +95,7 @@ export const EmployeeProfile = (props: EmployeeProfileProps) => {
       padding="16"
       className={classNames(cls.EmployeeProfile, {}, [className])}
     >
-      <Text title="Личные данные сотрудника" size="xs" bold />
+      <Text title="Личные данные сотрудника" size="s" bold />
       <form className={cls.inputs}>
         <div className={cls.name_patronymic}>
           <Input value={data.first_name} onChange={onChangeFirstname} />

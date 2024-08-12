@@ -1,0 +1,116 @@
+.ChartList {
+  display: grid;
+  grid-template-areas:
+    'block1 block2'
+    'block4 block2'
+    'block3 block5';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr 1.5fr;
+  column-gap: 8px;
+  row-gap: 8px;
+
+  .hr {
+    border: 1px solid var(--grey-secondary-color);
+    margin-top: 16px;
+  }
+
+  .hello_card {
+    display: flex;
+    flex-direction: column;
+
+    .hello {
+      font-weight: 500;
+      p {
+        line-height: 15px;
+      }
+
+      margin-bottom: 12px;
+    }
+
+    .hello_text {
+      width: 641px;
+    }
+
+    .hello_button {
+      width: fit-content;
+      margin-top: auto;
+    }
+  }
+
+  .list_wrap {
+    grid-area: block1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+  }
+
+  .block2 {
+    grid-area: block2;
+  }
+  .block4 {
+    grid-area: block4;
+    height: fit-content;
+  }
+
+  .block3 {
+    grid-area: block3;
+  }
+  .block5 {
+    grid-area: block5;
+  }
+
+  .block_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+  }
+
+  .wrapper_common {
+    height: 100%;
+  }
+
+  .employees_metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .title {
+    margin-bottom: 4px;
+  }
+
+  .text {
+    margin-bottom: 12px;
+  }
+  .description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 8px;
+    color: var(--grey-primary-color);
+  }
+
+  .stat_text {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--base-0-color);
+  }
+
+  .bar_wrap {
+    margin-top: 32px;
+  }
+  .wrap {
+    margin-top: 16px;
+  }
+  .input {
+    margin-top: 16px;
+  }
+}
+
+.diagram_card {
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+}

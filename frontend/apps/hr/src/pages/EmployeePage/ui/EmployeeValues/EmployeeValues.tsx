@@ -1,12 +1,24 @@
+import { classNames } from '@repo/shared/lib';
 import { Card } from '@repo/shared/ui';
 import { memo } from 'react';
 
 import { PersonalValuesChart } from '@/entities/Diagrams';
 
-interface EmployeeValuesProps {}
+import cls from './EmployeeValues.module.scss';
 
-export const EmployeeValues = memo((props: EmployeeValuesProps) => (
-  <Card variant="light" padding="16">
-    <PersonalValuesChart />
-  </Card>
-));
+interface EmployeeValuesProps {
+  employeeId: string;
+  className?: string;
+}
+
+export const EmployeeValues = memo(
+  ({ className, employeeId }: EmployeeValuesProps) => (
+    <Card
+      variant="light"
+      padding="16"
+      className={classNames(cls.diagram_card, {}, [className])}
+    >
+      <PersonalValuesChart employeeId={employeeId} />
+    </Card>
+  ),
+);

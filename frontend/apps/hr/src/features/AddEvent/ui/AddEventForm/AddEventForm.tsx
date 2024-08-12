@@ -6,7 +6,7 @@ import { memo, useCallback, useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToaster } from 'rsuite';
 
-import { postEvent } from '../../api/addEventApi';
+import { EventScheme, postEvent } from '../../api/addEventApi';
 import {
   addEventSchema,
   FormInputData,
@@ -65,6 +65,24 @@ const AddEventForm = memo((props: AddEventFormProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      onSuccess();
+      toaster.push(
+        <Toast
+          text="Изменения успешно сохранены"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const onResetClick = useCallback(async () => {
     reset();
@@ -73,7 +91,10 @@ const AddEventForm = memo((props: AddEventFormProps) => {
 
   const onSubmit: SubmitHandler<FormOutputData> = useCallback(
     async (data) => {
-      createPost(data);
+      const filterData = Object.fromEntries(
+        Object.entries(data).filter(([_, v]) => v !== ''),
+      );
+      createPost(filterData as EventScheme);
     },
     [createPost],
   );
@@ -131,7 +152,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
             <Input
               {...field}
               maskedInputRef={dobInputRef}
-              placeholder="Дата проведения (ХХ.ХХ.ХХХХ)"
+              placeholder="Дата создания (ХХ.ХХ.ХХХХ)"
               size="l"
               errorMessage={errors.event_date?.message}
               onInput={(event) => {
@@ -151,6 +172,7 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               size="l"
               errorMessage={errors.reward?.message}
               onChange={(event) => {
+                field.onChange(Number(event.target.value));
                 field.onChange(Number(event.target.value));
                 if (errors.reward) trigger('reward');
               }}

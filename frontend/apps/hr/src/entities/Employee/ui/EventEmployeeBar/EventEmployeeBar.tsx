@@ -22,8 +22,11 @@ export const EventEmployeeBar = (props: OperationEmployeeBarProps) => {
       <div className={cls.body}>
         <Text size="xs" text={event.name} />
         <Text size="xs" text={event.date} />
-        <Text text={event.duration.toString()} size="xs" />
-        <Status variant={event.status as TVariant} />
+        <p className={cls.duration}>{event.duration.toString()} б.</p>
+        <Status
+          variant={event.status as TVariant}
+          className={classNames(cls.status, {}, [])}
+        />
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

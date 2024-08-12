@@ -15,6 +15,7 @@ interface TextAreaProps extends HTMLTextAreaProps {
   disabled?: boolean;
   errorMessage?: string;
   maxLength?: number;
+  enterFunction?: () => void;
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -28,8 +29,23 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       maxLength,
       style = {},
       className,
+      enterFunction,
       ...otherProps
     } = props;
+
+    const handleEnterPress = (
+      event: React.KeyboardEvent<HTMLTextAreaElement>,
+    ) => {
+      if (enterFunction && event.key === 'Enter' && !event.shiftKey) {
+        enterFunction();
+      }
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (enterFunction && event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+      }
+    };
 
     const mods: Mods = {
       [cls.isDirty]: Boolean(value),
@@ -49,6 +65,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           placeholder={placeholder}
           disabled={disabled}
           value={value}
+          onKeyUp={handleEnterPress}
+          onKeyDown={handleKeyDown}
           onChange={onChange}
           style={style}
           {...otherProps}

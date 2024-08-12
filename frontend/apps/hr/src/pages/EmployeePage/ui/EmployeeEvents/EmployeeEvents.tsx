@@ -82,7 +82,7 @@ export const EmployeeEvents = memo((props: EmployeeEventsProps) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <Card className={cls.EmployeeEvents} variant="light" padding="16">
-      <Text text="История мероприятий" bold />
+      <Text title="История мероприятий" size="s" bold />
       <div className={cls.title}>
         <Text text="Название" variant="grey" size="s" />
         <Text text="Дата" variant="grey" size="s" />

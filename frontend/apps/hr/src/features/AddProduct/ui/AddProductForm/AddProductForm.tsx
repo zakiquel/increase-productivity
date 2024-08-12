@@ -127,6 +127,7 @@ const AddProductForm = memo((props: AddProductFormProps) => {
             <TextArea
               {...field}
               placeholder="Описание"
+              minRows={1}
               maxLength={1000}
               errorMessage={errors.description?.message}
               onChange={(event) => {

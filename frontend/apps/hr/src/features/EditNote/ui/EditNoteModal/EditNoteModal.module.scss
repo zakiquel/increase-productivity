@@ -1,0 +1,22 @@
+.EditNoteForm {
+  width: 552px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      font: var(--font-20);
+      line-height: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+  }
+}

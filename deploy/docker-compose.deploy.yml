@@ -1,6 +1,14 @@
-version: "3.7"
+version: '3.7'
 services:
   # FRONTEND
+  landing:
+    build:
+      context: ./frontend
+      dockerfile: ./apps/landing/Dockerfile
+    restart: always
+    networks:
+      - default
+
   hr:
     build:
       context: ./frontend
@@ -36,7 +44,7 @@ services:
       - mysqlfolder:/var/lib/mysql
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 40s
       retries: 20
     environment:
