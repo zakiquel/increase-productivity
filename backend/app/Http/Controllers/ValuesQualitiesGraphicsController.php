@@ -126,9 +126,13 @@ class ValuesQualitiesGraphicsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Employee $employee)
     {
         $user = JWTAuth::parseToken()->authenticate();
+
+        if (!Employee::where('id', $employee->id)->first()) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
 
         $company = $user->company;
 
@@ -136,7 +140,7 @@ class ValuesQualitiesGraphicsController extends Controller
             return response()->json(['error' => 'You have no companies'], 404);
         }
 
-        $values_id = ValueQuality::where('employee_id', $id)->pluck('value_id')->unique();
+        $values_id = ValueQuality::where('employee_id', $employee->id)->pluck('value_id')->unique();
 
 
         $values = Value::where('company_id', $company->id)
@@ -154,7 +158,7 @@ class ValuesQualitiesGraphicsController extends Controller
         foreach ($values as $value) {
             $result[$i]['title'] = $value->name;
 
-            $value_dates = ValueQuality::where('employee_id', $id)
+            $value_dates = ValueQuality::where('employee_id', $employee->id)
                 ->where('value_id', $value->id)
                 ->latest('date')
                 ->pluck('date')
@@ -174,7 +178,7 @@ class ValuesQualitiesGraphicsController extends Controller
 
             $j = 0;
             foreach ($dates as $date) {
-                $marks[$j] = $value->valueQualities->where('employee_id', $id)
+                $marks[$j] = $value->valueQualities->where('employee_id', $employee->id)
                     ->where('date', $date)
                     ->unique()
                     ->pluck('mark');
@@ -182,7 +186,7 @@ class ValuesQualitiesGraphicsController extends Controller
             }
 
             $result[$i]['labels'] = Quality::
-                whereIn('id', $value->valueQualities->where('employee_id', $id)
+                whereIn('id', $value->valueQualities->where('employee_id', $employee->id)
                     ->where('date', $dates[0])
                     ->unique()
                     ->pluck('quality_id'))

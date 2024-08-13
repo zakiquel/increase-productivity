@@ -1502,6 +1502,246 @@ paths:
         default:
           description: Success
 
+  # Notes API
+  /api/notes:
+    post:
+      tags:
+        - Note POST
+      summary: Add an note
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotePost'
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/notes/{employee_id}:
+    summary: Operations about notes
+    get:
+      tags:
+        - Notes GET
+      summary: Get notes
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+
+  /api/notes/{note_id}:
+    put:
+      tags:
+        - Note PUT
+      summary: Update an note
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: note_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteUpdate'
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Note"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      tags:
+        - Note DELETE
+      summary: Delete an note
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: note_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+
+  # Files API
+  /api/files:
+    post:
+      tags:
+        - File POST
+      summary: Add an File
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: file
+                  format: binary
+                  required : true
+                employee_id:
+                  type: integer
+                  example: 1
+                  required : true
+      responses:
+        200:
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/File"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /api/files/{employee_id}:
+    summary: Operations about files
+    get:
+      tags:
+        - Files GET
+      summary: Get files
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/File"
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+
+  /api/files/{file_id}:
+    delete:
+      tags:
+        - File DELETE
+      summary: Delete an file
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: file_id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        400:
+          description: Incorrect input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        default:
+          description: Success
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1963,3 +2203,41 @@ components:
     value_qualities_out:
       type: string
       example: Marks added successfully
+
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        text:
+          type: string
+          example: note about my employee
+
+    NotePost:
+      type: object
+      properties:
+        text:
+          type: string
+          example: note about my employee
+        employee_id:
+          type: integer
+          example: 1
+
+    NoteUpdate:
+      type: object
+      properties:
+        text:
+          type: string
+          example: note about my employee
+
+    File:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        file_name:
+          type: string
+          example: "123"
+

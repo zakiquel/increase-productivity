@@ -93,6 +93,7 @@ class Service
             2 => Quality::where('name', $validatedData['quality3'])->pluck('id')->first(),
             3 => Quality::where('name', $validatedData['quality4'])->pluck('id')->first(),
             4 => Quality::where('name', $validatedData['quality5'])->pluck('id')->first(),
+            5 => NULL,
         );
 
         $i = 0;
@@ -357,7 +358,13 @@ class Service
         }
 
         $max_date = SurveyHistory::whereIn('employee_id', $employees_id)
-            ->max('survey_date');
+            ->orderBy('survey_date', 'DESC')
+            ->pluck('survey_date')
+            ->first();
+
+        if (!$max_date) {
+            return response()->json(['error' => 'Add at least one survey'], 404);
+        }
 
         $previous_date = SurveyHistory::whereIn('employee_id', $employees_id)
             ->where('survey_date', '<', $max_date)
@@ -581,7 +588,7 @@ class Service
         $employee = Employee::where('id', $surveyHistory->employee_id)->first();
 
         if ($employee->company_id != $company_id) {
-            return response()->json(['error' => 'Unauthorized'], 403);
+            return response()->json(['error' => 'Not your employee'], 403);
         }
 
         $last_date = $surveyHistory->survey_date;

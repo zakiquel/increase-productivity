@@ -39,6 +39,7 @@ class ValueQualityController extends Controller
             2 => $request->quality3,
             3 => $request->quality4,
             4 => $request->quality5,
+            5 => NULL,
         );
 
         $user = JWTAuth::parseToken()->authenticate();

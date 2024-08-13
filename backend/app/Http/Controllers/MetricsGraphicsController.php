@@ -82,9 +82,13 @@ class MetricsGraphicsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Employee $employee)
     {
         $user = JWTAuth::parseToken()->authenticate();
+
+        if (!Employee::where('id', $employee->id)->first()) {
+            return response()->json(['error' => 'Not found'], 404);
+        }
 
         $company = $user->company;
 
@@ -94,7 +98,7 @@ class MetricsGraphicsController extends Controller
 
         $result = array();
 
-        $survey_dates = SurveyHistory::where('employee_id', $id)
+        $survey_dates = SurveyHistory::where('employee_id', $employee->id)
             ->latest('survey_date')
             ->limit(4)
             ->pluck('survey_date');
@@ -115,7 +119,7 @@ class MetricsGraphicsController extends Controller
 
         for ($i = 0; $i < 3; $i++) {
             $marks[$i] = SurveyHistory::whereIn('survey_date', $dates)
-                ->where('employee_id', $id)
+                ->where('employee_id', $employee->id)
                 ->orderBy('survey_date', 'ASC')
                 ->pluck('metric_'.($i+1).'_mark');
         }

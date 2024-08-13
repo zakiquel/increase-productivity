@@ -7,10 +7,12 @@ use App\Http\Controllers\QualityController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\SurveyHistoryController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\MetricsController;
 use App\Http\Controllers\MetricsGraphicsController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\QualityValueController;
 use App\Http\Controllers\TopQualitiesRiskController;
 use App\Http\Controllers\ValueQualityController;
@@ -128,3 +130,15 @@ Route::group([
     Route::get('company_top_qualities_risk_graphics/', [TopQualitiesRiskController::class, 'index']);
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('notes/{employee_id}', [NotesController::class, 'show']);
+    Route::post('notes', [NotesController::class, 'store']);
+    Route::put('notes/{note_id}', [NotesController::class, 'update']);
+    Route::delete('notes/{note_id}', [NotesController::class, 'destroy']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('files/{employee_id}', [FileController::class, 'show']);
+    Route::post('files', [FileController::class, 'store']);
+    Route::delete('files/{file_id}', [FileController::class, 'destroy']);
+});
