@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\QualityController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyRatingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\SurveyHistoryController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\MetricsController;
 use App\Http\Controllers\MetricsGraphicsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\QualityValueController;
+use App\Http\Controllers\RisksGraphicsController;
+use App\Http\Controllers\Top3RisksEmployeesController;
 use App\Http\Controllers\TopQualitiesRiskController;
 use App\Http\Controllers\ValueQualityController;
 use App\Http\Controllers\ValuesGraphicsController;
@@ -142,3 +145,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('files', [FileController::class, 'store']);
     Route::delete('files/{file_id}', [FileController::class, 'destroy']);
 });
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('risk_graphics/{employee_id}', [RisksGraphicsController::class, 'show']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('company_rating/', [CompanyRatingController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('top_risks_employees/', [Top3RisksEmployeesController::class, 'index']);
+});
+

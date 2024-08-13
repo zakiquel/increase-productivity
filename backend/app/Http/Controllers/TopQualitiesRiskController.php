@@ -62,11 +62,13 @@ class TopQualitiesRiskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show(int $id)
     {
         $user = JWTAuth::parseToken()->authenticate();
 
-        if (!Employee::where('id', $employee->id)->first()) {
+        $employee = Employee::where('id', $id)->first();
+
+        if (!$employee) {
             return response()->json(['error' => 'Not found'], 404);
         }
 
