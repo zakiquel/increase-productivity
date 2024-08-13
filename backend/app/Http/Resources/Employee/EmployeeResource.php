@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Employee;
 
 use App\Models\Employee;
+use App\Models\ValueQuality;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,6 +17,22 @@ class EmployeeResource extends JsonResource
     public function toArray(Request $request): array
     {
         $employee = Employee::where('user_id', $this->id)->first();
+
+        $date = ValueQuality::where('employee_id', $employee->id)
+            ->orderBy('date', 'DESC')
+            ->pluck('date')
+            ->first();
+
+        $qualities_count = ValueQuality::where('employee_id', $employee->id)
+            ->where('date', $date)
+            ->orderBy('risk', 'DESC')
+            ->count();
+
+        $qualities_marks_sum = ValueQuality::where('employee_id', $employee->id)
+            ->where('date', $date)
+            ->sum('mark');
+
+
         return [
             'id' => $employee->id,
             'first_name' => $this->first_name,
@@ -31,6 +48,7 @@ class EmployeeResource extends JsonResource
             'date_of_hiring' => $employee->date_of_hiring,
             'work_experience' => $employee->work_experience,
             'balance' => $employee->balance,
+            'rating' => $qualities_marks_sum/($qualities_count*10),
         ];
     }
 }
