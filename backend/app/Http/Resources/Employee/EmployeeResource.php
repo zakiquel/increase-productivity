@@ -32,6 +32,12 @@ class EmployeeResource extends JsonResource
             ->where('date', $date)
             ->sum('mark');
 
+        if ($qualities_count == 0 ) {
+            $rating = null;
+        }
+        else {
+            $rating = $qualities_marks_sum/($qualities_count*10);
+        }
 
         return [
             'id' => $employee->id,
@@ -48,7 +54,7 @@ class EmployeeResource extends JsonResource
             'date_of_hiring' => $employee->date_of_hiring,
             'work_experience' => $employee->work_experience,
             'balance' => $employee->balance,
-            'rating' => $qualities_marks_sum/($qualities_count*10),
+            'rating' => $rating,
         ];
     }
 }
