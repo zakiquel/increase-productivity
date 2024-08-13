@@ -83,7 +83,7 @@ class FileController extends Controller
             return response()->json(['error' => 'not your employee'], 404);
         }
 
-        Storage::disk('public')->delete($file->file_name);
+        Storage::delete($file->file);
 
         $file->delete();
 
