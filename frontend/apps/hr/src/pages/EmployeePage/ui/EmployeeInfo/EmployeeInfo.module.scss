@@ -1,8 +1,12 @@
 .EmployeeInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  // grid-template-rows: auto 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+    "profile login" 
+    "profile report"
+    "profile rating"
+    "profile balance"
+  ;
   gap: 8px;
 
   @media screen and (max-width: 768px) {
@@ -10,7 +14,15 @@
   }
 }
 
-.profile {
-  grid-row-start: 1;
-  grid-row-end: 4;
+.EmployeeLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  grid-area: login;
+}
+
+.report {
+
+  grid-area: report;
 }

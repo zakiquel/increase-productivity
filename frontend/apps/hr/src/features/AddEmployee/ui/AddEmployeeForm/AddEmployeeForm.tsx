@@ -2,14 +2,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMaskito } from '@maskito/react';
 import { classNames } from '@repo/shared/lib';
 import { Button, Input, Text, Toast } from '@repo/shared/ui';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToaster } from 'rsuite';
 
+import { addEmployee } from '../../api/addEmployeeApi';
 import {
   addEmployeeSchema,
-  FormInputData,
-  FormOutputData,
+  EmployeeFormInputData,
+  EmployeeFormOutputData,
 } from '../../lib/addEmployeeSchema';
 import dateOptions from '../../lib/dateMask';
 import firstLetterOptions from '../../lib/firstLetterMask';
@@ -25,6 +26,7 @@ export interface AddEmployeeFormProps {
 
 const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
   const { className, onSuccess, onReset } = props;
+  const [createEmployee, { isSuccess, isLoading }] = addEmployee();
 
   const dobInputRef = useMaskito({ options: dateOptions });
   const doeInputRef = useMaskito({ options: dateOptions });
@@ -40,7 +42,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
     control,
     trigger,
     formState: { errors, isValid },
-  } = useForm<FormInputData, any, FormOutputData>({
+  } = useForm<EmployeeFormInputData, any, EmployeeFormOutputData>({
     defaultValues: {
       first_name: '',
       last_name: '',
@@ -48,10 +50,15 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
       birth_date: '',
       email: '',
       position: '',
-      status: 'working',
       salary: '',
       date_of_hiring: '',
       password: '',
+      // TODO: убрать, когда исправят api
+      password_confirmation: '',
+      imgSrc: 'img',
+      status: 'working',
+      work_experience: 0,
+      balance: 0,
     },
     resolver: zodResolver(addEmployeeSchema),
     mode: 'onBlur',
@@ -59,33 +66,38 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
 
   const toaster = useToaster();
 
-  const ToasterShow = useCallback(() => {
-    toaster.push(
-      <Toast
-        text="Сотрудник добавлен!"
-        size="l"
-        variant="success"
-        addOnLeft={
-          <span className="material-symbols-outlined">check_circle</span>
-        }
-      />,
-      { placement: 'bottomCenter' },
-    );
-  }, [toaster]);
-
-  const onResetClick = useCallback(async () => {
+  const onResetClick = useCallback(() => {
     reset();
     onReset();
   }, [onReset, reset]);
 
-  const onSubmit: SubmitHandler<FormOutputData> = useCallback(
-    (data) => {
+  const onSubmit: SubmitHandler<EmployeeFormOutputData> = useCallback(
+    async (data) => {
+      // TODO: убрать, когда исправят api
+      data.password_confirmation = data.password;
+      await createEmployee(data);
+    },
+    [createEmployee],
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
       reset();
       onSuccess();
-      ToasterShow();
-    },
-    [reset, onSuccess, ToasterShow],
-  );
+      toaster.push(
+        <Toast
+          text="Сотрудник добавлен!"
+          size="l"
+          variant="success"
+          addOnLeft={
+            <span className="material-symbols-outlined">check_circle</span>
+          }
+        />,
+        { placement: 'bottomCenter' },
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   return (
     <form
@@ -272,7 +284,7 @@ const AddEmployeeForm = memo((props: AddEmployeeFormProps) => {
           type="submit"
           variant="primary"
           size="l"
-          disabled={!isValid}
+          disabled={!isValid || isLoading}
           fullWidth
         >
           Сохранить

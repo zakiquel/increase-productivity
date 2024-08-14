@@ -8,22 +8,21 @@ interface ProgressBarProps {
   className?: string;
   size: number;
   disabled?: boolean;
-  color?: string;
+  thin?: boolean;
 }
 
 export const ProgressBar = memo((props: ProgressBarProps) => {
-  const { className, size, disabled = false, color } = props;
+  const { className, size, disabled = false, thin = false } = props;
 
   return (
     <div
-      className={classNames(cls.ProgressBar, { [cls.disabled]: disabled }, [
-        className,
-      ])}
+      className={classNames(
+        cls.ProgressBar,
+        { [cls.disabled]: disabled, [cls.thin]: thin },
+        [className],
+      )}
     >
-      <div
-        className={cls.progress_fill}
-        style={{ width: `${size}%`, backgroundColor: color }}
-      />
+      <div className={cls.progress_fill} style={{ width: `${size}%` }} />
     </div>
   );
 });

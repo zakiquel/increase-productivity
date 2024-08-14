@@ -8,10 +8,9 @@ import cls from './EmployeeCard.module.scss';
 
 export interface EmployeeCardProps {
   employee: Employee;
-  standard?: number;
   onCardClick?: (id: number) => void;
   FireEmployeeComponent?: React.ComponentType<{
-    id: number;
+    employee: Employee;
     className?: string;
   }>;
   simple?: boolean;
@@ -20,7 +19,6 @@ export interface EmployeeCardProps {
 export const EmployeeCard = memo((props: EmployeeCardProps) => {
   const {
     employee,
-    standard,
     onCardClick = () => {},
     FireEmployeeComponent,
     simple = false,
@@ -52,17 +50,19 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
     >
       <h4 className={cls.employee_name}>{name}</h4>
       <p className={cls.employee_position}>{employee.position}</p>
-      {standard ? (
+      {employee.rating && !disabled ? (
         <div className={cls.employee_stat}>
-          <span className={cls.stat_text}>{`${standard}%`}</span>
-          <ProgressBar size={standard} disabled={disabled} />
+          <span className={cls.stat_text}>{`${employee.rating * 100}%`}</span>
+          <ProgressBar size={employee.rating * 100} disabled={disabled} thin />
         </div>
       ) : (
-        <span className={cls.stat_text}>Данные отсутствуют</span>
+        <span className={classNames(cls.stat_text, {}, [cls.norating])}>
+          Данные отсутствуют
+        </span>
       )}
       {!disabled && FireEmployeeComponent ? (
         <FireEmployeeComponent
-          id={employee.id}
+          employee={employee}
           className={classNames(cls.card_button, {}, [cls.fire_button])}
         />
       ) : (

@@ -13,7 +13,7 @@ interface EmployeeListProps {
   employees: Employee[];
   className?: string;
   FireEmployeeComponent: React.ComponentType<{
-    id: number;
+    employee: Employee;
     className?: string;
   }>;
 }
@@ -32,7 +32,6 @@ export const EmployeeList = memo((props: EmployeeListProps) => {
         <li key={employee.id}>
           <EmployeeCard
             employee={employee}
-            standard={34}
             onCardClick={handleClick}
             FireEmployeeComponent={FireEmployeeComponent}
           />

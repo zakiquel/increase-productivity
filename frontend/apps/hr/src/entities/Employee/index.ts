@@ -1,4 +1,3 @@
-export { EmployeeProfile } from './ui/EmployeeProfile/EmployeeProfile';
 export { EmployeeRating } from './ui/EmployeeRating/EmployeeRating';
 export { EmployeeList } from './ui/EmployeeList/EmployeeList';
 export type {
@@ -9,7 +8,11 @@ export type {
   EmployeeEvent,
   EmployeeOperation,
 } from './model/types/employee';
-export { fetchEmployees, fetchEmployeeById } from './api/employeesApi';
+export {
+  fetchEmployees,
+  fetchEmployeeById,
+  editEmployee,
+} from './api/employeesApi';
 
 export { OperationEmployeeBar } from './ui/OperationEmployeeBar/OperationEmployeeBar';
 

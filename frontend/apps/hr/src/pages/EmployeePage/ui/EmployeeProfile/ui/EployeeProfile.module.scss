@@ -1,0 +1,34 @@
+.EmployeeProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-area: profile;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .two_inputs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .control {
+    width: 100%;
+
+    label {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+.EmployeeBalance {
+  grid-area: balance;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+}

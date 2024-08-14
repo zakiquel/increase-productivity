@@ -45,7 +45,6 @@ export const addEmployeeSchema = z.object({
       'Допустимо использовать А-я, A-z, символ -',
     )
     .transform((value) => value.trim()),
-  status: z.string(),
   salary: z
     .string()
     .min(1, 'Необходимо заполнить все обязательные поля')
@@ -75,7 +74,16 @@ export const addEmployeeSchema = z.object({
       message:
         'Пароль должен включать хотя бы одну букву латинского алфавита, хотя бы одну цифру',
     }),
+  // TODO: убрать, когда переделают api:
+  password_confirmation: z.string(),
+  imgSrc: z.string(),
+  status: z.string(),
+  work_experience: z.number(),
+  balance: z
+    .number()
+    .int('Значение баланса должно быть целым числом')
+    .nonnegative('Значение баланса не может быть отрицательным'),
 });
 
-export type FormInputData = z.input<typeof addEmployeeSchema>;
-export type FormOutputData = z.output<typeof addEmployeeSchema>;
+export type EmployeeFormInputData = z.input<typeof addEmployeeSchema>;
+export type EmployeeFormOutputData = z.output<typeof addEmployeeSchema>;

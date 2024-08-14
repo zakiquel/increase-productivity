@@ -15,13 +15,14 @@ export const EmployeeMetrics = (props: EmployeeMetricsProps) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <Card variant="light" padding="16">
+    <Card variant="light" padding="16" className={cls.EmployeeMetrics}>
       <div className={cls.wrapper}>
         <PersonalMetricsChart />
-        <Button size="s" className={cls.btn} onClick={() => setOpen(true)}>
-          Внести данные по метрикам
-        </Button>
       </div>
+      <Button size="s" className={cls.btn} onClick={() => setOpen(true)}>
+        Внести данные по метрикам
+      </Button>
+
       <AddMetricDrawer isOpen={isOpen} onClose={() => setOpen(false)} />
     </Card>
   );

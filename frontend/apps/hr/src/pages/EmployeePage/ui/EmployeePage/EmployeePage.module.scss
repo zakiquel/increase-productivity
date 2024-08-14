@@ -2,7 +2,12 @@
   gap: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 551px 706px;
+  transition: opacity 0.2s ease;
+
+  &.disabled {
+    opacity: 50%;
+  }
+
 }
 
 .canvas_container {
@@ -24,4 +29,10 @@
 .profile {
   grid-row-start: 1;
   grid-row-end: 4;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

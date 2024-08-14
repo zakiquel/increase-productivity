@@ -1,19 +1,25 @@
 import { Button, ModalSuccess } from '@repo/shared/ui';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { Employee, editEmployee } from '@/entities/Employee';
 
 interface FireEmployeeProps {
-  id: number;
+  employee: Employee;
   className?: string;
 }
 
 export const FireEmployee = (props: FireEmployeeProps) => {
-  const { id, className } = props;
+  const { employee, className } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [fireEmployee, { isSuccess }] = editEmployee();
 
-  const handleFire = () => {
-    setIsOpen(false);
-    // запрос на сервер
+  const handleFire = async () => {
+    await fireEmployee({ ...employee, status: 'fired' });
   };
+
+  useEffect(() => {
+    if (isSuccess) setIsOpen(false);
+  }, [isSuccess]);
 
   return (
     <>

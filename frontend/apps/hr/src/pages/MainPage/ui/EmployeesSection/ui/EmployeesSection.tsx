@@ -16,7 +16,7 @@ interface EmployeesSectionProps {
 
 export const EmployeesSection = memo((props: EmployeesSectionProps) => {
   const { className } = props;
-  const { isLoading, data: response, isError } = fetchEmployees('');
+  const { data: employees, isLoading, isError } = fetchEmployees('');
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
   const [employeesToDraw, setEmployeesToDraw] = useState<Employee[]>([]);
   const [isAddEmployee, setIsAddEmployee] = useState(false);
@@ -25,16 +25,15 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
     return (
       <div className={cls.EmployeesSection}>
         <Skeleton width="100%" height={88} border="4px" />
-        <Skeleton width="100%" height={400} border="4px" />
       </div>
     );
   }
 
-  if (!response || isError) {
+  if (!employees || isError) {
     return <Text title="Произошла ошибка при загрузке данных" align="center" />;
   }
 
-  if (!response.data || response.data.length === 0) {
+  if (!employees || employees.length === 0) {
     return (
       <div className={cls.start_layout}>
         <Card variant="light" padding="16">
@@ -58,10 +57,7 @@ export const EmployeesSection = memo((props: EmployeesSectionProps) => {
   return (
     <section className={classNames(cls.EmployeesSection, {}, [className])}>
       <Card variant="light" padding="16" className={cls.employee_control}>
-        <SortEmployees
-          employees={response.data}
-          onFilter={setFilteredEmployees}
-        />
+        <SortEmployees employees={employees} onFilter={setFilteredEmployees} />
         <Button
           variant="primary"
           className={cls.control_button}

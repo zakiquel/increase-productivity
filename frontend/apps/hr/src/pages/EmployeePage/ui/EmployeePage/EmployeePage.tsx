@@ -60,11 +60,21 @@ const EmployeePage = (props: EmployeePageProps) => {
   const employee = response.data;
 
   return (
-    <Page className={classNames(cls.EmployeePage, {}, [className])}>
-      <EmployeeInfo employee={employee} />
-      <EmployeeRisks />
-      <EmployeeValues employeeId={employee.id.toString()} />
-      <EmployeeMetrics />
+    <Page
+      className={classNames(
+        cls.EmployeePage,
+        { [cls.disabled]: employee.status === 'fired' },
+        [className],
+      )}
+    >
+      <div className={cls.block}>
+        <EmployeeInfo employee={employee} />
+        <EmployeeValues employeeId={employee.id.toString()} />
+      </div>
+      <div className={cls.block}>
+        <EmployeeRisks />
+        <EmployeeMetrics />
+      </div>
       <EmployeeValuesList employeeId={employee.id.toString()} />
       <EmployeeNotes employee={employee} />
       <EmployeeDocuments employee={employee} />

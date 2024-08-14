@@ -27,13 +27,14 @@ const Employees: Employee[] = [
     email: 'sdsd',
     company_id: 2,
     imgSrc: '',
-    salary: 10000,
+    salary: '100',
     birth_date: '',
     position: 'UX/UI дизайнер',
     status: '',
     date_of_hiring: '',
     work_experience: 20,
     balance: '',
+    rating: 0.1,
   },
   {
     id: 3,
@@ -43,13 +44,14 @@ const Employees: Employee[] = [
     email: 'sdsd',
     company_id: 2,
     imgSrc: '',
-    salary: 10000,
+    salary: '100',
     birth_date: '',
     position: 'UX/UI дизайнер',
     status: '',
     date_of_hiring: '',
     work_experience: 20,
     balance: '',
+    rating: 0.1,
   },
   {
     id: 2,
@@ -59,13 +61,14 @@ const Employees: Employee[] = [
     email: 'sdsd',
     company_id: 2,
     imgSrc: '',
-    salary: 10000,
+    salary: '100',
     birth_date: '',
     position: 'UX/UI дизайнер',
     status: '',
     date_of_hiring: '',
     work_experience: 20,
     balance: '',
+    rating: 0.1,
   },
 ];
 
@@ -88,7 +91,7 @@ export const ChartList = memo(() => {
             <Text text="Текучесть кадров, год" bold size="s" />
             <div className={cls.bar_wrap}>
               <span className={cls.stat_text}>{`${5}%`}</span>
-              <ProgressBar size={5} disabled={false} color="#8A38F6" />
+              <ProgressBar size={5} disabled={false} />
               <p className={cls.description}>
                 Метрика в норме, продолжайте её отслеживать, чтобы
                 контролировать состояние компании
@@ -125,11 +128,7 @@ export const ChartList = memo(() => {
               <span
                 className={cls.stat_text}
               >{`${rating ? rating * 100 : 0}%`}</span>
-              <ProgressBar
-                size={rating ? rating * 100 : 0}
-                disabled={false}
-                color="#8A38F6"
-              />
+              <ProgressBar size={rating ? rating * 100 : 0} disabled={false} />
             </div>
           </Card>
           <Card

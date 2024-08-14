@@ -95,7 +95,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     [cls.error]: Boolean(errorMessage),
   };
 
-  const setValue = () => value || localValue;
+  const setValue = () => value ?? localValue;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (value === undefined) {
