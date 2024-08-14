@@ -65,15 +65,16 @@ export interface Employee {
   middle_name?: string;
   last_name: string;
   email: string;
-  company_id: number;
+  company_id?: number;
   imgSrc: string;
-  salary: number;
+  salary: string;
   birth_date: string;
   position: string;
   status: string;
   date_of_hiring: string;
   work_experience: number;
   balance: string;
+  rating: number | null;
 }
 
 export interface EmployeeTest {

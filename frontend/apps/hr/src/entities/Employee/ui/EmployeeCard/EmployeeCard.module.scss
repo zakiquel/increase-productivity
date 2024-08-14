@@ -31,6 +31,10 @@
     span {
       color: var(--grey-secondary-color);
     }
+
+    .stat_text {
+      visibility: hidden;
+    }
   }
 
   &::after {
@@ -67,6 +71,10 @@
 
 .stat_text {
   font-weight: 400;
+
+  &.norating {
+    opacity: 50%;
+  }
 }
 
 .card_button {

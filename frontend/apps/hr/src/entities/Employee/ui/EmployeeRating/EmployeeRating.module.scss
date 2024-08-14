@@ -1,19 +1,25 @@
 .EmployeeRating {
   position: relative;
   overflow: hidden;
-}
-
-.title {
-  margin-bottom: 16px;
-}
-
-.text {
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-area: rating;
+  justify-content: space-between;
 }
 
 .rating {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, 20%);
+  font: var(--font-20);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.norating {
+  height: 46px;
+  width: 100%;
+  background-image: url('../../../../shared/assets/images/rectangle.png');
+  background-size: 100% 100%;
+  background-repeat: space;
+  background-position: 0 0;
 }

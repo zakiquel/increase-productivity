@@ -1,12 +1,10 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { classNames } from '@repo/shared/lib';
-import { Button, Card, Text } from '@repo/shared/ui';
+import { Button, Card } from '@repo/shared/ui';
 
 import { EmployeeReport } from '../EmployeeReport/EmployeeReport';
 
 import type { Employee } from '@/entities/Employee';
-
-import cls from './DownloadEmployeeReportButton.module.scss';
 
 interface DownloadEmployeeReportButtonProps {
   employeeId: Employee['id'];
@@ -23,13 +21,6 @@ export function DownloadEmployeeReportButton({
       className={classNames('', {}, [className])}
       padding="16"
     >
-      <Text title="Отчет по сотруднику" size="s" bold />
-      <Text
-        text="Страница в формате PDF будет загружена на ваш компьютер"
-        size="s"
-        variant="grey"
-        className={cls.text}
-      />
       <PDFDownloadLink
         document={<EmployeeReport employeeId={employeeId} />}
         fileName="Отчёт"
@@ -38,7 +29,7 @@ export function DownloadEmployeeReportButton({
           <Button
             fullWidth
             disabled={loading}
-            size="s"
+            size="m"
             addonRight={
               <span className="material-symbols-outlined">download</span>
             }

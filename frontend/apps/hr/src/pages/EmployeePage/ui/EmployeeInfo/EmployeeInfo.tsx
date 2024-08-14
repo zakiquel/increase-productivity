@@ -1,9 +1,10 @@
 import { classNames } from '@repo/shared/lib';
+import { Card, Input, Text } from '@repo/shared/ui';
 import { memo } from 'react';
 
-import { EmployeeBalance } from '../EmployeeBalance/EmployeeBalance';
+import { EmployeeProfile } from '../EmployeeProfile/ui/EmployeeProfile';
 
-import { Employee, EmployeeProfile, EmployeeRating } from '@/entities/Employee';
+import { Employee, EmployeeRating } from '@/entities/Employee';
 import { DownloadEmployeeReportButton } from '@/features/DownloadEmployeeReportButton';
 
 import cls from './EmployeeInfo.module.scss';
@@ -18,13 +19,22 @@ export const EmployeeInfo = memo((props: EmployeeInfoProps) => {
 
   return (
     <section className={classNames(cls.EmployeeInfo, {}, [className])}>
-      <EmployeeProfile data={employee} className={cls.profile} />
+      <EmployeeProfile employee={employee} className={cls.profile} />
+      <Card variant="light" padding="16" className={cls.EmployeeLogin}>
+        <Text title="Данные для входа" size="s" bold />
+        <Text
+          text="Электронная почта является логином для входа сотрудника в сервис"
+          size="s"
+          variant="grey"
+          className={cls.text}
+        />
+        <Input readonly value={employee.email} />
+      </Card>
       <DownloadEmployeeReportButton
         employeeId={employee.id}
         className={cls.report}
       />
-      <EmployeeRating />
-      <EmployeeBalance balance={employee.balance} />
+      <EmployeeRating rating={employee.rating} />
     </section>
   );
 });
