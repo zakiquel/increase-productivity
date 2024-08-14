@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllRisksController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollectiveMetricController;
 use App\Http\Controllers\EventController;
@@ -162,5 +163,12 @@ Route::group([
     'middleware' => 'api',
 ], function ($router) {
     Route::get('top_risks_employees/', [Top3RisksEmployeesController::class, 'index']);
+});
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::get('all_company_risks/', [AllRisksController::class, 'index']);
+    Route::get('all_employee_risks/{employee_id}', [AllRisksController::class, 'show']);
 });
 

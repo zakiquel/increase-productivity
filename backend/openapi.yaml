@@ -184,6 +184,23 @@ paths:
                   message:
                     type: string
 
+  # Get User API
+  /api/user/:
+    summary: Operations about User
+    get:
+      tags:
+        - User GET
+      summary: All User Information
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
 # Companies API
   /api/companies:
     summary: Operations about companies
@@ -1791,6 +1808,46 @@ paths:
       summary: Top 3 Risks Employees
       security:
         - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+   # All Company Risks API
+  /api/all_company_risks/:
+    summary: Operations about All Company Risks
+    get:
+      tags:
+        - All Company Risks GET
+      summary: All Company Risks
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
+  # All Employee Risks API
+  /api/all_employee_risks/{employee_id}:
+    summary: Operations about All Employee Risks
+    get:
+      tags:
+        - All Employee Risks GET
+      summary: All Employee Risks
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: employee_id
+          required: true
+          in: path
+          schema:
+            type: integer
       responses:
         200:
           description: Success
