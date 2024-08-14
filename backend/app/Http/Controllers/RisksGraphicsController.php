@@ -159,12 +159,12 @@ class RisksGraphicsController extends Controller
             ],
         );
 
-        for ($j = 0; $j < $count; $j++) {
+        for ($j = 0; $j < $count & $j < 5; $j++) {
             $result['datasets'][$j + 3] = (object) [
                 'label' => Quality::where('id', $value_qialities[$j]->quality_id)->pluck('risk_name')->first(),
                 'data' => array(
                     0 => null,
-                    1 => $value_qialities[$j]->risk,
+                    1 => -$value_qialities[$j]->risk,
                 ),
             ];
         }
