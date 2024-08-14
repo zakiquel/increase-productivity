@@ -1,6 +1,14 @@
 .EmployeeMetrics {
   width: 100%;
   min-height: 400px;
+  height: fit-content;
   overflow: hidden;
   position: relative;
+}
+
+.btn {
+  width: 388px;
+}
+.wrapper {
+  height: 645px;
 }

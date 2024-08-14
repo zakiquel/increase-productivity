@@ -3,36 +3,9 @@
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useParams } from 'react-router-dom';
 
-const data: ChartData<'bar'> = {
-  labels: ['Риски по метрикам', 'Риски по качествам'],
-  datasets: [
-    {
-      label: 'Риск по метрике 1',
-      data: [15, null],
-    },
-    {
-      label: 'Риск по метрике 2',
-      data: [10, null],
-    },
-    {
-      label: 'Риск по метрике 3',
-      data: [5, null],
-    },
-    {
-      label: 'Риск по качеству 1',
-      data: [null, -15],
-    },
-    {
-      label: 'Риск по качеству 2',
-      data: [null, -10],
-    },
-    {
-      label: 'Риск по качеству 3',
-      data: [null, -5],
-    },
-  ],
-};
+import { getPersonalRisks } from '../../model/api/graphicsApi';
 
 const options: ChartOptions<'bar'> = {
   skipNull: true,
@@ -96,5 +69,10 @@ const options: ChartOptions<'bar'> = {
 };
 
 export function PersonalRiskChart() {
+  const { id } = useParams<{ id: string }>();
+  if (!id) return null;
+  const { data: risks, isLoading } = getPersonalRisks(id);
+  if (!risks) return null;
+  const data: ChartData<'bar'> = risks;
   return <Bar data={data} options={options} height="100%" />;
 }

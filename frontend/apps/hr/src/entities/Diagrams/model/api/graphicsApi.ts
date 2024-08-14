@@ -1,3 +1,5 @@
+import { ChartData } from 'chart.js';
+
 import { rtkApi } from '@/shared/api/rtkApi';
 
 type Data = {
@@ -38,6 +40,7 @@ const graphicsApi = rtkApi.injectEndpoints({
         url: `/personal_values_qualities_graphics/${id}`,
         method: 'GET',
       }),
+      providesTags: ['Values'],
     }),
 
     fetchPersonalValues: build.query<Data, string>({
@@ -52,12 +55,12 @@ const graphicsApi = rtkApi.injectEndpoints({
         url: `/personal_metrics_graphics/${id}`,
         method: 'GET',
       }),
+      providesTags: ['Metrics'],
     }),
 
-    // TODO: Не реализовано на бэке
-    fetchPersonalRisk: build.query<Data, string>({
+    fetchPersonalRisk: build.query<ChartData<'bar'>, string>({
       query: (id) => ({
-        url: `/personal_top_qualities_risk_graphics/${id}`,
+        url: `/risk_graphics/${id}`,
         method: 'GET',
       }),
     }),
@@ -65,7 +68,7 @@ const graphicsApi = rtkApi.injectEndpoints({
     // TODO: Не реализовано на бэке
     fetchCompanyRisk: build.query<Data, string>({
       query: (id) => ({
-        url: `/personal_top_qualities_risk_graphics/${id}`,
+        url: `/company_top_qualities_risk_graphics/${id}`,
         method: 'GET',
       }),
     }),
@@ -77,3 +80,4 @@ export const getCompanyValues = graphicsApi.useFetchCompanyValuesQuery;
 export const getPersonalValues = graphicsApi.useFetchPersonalValuesQuery;
 export const getPersonalMetrics = graphicsApi.useFetchPersonalMetricsQuery;
 export const getPersonalQualities = graphicsApi.useFetchPersonalQualitiesQuery;
+export const getPersonalRisks = graphicsApi.useFetchPersonalRiskQuery;

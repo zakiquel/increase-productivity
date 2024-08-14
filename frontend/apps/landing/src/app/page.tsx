@@ -1,3 +1,5 @@
+'use client';
+
 export default function MainPage() {
-  return <div>Основа</div>;
+  return <div className="">регистрация</div>;
 }

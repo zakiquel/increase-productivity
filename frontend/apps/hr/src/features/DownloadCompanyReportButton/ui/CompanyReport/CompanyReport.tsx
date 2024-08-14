@@ -7,7 +7,7 @@ import {
   Font,
   Image,
 } from '@react-pdf/renderer';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { canvasToSrc } from '../../lib/canvasToSrc';
 import { formatDate } from '../../lib/formatDate';
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function CompanyReport() {
+export const CompanyReport = memo(() => {
   const [companyMetricsSrc, setCompanyMetricsSrc] = useState('');
   // const [companyQualitiesSrc, setCompanyQualitiesSrc] = useState('');
   const [companyRiskSrc, setCompanyRiskSrc] = useState('');
@@ -95,7 +95,7 @@ export function CompanyReport() {
       setCompanyValuesSrc(companyValuesSrc);
     };
     generateData();
-  });
+  }, []);
 
   return (
     <Document language="ru" style={styles.document}>
@@ -123,4 +123,4 @@ export function CompanyReport() {
       </Page>
     </Document>
   );
-}
+});

@@ -1,0 +1,22 @@
+.switcher {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 16px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--grey-secondary-color);
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.btn {
+  height: 20px;
+  color: var(--base-0-color);
+  &:hover {
+    color: var(--base-0-color);
+  }
+}
+
+.icon {
+  font-size: 20px;
+}

@@ -20,6 +20,7 @@ type InputSize = 's' | 'm' | 'l';
 
 interface InputProps extends HTMLInputProps {
   className?: string;
+  labelClassName?: string;
   value?: string | number;
   size?: InputSize;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -39,6 +40,7 @@ interface InputProps extends HTMLInputProps {
 export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
   const {
     className,
+    labelClassName,
     value,
     onChange,
     onBlur,
@@ -106,7 +108,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props) => {
     <div
       className={classNames(cls.wrapper, wrapperMods, [cls[size], className])}
     >
-      {label && <div className={cls.label}>{label}</div>}
+      {label && (
+        <div className={classNames(cls.label, {}, [labelClassName])}>
+          {label}
+        </div>
+      )}
       <div className={classNames(cls.InputWrapper, inputMods, [])}>
         {addonLeft && <div className={cls.addonLeft}>{addonLeft}</div>}
         <input

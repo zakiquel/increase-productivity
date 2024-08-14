@@ -36,7 +36,10 @@ export const EmployeeCard = memo((props: EmployeeCardProps) => {
 
   if (simple)
     return (
-      <div className={classNames(cls.SimpleEmployeeCard, mods, [])}>
+      <div
+        className={classNames(cls.SimpleEmployeeCard, mods, [])}
+        onClick={() => onCardClick(employee.id)}
+      >
         <h4 className={cls.name}>{name}</h4>
         <p className={cls.employee_position}>{employee.position}</p>
       </div>
