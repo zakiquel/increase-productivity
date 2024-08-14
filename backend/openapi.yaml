@@ -1856,6 +1856,23 @@ paths:
         default:
           description: Success
 
+  # Presets API
+  /api/presets/:
+    summary: Operations about Presets
+    get:
+      tags:
+        - Presets GET
+      summary: Presets
+      security:
+        - bearerAuth: [ ]
+      responses:
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+        default:
+          description: Success
+
 components:
   securitySchemes:
     bearerAuth:
