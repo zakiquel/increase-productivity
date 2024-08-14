@@ -92,8 +92,8 @@ export const EmployeeOperations = memo((props: EmployeeOperationsProps) => {
       </div>
       {tempOperationsList ? (
         <ul>
-          {tempOperationsList.slice(0, maxCount).map((operation) => (
-            <li>
+          {tempOperationsList.slice(0, maxCount).map((operation, key) => (
+            <li key={key}>
               <OperationEmployeeBar operation={operation} />
             </li>
           ))}

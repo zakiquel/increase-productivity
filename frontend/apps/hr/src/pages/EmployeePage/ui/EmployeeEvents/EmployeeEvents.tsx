@@ -91,8 +91,8 @@ export const EmployeeEvents = memo((props: EmployeeEventsProps) => {
       </div>
       {tempEventsList ? (
         <ul>
-          {tempEventsList.slice(0, maxCount).map((event) => (
-            <li className={cls.event} key={event.name}>
+          {tempEventsList.slice(0, maxCount).map((event, key) => (
+            <li className={cls.event} key={key}>
               <EventEmployeeBar event={event} />
             </li>
           ))}

@@ -1,0 +1,86 @@
+.AddQualityForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font: var(--font-20);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .label {
+    font: var(--font-16);
+    font-weight: 400;
+    color: var(--base-0-color);
+  }
+
+  .text {
+    margin-top: 32px;
+  }
+
+  .form_description {
+    margin-top: 4px;
+    p {
+      color: var(--grey-primary-color);
+    }
+  }
+
+  .form_fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .form_buttons {
+    padding: 24px 0 0 0;
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .textarea {
+    max-height: 250px;
+  }
+}
+
+.success {
+  animation: fade-in 0.3s ease-in-out;
+  background: var(--success-color);
+  border-radius: 8px;
+  width: 100%;
+  height: 197px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+
+  &__text {
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--white);
+  }
+  &__wrapper {
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__footer {
+    margin-top: 8px;
+    color: var(--base-0-color);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

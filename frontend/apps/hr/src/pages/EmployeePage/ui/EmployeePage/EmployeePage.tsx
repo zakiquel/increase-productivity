@@ -64,7 +64,7 @@ const EmployeePage = (props: EmployeePageProps) => {
       <EmployeeInfo employee={employee} />
       <EmployeeRisks />
       <EmployeeValues employeeId={employee.id.toString()} />
-      <EmployeeMetrics employeeId={employee.id.toString()} />
+      <EmployeeMetrics />
       <EmployeeValuesList employeeId={employee.id.toString()} />
       <EmployeeNotes employee={employee} />
       <EmployeeDocuments employee={employee} />

@@ -64,7 +64,7 @@ const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
 export function PersonalValuesChart({ employeeId }: PersonalValuesChartProps) {
   const { data } = getPersonalValues(employeeId);
 
-  if (!data) return null;
+  if (!data || !data.datasets.length) return null;
 
   const formattedData: ChartData<'radar'> = {
     labels: data.labels,

@@ -2,6 +2,7 @@
 
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
+import { memo } from 'react';
 import { Line } from 'react-chartjs-2';
 
 import { getCompanyMetrics } from '../../model/api/graphicsApi';
@@ -62,10 +63,10 @@ const options: ChartOptions<'line'> = {
 
 const colors = ['#8A38F6', '#FF5C00', '#E56399'];
 
-export function CompanyMetricsChart() {
+export const CompanyMetricsChart = memo(() => {
   const { data } = getCompanyMetrics();
 
-  if (!data) return null;
+  if (!data || !data.datasets.length) return null;
 
   const formattedData: ChartData<'line'> = {
     labels: data.labels,
@@ -78,4 +79,4 @@ export function CompanyMetricsChart() {
   };
 
   return <Line data={formattedData} options={options} height="100%" />;
-}
+});

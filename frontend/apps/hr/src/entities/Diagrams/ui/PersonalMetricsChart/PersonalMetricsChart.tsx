@@ -3,6 +3,7 @@
 import 'chart.js/auto';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { useParams } from 'react-router-dom';
 
 import { getPersonalMetrics } from '../../model/api/graphicsApi';
 
@@ -61,22 +62,18 @@ const options: ChartOptions<'line'> = {
   animation: false,
 };
 
-type PersonalMetricsChartProps = {
-  employeeId: string;
-};
-
 const colors = ['#8A38F6', '#FF5C00', '#E56399', '#464D77', '#214E34'];
 
-export function PersonalMetricsChart({
-  employeeId,
-}: PersonalMetricsChartProps) {
-  const { data } = getPersonalMetrics(employeeId);
+export function PersonalMetricsChart() {
+  const { id } = useParams<{ id: string }>();
+  if (!id) return null;
+  const { data } = getPersonalMetrics(id);
 
-  if (!data) return null;
+  if (!data || !data.datasets.length) return null;
 
   const formattedData: ChartData<'line'> = {
-    labels: data?.labels,
-    datasets: data?.datasets.map((dataset, i) => ({
+    labels: data.labels,
+    datasets: data.datasets.map((dataset, i) => ({
       label: dataset.label,
       data: dataset.data.map((data) => Number(data)),
       borderColor: colors[i],

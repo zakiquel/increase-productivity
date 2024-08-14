@@ -29,8 +29,8 @@ export const EmployeeNotes = (props: EmployeeNotesProps) => {
       {notes && (
         <div className={cls.notes}>
           <div className={cls.notes_list}>
-            {notes.slice(0, 8).map((note) => (
-              <EditNote note={note} />
+            {notes.slice(0, 8).map((note, key) => (
+              <EditNote note={note} key={key} />
             ))}
           </div>
           {notes.length > 8 && (

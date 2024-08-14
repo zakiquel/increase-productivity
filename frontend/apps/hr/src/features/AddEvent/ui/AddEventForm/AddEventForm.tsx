@@ -173,7 +173,6 @@ const AddEventForm = memo((props: AddEventFormProps) => {
               errorMessage={errors.reward?.message}
               onChange={(event) => {
                 field.onChange(Number(event.target.value));
-                field.onChange(Number(event.target.value));
                 if (errors.reward) trigger('reward');
               }}
             />
