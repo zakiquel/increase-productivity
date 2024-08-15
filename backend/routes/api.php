@@ -152,6 +152,7 @@ Route::group([
     'middleware' => 'api',
 ], function ($router) {
     Route::get('risk_graphics/{employee_id}', [RisksGraphicsController::class, 'show']);
+    Route::get('company_risk_graphics/', [RisksGraphicsController::class, 'index']);
 });
 
 Route::group([
