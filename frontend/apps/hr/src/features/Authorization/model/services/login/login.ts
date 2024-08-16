@@ -12,14 +12,13 @@ export const login = createAsyncThunk(
     try {
       const response = await dispatch(loginByPass(authData)).unwrap();
 
-      if (!response) {
+      if (!response || !response.access_token) {
         return rejectWithValue('error');
       }
 
       localStorage.setItem(USER_SECRET_TOKEN, response.access_token);
       dispatch(userActions.setInited(true));
       window.location.reload();
-      
 
       return response;
     } catch (e) {

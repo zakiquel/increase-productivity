@@ -75,7 +75,6 @@ export const AuthorizationForm = memo((props: AuthorizationFormProps) => {
     >
       <Text title="Авторизация" />
       <form onSubmit={handleSubmit(onSubmit)} noValidate className={cls.form}>
-        { error && <div>{error}</div> }
         <Controller
           name="email"
           control={control}
@@ -138,6 +137,7 @@ export const AuthorizationForm = memo((props: AuthorizationFormProps) => {
         >
           Войти
         </Button>
+        { error && <Text variant="error" size="s" text="Неверные имя пользователя или пароль" className={cls.error}/> }
       </form>
     </Card>
   );

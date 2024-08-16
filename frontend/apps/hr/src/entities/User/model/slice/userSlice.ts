@@ -29,8 +29,7 @@ export const userSlice = createSlice({
             },
         );
         builder.addCase(
-            initAuthData.rejected, (
-                state) => {
+            initAuthData.rejected, (state) => {
             state._inited = false;
         });
         builder.addCase(
